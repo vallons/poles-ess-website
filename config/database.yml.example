@@ -1,0 +1,27 @@
+# PostgreSQL. Versions 9.1 and up are supported.
+
+default: &default
+  adapter: postgresql
+  encoding: unicode
+  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+
+local_credentials: &local_credentials
+  login: poles_ess
+  password: poles_ess
+
+
+development:
+  <<: *default
+  <<: *local_credentials
+  database: poles_ess_development
+
+test:
+  <<: *default
+  <<: *local_credentials
+  database: poles_ess_test
+
+production:
+  <<: *default
+  login: <%= ENV['POLES_ESS_DATABASE_LOGIN'] %>
+  password: <%= ENV['POLES_ESS_DATABASE_PASSWORD'] %>
+  database: poles_ess_production
