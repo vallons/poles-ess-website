@@ -1,0 +1,104 @@
+doctype html
+html lang="#{I18n.locale}"
+  head
+    title = "Admin Pôle ESS"
+    meta http-equiv="content-type" content="text/html;charset=UTF-8"
+
+    / = stylesheet_packs_with_chunks_tag 'administration', media: 'all', 'data-turbolinks-track': 'reload'
+    = stylesheet_pack_tag 'administration', media: 'all', 'data-turbolinks-track': 'reload'
+    = javascript_packs_with_chunks_tag 'administration', 'data-turbolinks-track': 'reload', defer: true
+
+    = csrf_meta_tag
+
+    = favicon_link_tag asset_path '/favicons/favicon.ico'
+    = favicon_link_tag asset_path '/favicons/favicon.png'
+
+  body
+    .container-fluid.h-100
+      .row.h-100
+        .col-2.bg-dark.p-0
+          aside
+            ul.nav.flex-column
+              li.nav-item.brand
+                = link_to "Pôle ESS Admin", admin_root_path, class: "nav-link "
+              li.nav-item
+                = active_link_to 'Tableau de bord', admin_root_path, title: "Retour à l'accueil", class: "nav-link", active: :exclusive
+              li.nav-item.nav-header 
+                span.nav-link Contenus chauds
+                ul 
+                  li.nav-item
+                    = active_link_to "#", title: "Gestion des actus", class: "nav-link", active: :exclusive do
+                      i.fas.fa-fire>
+                      ' Actions
+                  li.nav-item
+                    = active_link_to "#", title: "Gestion des actus", class: "nav-link", active: :exclusive do
+                      i.fas.fa-fire>
+                      ' Actualités
+                  li.nav-item
+                    = active_link_to "#", title: "Gestion des actus", class: "nav-link", active: :exclusive do
+                      i.fas.fa-fire>
+                      ' Ressources
+              li.nav-item.nav-header 
+                span.nav-link Contenus froids
+                ul
+                  li.nav-item
+                    = active_link_to "#", title: "Gestion des actus", class: "nav-link", active: :exclusive do
+                      i.far.fa-snowflake>
+                      ' Thèmes
+                  li.nav-item
+                    = active_link_to "#", title: "Gestion des actus", class: "nav-link", active: :exclusive do
+                      i.fas.fa-snowflake>
+                      ' Profils
+              li.nav-item.nav-header 
+                span.nav-link Configuration
+                ul 
+                  li.nav-item
+                    = active_link_to "#", title: "Gestion des actus", class: "nav-link", active: :exclusive do
+                      i.fas.fa-cog>
+                      ' Page d'accueil
+
+                  li.nav-item
+                    = active_link_to "#", title: "Gestion des actus", class: "nav-link", active: :exclusive do
+                      i.fas.fa-cog>
+                      ' Paramètres
+
+
+              - if model_is_defined("Post")
+                = submenu("Actualités", %w[posts blog_categories])
+                  li.nav-item = active_link_to 'Gestion des actualités', admin_blog_posts_path, active: :inclusive
+                  li.nav-item = active_link_to 'Gestion des catégories', admin_blog_categories_path, active: :inclusive
+              - if model_is_defined("Contact")
+                li.nav-item = active_link_to 'Contacts', admin_contacts_path, active: :inclusive
+
+                  / Hide basic pages link if none has been generated in seeds
+                  / - if BasicPage.exists?
+                  /   = submenu("Pages", %w[basic_pages])
+                  /     - BasicPage.all.each do |basic_page|
+                  /       li.nav-item = active_link_to basic_page.title, [:edit, :admin, basic_page]
+
+                  / = submenu("Configurations", %w[seos admins])
+                  /   li.nav-item = active_link_to 'Gestion des admins', admin_admins_path
+                  /   li.nav-item = active_link_to 'SEO pages statiques', admin_seos_path
+        .col-10.p-0
+          header
+            nav.navbar.navbar-expand-lg.navbar-dark.bg-dark
+              / = link_to "Pôle ESS Admin", admin_root_path, class: "navbar-brand"
+              button.navbar-toggler type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"
+                span.navbar-toggler-icon
+              #navbarSupportedContent.collapse.navbar-collapse
+                ul.navbar-nav.ml-auto
+                  li.nav-item 
+                    => active_link_to root_path, title: "Retour au site", class: "nav-link", active: :exclusive do
+                      i.far.fa-eye> 
+                      ' Voir le site
+                  li.nav-item 
+                    = active_link_to destroy_admin_session_path, title: "Se déconnecter", class: "nav-link", method: :delete do
+                      i.fas.fa-sign-out-alt>
+                      ' Déconnexion
+          main
+            = yield
+
+
+          
+
+  = raw flash_messages

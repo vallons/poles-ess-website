@@ -1,0 +1,34 @@
+html, body
+  height: 100%
+  margin: 0
+
+aside
+  .brand
+    padding: 0.5rem 0rem
+    .nav-link
+      font-size: 1.25rem
+      color: $white
+      &:hover
+        color: $white
+  .nav-link
+    color: darken( $white, 15% )
+  .nav-item:not(.nav-header) .nav-link
+    &:hover, &:active, &.active
+      color: $white
+  .nav-header
+    > span
+      text-transform: uppercase
+      color: darken( $white, 30% )
+      font-size: 0.85rem
+      padding-top: 1rem
+    ul
+      padding-left: 10px
+    li
+      list-style: none
+      .nav-link
+        padding: 0.25rem 1rem
+    i
+      margin-right: 0.5rem
+
+
+
