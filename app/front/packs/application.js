@@ -9,9 +9,12 @@ require("turbolinks").start()
 require("@rails/activestorage").start()
 require("channels")
 
+// import 'controllers'
+// import "../scripts/controllers";
+import 'scripts/application/controllers'
 
 // STYLE =========================================================================
-import "../styles/application.css";
+import "../styles/application.scss";
 
 
 
