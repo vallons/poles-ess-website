@@ -99,11 +99,8 @@ html lang="#{I18n.locale}"
                     = active_link_to destroy_admin_session_path, title: "Se déconnecter", class: "nav-link", method: :delete do
                       i.fas.fa-sign-out-alt>
                       ' Déconnexion
-          main
+          main.position-relative
             .p-4
               = yield
 
-
-
-
-  = raw flash_messages
+            = raw flash_messages

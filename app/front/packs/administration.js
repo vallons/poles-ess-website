@@ -8,8 +8,8 @@ require("@rails/actiontext");
 // require("jquery");
 // require("bootstrap");
 
+import "scripts/shared/controllers";
 
-// import FlashMessage from "@utils/flash-messages"
 
 // STYLE =========================================================================
 import "../styles/administration.scss"

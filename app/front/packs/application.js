@@ -11,10 +11,8 @@ require("channels")
 require("trix");
 require("@rails/actiontext");
 
-
-// import 'controllers'
-// import "../scripts/controllers";
 import 'scripts/application/controllers'
+import 'scripts/shared/controllers'
 
 // STYLE =========================================================================
 import "../styles/application.scss";

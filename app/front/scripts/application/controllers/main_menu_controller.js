@@ -8,15 +8,11 @@ export default class extends Controller {
   }
 
   openBlockMenu(event) {
-    console.log("openBlockMenu");
-    console.log(event.target);
-    event.target.classList.add("active")
-    
+    event.target.classList.add("active");
     this.blockMenuTarget.classList.remove("hidden");
   }
 
   closeBlockMenu() {
-    console.log("closeBlockMenu");
     event.target.classList.remove("active");
     this.blockMenuTarget.classList.add("hidden");
   }

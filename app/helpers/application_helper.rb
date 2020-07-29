@@ -18,11 +18,18 @@ module ApplicationHelper
   # Affichage des notifications flash s'il y en a.
   #
   def flash_messages
-    result = content_tag :div, "", class: "flash-message", data: { is_flash_message: '' }
+    result = ""
 
     FLASH_BS_TYPES.each_key do |type|
       if flash[type].present?
-        result << javascript_tag("new FlashMessage('#{escape_javascript(flash[type])}', '#{FLASH_BS_TYPES[type]}')")
+        result = content_tag :div, "", class: "flash-message", data: { controller: 'flash' } do
+          content_tag(:div, flash[type], class: "alert alert-#{FLASH_BS_TYPES[type]}") do
+            concat(content_tag(:span,  flash[type]))
+            concat(content_tag(:button, "", class: "close", data: {dismiss: 'alert', action: 'click->flash#close'}, aria: {label: 'Close'}) do
+              content_tag(:i, '', class: "fas fa-times", aria: {hidden: 'true'})
+            end)
+          end
+        end
         break
       end
     end

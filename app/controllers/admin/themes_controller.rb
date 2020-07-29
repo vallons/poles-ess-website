@@ -28,7 +28,7 @@ class Admin::ThemesController < Admin::BaseController
 
   def update
     if @theme.update_attributes(theme_params)
-      flash[:notice] = "Themee mis à jour avec succès"
+      flash[:notice] = "Thème mis à jour avec succès"
       redirect_to action: :index
     else
       flash[:error] = "Une erreur s'est produite lors de la mise à jour du thème"
