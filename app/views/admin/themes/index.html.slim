@@ -1,0 +1,54 @@
+- content_for :current_page, :themes
+
+= link_to "Créer un thème", new_admin_theme_path, class:'btn btn-primary float-right'
+h1.mb-5 Thèmes
+
+
+/ = render layout: 'admin/layout' do
+
+
+/ div.mb-3
+/   = form_tag admin_themes_path, method: :get, data: {is_filter_form: true} do
+
+/     .row
+/       .col-lg-6.col-12
+/         = select_tag :by_domain, \
+/           options_for_select(domain_options, params[:by_domain]), \
+/           prompt: "Tous les domaines",\
+/           class: "form-control dropdown-theme", \
+/           id: "dropdown_theme",  \
+/           onchange: "$('[data-is-filter-form]').submit()"
+
+.cadre-table
+  table.table.table-striped.table-hover.table-sm
+    thead
+      tr
+        th Date de création
+        th Titre
+        th Actualités
+        th Pages
+        th Ressources
+        th
+    tbody
+      - @themes.each do |theme|
+        tr
+          td= l theme.created_at
+          td= theme.title
+          / td= link_to admin_intervention_levels_path(by_theme: theme.id), class: "btn btn-light btn-sm" do
+          /   span.ion-ios-list-outline>
+          /   = theme.intervention_levels.count
+          td
+          td
+          td
+          td=> link_to edit_admin_theme_path(theme), class: "btn btn-sm btn-info mr-2", title: "Editer" do
+            i.fas.fa-pen
+            = link_to admin_theme_path(theme), method: :delete, data: {confirm: "Confirmer la suppression ?"}, title: "Supprimer", class: "btn btn-sm btn-danger" do
+              i.far.fa-trash-alt
+
+
+      - if @themes.empty?
+        tr
+          td colspan="7"
+            p.mt-3.text-center: em.text-muted Aucun thème
+
+/ = paginate @themes  

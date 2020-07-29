@@ -1,0 +1,11 @@
+/ - content_for :current_page, :prestations
+
+/ = render layout: 'admin/domains/layout' do
+= link_to "Retour", admin_themes_path, class: "btn btn-light mb-4"
+
+h2 Editer le thème "#{@theme.title}"
+
+= form_for(@theme, as: :theme, \
+  url: admin_theme_path(@theme), html: {class: "form-horizontal"}) do |f| 
+  
+  =  render partial: "form", locals: {f: f}

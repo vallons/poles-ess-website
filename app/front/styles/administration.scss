@@ -8,4 +8,5 @@ $fa-font-path: '~@fortawesome/fontawesome-free/webfonts';
 @import "~bootstrap/scss/bootstrap";
 @import "~bootstrap-datepicker/dist/css/bootstrap-datepicker";
 
-@import "admin/layout.sass"
+@import "vendors/actiontext.scss";
+@import "admin/layout.sass";

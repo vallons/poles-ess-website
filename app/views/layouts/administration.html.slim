@@ -27,46 +27,50 @@ html lang="#{I18n.locale}"
                 span.nav-link Contenus chauds
                 ul 
                   li.nav-item
-                    = active_link_to "#", title: "Gestion des actus", class: "nav-link", active: :exclusive do
+                    = active_link_to "#", title: "Gérer les actus", class: "nav-link", active: :exclusive do
                       i.fas.fa-fire>
                       ' Actions
                   li.nav-item
-                    = active_link_to "#", title: "Gestion des actus", class: "nav-link", active: :exclusive do
+                    = active_link_to "#", title: "Gérer les actus", class: "nav-link", active: :exclusive do
                       i.fas.fa-fire>
                       ' Actualités
                   li.nav-item
-                    = active_link_to "#", title: "Gestion des actus", class: "nav-link", active: :exclusive do
+                    = active_link_to "#", title: "Gérer les actus", class: "nav-link", active: :exclusive do
                       i.fas.fa-fire>
                       ' Ressources
               li.nav-item.nav-header 
                 span.nav-link Contenus froids
                 ul
                   li.nav-item
-                    = active_link_to "#", title: "Gestion des actus", class: "nav-link", active: :exclusive do
+                    = active_link_to "#", title: "Gérer les actus", class: "nav-link", active: :exclusive do
+                      i.fas.fa-snowflake>
+                      ' Pages
+                  li.nav-item
+                    = active_link_to admin_themes_path, title: "Gérer les thèmes", class: "nav-link", active: :inclusive do
                       i.far.fa-snowflake>
                       ' Thèmes
                   li.nav-item
-                    = active_link_to "#", title: "Gestion des actus", class: "nav-link", active: :exclusive do
+                    = active_link_to "#", title: "Gérer les actus", class: "nav-link", active: :exclusive do
                       i.fas.fa-snowflake>
                       ' Profils
               li.nav-item.nav-header 
                 span.nav-link Configuration
                 ul 
                   li.nav-item
-                    = active_link_to "#", title: "Gestion des actus", class: "nav-link", active: :exclusive do
+                    = active_link_to "#", title: "Gérer les actus", class: "nav-link", active: :exclusive do
                       i.fas.fa-cog>
                       ' Page d'accueil
 
                   li.nav-item
-                    = active_link_to "#", title: "Gestion des actus", class: "nav-link", active: :exclusive do
+                    = active_link_to "#", title: "Gérer les actus", class: "nav-link", active: :exclusive do
                       i.fas.fa-cog>
                       ' Paramètres
 
 
               - if model_is_defined("Post")
                 = submenu("Actualités", %w[posts blog_categories])
-                  li.nav-item = active_link_to 'Gestion des actualités', admin_blog_posts_path, active: :inclusive
-                  li.nav-item = active_link_to 'Gestion des catégories', admin_blog_categories_path, active: :inclusive
+                  li.nav-item = active_link_to 'Gérer les actualités', admin_blog_posts_path, active: :inclusive
+                  li.nav-item = active_link_to 'Gérer les catégories', admin_blog_categories_path, active: :inclusive
               - if model_is_defined("Contact")
                 li.nav-item = active_link_to 'Contacts', admin_contacts_path, active: :inclusive
 
@@ -77,7 +81,7 @@ html lang="#{I18n.locale}"
                   /       li.nav-item = active_link_to basic_page.title, [:edit, :admin, basic_page]
 
                   / = submenu("Configurations", %w[seos admins])
-                  /   li.nav-item = active_link_to 'Gestion des admins', admin_admins_path
+                  /   li.nav-item = active_link_to 'Gérer les admins', admin_admins_path
                   /   li.nav-item = active_link_to 'SEO pages statiques', admin_seos_path
         .col-10.p-0
           header
@@ -96,9 +100,10 @@ html lang="#{I18n.locale}"
                       i.fas.fa-sign-out-alt>
                       ' Déconnexion
           main
-            = yield
+            .p-4
+              = yield
 
 
-          
+
 
   = raw flash_messages

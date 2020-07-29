@@ -20,13 +20,15 @@ aside
       text-transform: uppercase
       color: darken( $white, 30% )
       font-size: 0.85rem
-      padding-top: 1rem
+      padding: 1rem 1rem 0
     ul
-      padding-left: 10px
+      padding-left: 0
     li
       list-style: none
       .nav-link
         padding: 0.25rem 1rem
+        &:active, &:hover, &.active
+          border-left: 5px $white solid
     i
       margin-right: 0.5rem
 

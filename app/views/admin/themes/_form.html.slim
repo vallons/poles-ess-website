@@ -1,0 +1,16 @@
+= f.form_errors
+
+.form-group.required
+  = f.label :title
+  = f.text_field :title, class: 'form-control'
+
+.form-group.required
+  = f.label :baseline
+  = f.text_field :baseline, class: 'form-control'
+
+.form-group.required
+  = f.label :description
+  = f.rich_text_area :description
+
+.form-group
+  => f.submit "Valider", class: "btn btn-primary"

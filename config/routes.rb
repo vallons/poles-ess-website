@@ -3,6 +3,7 @@ Rails.application.routes.draw do
 
   # Admin ======================================
   namespace :admin do
+    resources :themes
     # resources :images, only: :create
 
     # namespace :actu do

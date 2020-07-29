@@ -1,0 +1,14 @@
+fr:
+  activerecord:
+    attributes:
+      theme:
+        title:          Le titre
+        baseline:       Le slogan
+        description:    La description
+
+  helpers:
+    label:
+      theme:
+        title:          Titre
+        baseline:       Slogan
+        description:    Description
