@@ -1,6 +1,6 @@
 class Admin::ThemesController < Admin::BaseController
 
-  before_action :find_theme, only: [:edit, :update, :destroy]
+  before_action :find_theme, only: [:edit, :update, :destroy, :destroy_image]
 
   def index
     @themes = Theme
@@ -46,12 +46,19 @@ class Admin::ThemesController < Admin::BaseController
     redirect_to action: :index
   end
 
+  def destroy_image
+    @theme.main_image.purge
+    flash[:notice] = "L'image a bien été supprimée"
+
+    render :edit
+  end
+
 
  
   private # =====================================================
 
   def theme_params
-    params.require(:theme).permit(:title, :description, :baseline)
+    params.require(:theme).permit(:title, :description, :baseline, :main_image)
   end
 
   def find_theme

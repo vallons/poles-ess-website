@@ -1,6 +1,7 @@
 class Theme < ApplicationRecord
 
   has_rich_text :description
+  has_one_attached :main_image
 
   # Validations ================================================================
 

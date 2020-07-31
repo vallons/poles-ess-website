@@ -12,7 +12,7 @@ export default class extends Controller {
     this.blockMenuTarget.classList.remove("hidden");
   }
 
-  closeBlockMenu() {
+  closeBlockMenu(event) {
     event.target.classList.remove("active");
     this.blockMenuTarget.classList.add("hidden");
   }

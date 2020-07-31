@@ -13,3 +13,5 @@ Configuration initialisée en m'appuyant sur :
 - navbar générale
 - layout admin
 - gestion images
+
+Cloud OVH : https://git.happy-dev.fr/snippets/7#ovh-public-cloud-stockage-des-objets-multim%C3%A9dias

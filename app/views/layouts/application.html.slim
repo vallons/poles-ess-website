@@ -18,16 +18,14 @@ html lang='fr'
           svg.stroke-current.cursor-pointer viewBox="0 0 100 80" width="40" height="40" xmlns="http://www.w3.org/2000/svg" data-action="click->main-menu#toggleSideMenu"
             line x1="4" y1="80" x2="80" y2="4" rx="8" stroke-width="15"
             line x1="4" y1="4" x2="80" y2="80"  rx="8" stroke-width="15"
-        .text-xl
-          div data-action="mouseenter->main-menu#openBlockMenu mouseleave->main-menu#closeBlockMenu"
-            = active_link_to 'Découvrir', root_path, title: "Découvrir", class: "block w-full px-6 py-4 hover:bg-gray-800 active:bg-gray-800", active: :inclusive
-            nav.block-menu.absolute.top-0.left-side-menu.w-screen-side-menu.bg-gray-800.text-white.hidden data-target="main-menu.blockMenu"
-              .p-6
-                h3 Découvrir
-                p Découvrir et faire connaître une économie alternative : sociale, solidaire et écologique
-        .text-xl
-          = active_link_to 'Thème 1', "#", title: "Thème 1", class: "block w-full px-6 py-4 hover:bg-gray-800 active:bg-gray-800", active: :inclusive
-          = active_link_to 'Entreprendre', "#", title: "Entreprendre", class: "block w-full px-6 py-4 hover:bg-gray-800 active:bg-gray-800", active: :inclusive
+        - @themes.each do |theme|
+          .text-xl
+            div.block-menu-toggler data-action="mouseenter->main-menu#openBlockMenu mouseleave->main-menu#closeBlockMenu"
+              = active_link_to theme.title, root_path, title: theme.title, class: "block w-full px-6 py-4 hover:bg-gray-800 active:bg-gray-800", active: :inclusive
+              nav.block-menu.absolute.top-0.left-side-menu.w-screen-side-menu.bg-gray-800.text-white data-target="main-menu.blockMenu"
+                .p-6
+                  h3.text-4xl.mb-3 = theme.title
+                  p = theme.baseline
       / nav.block-menu.absolute.top-0.left-48.bg-gray-800.w-full.text-white.hidden data-target="main-menu.blockMenu"
       /   .p-6
       /     h3 Découvrir

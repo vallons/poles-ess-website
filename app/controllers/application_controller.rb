@@ -2,6 +2,7 @@ class ApplicationController < ActionController::Base
 
   protect_from_forgery with: :exception
 
+  before_action :get_menu_items
   after_action :flash_to_headers, if: -> { request.xhr? && flash.present? }
 
   rescue_from ActionController::InvalidAuthenticityToken do
@@ -9,6 +10,10 @@ class ApplicationController < ActionController::Base
   end
 
   private
+
+  def get_menu_items
+    @themes = Theme.all
+  end
 
   def flash_to_headers
     [:error, :alert, :warning, :notice].each do |type|

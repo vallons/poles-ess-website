@@ -39,5 +39,4 @@ class Admin::BaseController < ApplicationController
 
   private
 
-
 end

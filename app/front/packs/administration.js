@@ -9,6 +9,7 @@ require("@rails/actiontext");
 // require("bootstrap");
 
 import "scripts/shared/controllers";
+import "scripts/administration/controllers";
 
 
 // STYLE =========================================================================
