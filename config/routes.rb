@@ -1,7 +1,8 @@
 Rails.application.routes.draw do
-  devise_for :admins
+  devise_for :admin
 
   # Admin ======================================
+
   namespace :admin do
     resources :themes do
       member do

@@ -1,0 +1,18 @@
+.container.mx-auto
+  .min-h-screen.w-full.lg:static.lg:max-h-full.lg:overflow-visible.lg:w-1/2.mx-auto
+    .bg-gray-200.shadow-md.my-10.p-8
+        h1.text-xl.text-center.mb-6.text-gray-800 Connexion à l'espace d'administration
+
+        = form_for resource, as: resource_name, url: session_path(resource_name),\
+          html: { role: "form" } do |f|
+
+          .mb-4
+            = f.label :email, class: 'block text-gray-700 text-sm font-bold mb-2'
+            = f.email_field :email, autofocus: true, class: 'shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline', autocomplete: 'email'
+
+          .mb-8
+            = f.label :password, class: 'block text-gray-700 text-sm font-bold mb-2'
+            = f.password_field :password, class: 'shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline', autocomplete: 'current-password'
+
+          .text-center
+            = f.submit "Se connecter", class: "bg-teal-500 hover:bg-teal-700 text-white font-bold py-2 px-3 w-full lg:w-2/3 rounded focus:outline-none focus:shadow-outline"
