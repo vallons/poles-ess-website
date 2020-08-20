@@ -15,3 +15,6 @@ Configuration initialisée en m'appuyant sur :
 - gestion images
 
 Cloud OVH : https://git.happy-dev.fr/snippets/7#ovh-public-cloud-stockage-des-objets-multim%C3%A9dias
+
+
+Staging : https://pole-ess-staging.osc-fr1.scalingo.io/
