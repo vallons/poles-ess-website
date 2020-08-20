@@ -26,37 +26,24 @@ html lang='fr'
                 .p-6
                   h3.text-4xl.mb-3 = theme.title
                   p = theme.baseline
-      / nav.block-menu.absolute.top-0.left-48.bg-gray-800.w-full.text-white.hidden data-target="main-menu.blockMenu"
-      /   .p-6
-      /     h3 Découvrir
-      /     p Découvrir et faire connaître une économie alternative : sociale, solidaire et écologique
-      /   .text-xl.hover:bg-gray-800
-      /     = active_link_to 'Thème 1', root_path, title: "Thème 1", class: "block w-full px-6 py-4", active: :inclusive
-      nav.flex.items-center.justify-between.flex-wrap.bg-teal-500.text-white.p-6
-        .flex.items-center.flex-1
+      nav.flex.items-center.justify-between.bg-teal-500.text-white.p-6
+        button.flex.items-center.flex-1
           svg.fill-current.cursor-pointer viewBox="0 0 100 80" width="40" height="40" xmlns="http://www.w3.org/2000/svg" data-action="click->main-menu#toggleSideMenu"
+            title Menu
             rect width="100" height="15" rx="8"
             rect y="30" width="100" height="15" rx="8"
             rect y="60" width="100" height="15" rx="8"
 
-        = link_to root_path, title: "Page d'accueil", class: "w-full block lg:flex lg:items-center lg:w-auto" do
+        = link_to root_path, title: "Page d'accueil", class: "block flex items-center w-auto" do
           svg.fill-current.h-8.w-8.mr-2 height="54" viewbox=("0 0 54 54") width="54" xmlns="http://www.w3.org/2000/svg" 
             path d=("M13.5 22.1c1.8-7.2 6.3-10.8 13.5-10.8 10.8 0 12.15 8.1 17.55 9.45 3.6.9 6.75-.45 9.45-4.05-1.8 7.2-6.3 10.8-13.5 10.8-10.8 0-12.15-8.1-17.55-9.45-3.6-.9-6.75.45-9.45 4.05zM0 38.3c1.8-7.2 6.3-10.8 13.5-10.8 10.8 0 12.15 8.1 17.55 9.45 3.6.9 6.75-.45 9.45-4.05-1.8 7.2-6.3 10.8-13.5 10.8-10.8 0-12.15-8.1-17.55-9.45-3.6-.9-6.75.45-9.45 4.05z") /
           span.font-semibold.text-xl.tracking-tight Pôle ESS
-        .block.lg:hidden
-          button.flex.items-center.px-3.py-2.border.rounded.text-teal-200.border-teal-400.hover:text-white.hover:border-white
-            svg.fill-current.h-3.w-3 viewbox=("0 0 20 20") xmlns="http://www.w3.org/2000/svg" 
-              title Menu
-              path d=("M0 3h20v2H0V3zm0 6h20v2H0V9zm0 6h20v2H0v-2z") /
-        / .w-full.block.justify-end.lg:flex.lg:items-center.lg:w-auto.ml-auto
         .flex.items-center.text-white.flex-1.justify-end
           .flex.text-sm.items-center.justify-end
-            a.block.mt-4.lg:inline-block.lg:mt-0.text-teal-200.hover:text-white.mr-4 href="#responsive-header" 
+            a.block.hidden.md:inline-block.text-teal-200.hover:text-white.mr-4 href="#responsive-header" 
               | Profils
-            a.inline-block.text-sm.px-4.py-2.leading-none.border.rounded.text-white.border-white.ml-2.hover:border-transparent.hover:text-teal-500.hover:bg-white.mt-4.lg:mt-0 href="#"  Contact
+            a.inline-block.text-sm.px-4.py-2.leading-none.border.rounded.text-white.border-white.ml-2.hover:border-transparent.hover:text-teal-500.hover:bg-white href="#"  Contact
 
-      p.notice
-        = notice
-      p.alert
-        = alert
+      = raw flash_messages
+
       = yield

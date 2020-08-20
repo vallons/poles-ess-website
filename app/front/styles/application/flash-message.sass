@@ -1,0 +1,16 @@
+.flash-message
+  @apply absolute w-full mx-auto text-center
+  top: 100px
+  left: 1.25rem
+  right: 1.25rem
+@media (min-width: 1024px)
+  .flash-message
+    @apply w-2/3
+
+.alert
+  @apply px-5 py-3 mb-4 border-transparent rounded
+  .close
+    @apply absolute top-0 right-0 py-3 px-5
+
+.alert-warning
+  @apply bg-yellow-400 text-yellow-900
