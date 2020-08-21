@@ -26,6 +26,13 @@ module Custom
       end
     end
 
+    def submit_and_stay(options = {}, &block)
+      value = object.new_record? ? I18n.t("helpers.submit_and_stay.create") : I18n.t("helpers.submit_and_stay.update")
+      options.merge!(name: :continue, value: value)
+      send :submit, options, &block
+    end
+
+
   end
 end
 

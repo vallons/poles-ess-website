@@ -1,0 +1,10 @@
+fr:
+  forms:
+    select_placeholder: Sélectionner...
+  helpers:
+    submit:
+      create: "Créer %{model}"
+      update: "Modifier %{model}"
+    submit_and_stay:
+      create: Créer et continuer l'édition
+      update: Enregistrer et continuer l'édition

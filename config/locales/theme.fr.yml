@@ -12,3 +12,7 @@ fr:
         title:          Titre
         baseline:       Slogan
         description:    Description
+    submit:
+      theme:
+        create: "Créer le thème"
+        update: "Mettre à jour le thème"

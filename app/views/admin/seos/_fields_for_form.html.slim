@@ -1,0 +1,18 @@
+fieldset
+  legend Référencement
+  = f.fields_for :seo do |seo_fields|
+
+    .form-group
+      = seo_fields.label :slug
+      = seo_fields.text_field :slug, class: 'form-control'
+      .form-text.text-muted.small Le slug est la dernière partie de l'url de votre page (ex : www.votresite.fr/actualites/ceci-est-le-slug) Plus ce terme précisera votre contenu, plus l'url de votre page aura du poids pour le référencement de votre page.
+
+    .form-group
+      = seo_fields.label :title
+      = seo_fields.text_field :title, class: 'form-control'
+      .form-text.text-muted.small Le titre ou Title permet de rédiger un titre détaillé qui sera affiché dans l'onglet du navigateur et dans les résultats des moteurs de recherche. Il doit donc comporter des mots clés correspondant aux recherches possibles des internautes. (70 caractères max)
+
+    .form-group
+      = seo_fields.label :description
+      = seo_fields.text_area :description, rows: 5, class: "form-control"
+      .form-text.text-muted.small La meta description doit présenter le contenu de votre page en y intégrant le nom de votre site, vos services et des mots clés correspondant aux recherches possibles des internautes. (160 caractères max)

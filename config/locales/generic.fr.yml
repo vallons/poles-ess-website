@@ -173,3 +173,8 @@ fr:
     checkmark:
       :true: ✓
       :false: ×
+
+  results:
+    zero: "%{count} résultat"
+    one: "%{count} résultat"
+    other: "%{count} résultats"

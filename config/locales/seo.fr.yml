@@ -1,0 +1,24 @@
+fr:
+  activerecord:
+    attributes:
+      seo:
+        slug: Le slug
+        title: Le titre
+        description: La meta-description
+
+
+  helpers:
+    label:
+      seo:
+        slug: Slug
+        title: Titre
+        description: Meta-description
+
+    submit:
+      seo:
+        create: "Créer le référencement"
+        update: "Mettre à jour le référencement"
+
+  static_pages:
+    param:
+      home: "Page d'accueil"

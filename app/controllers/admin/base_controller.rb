@@ -26,17 +26,6 @@ class Admin::BaseController < ApplicationController
     ]
   end
 
-  def picture_attributes
-    [
-      :id,
-      :asset,
-      :alt,
-      :title,
-      :custom_file_name,
-      :_destroy
-    ]
-  end
-
   private
 
 end

@@ -1,6 +1,6 @@
 class Admin::ThemesController < Admin::BaseController
 
-  before_action :find_theme, only: [:edit, :update, :destroy, :destroy_image]
+  before_action :get_theme, only: [:edit, :update, :destroy, :destroy_image]
 
   def index
     @themes = Theme
@@ -10,6 +10,7 @@ class Admin::ThemesController < Admin::BaseController
 
   def new
     @theme = Theme.new
+    @theme.build_seo
   end
 
   def create
@@ -58,11 +59,13 @@ class Admin::ThemesController < Admin::BaseController
   private # =====================================================
 
   def theme_params
-    params.require(:theme).permit(:title, :description, :baseline, :main_image)
+    params.require(:theme).permit(:title, :description, :baseline, :main_image,
+        seo_attributes: seo_attributes
+)
   end
 
-  def find_theme
-    @theme = Theme.find(params[:id])
+  def get_theme
+    @theme = Theme.from_param params[:id]
   end
  
 end

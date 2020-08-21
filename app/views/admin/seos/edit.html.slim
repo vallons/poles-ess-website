@@ -1,0 +1,20 @@
+.title-wrapper
+  h1
+    ' Édition du référencement de
+    = I18n.t("static_pages.param.#{@seo.param}")
+
+  div.flex
+    = link_to admin_seos_path, class: "btn btn-light mr-4" do
+      i.fa.fa-chevron-left>
+      ' Retour
+    span.small
+      ' Créé le
+      strong => l @seo.created_at
+      ' -
+      ' Mis à jour le
+      strong = l @seo.updated_at
+
+
+  hr
+
+= render partial: 'admin/seos/form'

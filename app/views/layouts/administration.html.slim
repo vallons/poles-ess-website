@@ -57,9 +57,9 @@ html lang="#{I18n.locale}"
                 span.nav-link Configuration
                 ul 
                   li.nav-item
-                    = active_link_to "#", title: "Gérer les actus", class: "nav-link", active: :exclusive do
+                    = active_link_to admin_seos_path, title: "Gérer le référencement", class: "nav-link", active: :inclusive do
                       i.fas.fa-cog>
-                      ' Page d'accueil
+                      ' Référencement
 
                   li.nav-item
                     = active_link_to "#", title: "Gérer les actus", class: "nav-link", active: :exclusive do

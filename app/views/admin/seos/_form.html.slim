@@ -1,0 +1,19 @@
+= form_for [:admin, @seo] do |f|
+  = f.form_errors
+
+  .form-group
+    = f.label :title
+    = f.text_field :title, class: 'form-control'
+    .form-text.text-muted.small
+      | Le titre ou Title permet de rédiger un titre détaillé qui sera affiché dans l'onglet du navigateur et dans les résultats des moteurs de recherche. Il doit donc comporter des mots clés correspondant aux recherches possibles des internautes. (70 caractères max)
+
+  .form-group
+    = f.label :description
+    = f.text_area :description, rows: 5, class: "form-control"
+    .form-text.text-muted.small
+      | La meta description doit présenter le contenu de votre page en y intégrant le nom de votre site, vos services et des mots clés correspondant aux recherches possibles des internautes. (255 caractères max)
+
+  .action-btns
+    => f.submit class: "btn btn-primary"
+    => f.submit_and_stay class: "btn btn-outline-primary"
+    = link_to "Annuler", admin_seos_path, class: "btn btn-link"

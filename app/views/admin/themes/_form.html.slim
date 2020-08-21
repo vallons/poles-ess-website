@@ -30,6 +30,9 @@
       div Image actuelle :
       => image_tag f.object.main_image.variant(resize_to_limit: [150, nil])
 
+= render partial: 'admin/seos/fields_for_form', locals: { f: f }
 
-.form-group
-  => f.submit "Valider", class: "btn btn-primary"
+.action-btns
+  => f.submit class: "btn btn-primary"
+  => f.submit_and_stay class: "btn btn-outline-primary"
+  = link_to "Annuler", admin_themes_path, class: "btn btn-link"
