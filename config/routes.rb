@@ -25,5 +25,7 @@ Rails.application.routes.draw do
     root to: "dashboard#index"
   end
 
+  resources :themes, only: [:show]
+
   root 'home#index'
 end

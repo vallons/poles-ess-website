@@ -21,10 +21,13 @@ html lang='fr'
         - @themes.each do |theme|
           .text-xl
             div.block-menu-toggler data-action="mouseenter->main-menu#openBlockMenu mouseleave->main-menu#closeBlockMenu"
-              = active_link_to theme.title, root_path, title: theme.title, class: "block w-full px-6 py-4 hover:bg-gray-800 active:bg-gray-800", active: :inclusive
+              = active_link_to theme.title, theme_path(theme), title: theme.title, class: "block w-full px-6 py-4 hover:bg-gray-800 active:bg-gray-800", active: :inclusive
               nav.block-menu.absolute.top-0.left-side-menu.w-screen-side-menu.bg-gray-800.text-white data-target="main-menu.blockMenu"
                 .p-6
-                  h3.text-4xl.mb-3 = theme.title
+                  .flex.justify-between.items-center
+                    h3.text-4xl.mb-3
+                      = link_to theme.title, theme_path(theme)
+                    = link_to "En savoir plus", theme_path(theme), class: "underline"
                   p = theme.baseline
       nav.flex.items-center.justify-between.bg-teal-500.text-white.p-6
         button.flex.items-center.flex-1
