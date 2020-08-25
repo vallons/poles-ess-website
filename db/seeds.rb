@@ -13,3 +13,7 @@
 ].each do |param|
   Seo.where(param: param).first_or_create
 end
+
+# Settings
+
+Setting.create(var: "logo_instance", value: 1)

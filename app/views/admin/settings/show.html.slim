@@ -1,0 +1,30 @@
+.title-wrapper
+  h1
+    ' Paramètres généraux
+  hr
+
+  = form_for(Setting.new, url: admin_settings_path) do |f|
+    .form-group
+      = f.label :project_name
+      = f.text_field :project_name, value: Setting.project_name, class: "form-control"
+
+    .row data-controller='file-upload'
+      .col-4
+        .form-group
+          = f.label :logo, "Sélectionner le logo", for: "main-image", class: 'btn btn-info'
+          = f.file_field :logo, id: "main-image", class: "d-none", data:{action: 'change->file-upload#displayFileName'}
+          div
+            small data-target="file-upload.nameDisplayed"
+        - if Setting.logo.present?
+          .form-group
+            = link_to "Supprimer l'image actuelle", destroy_upload_admin_settings_path(Setting.logo.id, redirect: :show),
+                        method: :delete
+      - if Setting.logo.present?
+        .col-8
+          div Image actuelle :
+          => image_tag Setting.logo.variant(resize_to_limit: [150, nil])
+
+    .action-btns
+      => f.submit class: "btn btn-primary"
+      = link_to "Annuler", admin_root_path, class: "btn btn-link"
+

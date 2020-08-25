@@ -10,6 +10,11 @@ Rails.application.routes.draw do
       end
     end
     resources :seos, only: [:index, :edit, :update]
+    resource :settings, only: [:create, :show] do
+      member do
+        delete "destroy_upload/:upload_id", action: :destroy_upload, as: :destroy_upload
+      end
+    end
 
     root to: "dashboard#index"
   end

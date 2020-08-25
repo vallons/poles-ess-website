@@ -1,7 +1,7 @@
 doctype html
 html lang="#{I18n.locale}"
   head
-    title = "Admin Pôle ESS"
+    title = "Admin #{Setting.project_name}"
     meta http-equiv="content-type" content="text/html;charset=UTF-8"
 
     / = stylesheet_packs_with_chunks_tag 'administration', media: 'all', 'data-turbolinks-track': 'reload'
@@ -20,7 +20,7 @@ html lang="#{I18n.locale}"
           aside
             ul.nav.flex-column
               li.nav-item.brand
-                = link_to "Pôle ESS Admin", admin_root_path, class: "nav-link "
+                = link_to "#{Setting.project_name} Admin", admin_root_path, class: "nav-link "
               li.nav-item
                 = active_link_to 'Tableau de bord', admin_root_path, title: "Retour à l'accueil", class: "nav-link", active: :exclusive
               li.nav-item.nav-header 
@@ -62,7 +62,7 @@ html lang="#{I18n.locale}"
                       ' Référencement
 
                   li.nav-item
-                    = active_link_to "#", title: "Gérer les actus", class: "nav-link", active: :exclusive do
+                    = active_link_to admin_settings_path, title: "Gérer les paramètres", class: "nav-link", active: :exclusive do
                       i.fas.fa-cog>
                       ' Paramètres
 

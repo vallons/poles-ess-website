@@ -1,0 +1,16 @@
+fr:
+  activerecord:
+    attributes:
+      setting:
+        project_name:   Le nom du pôle
+        logo:           Le logo
+
+  helpers:
+    label:
+      setting:
+        project_name:   Nom du pôle
+        logo:           Logo
+    submit:
+      setting:
+        create: "Mettre à jour les paramètres"
+        update: "Mettre à jour les paramètres"
