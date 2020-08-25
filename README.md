@@ -14,6 +14,8 @@ Configuration initialisée en m'appuyant sur :
 - layout admin
 - gestion images
 
+- dynamically set css custom property : https://stackoverflow.com/questions/61508409/how-to-change-tailwind-config-js-dynamically-based-on-user-settings-in-rails
+
 Cloud OVH : https://git.happy-dev.fr/snippets/7#ovh-public-cloud-stockage-des-objets-multim%C3%A9dias
 
 

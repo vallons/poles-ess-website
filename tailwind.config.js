@@ -1,6 +1,12 @@
 module.exports = {
   purge: [],
   theme: {
+    extend: {
+      colors: {
+        primary: 'var(--color-primary)',
+        secondary: 'var(--color-secondary)'
+      }
+    },
     container: {
       padding: {
         default: "1rem",
