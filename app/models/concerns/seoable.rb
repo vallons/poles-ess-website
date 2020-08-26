@@ -28,11 +28,7 @@ module Seoable
   # On doit le mettre ici (et non dans le model Seo) car la relation n'est pas encore
   # existante pour pouvoir récupérer le title
   def init_slug
-    p "INIT SLUG"
     build_seo if seo.blank?
-    p seo
     seo.slug = title.to_s.truncate(100) if slug.blank?
-    p seo
-    p "END"
   end
 end

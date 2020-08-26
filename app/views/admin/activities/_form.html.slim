@@ -1,0 +1,46 @@
+= f.form_errors
+
+.form-group.required
+  = f.label :title, class: "font-weight-bold"
+  = f.text_field :title, class: 'form-control'
+
+.form-group
+  label.font-weight-bold Thèmes
+  .form-group
+    - Theme.all.each do |theme|
+      .form-check.form-check-inline
+        => f.check_box :theme_ids, {multiple: true, 
+                  checked: f.object.themes.include?(theme), 
+                  class: 'form-check-input'}, 
+                  theme.id, nil
+        = f.label :theme_ids, theme.title, value: theme.id, class: "form-check-label"
+
+.form-group
+  = f.label :description, class: "font-weight-bold"
+  = f.rich_text_area :description
+
+label.font-weight-bold Image
+.row data-controller='file-upload'
+  .col-4
+    .form-group
+      = f.label :image, "Sélectionner nouvelle image", for: "main-image", class: 'btn btn-info'
+      = f.file_field :image, id: "main-image", class: "d-none", data:{action: 'change->file-upload#displayFileName'}
+      div
+        small data-target="file-upload.nameDisplayed"
+    - if f.object.image.present?
+      .form-group
+        / = link_to "Supprimer l'image actuelle", destroy_image_admin_action_path(f.object.id),
+        /             method: :delete
+        / = label_tag :"Supprimer l'image actuelle"
+        / = check_box_tag 'action[purge_image]', true, false
+  - if f.object.image.present?
+    .col-8
+      div Image actuelle :
+      => image_tag f.object.image.variant(resize_to_limit: [150, nil])
+
+= render partial: 'admin/seos/fields_for_form', locals: { f: f }
+
+.action-btns
+  => f.submit class: "btn btn-primary"
+  => f.submit_and_stay class: "btn btn-outline-primary"
+  = link_to "Annuler", admin_activities_path, class: "btn btn-link"

@@ -17,7 +17,7 @@ class Admin::ThemesController < Admin::BaseController
     @theme = Theme.new(theme_params)
     if @theme.save
       flash[:notice] = "Le thème a été créé avec succès"
-      redirect_to action: :index
+      redirect_to params[:continue].present? ? edit_admin_theme_path(@theme) : admin_themes_path
     else
       flash[:error] = "Une erreur s'est produite lors de la mise à jour du thème"
       render :new
@@ -30,7 +30,7 @@ class Admin::ThemesController < Admin::BaseController
   def update
     if @theme.update_attributes(theme_params)
       flash[:notice] = "Thème mis à jour avec succès"
-      redirect_to action: :index
+      redirect_to params[:continue].present? ? edit_admin_theme_path(@theme) : admin_themes_path
     else
       flash[:error] = "Une erreur s'est produite lors de la mise à jour du thème"
       render :edit

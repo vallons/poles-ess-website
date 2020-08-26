@@ -9,6 +9,7 @@ Rails.application.routes.draw do
         delete :destroy_image
       end
     end
+    resources :activities
     resources :seos, only: [:index, :edit, :update]
     resource :settings, only: [:create, :show] do
       member do

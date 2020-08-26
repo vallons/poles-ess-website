@@ -1,0 +1,16 @@
+fr:
+  activerecord:
+    attributes:
+      activity:
+        title:          Le titre
+        description:    La description
+
+  helpers:
+    label:
+      activity:
+        title:          Titre
+        description:    Description
+    submit:
+      activity:
+        create: "Créer l'action"
+        update: "Mettre à jour l'action"

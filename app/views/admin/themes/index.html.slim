@@ -25,9 +25,9 @@ h1.mb-5 Thèmes
       tr
         th Date de création
         th Titre
-        th Actions
-        th Actualités
-        th Ressources
+        th.text-center Actions
+        th.text-center Actualités
+        th.text-center Ressources
         th
     tbody
       - @themes.each do |theme|
@@ -37,9 +37,9 @@ h1.mb-5 Thèmes
           / td= link_to admin_intervention_levels_path(by_theme: theme.id), class: "btn btn-light btn-sm" do
           /   span.ion-ios-list-outline>
           /   = theme.intervention_levels.count
-          td
-          td
-          td
+          td.text-center= theme.activities.count
+          td.text-center
+          td.text-center
           td=> link_to edit_admin_theme_path(theme), class: "btn btn-sm btn-info mr-2", title: "Editer" do
             i.fas.fa-pen
             = link_to admin_theme_path(theme), method: :delete, data: {confirm: "Confirmer la suppression ?"}, title: "Supprimer", class: "btn btn-sm btn-danger" do

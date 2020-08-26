@@ -1,0 +1,52 @@
+= link_to "Créer une action", new_admin_activity_path, class:'btn btn-primary float-right'
+h1.mb-5 Actions
+
+
+/ = render layout: 'admin/layout' do
+
+
+/ div.mb-3
+/   = form_tag admin_actions_path, method: :get, data: {is_filter_form: true} do
+
+/     .row
+/       .col-lg-6.col-12
+/         = select_tag :by_domain, \
+/           options_for_select(domain_options, params[:by_domain]), \
+/           prompt: "Tous les domaines",\
+/           class: "form-control dropdown-action", \
+/           id: "dropdown_action",  \
+/           onchange: "$('[data-is-filter-form]').submit()"
+
+.cadre-table
+  table.table.table-striped.table-hover.table-sm
+    thead
+      tr
+        th Date de création
+        th Titre
+        th Thèmes
+
+        th
+    tbody
+      - @activities.each do |activity|
+        tr
+          td= l activity.created_at
+          td= activity.title
+          / td= link_to admin_intervention_levels_path(by_activity: activity.id), class: "btn btn-light btn-sm" do
+          /   span.ion-ios-list-outline>
+          /   = activity.intervention_levels.count
+          td
+            - activity.themes.each do |theme|
+              .badge.badge-secondary.mr-2
+                = theme.title
+          td=> link_to edit_admin_activity_path(activity), class: "btn btn-sm btn-info mr-2", title: "Editer" do
+            i.fas.fa-pen
+            = link_to admin_activity_path(activity), method: :delete, data: {confirm: "Confirmer la suppression ?"}, title: "Supprimer", class: "btn btn-sm btn-danger" do
+              i.far.fa-trash-alt
+
+
+      - if @activities.empty?
+        tr
+          td colspan="7"
+            p.mt-3.text-center: em.text-muted Aucune action
+
+/ = paginate @activities  

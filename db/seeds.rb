@@ -14,6 +14,10 @@
   Seo.where(param: param).first_or_create
 end
 
+# Admin.create(email:"admin@admin.fr", password: "password")
+
 # Settings
 
-Setting.create(var: "logo_instance", value: 1)
+instance_logo = Setting.first_or_create(var: "logo_instance", value: 1)
+
+instance_logo.logo.attach(io: File.open('public/default-logo.png'), filename: 'default-logo.png', content_type: 'image/png')

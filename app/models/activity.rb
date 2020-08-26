@@ -1,27 +1,20 @@
-class Theme < ApplicationRecord
+class Activity < ApplicationRecord
 
+  include Themable
   include Seoable
 
   has_rich_text :description
-  has_one_attached :main_image
-
-  has_many :theme_interfaces, dependent: :destroy
-  has_many :activities, through: :theme_interfaces, source: :themable,
-           source_type: 'Activity'
+  has_one_attached :image
 
   # Validations ================================================================
 
   validates :title,
-            :baseline,
             presence: true
 
   # Scopes ====================================================================
- 
+
 
   # Instance methods ====================================================
 
-  def key
-    return self.title.parameterize
-  end
 
 end

@@ -1,0 +1,14 @@
+.title-wrapper
+  h1 Créer une action
+
+  div.flex
+    = link_to admin_activities_path, class: "btn btn-light mr-4" do
+      i.fa.fa-chevron-left>
+      ' Retour
+
+hr
+
+= form_for(@activity, as: :activity, \
+  url: admin_activities_path, html: {class: "form-horizontal"}) do |f|
+
+  =  render partial: "form", locals: {f: f}
