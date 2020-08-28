@@ -4,6 +4,7 @@ class CreateThemes < ActiveRecord::Migration[6.0]
       t.string :title
       t.string :baseline
       t.text :description
+      t.integer :position
       t.timestamps null: false
     end
   end

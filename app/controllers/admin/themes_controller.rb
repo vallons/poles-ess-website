@@ -3,8 +3,7 @@ class Admin::ThemesController < Admin::BaseController
   before_action :get_theme, only: [:edit, :update, :destroy, :destroy_image]
 
   def index
-    @themes = Theme
-      .order(created_at: :desc)
+    @themes = Theme.order(:position)
       # .page(params[:page]).per(20)
   end
 
@@ -59,7 +58,7 @@ class Admin::ThemesController < Admin::BaseController
   private # =====================================================
 
   def theme_params
-    params.require(:theme).permit(:title, :description, :baseline, :main_image,
+    params.require(:theme).permit(:title, :description, :baseline, :main_image, :position,
         seo_attributes: seo_attributes
 )
   end

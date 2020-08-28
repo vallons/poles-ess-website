@@ -16,11 +16,13 @@ Rails.application.routes.draw do
         delete "destroy_upload/:upload_id", action: :destroy_upload, as: :destroy_upload
       end
     end
+    resources :interfaces, only: [:update]
 
     root to: "dashboard#index"
   end
 
   resources :themes, only: [:show]
+  resources :activities, only: [:index, :show]
 
   root 'home#index'
 end

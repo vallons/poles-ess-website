@@ -4,7 +4,8 @@ class Admin::ActivitiesController < Admin::BaseController
 
   def index
     @activities = Activity
-      .order(created_at: :desc)
+      .apply_filters(params)
+      .apply_sorts(params)
       # .page(params[:page]).per(20)
   end
 

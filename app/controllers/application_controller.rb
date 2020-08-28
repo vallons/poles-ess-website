@@ -30,12 +30,10 @@ class ApplicationController < ActionController::Base
   end
 
 
-
-
   private
 
   def get_menu_items
-    @themes = Theme.all
+    @themes = Theme.order(:position)
   end
 
   def set_default_seos!

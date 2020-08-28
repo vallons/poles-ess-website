@@ -6,17 +6,18 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
+# Admin ------------------------------------------------
+Admin.where(email: "bonjour@lassembleuse.fr").first_or_create(password: "password") if %w[development test].include?(Rails.env)
 
-# Référencement
+# Référencement ---------------------------------------
 %w[
   home
 ].each do |param|
   Seo.where(param: param).first_or_create
 end
 
-# Admin.create(email:"admin@admin.fr", password: "password")
 
-# Settings
+# Settings ----------------------------------------------
 
 instance_logo = Setting.first_or_create(var: "logo_instance", value: 1)
 

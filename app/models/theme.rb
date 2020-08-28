@@ -5,6 +5,8 @@ class Theme < ApplicationRecord
   has_rich_text :description
   has_one_attached :main_image
 
+  acts_as_list
+
   has_many :theme_interfaces, dependent: :destroy
   has_many :activities, through: :theme_interfaces, source: :themable,
            source_type: 'Activity'

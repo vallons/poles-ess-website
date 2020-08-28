@@ -89,6 +89,7 @@ ActiveRecord::Schema.define(version: 2020_08_25_141519) do
     t.bigint "theme_id"
     t.string "themable_type"
     t.bigint "themable_id"
+    t.integer "position"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["themable_type", "themable_id"], name: "index_theme_interfaces_on_themable_type_and_themable_id"
@@ -99,6 +100,7 @@ ActiveRecord::Schema.define(version: 2020_08_25_141519) do
     t.string "title"
     t.string "baseline"
     t.text "description"
+    t.integer "position"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end

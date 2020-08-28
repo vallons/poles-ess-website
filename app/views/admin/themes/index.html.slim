@@ -23,6 +23,7 @@ h1.mb-5 Thèmes
   table.table.table-striped.table-hover.table-sm
     thead
       tr
+        th Position
         th Date de création
         th Titre
         th.text-center Actions
@@ -30,14 +31,27 @@ h1.mb-5 Thèmes
         th.text-center Ressources
         th
     tbody
-      - @themes.each do |theme|
+      - max_position    = @themes.map(&:position).compact.max || 1
+      - position_select = (1..max_position).map { |i| [i, i] }
+
+      - @themes.each do |theme| 
         tr
+          td data-controller='manage-position'
+            = form_for theme, as: :theme, url: admin_theme_path(theme) do |f|
+              = f.select  :position, \
+                          options_for_select(position_select, theme.position),\
+                          {},
+                          class: "form-control form-control-sm", \
+                          data: {action: 'change->manage-position#submitSelect'}
+
           td= l theme.created_at
           td= theme.title
           / td= link_to admin_intervention_levels_path(by_theme: theme.id), class: "btn btn-light btn-sm" do
           /   span.ion-ios-list-outline>
           /   = theme.intervention_levels.count
-          td.text-center= theme.activities.count
+          td.text-center
+            = link_to admin_activities_path(by_theme: theme.id), class: "btn btn-light btn-sm" do
+              = theme.activities.count
           td.text-center
           td.text-center
           td=> link_to edit_admin_theme_path(theme), class: "btn btn-sm btn-info mr-2", title: "Editer" do
