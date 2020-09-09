@@ -24,6 +24,7 @@ gem 'active_link_to'
 # Uploads ================================================
 gem 'image_processing'
 gem 'active_storage_validations'
+gem 'activestorage-openstack'
 
 # Quality =================================================
 gem 'rollbar'

@@ -6,6 +6,19 @@ local:
   service: Disk
   root: <%= Rails.root.join("storage") %>
 
+
+openstack:
+  service: OpenStack
+  container: <%= Rails.application.credentials.dig(:openstack, :container) %>
+  credentials:
+    openstack_auth_url: <%= Rails.application.credentials.dig(:openstack, :auth_url) %>
+    openstack_username: <%= Rails.application.credentials.dig(:openstack, :username) %>
+    openstack_api_key: <%= Rails.application.credentials.dig(:openstack, :api_key) %>
+    openstack_region: <%= Rails.application.credentials.dig(:openstack, :region) %>
+    openstack_temp_url_key: <%= Rails.application.credentials.dig(:openstack, :temp_url_key) %>
+  connection_options: # optional
+    chunk_size: 2097152 # 2MBs - 1MB is the default
+
 # Use rails credentials:edit to set the AWS secrets (as aws:access_key_id|secret_access_key)
 # amazon:
 #   service: S3
