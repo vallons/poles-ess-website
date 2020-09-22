@@ -132,39 +132,38 @@ fr:
     am: "am"
     pm: "pm"
 
-  activerecord:
-    errors:
-      template:
-        header:
-          one: "1 erreur est survenue"
-          other: "%{count}  erreurs sont survenues:"
-        # The variable :count is also available
-        body: "Les champs suivants sont incorrects :"
-      # The values :model, :attribute and :value are always available for interpolation
-      # The value :count is available when applicable. Can be used for pluralization.
-      messages:
-        inclusion: "n'est pas inclus dans la liste"
-        exclusion: "est réservé"
-        invalid: "est invalide"
-        record_invalid: "est invalide"
-        confirmation: "ne correspond pas à la confirmation"
-        accepted: "doit être accepté"
-        empty: "est obligatoire"
-        blank: "est obligatoire"
-        too_high: "est trop élevé"
-        too_long: "est trop long (le maximum est %{count}  caractères)"
-        too_short: "est trop court (le minimum est %{count}  caractères)"
-        wrong_length: "n'est pas de la bonne longueur (doit être de %{count} caractères)"
-        taken: "est déjà pris"
-        not_a_number: "n'est pas un nombre"
-        greater_than: "doit être supérieur à %{count} "
-        greater_than_or_equal_to: "doit être supérieur ou égal à %{count} "
-        equal_to: "doit être égal à %{count} "
-        less_than: "doit être inférieur à %{count} "
-        less_than_or_equal_to: "doit être inférieur ou égal à %{count} "
 
-  errors:
+
+
+  # The values :model, :attribute and :value are always available for interpolation
+  # The value :count is available when applicable. Can be used for pluralization.
+  errors: &errors
+    format: ! '%{attribute} %{message}'
+    template:
+      header:
+        one: "1 erreur est survenue"
+        other: "%{count}  erreurs sont survenues:"
+      body: "Les champs suivants sont incorrects :"
     messages:
+      inclusion: "n'est pas inclus dans la liste"
+      exclusion: "est réservé"
+      invalid: "est invalide"
+      record_invalid: "est invalide"
+      confirmation: "ne correspond pas à la confirmation"
+      accepted: "doit être accepté"
+      empty: "est obligatoire"
+      blank: "est obligatoire"
+      too_high: "est trop élevé"
+      too_long: "est trop long (le maximum est %{count}  caractères)"
+      too_short: "est trop court (le minimum est %{count}  caractères)"
+      wrong_length: "n'est pas de la bonne longueur (doit être de %{count} caractères)"
+      taken: "est déjà pris"
+      not_a_number: "n'est pas un nombre"
+      greater_than: "doit être supérieur à %{count} "
+      greater_than_or_equal_to: "doit être supérieur ou égal à %{count} "
+      equal_to: "doit être égal à %{count} "
+      less_than: "doit être inférieur à %{count} "
+      less_than_or_equal_to: "doit être inférieur ou égal à %{count} "
       content_type_invalid: "est un type de contenu invalide"
       file_size_out_of_range: "sa taille  %{file_size} n'est pas dans les valeurs autorisées"
       limit_out_of_range: "total number is out of range"
@@ -184,6 +183,12 @@ fr:
       aspect_ratio_not_landscape: "doit être au format paysage"
       aspect_ratio_is_not: "must have an aspect ratio of %{aspect_ratio}"
       aspect_ratio_unknown: "has an unknown aspect ratio"
+  activemodel:
+    errors:
+      <<: *errors
+  activerecord:
+    errors:
+      <<: *errors
 
   form_errors: Des erreurs ont été rencontrées
 

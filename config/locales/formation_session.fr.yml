@@ -1,0 +1,21 @@
+fr:
+  activerecord:
+    attributes:
+      formation_session: &formation_session_attributes
+        speaker:          L'intervenant
+        tickets_count:    Le nombre de places
+        cost:             Le tarif
+        address:          L'adresse
+        zipcode:          Le code postal
+        city:             La ville
+
+  helpers:
+    label:
+      formation_session: &formation_session_label
+        speaker:          Intervenant
+        tickets_count:    Nombre de places
+        cost:             Tarif
+        address:          Adresse
+        zipcode:          Code postal
+        city:             Ville
+

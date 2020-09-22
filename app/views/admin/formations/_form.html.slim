@@ -1,0 +1,79 @@
+= f.form_errors
+
+.form-group.required
+  = f.label :title, class: "font-weight-bold"
+  = f.text_field :title, class: 'form-control'
+
+.form-group.required
+  = f.label :formation_category_id, class: "font-weight-bold"
+  = f.select :formation_category_id, formation_category_options, {include_blank: 'Sélectionnez une catégorie'}, class: "form-control"
+
+.form-group
+  = f.label :description, class: "font-weight-bold"
+  = f.rich_text_area :description
+
+fieldset.bg-gray.p-2
+  legend Sessions
+  = f.fields_for :formation_sessions do |ff|
+    details open=(fields_for_opened_detail?(ff) ? true : nil)
+      summary Session #{ff.index+1}
+      .py-2.px-4.bg-light.mb-3
+        .row
+          .col
+            .form-group.required
+              = ff.label :speaker
+              = ff.text_field :speaker, class: 'form-control'
+            .row
+              .col
+                .form-group.required
+                  = ff.label :tickets_count
+                  = ff.number_field :tickets_count, class: 'form-control'
+              .col
+                .form-group.required
+                  = ff.label :cost
+                  = ff.text_field :cost, class: 'form-control'
+          .col
+            .form-group.required
+              = ff.label :address
+              = ff.text_field :address, class: 'form-control'
+            .form-group
+              .row.xs-gutter
+                .col-md-4.col-xs-12.xs-gutter.col-label-valign.col-label-valign--sm.col-label-valign--mobile
+                  .form-group.required
+                    = ff.label :zipcode
+                    = ff.text_field :zipcode, class: 'form-control'
+                .col-md-8.col-xs-12.xs-gutter.col-label-valign.col-label-valign--sm.col-label-valign--mobile
+                  .form-group.required
+                    = ff.label :city
+                    = ff.text_field :city, class: 'form-control'
+
+        fieldset
+          legend Date(s)
+          = ff.fields_for :schedules do |fff|
+            .form-group data-controller="datepicker"
+              .row.xs-gutter
+                .col-md-1.col-xs-4.xs-gutter.col-label-valign.col-label-valign--sm.col-label-valign--mobile.text-sm-center
+                  = fff.label :date, "Le", class: 'form-label'
+                .col-md-3.col-xs-8.xs-gutter
+                  .input__group
+                    = fff.text_field :date, class: "form-control",
+                      value: safe_l(fff.object.date.try(:to_date)),
+                      data: { target: "datepicker.dateField" },
+                      placeholder: "ex : jj/mm/yyyy",
+                      maxlength: 10
+                    span.icon-calendar
+                .col-md-1.col-xs-4.xs-gutter.col-label-valign.col-label-valign--sm.col-label-valign--mobile.text-sm-center
+                  = fff.label :start_at, "de", class: 'form-label'
+                .col-md-2.col-xs-8.xs-gutter
+                  = fff.text_field :start_at, class: 'form-control', maxlength: 5, data: {is_timepicker: ""}, value: safe_l(fff.object.start_at.try(:to_time), format: :hour_min), placeholder: "ex : 17:15"
+                .col-md-1.col-xs-4.xs-gutter.col-label-valign.col-label-valign--sm.col-label-valign--mobile.text-sm-center
+                  = fff.label :end_at, "à", class: 'form-label'
+                .col-md-2.col-xs-8.xs-gutter
+                  = fff.text_field :end_at, class: 'form-control', maxlength: 5, data: {is_timepicker: ""}, value: safe_l(fff.object.end_at.try(:to_time), format: :hour_min), placeholder: "ex : 19:27"
+
+= render partial: 'admin/seos/fields_for_form', locals: { f: f }
+
+.action-btns
+  => f.submit class: "btn btn-primary"
+  => f.submit "Sauver et rester sur la page", name: :continue, class: "btn btn-outline-primary"
+  = link_to "Annuler", admin_formations_path, class: "btn btn-link"

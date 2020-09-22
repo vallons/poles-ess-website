@@ -16,6 +16,9 @@ gem 'bootsnap', '>= 1.4.2', require: false
 gem "devise", "~> 4.7"
 gem "rails-settings-cached", "~> 2.0"
 gem 'acts_as_list'
+gem "reform-rails"
+gem "dry-validation"
+gem "dry-types"
 
 # Views ====================================================
 gem 'slim'
@@ -42,6 +45,7 @@ group :development do
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
+  gem 'i18n-debug'
 end
 
 group :test do

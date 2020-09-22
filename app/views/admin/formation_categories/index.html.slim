@@ -1,0 +1,44 @@
+= link_to "Créer une catégorie", new_admin_formation_category_path, class:'btn btn-primary float-right'
+h1.mb-5 Catégories de formation
+
+.cadre-table
+  table.table.table-striped.table-hover.table-sm
+    thead
+      tr
+        th Position
+        th Date de création
+        th Titre
+        th.text-center Formations
+
+        th
+    tbody
+      - max_position    = @formation_categories.map(&:position).compact.max || 1
+      - position_select = (1..max_position).map { |i| [i, i] }
+
+      - @formation_categories.each do |formation_category| 
+        tr
+          td data-controller='manage-position'
+            = form_for formation_category, as: :formation_category, url: admin_formation_category_path(formation_category) do |f|
+              = f.select  :position, \
+                          options_for_select(position_select, formation_category.position),\
+                          {},
+                          class: "form-control form-control-sm", \
+                          data: {action: 'change->manage-position#submitSelect'}
+
+          td= l formation_category.created_at
+          td= formation_category.title
+          td.text-center
+            = link_to admin_formations_path(by_formation_category: formation_category.id), class: "btn btn-light btn-sm" do
+              = formation_category.formations.count
+          td=> link_to edit_admin_formation_category_path(formation_category), class: "btn btn-sm btn-info mr-2", title: "Editer" do
+            i.fas.fa-pen
+            = link_to admin_formation_category_path(formation_category), method: :delete, data: {confirm: "Confirmer la suppression ?"}, title: "Supprimer", class: "btn btn-sm btn-danger" do
+              i.far.fa-trash-alt
+
+
+      - if @formation_categories.empty?
+        tr
+          td colspan="7"
+            p.mt-3.text-center: em.text-muted Aucune catégorie
+
+/ = paginate @formation_categories  

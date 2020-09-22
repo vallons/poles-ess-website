@@ -1,0 +1,14 @@
+fr:
+  activerecord:
+    attributes:
+      formation_category:
+        title:          Le titre
+
+  helpers:
+    label:
+      formation_category:
+        title:          Titre
+    submit:
+      formation_category:
+        create: "Créer la catégorie"
+        update: "Mettre à jour la catégorie"

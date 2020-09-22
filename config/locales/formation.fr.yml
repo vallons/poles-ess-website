@@ -1,0 +1,45 @@
+fr:
+  activerecord:
+    attributes: &attributes_active_records
+      schedule:
+        start_at: L'heure de début
+        end_at: L'heure de fin
+        date: La date
+      formation_session: &formation_session_attributes
+        speaker:          L'intervenant
+        tickets_count:    Le nombre de place
+        address:          L'adresse
+        zipcode:          Le code postal
+        city:             La ville
+      formation:
+        title:          Le titre
+        description:    La description
+        formation_category: La catégorie
+        formation_category_id : La catégorie
+        formation_session:
+          <<: *formation_session_attributes
+
+  activemodel:
+    models:
+      formation: Formation
+    attributes:
+      formation:
+        title:          Le titre
+      <<: *attributes_active_records
+    errors:
+      models:
+        schedule:
+          attributes:
+            end_at: L'haure de fin
+
+  helpers:
+    label:
+      formation:
+        title:          Titre
+        description:    Description
+        formation_category: Catégorie
+        formation_category_id: Catégorie
+    submit:
+      formation:
+        create: "Créer la formation"
+        update: "Mettre à jour la formation"

@@ -4,12 +4,9 @@ module Custom
   module FormBuilder
 
     # Affiche les erreurs du formulaire
-    # Paramètres possibles :
-    # - show_title: boolean (true par défaut)
-    # - only: <nested_attributes>
-    # - except: <nested_attributes>
     def form_errors(params = {})
-      return unless (errors = object.errors).any?
+      errors = object.errors
+      return unless (errors.any? || errors.present?)
 
       @template.content_tag :div, class: "alert alert-danger" do
         content = []

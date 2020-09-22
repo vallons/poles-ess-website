@@ -38,5 +38,13 @@ module ApplicationHelper
     result
   end
 
+  def safe_l(date, hash = {})
+    date && !date.blank? ? I18n.l(date, hash) : nil
+  end
+
+  def number_to_euro(amount)
+    number_to_currency(amount, locale: :fr, precision: 1, strip_insignificant_zeros: true)
+  end
+
 
 end

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_08_25_141519) do
+ActiveRecord::Schema.define(version: 2020_09_16_124104) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -63,6 +63,44 @@ ActiveRecord::Schema.define(version: 2020_08_25_141519) do
     t.datetime "updated_at", precision: 6, null: false
     t.index ["email"], name: "index_admins_on_email", unique: true
     t.index ["reset_password_token"], name: "index_admins_on_reset_password_token", unique: true
+  end
+
+  create_table "formation_categories", force: :cascade do |t|
+    t.string "title"
+    t.integer "position"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "formation_sessions", force: :cascade do |t|
+    t.string "address"
+    t.string "zipcode"
+    t.string "city"
+    t.text "speaker"
+    t.integer "tickets_count"
+    t.float "cost"
+    t.bigint "formation_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["formation_id"], name: "index_formation_sessions_on_formation_id"
+  end
+
+  create_table "formations", force: :cascade do |t|
+    t.string "title"
+    t.text "description"
+    t.bigint "formation_category_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["formation_category_id"], name: "index_formations_on_formation_category_id"
+  end
+
+  create_table "schedules", force: :cascade do |t|
+    t.tsrange "time_range"
+    t.string "schedulable_type"
+    t.bigint "schedulable_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["schedulable_type", "schedulable_id"], name: "index_schedules_on_schedulable_type_and_schedulable_id"
   end
 
   create_table "seos", force: :cascade do |t|

@@ -16,6 +16,8 @@ Rails.application.routes.draw do
         delete "destroy_upload/:upload_id", action: :destroy_upload, as: :destroy_upload
       end
     end
+    resources :formations
+    resources :formation_categories
     resources :interfaces, only: [:update]
 
     root to: "dashboard#index"
@@ -23,6 +25,7 @@ Rails.application.routes.draw do
 
   resources :themes, only: [:show]
   resources :activities, only: [:index, :show]
+  resources :formations, only: [:index, :show]
 
   root 'home#index'
 end
