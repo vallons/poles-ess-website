@@ -6,7 +6,7 @@ class Formation < ApplicationRecord
   has_one_attached :image
 
   belongs_to :formation_category
-  has_many :formation_sessions
+  has_many :schedules, as: :schedulable
 
   # Validations ================================================================
 
@@ -19,7 +19,15 @@ class Formation < ApplicationRecord
     where(formation_category_id: val)
   }
 
+  scope :sort_by_start_date, -> {
+   joins(:schedules).merge(Schedule.sort_by_start_date)
+  }
+
   # Instance methods ====================================================
+
+  def start_date
+    schedules.first.time_range.first
+  end
 
   # Class Methods ==============================================================
 

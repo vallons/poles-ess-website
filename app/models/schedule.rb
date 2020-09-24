@@ -44,6 +44,10 @@ class Schedule < ApplicationRecord
     where('lower(time_range)::date <= ?', date.to_date)
   }
 
+  scope :sort_by_start_date, -> {
+   order(:time_range)
+  }
+
   # Class Methods ==============================================================
 
   def self.apply_filters(params)

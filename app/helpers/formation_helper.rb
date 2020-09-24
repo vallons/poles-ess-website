@@ -8,16 +8,16 @@ module FormationHelper
     end
   end
 
-  def session_location(session)
+  def formation_location(session)
     full_city = [session.zipcode, session.city].join(" ")
     [session.address, full_city].join(", ")
   end
 
-  def session_dates(session)
-    session.schedules.map{ |schedule| session_date(schedule) }.to_sentence(words_connector: ', ', last_word_connector: ' et ')
+  def formation_dates(session)
+    session.schedules.map{ |schedule| formation_date(schedule) }.to_sentence(words_connector: ', ', last_word_connector: ' et ')
   end
 
-  def session_date(schedule)
+  def formation_date(schedule)
     return "" if schedule.date.blank?
     day = I18n.l(schedule.date.to_date, format: :long_with_day)
     start_at = I18n.l(schedule.start_at, format: :time)

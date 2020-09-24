@@ -8,7 +8,7 @@ div data-controller='manage-index'
 
       .row
         .col-lg-4.col-md-6.col-12
-          = label_tag "Par catégory"
+          = label_tag "Par catégorie"
           = select_tag :by_formation_category, \
             options_for_select(formation_category_options, params[:by_formation_category]), \
             prompt: "Toutes les catégories",\
@@ -23,6 +23,7 @@ div data-controller='manage-index'
           th Date de création
           th Catégorie
           th Titre
+          th Date(s)
 
           th
       tbody
@@ -31,6 +32,7 @@ div data-controller='manage-index'
             td= l formation.created_at
             td= formation.formation_category.title
             td= formation.title
+            td= schedule_dates(formation.schedules.order(:time_range).pluck(:time_range))
             td=> link_to edit_admin_formation_path(formation), class: "btn btn-sm btn-info mr-2", title: "Editer" do
               i.fas.fa-pen
               = link_to admin_formation_path(formation), method: :delete, data: {confirm: "Confirmer la suppression ?"}, title: "Supprimer", class: "btn btn-sm btn-danger" do

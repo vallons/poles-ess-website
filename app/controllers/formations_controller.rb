@@ -5,7 +5,8 @@ class FormationsController < ApplicationController
   before_action :get_formation, only: [:show]
 
   def index
-    @formation_categories = FormationCategory.order(:position)
+    @all_formation_categories = FormationCategory.order(:position)
+    @filtered_formation_categories = @all_formation_categories.apply_filters(params)
     @formations = Formation
       .apply_filters(params)
       .apply_sorts(params)

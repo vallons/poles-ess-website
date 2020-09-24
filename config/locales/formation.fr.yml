@@ -5,19 +5,17 @@ fr:
         start_at: L'heure de début
         end_at: L'heure de fin
         date: La date
-      formation_session: &formation_session_attributes
-        speaker:          L'intervenant
-        tickets_count:    Le nombre de place
-        address:          L'adresse
-        zipcode:          Le code postal
-        city:             La ville
       formation:
         title:          Le titre
         description:    La description
         formation_category: La catégorie
         formation_category_id : La catégorie
-        formation_session:
-          <<: *formation_session_attributes
+        speaker:          L'intervenant
+        tickets_count:    Le nombre de places
+        cost:             Le tarif
+        address:          L'adresse
+        zipcode:          Le code postal
+        city:             La ville
 
   activemodel:
     models:
@@ -39,6 +37,12 @@ fr:
         description:    Description
         formation_category: Catégorie
         formation_category_id: Catégorie
+        speaker:          Intervenant
+        tickets_count:    Nombre de places
+        cost:             Tarif
+        address:          Adresse
+        zipcode:          Code postal
+        city:             Ville
     submit:
       formation:
         create: "Créer la formation"

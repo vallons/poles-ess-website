@@ -8,7 +8,7 @@
       = form_tag formations_path, method: :get do
         h4.font-bold Par catégorie
 
-        - @formation_categories.each do |category|
+        - @all_formation_categories.each do |category|
           div
             = label_tag "by_formation_category[#{category.id}]" do
               => check_box_tag "by_formation_category[]", category.id, \
@@ -18,25 +18,26 @@
               => category.title
 
   .md:w-3/4.px-8
-    - @formations.each do |formation|
-      .mb-6
-        h2.text-4xl.font-bold.text-gray-900 = formation.title
-        .flex
-          .bg-primary.px-3.py-2.mr-2
-            = formation.formation_category.title
-        .mb-3 == formation.description
-        - formation.formation_sessions.each do |session|
+    - @filtered_formation_categories.each do |category|
+      h2.text-4xl.font-bold.text-gray-900 = category.title
+      - category.formations.each do |formation|
+        .mb-6
+          h3.text-2xl.font-bold.text-gray-900 = formation.title
+          .flex
+            .bg-primary.px-3.py-2.mr-2
+              = formation.formation_category.title
+          .mb-3 == formation.description
           .bg-gray-300.px-4.py-3.mb-3.flex
             .w-3/4
-              p = session_dates(session)
+              p = formation_dates(formation)
               p 
                 span.uppercase.font-bold Lieu : 
-                => session_location(session)
+                => formation_location(formation)
               p 
                 span.uppercase.font-bold Intervenant : 
-                => session.speaker
+                => formation.speaker
               p 
                 span.uppercase.font-bold Tarif : 
-                => number_to_euro(session.cost)
+                => number_to_euro(formation.cost)
 
 

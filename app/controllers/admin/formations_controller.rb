@@ -61,8 +61,8 @@ class Admin::FormationsController < Admin::BaseController
 
   def formation_params
     params.require(:formation).permit(:title, :description, :formation_category_id, :id,
-      formation_sessions_attributes: [:speaker, :tickets_count, :cost, :address ,:zipcode, :city, :id,
-      schedules_attributes: [:date, :start_at, :end_at, :id]],
+      :speaker, :tickets_count, :cost, :address ,:zipcode, :city, :id,
+      schedules_attributes: [:date, :start_at, :end_at, :id],
       seo_attributes: seo_attributes
 )
   end

@@ -14,13 +14,25 @@ class FormationCategory < ApplicationRecord
   # Scopes ====================================================================
 
   scope :having_formations, -> { joins(:formations).uniq }
+  scope :by_formation_category, -> (val) {
+    where(id: val)
+  }
 
   # Instance methods ====================================================
 
   # Class Methods ==============================================================
 
+    def self.apply_filters(params)
+    [
+      :by_formation_category,
+    ].inject(all) do |relation, filter|
+      next relation unless params[filter].present?
+      relation.send(filter, params[filter])
+    end
+  end
+
   def self.apply_sorts(params)
-      self.order(created_at: :desc)
+      self.order(position: :desc)
   end
 
 end

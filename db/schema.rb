@@ -72,23 +72,16 @@ ActiveRecord::Schema.define(version: 2020_09_16_124104) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
-  create_table "formation_sessions", force: :cascade do |t|
+  create_table "formations", force: :cascade do |t|
+    t.string "title"
+    t.text "description"
+    t.bigint "formation_category_id"
     t.string "address"
     t.string "zipcode"
     t.string "city"
     t.text "speaker"
     t.integer "tickets_count"
     t.float "cost"
-    t.bigint "formation_id"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["formation_id"], name: "index_formation_sessions_on_formation_id"
-  end
-
-  create_table "formations", force: :cascade do |t|
-    t.string "title"
-    t.text "description"
-    t.bigint "formation_category_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["formation_category_id"], name: "index_formations_on_formation_category_id"
