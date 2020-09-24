@@ -17,10 +17,10 @@ class Admin::ActivitiesController < Admin::BaseController
   def create
     @activity = Activity.new(activity_params)
     if @activity.save
-      flash[:notice] = "L'activity a été créé avec succès"
+      flash[:notice] = "L'action a été créé avec succès"
       redirect_to params[:continue].present? ? edit_admin_activity_path(@activity) : admin_activities_path
     else
-      flash[:error] = "Une erreur s'est produite lors de la mise à jour de l'activity"
+      flash[:error] = "Une erreur s'est produite lors de la mise à jour de l'action"
       render :new
     end
   end
@@ -30,10 +30,10 @@ class Admin::ActivitiesController < Admin::BaseController
 
   def update
     if @activity.update_attributes(activity_params)
-      flash[:notice] = "Thème mis à jour avec succès"
+      flash[:notice] = "Action miss à jour avec succès"
       redirect_to params[:continue].present? ? edit_admin_activity_path(@activity) : admin_activities_path
     else
-      flash[:error] = "Une erreur s'est produite lors de la mise à jour de l'activity"
+      flash[:error] = "Une erreur s'est produite lors de la mise à jour de l'action"
       render :edit
     end
   end
@@ -41,11 +41,11 @@ class Admin::ActivitiesController < Admin::BaseController
   def destroy
     begin
       @activity.destroy!
-      flash[:notice] = "L'activity a été supprimée avec succès"
+      flash[:notice] = "L'action a été supprimée avec succès"
     rescue ActiveRecord::DeleteRestrictionError
-      flash[:error] = "Vous ne pouvez pas supprimer cette activity car elle a des données dépendantes"
+      flash[:error] = "Vous ne pouvez pas supprimer cette action car elle a des données dépendantes"
     end
-    redirect_to activity: :index
+    redirect_to admin_activities_path
   end
 
   def destroy_image

@@ -13,6 +13,7 @@ require("@rails/actiontext");
 
 import 'scripts/shared/controllers'
 import 'scripts/application/controllers'
+import 'scripts/application/utils'
 
 // STYLE =========================================================================
 import "../styles/application.scss";
