@@ -3,7 +3,7 @@ class Theme < ApplicationRecord
   include Seoable
 
   has_rich_text :description
-  has_one_attached :main_image
+  has_one_attached :image
 
   acts_as_list
 

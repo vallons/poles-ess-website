@@ -1,5 +1,7 @@
 class Admin::ThemesController < Admin::BaseController
 
+  include DestroyableUpload
+
   before_action :get_theme, only: [:edit, :update, :destroy, :destroy_image]
 
   def index
@@ -46,19 +48,10 @@ class Admin::ThemesController < Admin::BaseController
     redirect_to action: :index
   end
 
-  def destroy_image
-    @theme.main_image.purge
-    flash[:notice] = "L'image a bien été supprimée"
-
-    render :edit
-  end
-
-
- 
   private # =====================================================
 
   def theme_params
-    params.require(:theme).permit(:title, :description, :baseline, :main_image, :position,
+    params.require(:theme).permit(:title, :description, :baseline, :image, :position,
         seo_attributes: seo_attributes
 )
   end

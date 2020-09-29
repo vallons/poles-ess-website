@@ -1,5 +1,7 @@
 class Admin::ActivitiesController < Admin::BaseController
 
+  include DestroyableUpload
+
   before_action :get_activity, only: [:edit, :update, :destroy, :destroy_image]
 
   def index
@@ -30,7 +32,7 @@ class Admin::ActivitiesController < Admin::BaseController
 
   def update
     if @activity.update_attributes(activity_params)
-      flash[:notice] = "Action miss à jour avec succès"
+      flash[:notice] = "Action mise à jour avec succès"
       redirect_to params[:continue].present? ? edit_admin_activity_path(@activity) : admin_activities_path
     else
       flash[:error] = "Une erreur s'est produite lors de la mise à jour de l'action"
@@ -48,15 +50,6 @@ class Admin::ActivitiesController < Admin::BaseController
     redirect_to admin_activities_path
   end
 
-  def destroy_image
-    @activity.main_image.purge
-    flash[:notice] = "L'image a bien été supprimée"
-
-    render :edit
-  end
-
-
- 
   private # =====================================================
 
   def activity_params

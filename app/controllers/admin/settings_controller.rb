@@ -2,6 +2,8 @@
 
 class Admin::SettingsController < Admin::BaseController
 
+  include DestroyableUpload
+
   def create
     setting_params.keys.each do |key|
       Setting.send("#{key}=", setting_params[key].strip) unless setting_params[key].nil?
@@ -14,16 +16,8 @@ class Admin::SettingsController < Admin::BaseController
     redirect_to action: :show
   end
 
-  def destroy_upload
-    attachment = ActiveStorage::Attachment.find(params[:upload_id])
-    attachment.purge
-    flash[:notice] = "L'image a bien été supprimée"
-    redirect_action = params[:redirect] || :index
-    redirect_to action: redirect_action
-  end
-
   private
-  
+
   def setting_params
     params.require(:setting).permit(:project_name)
   end

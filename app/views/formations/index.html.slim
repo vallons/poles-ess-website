@@ -26,6 +26,7 @@
           .flex
             .bg-primary.px-3.py-2.mr-2
               = formation.formation_category.title
+          = image_tag formation.image, class: "mb-8 mx-auto"
           .mb-3 == formation.description
           .bg-gray-300.px-4.py-3.mb-3.flex
             .w-3/4

@@ -18,6 +18,7 @@ class FormationForm < Reform::Form
   property :speaker
   property :cost
   property :tickets_count#, type: Types::Nominal::Integer
+  property :image
 
   property :seo,
     populate_if_empty: Seo,

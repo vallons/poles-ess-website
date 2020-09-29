@@ -1,0 +1,20 @@
+div.mb-5
+  h4.mb-4 Image principale
+  .d-flex data-controller='file-upload'
+    - if f.object.image.present?
+      .mr-4
+        => image_tag f.object.image.variant(resize_to_limit: [150, nil])
+    div
+      .form-group
+        = f.label :image, for: "main-image", class: 'btn btn-sm btn-outline-info' do
+          i.fas.fa-file-upload>
+          ' Télécharger nouvelle image
+        = f.file_field :image, id: "main-image", class: "d-none", data:{action: 'change->file-upload#displayFileName'}
+        div
+          small data-target="file-upload.nameDisplayed"
+
+      - if f.object.image.present?
+        .form-group
+          = link_to destroy_path, method: :delete, class: 'btn btn-sm btn-outline-danger' do
+            i.fas.fa-trash-alt>
+            ' Supprimer l'image actuelle

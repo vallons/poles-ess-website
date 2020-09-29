@@ -19,24 +19,9 @@
   = f.label :description, class: "font-weight-bold"
   = f.rich_text_area :description
 
-label.font-weight-bold Image
-.row data-controller='file-upload'
-  .col-4
-    .form-group
-      = f.label :image, "Sélectionner nouvelle image", for: "main-image", class: 'btn btn-info'
-      = f.file_field :image, id: "main-image", class: "d-none", data:{action: 'change->file-upload#displayFileName'}
-      div
-        small data-target="file-upload.nameDisplayed"
-    - if f.object.image.present?
-      .form-group
-        / = link_to "Supprimer l'image actuelle", destroy_image_admin_action_path(f.object.id),
-        /             method: :delete
-        / = label_tag :"Supprimer l'image actuelle"
-        / = check_box_tag 'action[purge_image]', true, false
-  - if f.object.image.present?
-    .col-8
-      div Image actuelle :
-      => image_tag f.object.image.variant(resize_to_limit: [150, nil])
+= render partial: 'admin/shared/picture_form', locals: { \
+  f: f, \
+  destroy_path: f.object.image.present? ? destroy_upload_admin_activity_path(f.object, f.object.image.id, redirect: :edit) : nil}
 
 = render partial: 'admin/seos/fields_for_form', locals: { f: f }
 

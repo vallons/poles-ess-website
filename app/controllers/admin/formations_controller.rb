@@ -1,5 +1,7 @@
 class Admin::FormationsController < Admin::BaseController
 
+  include DestroyableUpload
+
   before_action :get_formation, only: [:edit, :update, :destroy]
 
   def index
@@ -12,7 +14,6 @@ class Admin::FormationsController < Admin::BaseController
   def new
     @form = FormationForm.new(Formation.new)
     @form.prepopulate!
-    # @formation.build_seo
   end
 
   def create
@@ -38,7 +39,7 @@ class Admin::FormationsController < Admin::BaseController
     @form = FormationForm.new(@formation)
     if @form.validate(formation_params)
       @form.save
-      flash[:notice] = "Thème mis à jour avec succès"
+      flash[:notice] = "Formation mise à jour avec succès"
       redirect_to params[:continue].present? ? edit_admin_formation_path(@formation) : admin_formations_path
     else
       @form.prepopulate!
@@ -50,7 +51,7 @@ class Admin::FormationsController < Admin::BaseController
   def destroy
     begin
       @formation.destroy!
-      flash[:notice] = "L'formation a été supprimée avec succès"
+      flash[:notice] = "La formation a été supprimée avec succès"
     rescue ActiveRecord::DeleteRestrictionError
       flash[:error] = "Vous ne pouvez pas supprimer cette formation car elle a des données dépendantes"
     end
@@ -61,7 +62,7 @@ class Admin::FormationsController < Admin::BaseController
 
   def formation_params
     params.require(:formation).permit(:title, :description, :formation_category_id, :id,
-      :speaker, :tickets_count, :cost, :address ,:zipcode, :city, :id,
+      :speaker, :tickets_count, :cost, :address ,:zipcode, :city, :id, :image,
       schedules_attributes: [:date, :start_at, :end_at, :id],
       seo_attributes: seo_attributes
 )

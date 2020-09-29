@@ -1,22 +1,20 @@
 Rails.application.routes.draw do
   devise_for :admin
 
+   # Concerns ===================================================================
+
+  concern :upload_destroyable do
+    delete "destroy_upload/:upload_id", action: :destroy_upload, as: :destroy_upload, on: :member
+  end
+
   # Admin ======================================
 
   namespace :admin do
-    resources :themes do
-      member do
-        delete :destroy_image
-      end
-    end
-    resources :activities
+    resources :themes, concerns: :upload_destroyable
+    resources :activities, concerns: :upload_destroyable
     resources :seos, only: [:index, :edit, :update]
-    resource :settings, only: [:create, :show] do
-      member do
-        delete "destroy_upload/:upload_id", action: :destroy_upload, as: :destroy_upload
-      end
-    end
-    resources :formations
+    resource :settings, only: [:create, :show], concerns: :upload_destroyable
+    resources :formations, concerns: :upload_destroyable
     resources :formation_categories
     resources :interfaces, only: [:update]
 
