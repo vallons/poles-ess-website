@@ -77,21 +77,5 @@ class FormationForm < Reform::Form
     end
   end
 
-  # def prepopulate_formation_sessions!(options)
-  #   while self.formation_sessions.count < 1
-  #     self.formation_sessions << FormationSession.new
-  #   end
-  # end
-
-  # def populate_formation_sessions!(fragment:, collection:, index:, **)
-  #   return skip! if fragment[:speaker].blank?
-  #   item = collection.find { |i| i.id.to_s == fragment['id'] }
-  #   if fragment[:_destroy] == "1"
-  #     collection.delete(item)
-  #     return skip!
-  #   end
-  #   item ? item : collection.insert(index, FormationSession.new) 
-  # end
-
 
 end
