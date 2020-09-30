@@ -56,7 +56,7 @@ class Admin::FormationsController < Admin::BaseController
     rescue ActiveRecord::DeleteRestrictionError
       flash[:error] = "Vous ne pouvez pas supprimer cette formation car elle a des données dépendantes"
     end
-    redirect_to formation: :index
+    redirect_to action: :index
   end
 
   private # =====================================================
