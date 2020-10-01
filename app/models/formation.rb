@@ -8,6 +8,9 @@ class Formation < ApplicationRecord
   belongs_to :formation_category
   has_many :schedules, as: :schedulable
 
+  has_many :subscriptions, inverse_of: :formation
+  has_many :participants, through: :subscriptions
+
   # Validations ================================================================
 
   validates :title, :formation_category,

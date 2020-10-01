@@ -1,0 +1,40 @@
+.container.mx-auto.mb-24
+  .formation-info.mb-4
+    h1.mt-16.mb-4
+      .text-2xl.font-bold.text-center.text-gray-900 Inscription à la formation
+      .text-4xl.font-bold.text-center.text-gray-900 = @formation.title
+    p = formation_dates(@formation)
+    p 
+      span.uppercase.font-bold Lieu : 
+      => formation_location(@formation)
+    p 
+      span.uppercase.font-bold Intervenant : 
+      => @formation.speaker
+    p 
+      span.uppercase.font-bold Tarif : 
+      | #{number_to_euro(@formation.cost)} / personne
+
+  = form_with model: @subscription, url: formation_subscriptions_path, local: true do |f|
+    = f.form_errors
+    = f.hidden_field :formation_id, value: @formation.id
+
+    h4.text-2xl.font-bold Participants
+    div data-controller="nested-fields"
+      template data-target="nested-fields.template"
+        = f.fields_for :participants, Participant.new, child_index: 'NEW_RECORD' do |participant|
+          = render "participant_fields", f: participant
+
+      = f.fields_for :participants do |participant|
+        = render "participant_fields", f: participant
+
+      .mb-10 data-target="nested-fields.links"
+        = link_to "Ajouter un participant", "#", class: "underline", data: { action: "click->nested-fields#add_association" }
+
+      .mb-6
+        label.block.text-gray-800
+          = f.check_box :save_subscription, {class: 'mr-2 leading-tight'}
+          = f.label :save_subscription, "Garder en mémoire les participants pour une autre inscription", class: 'font-bold'
+    
+          p.text-sm.italic Vos prochains formulaires d'inscription seront pré-remplis et la liste des participants est gardée en mémoire tant que votre navigateur reste ouvert.
+    .mx-auto.text-center
+      => f.submit "Valider l'inscription", class: 'bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded'

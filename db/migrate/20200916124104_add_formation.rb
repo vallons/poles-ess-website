@@ -21,18 +21,6 @@ class AddFormation < ActiveRecord::Migration[6.0]
       t.timestamps null: false
     end
 
-    # create_table :formation_sessions do |t|
-    #   t.string :address
-    #   t.string :zipcode
-    #   t.string :city
-    #   t.text :speaker
-    #   t.integer :tickets_count
-    #   t.float :cost
-    #   t.references :formation, index: true
-
-    #   t.timestamps null: false
-    # end
-
     create_table :schedules do |t|
       t.tsrange :time_range
       t.references :schedulable, polymorphic: true, index: true

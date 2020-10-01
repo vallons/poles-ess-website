@@ -1,0 +1,18 @@
+fr:
+  activerecord:
+    attributes: 
+      schedule:
+        start_at: L'heure de début
+        end_at: L'heure de fin
+        date: La date
+
+
+  helpers:
+    label:
+      schedule:
+        start_at: Heure de début
+        end_at: Heure de fin
+        date: Date
+
+
+

@@ -16,6 +16,12 @@ fr:
         address:          L'adresse
         zipcode:          Le code postal
         city:             La ville
+      formation/participants:
+        organization: La structure
+        firstname: Le prénom
+        lastname: Le nom
+        email: l'email
+        phone: Le téléphone
 
   activemodel:
     models:

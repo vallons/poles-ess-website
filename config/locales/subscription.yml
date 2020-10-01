@@ -1,0 +1,13 @@
+fr:
+  activerecord:
+    errors:
+      models:
+        subscription:
+          attributes:
+            base:
+              at_least_one_participant: Vous n'avez renseigné aucun participant
+    attributes:
+      subscription/participants: 
+        lastname: Le nom du participant
+        firstname: Le prénom du participant
+        email: L'email du participant

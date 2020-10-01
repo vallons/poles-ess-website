@@ -1,0 +1,24 @@
+fr:
+  models:
+    participant: Participant
+  activerecord:
+    attributes: 
+      participant:
+        organization: La structure
+        firstname: Le prénom
+        lastname: Le nom
+        email: l'email
+        phone: Le téléphone
+
+
+  helpers:
+    label:
+      participant:
+        organization: Structure
+        firstname: Prénom
+        lastname: Nom
+        email: Email
+        phone: Téléphone
+
+
+

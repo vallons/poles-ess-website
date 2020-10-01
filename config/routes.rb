@@ -23,7 +23,9 @@ Rails.application.routes.draw do
 
   resources :themes, only: [:show]
   resources :activities, only: [:index, :show]
-  resources :formations, only: [:index, :show]
+  resources :formations, only: [:index, :show, :edit, :update] do
+    resources :subscriptions, controller: "formations/subscriptions", only: [:new, :create, :show]
+  end
 
   root 'home#index'
 end

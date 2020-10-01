@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_09_16_124104) do
+ActiveRecord::Schema.define(version: 2020_09_30_152401) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -72,6 +72,12 @@ ActiveRecord::Schema.define(version: 2020_09_16_124104) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  create_table "formation_subscriptions", force: :cascade do |t|
+    t.integer "formation_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
   create_table "formations", force: :cascade do |t|
     t.string "title"
     t.text "description"
@@ -85,6 +91,19 @@ ActiveRecord::Schema.define(version: 2020_09_16_124104) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["formation_category_id"], name: "index_formations_on_formation_category_id"
+  end
+
+  create_table "participants", force: :cascade do |t|
+    t.bigint "subscription_id"
+    t.string "firstname"
+    t.string "lastname"
+    t.string "organization"
+    t.string "email"
+    t.string "phone"
+    t.integer "status", default: 0
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["subscription_id"], name: "index_participants_on_subscription_id"
   end
 
   create_table "schedules", force: :cascade do |t|
@@ -114,6 +133,14 @@ ActiveRecord::Schema.define(version: 2020_09_16_124104) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["var"], name: "index_settings_on_var", unique: true
+  end
+
+  create_table "subscriptions", force: :cascade do |t|
+    t.bigint "formation_id"
+    t.float "cost"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["formation_id"], name: "index_subscriptions_on_formation_id"
   end
 
   create_table "theme_interfaces", force: :cascade do |t|

@@ -1,0 +1,28 @@
+.container.mx-auto
+  h1.text-6xl.font-bold.text-center.mt-16.mb-4.text-gray-900 Résumé de votre inscription
+
+  p Un mail de confirmation a été envoyé à chacun des participants.
+  p Le règlement sera à effectuer de la façon suivante : 
+
+  .mb-3
+    h3.text-2xl.font-bold Formation
+    .bg-gray-300.p-4
+      p.font-bold= @formation.title
+      p = formation_dates(@formation)
+      p
+        span.uppercase.font-bold Lieu :
+        => formation_location(@formation)
+      p
+        span.uppercase.font-bold Intervenant :
+        => @formation.speaker
+
+  .mb-3
+    h3.text-2xl.font-bold Participants
+    .bg-gray-300.p-4
+      ul
+        - @subscription.participants.each do |participant|
+          li
+            => participant.firstname
+            => participant.lastname
+
+  = link_to "Retourner à la liste des formations", formations_path, class: "underline"
