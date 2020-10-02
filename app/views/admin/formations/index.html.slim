@@ -24,15 +24,21 @@ div data-controller='manage-index'
           th Catégorie
           th Titre
           th Date(s)
+          th Places restantes
+          th Participants
 
           th
       tbody
         - @formations.each do |formation|
           tr
-            td= l formation.created_at
+            td= l(formation.created_at, format: :day)
             td= formation.formation_category.title
             td= formation.title
             td= schedule_dates(formation.schedules.order(:time_range).pluck(:time_range))
+            td.text-center= formation.is_full? ? "COMPLET" : formation.remaining_tickets
+            td.text-center
+              = link_to admin_participants_path(by_formation: formation.id), class: "btn btn-light btn-sm" do
+                = formation.participants.count
             td=> link_to edit_admin_formation_path(formation), class: "btn btn-sm btn-info mr-2", title: "Editer" do
               i.fas.fa-pen
               = link_to admin_formation_path(formation), method: :delete, data: {confirm: "Confirmer la suppression ?"}, title: "Supprimer", class: "btn btn-sm btn-danger" do

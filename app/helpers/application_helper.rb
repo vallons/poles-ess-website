@@ -46,5 +46,9 @@ module ApplicationHelper
     number_to_currency(amount, locale: :fr, precision: 1, strip_insignificant_zeros: true)
   end
 
+  def fullname(model)
+    [model.firstname, model.lastname].join(" ")
+  end
+
 
 end

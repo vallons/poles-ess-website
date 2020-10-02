@@ -63,7 +63,7 @@ class FormationForm < Reform::Form
 
   # Validation -------------------------------------
 
-  validates :title, :formation_category_id, presence: true
+  validates :title, :formation_category_id, :schedules, presence: true
   copy_validations_from Seo
 
   # Prepopulate -------------------------------------

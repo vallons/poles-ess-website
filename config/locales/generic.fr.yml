@@ -126,6 +126,7 @@ fr:
   time:
     formats:
       default: "%d/%m/%Y à %Hh%M"
+      day: "%d/%m/%Y"
       time: "%Hh%M"
       hour_min: "%H:%M"
       long: "%d %B %Y à %Hh%M"
@@ -202,3 +203,8 @@ fr:
     zero: "%{count} résultat"
     one: "%{count} résultat"
     other: "%{count} résultats"
+
+  tickets:
+    zero: "Complet"
+    one: "%{count} place restante"
+    other: "%{count} places restantes"

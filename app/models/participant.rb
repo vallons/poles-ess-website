@@ -15,6 +15,15 @@ class Participant < ApplicationRecord
   validates :lastname, :firstname, :email,
             presence: true
 
+  # Callbacks ===================================================================
+
+  before_validation :set_status, on: :create
+
+  private def set_status
+    # la subscription n'est pas encore créée donc pas de lien direct avec formation
+    self.status = :in_waiting_line if self.subscription.formation.is_full?
+  end
+
   # Scopes ====================================================================
 
   scope :by_formation, -> (val) {
@@ -27,12 +36,16 @@ class Participant < ApplicationRecord
     .where(arel_by_participant(val))
   }
 
+  scope :by_status, ->(status) {
+    where(status: statuses.fetch(status.to_sym))
+  }
+
   def self.arel_by_formation(val)
-    FormationSubscription.arel_table[:formation_id].eq(val)
+    Subscription.arel_table[:formation_id].eq(val)
   end
 
   def self.arel_by_participant(val)
-    FormationSubscription.arel_table[:participant_id].eq(val)
+    Subscription.arel_table[:participant_id].eq(val)
   end
 
   # Instance methods ====================================================
@@ -42,7 +55,8 @@ class Participant < ApplicationRecord
   def self.apply_filters(params)
     [
       :by_formation,
-      :by_participant
+      :by_participant,
+      :by_status
     ].inject(all) do |relation, filter|
       next relation unless params[filter].present?
       relation.send(filter, params[filter])

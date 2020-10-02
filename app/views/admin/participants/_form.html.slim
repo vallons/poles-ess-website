@@ -1,0 +1,30 @@
+= f.form_errors
+
+/ .form-group.required
+/   = f.label :formation_id, class: "font-weight-bold"
+/   = f.select :formation_id, formation_options, {include_blank: 'Sélectionnez une formation'}, class: "form-control"
+
+.form-group.required
+  = f.label :organization, class: "font-weight-bold"
+  = f.text_field :organization, class: 'form-control'
+
+.form-group.required
+  = f.label :firstname, class: "font-weight-bold"
+  = f.text_field :firstname, class: 'form-control'
+
+.form-group.required
+  = f.label :lastname, class: "font-weight-bold"
+  = f.text_field :lastname, class: 'form-control'
+
+.form-group.required
+  = f.label :email, class: "font-weight-bold"
+  = f.email_field :email, class: 'form-control'
+
+.form-group.required
+  = f.label :phone, class: "font-weight-bold"
+  = f.text_field :phone, class: 'form-control'
+
+.action-btns
+  => f.submit class: "btn btn-primary"
+  => f.submit_and_stay class: "btn btn-outline-primary"
+  = link_to "Annuler", admin_participants_path, class: "btn btn-link"

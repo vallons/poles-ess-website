@@ -42,9 +42,9 @@ html lang="#{I18n.locale}"
                 span.nav-link Formations
                 ul
                   li.nav-item
-                    = active_link_to "#", title: "Gérer les inscriptions", class: "nav-link disabled", active: :exclusive do
+                    = active_link_to admin_participants_path, title: "Gérer les participants", class: "nav-link", active: :inclusive do
                       i.fas.fa-chalkboard-teacher>
-                      ' Inscriptions
+                      ' Participants
                   li.nav-item
                     = active_link_to admin_formations_path, title: "Gérer les formations", class: "nav-link", active: :inclusive do
                       i.fas.fa-chalkboard-teacher>

@@ -21,4 +21,11 @@ fr:
         phone: Téléphone
 
 
-
+  participant:
+    status:
+      title:
+        participation_confirmed: confirmé
+        in_waiting_line: liste d'attente
+      style:
+        participation_confirmed: success
+        in_waiting_line: warning

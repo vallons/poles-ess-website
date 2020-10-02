@@ -1,0 +1,27 @@
+.title-wrapper
+  h1 Édition du participant "#{fullname(@participant)}"
+
+  div.flex
+    = link_to admin_participants_path, class: "btn btn-light mr-4" do
+      i.fa.fa-chevron-left>
+      ' Retour
+    span.small
+      ' Créé le
+      strong => l @participant.created_at
+      ' -
+      ' Mis à jour le
+      strong = l @participant.updated_at
+
+  hr
+
+  .bg-light.p-3.
+    - formation = @participant.formation
+    p>
+      span.font-weight-bold' Formation :
+      => formation.title
+    p = [formation_dates(formation), formation_location(formation)].join(" - ")
+
+= form_for(@participant, as: :participant, \
+  url: admin_participant_path(@participant), html: {class: "form-horizontal"}) do |f| 
+  
+  =  render partial: "form", locals: {f: f}

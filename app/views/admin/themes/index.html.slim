@@ -46,9 +46,6 @@ h1.mb-5 Thèmes
 
           td= l theme.created_at
           td= theme.title
-          / td= link_to admin_intervention_levels_path(by_theme: theme.id), class: "btn btn-light btn-sm" do
-          /   span.ion-ios-list-outline>
-          /   = theme.intervention_levels.count
           td.text-center
             = link_to admin_activities_path(by_theme: theme.id), class: "btn btn-light btn-sm" do
               = theme.activities.count

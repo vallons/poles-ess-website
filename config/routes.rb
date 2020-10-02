@@ -15,6 +15,12 @@ Rails.application.routes.draw do
     resources :seos, only: [:index, :edit, :update]
     resource :settings, only: [:create, :show], concerns: :upload_destroyable
     resources :formations, concerns: :upload_destroyable
+    resources :participants do
+      member do
+        patch :confirm_participation
+        patch :place_in_waiting_line
+      end
+    end
     resources :formation_categories
     resources :interfaces, only: [:update]
 

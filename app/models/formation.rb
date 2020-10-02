@@ -32,6 +32,14 @@ class Formation < ApplicationRecord
     schedules.first.time_range.first
   end
 
+  def remaining_tickets
+    tickets_count - participants.count
+  end
+
+  def is_full?
+    remaining_tickets <= 0
+  end
+
   # Class Methods ==============================================================
 
   def self.apply_filters(params)
