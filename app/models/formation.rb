@@ -33,7 +33,7 @@ class Formation < ApplicationRecord
   end
 
   def remaining_tickets
-    tickets_count - participants.count
+    tickets_count - participants.participation_confirmed.count
   end
 
   def is_full?

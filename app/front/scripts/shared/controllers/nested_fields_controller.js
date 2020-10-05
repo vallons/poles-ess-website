@@ -5,8 +5,6 @@ export default class extends Controller {
 
   connect() {
     this.wrapperClass = this.data.get("wrapperClass") || "nested-fields";
-    $("a.remove-nested-item").first().hide();
-    ;
     document.querySelector(".js-delete-link").style.display = "none";
   }
 
