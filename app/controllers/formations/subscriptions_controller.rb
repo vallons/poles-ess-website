@@ -20,11 +20,11 @@ class Formations::SubscriptionsController < Formations::BaseController
         else
           session[:current_subscription_id] = nil
         end
-        format.html { redirect_to formation_subscription_path(@formation, @subscription), notice: 'Supscription was successfully created.' }
+        format.html { redirect_to formation_subscription_path(@formation, @subscription), notice: 'Votre inscription a bien été prise en compte' }
         format.json { render :show, status: :created, location: @subscription }
       else
-        @subscription.participants.new
-        format.html { render :new }
+        @subscription.participants.new if @subscription.participants.empty?
+        format.html { render :new, alert: 'Il y a un soucis avec votre inscription'  }
         format.json { render json: @subscription.errors, status: :unprocessable_entity }
       end
     end
