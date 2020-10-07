@@ -15,7 +15,7 @@ html lang='fr'
   = javascript_pack_tag 'application', 'data-turbolinks-track': 'reload'
 
   body.h-full
-    .relative.h-full data-controller="main-menu"
+    .relative data-controller="main-menu"
       nav.side-menu.absolute.top-0.left-0.bg-gray-700.w-48.h-full.text-white data-target="main-menu.sideMenu"
         .p-6
           svg.stroke-current.cursor-pointer viewBox="0 0 100 80" width="40" height="40" xmlns="http://www.w3.org/2000/svg" data-action="click->main-menu#toggleSideMenu"
@@ -71,3 +71,31 @@ html lang='fr'
       = raw flash_messages
 
       = yield
+                                                                                                                                                                                                                                                                                                                                                                                                                                                          
+    .w-full.bg-gray-500
+      .max-w-6xl.mx-auto
+        .w-2/3.flex
+          .w-1/3.py-8
+            .text-primary.text-xl.uppercase Naviguer
+            ul
+              li Découvrir
+              li Entreprendre
+              li Coopérer
+              li Dynamiser
+          .w-1/3.py-8
+            .text-primary.text-xl.uppercase S'identifier
+            ul 
+              li Association
+              li Porteur de projet
+              li Collectivité
+          .w-1/3.py-8
+            .text-primary.text-xl.uppercase Approfondir
+            ul 
+              li Actions
+              li Formations
+              li Chiffre-clés
+              li Ressources
+              li Ressources
+        .w-1/3.py-8
+          - if Setting.logo.present?
+            => image_tag Setting.logo.variant(resize_to_limit: [nil, 150]), class: ""

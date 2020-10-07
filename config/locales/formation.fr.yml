@@ -10,7 +10,7 @@ fr:
         description:    La description
         formation_category: La catégorie
         formation_category_id : La catégorie
-        speaker:          L'intervenant
+        speaker:          L'intervenant·e
         tickets_count:    Le nombre de places
         cost:             Le tarif
         address:          L'adresse
@@ -43,7 +43,7 @@ fr:
         description:    Description
         formation_category: Catégorie
         formation_category_id: Catégorie
-        speaker:          Intervenant
+        speaker:          Intervenant·e
         tickets_count:    Nombre de places
         cost:             Tarif
         address:          Adresse

@@ -1,0 +1,10 @@
+figure class="attachment attachment--#{blob.representable? ? "preview" : "file"} attachment--#{blob.filename.extension }"
+  - if blob.image?
+    = image_tag blob.representation(resize_to_limit: local_assigns[:in_gallery] ? [ 800, 600 ] : [ 1024, 768 ])
+
+  - if caption = blob.try(:caption)
+    figcaption.attachment__caption.text-center
+      small.italic= caption
+  - if blob.filename.extension == 'pdf'
+      = link_to blob.filename, rails_blob_path(blob), target: '_blank'
+
