@@ -17,7 +17,7 @@ class FormationForm < Reform::Form
   property :city#, type: Types::Nominal::String
   property :speaker
   property :cost
-  property :tickets_count#, type: Types::Nominal::Integer
+  property :tickets_count, prepopulator: ->(options) { self.tickets_count = Formation.default_tickets_count if self.tickets_count.blank? } #, type: Types::Nominal::Integer
   property :image
 
   property :seo,
@@ -63,7 +63,7 @@ class FormationForm < Reform::Form
 
   # Validation -------------------------------------
 
-  validates :title, :formation_category_id, :schedules, presence: true
+  validates :title, :formation_category_id, :tickets_count, :schedules, presence: true
   copy_validations_from Seo
 
   # Prepopulate -------------------------------------

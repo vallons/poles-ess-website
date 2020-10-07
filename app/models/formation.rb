@@ -1,5 +1,7 @@
 class Formation < ApplicationRecord
 
+  DEFAULT_TICKET_COUNT = 12
+
   include Seoable
 
   has_rich_text :description
@@ -53,6 +55,10 @@ class Formation < ApplicationRecord
 
   def self.apply_sorts(params)
       self.order(created_at: :desc)
+  end
+
+  def self.default_tickets_count
+    Formation::DEFAULT_TICKET_COUNT
   end
 
 end
