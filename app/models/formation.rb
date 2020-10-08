@@ -8,15 +8,18 @@ class Formation < ApplicationRecord
   has_one_attached :image
 
   belongs_to :formation_category
-  has_many :schedules, -> {order(:time_range)}, as: :schedulable
-  has_one :first_schedule, -> {order(:time_range)}, as: :schedulable, class_name: 'Schedule'
 
-  has_many :subscriptions, inverse_of: :formation
+  has_many :schedules, -> {order(:time_range)}, as: :schedulable, inverse_of: :schedulable
+  has_one :first_schedule, -> {order(:time_range)}, as: :schedulable, class_name: 'Schedule'
+  accepts_nested_attributes_for :schedules, reject_if: :all_blank, allow_destroy: true
+
+
+  has_many :subscriptions, inverse_of: :formation, dependent: :restrict_with_exception
   has_many :participants, through: :subscriptions
 
   # Validations ================================================================
 
-  validates :title, :formation_category,
+  validates :title, :schedules,
             presence: true
 
   # Scopes ====================================================================
@@ -68,6 +71,13 @@ class Formation < ApplicationRecord
 
   def self.default_tickets_count
     Formation::DEFAULT_TICKET_COUNT
+  end
+
+  def self.default
+    formation = self.new(tickets_count: self.default_tickets_count)
+    formation.build_seo
+    formation.schedules.new
+    formation
   end
 
 end

@@ -12,41 +12,58 @@ class Admin::FormationsController < Admin::BaseController
   end
 
   def new
-    @form = FormationForm.new(Formation.new)
-    @form.prepopulate!
+    @formation = Formation.default
+    # @formation.build_seo
+    # @formation.schedules.new
   end
 
   def create
-    @form = FormationForm.new(Formation.new)
-    if @form.validate(formation_params)
-      deal_with_reform_activestorage_incompatibility
-      @form.save
-      flash[:notice] = "La formation a été créé avec succès"
-      redirect_to params[:continue].present? ? edit_admin_formation_path(@form.model) : admin_formations_path
+    @formation = Formation.new(formation_params)
+    if @formation.save
+      flash[:notice] = "La formation a été créée avec succès"
+      redirect_to params[:continue].present? ? edit_admin_formation_path(@formation) : admin_formations_path
     else
-      @form.prepopulate!
+      @formation.schedules.new  if @formation.schedules.empty?
       flash[:error] = "Une erreur s'est produite lors de la mise à jour de la formation"
       render :new
     end
+    # @form = FormationForm.new(Formation.new)
+    # if @form.validate(formation_params)
+    #   deal_with_reform_activestorage_incompatibility
+    #   @form.save
+    #   flash[:notice] = "La formation a été créé avec succès"
+    #   redirect_to params[:continue].present? ? edit_admin_formation_path(@form.model) : admin_formations_path
+    # else
+    #   @form.prepopulate!
+    #   flash[:error] = "Une erreur s'est produite lors de la mise à jour de la formation"
+    #   render :new
+    # end
   end
 
   def edit
-    @form = FormationForm.new(@formation)
-    @form.prepopulate!
+    # @form = FormationForm.new(@formation)
+    # @form.prepopulate!
   end
 
   def update
-    @form = FormationForm.new(@formation)
-    if @form.validate(formation_params)
-      deal_with_reform_activestorage_incompatibility
-      @form.save
-      flash[:notice] = "Formation mise à jour avec succès"
+     if @formation.update_attributes(formation_params)
+      flash[:notice] = "Formation mis à jour avec succès"
       redirect_to params[:continue].present? ? edit_admin_formation_path(@formation) : admin_formations_path
     else
-      @form.prepopulate!
       flash[:error] = "Une erreur s'est produite lors de la mise à jour de la formation"
       render :edit
     end
+    # @form = FormationForm.new(@formation)
+    # if @form.validate(formation_params)
+    #   deal_with_reform_activestorage_incompatibility
+    #   @form.save
+    #   flash[:notice] = "Formation mise à jour avec succès"
+    #   redirect_to params[:continue].present? ? edit_admin_formation_path(@formation) : admin_formations_path
+    # else
+    #   @form.prepopulate!
+    #   flash[:error] = "Une erreur s'est produite lors de la mise à jour de la formation"
+    #   render :edit
+    # end
   end
 
   def destroy
@@ -62,9 +79,9 @@ class Admin::FormationsController < Admin::BaseController
   private # =====================================================
 
   def formation_params
-    params.require(:formation).permit(:title, :description, :formation_category_id, :id,
+    params.require(:formation).permit(:title, :description, :formation_category_id,
       :speaker, :tickets_count, :cost, :address ,:zipcode, :city, :id, :image,
-      schedules_attributes: [:date, :start_at, :end_at, :id],
+      schedules_attributes: [:date, :start_at, :end_at, :id, :_destroy],
       seo_attributes: seo_attributes
 )
   end
@@ -73,11 +90,11 @@ class Admin::FormationsController < Admin::BaseController
     @formation = Formation.from_param params[:id]
   end
 
-  # cf https://gitter.im/trailblazer/chat?at=5e9d8c26c7dcfc14e2d42b9c
-  def deal_with_reform_activestorage_incompatibility
-    unless (@form.image.is_a?(ActionDispatch::Http::UploadedFile) || @form.image.is_a?(Rack::Test::UploadedFile))
-      @form.image = nil
-    end
-  end
+  # # cf https://gitter.im/trailblazer/chat?at=5e9d8c26c7dcfc14e2d42b9c
+  # def deal_with_reform_activestorage_incompatibility
+  #   unless (@form.image.is_a?(ActionDispatch::Http::UploadedFile) || @form.image.is_a?(Rack::Test::UploadedFile))
+  #     @form.image = nil
+  #   end
+  # end
  
 end

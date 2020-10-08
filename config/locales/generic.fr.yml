@@ -144,6 +144,7 @@ fr:
         other: "%{count}  erreurs sont survenues:"
       body: "Les champs suivants sont incorrects :"
     messages:
+      required: "est obligatoire"
       inclusion: "n'est pas inclus dans la liste"
       exclusion: "est réservé"
       invalid: "est invalide"

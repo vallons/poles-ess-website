@@ -1,5 +1,5 @@
 .title-wrapper
-  h1 Édition de la formation "#{@form.title}"
+  h1 Édition de la formation "#{@formation.title}"
 
   div.flex
     = link_to admin_formations_path, class: "btn btn-light mr-4" do
@@ -7,13 +7,13 @@
       ' Retour
     span.small
       ' Créé le
-      strong => l @form.created_at
+      strong => l @formation.created_at
       ' -
       ' Mis à jour le
-      strong = l @form.updated_at
+      strong = l @formation.updated_at
 
   hr
 
-= form_for(@form, url: admin_formation_path(@form.model), html: {class: "form-horizontal"}) do |f| 
+= form_for(@formation, url: admin_formation_path(@formation), html: {class: "form-horizontal"}) do |f| 
 
   =  render partial: "form", locals: {f: f}

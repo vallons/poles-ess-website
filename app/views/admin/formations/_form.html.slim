@@ -14,7 +14,7 @@
 
 = render partial: 'admin/shared/picture_form', locals: { \
   f: f, \
-  destroy_path: f.object.image.present? ? destroy_upload_admin_formation_path(f.object, f.object.image.id, redirect: :edit) : nil}
+  destroy_path: f.object.image.try(:persisted?) ? destroy_upload_admin_formation_path(f.object, f.object.image.id, redirect: :edit) : nil}
 
 .py-2.px-4.bg-light.mb-3
   .row
@@ -48,27 +48,19 @@
 
   fieldset
     legend Date(s)
-    = f.fields_for :schedules do |ff|
-      .form-group data-controller="datepicker"
-        .row.xs-gutter
-          .col-md-1.col-xs-4.xs-gutter.col-label-valign.col-label-valign--sm.col-label-valign--mobile.text-sm-center
-            = ff.label :date, "Le", class: 'form-label'
-          .col-md-3.col-xs-8.xs-gutter
-            .input__group
-              = ff.text_field :date, class: "form-control",
-                value: safe_l(ff.object.date.try(:to_date)),
-                data: { target: "datepicker.dateField" },
-                placeholder: "ex : jj/mm/yyyy",
-                maxlength: 10
-              span.icon-calendar
-          .col-md-1.col-xs-4.xs-gutter.col-label-valign.col-label-valign--sm.col-label-valign--mobile.text-sm-center
-            = ff.label :start_at, "de", class: 'form-label'
-          .col-md-2.col-xs-8.xs-gutter
-            = ff.text_field :start_at, class: 'form-control', maxlength: 5, data: {is_timepicker: ""}, value: safe_l(ff.object.start_at.try(:to_time), format: :hour_min), placeholder: "ex : 17:15"
-          .col-md-1.col-xs-4.xs-gutter.col-label-valign.col-label-valign--sm.col-label-valign--mobile.text-sm-center
-            = ff.label :end_at, "à", class: 'form-label'
-          .col-md-2.col-xs-8.xs-gutter
-            = ff.text_field :end_at, class: 'form-control', maxlength: 5, data: {is_timepicker: ""}, value: safe_l(ff.object.end_at.try(:to_time), format: :hour_min), placeholder: "ex : 19:27"
+    div data-controller="nested-fields"
+      template data-target="nested-fields.template"
+        = f.fields_for :schedules, Schedule.new, child_index: 'NEW_RECORD' do |schedule|
+          = render "schedule_fields", f: schedule
+
+      = f.fields_for :schedules do |ff|
+        = render "schedule_fields", f: ff
+
+      .text-center.mb-3 data-target="nested-fields.links" 
+        = link_to "#", class: "btn btn-info btn-sm", data: { action: "click->nested-fields#add_association" } do
+          i.far.fa-plus-square>
+          ' Ajouter une date
+
 
 = render partial: 'admin/seos/fields_for_form', locals: { f: f }
 
