@@ -16,9 +16,10 @@
       p 
         span.uppercase.font-bold Tarif : 
         => number_to_euro(formation.cost)
-    .w-1/4.text-right
-      div class="mb-2 #{'font-bold text-red-600' if formation.is_full?}"
-        = formation_tickets_status(formation)
-      div class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded text-center"
-        = link_to "S'inscrire #{'sur liste d\'attente' if formation.is_full?}", new_formation_subscription_path(formation)
+    - if formation.future?
+      .w-1/4.text-right
+        div class="mb-2 #{'font-bold text-red-600' if formation.is_full?}"
+          = formation_tickets_status(formation)
+        div class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded text-center"
+          = link_to "S'inscrire #{'sur liste d\'attente' if formation.is_full?}", new_formation_subscription_path(formation)
 

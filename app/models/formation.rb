@@ -54,6 +54,10 @@ class Formation < ApplicationRecord
     remaining_tickets <= 0
   end
 
+  def future?
+    schedules.first.future?
+  end
+
   # Class Methods ==============================================================
 
   def self.apply_filters(params)
