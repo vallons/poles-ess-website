@@ -63,6 +63,12 @@ class Schedule < ApplicationRecord
     self.order(created_at: :desc)
   end
 
+  # check if schedules starts end ends at the same time
+  def self.same_times?
+    first_schedule = first
+    all.all?{ |s| (s.comparable_start_at_time == first_schedule.comparable_start_at_time) && (s.comparable_end_at_time == first_schedule.comparable_end_at_time)}
+  end
+
 # Instance methods ====================================================
 
   def date
@@ -93,6 +99,14 @@ class Schedule < ApplicationRecord
     elsif self.time_range.present?
       self.time_range.last
     end
+  end
+
+  def comparable_start_at_time
+    start_at.utc.strftime( "%H%M%S%N" )
+  end
+
+    def comparable_end_at_time
+    end_at.utc.strftime( "%H%M%S%N" )
   end
 
   def duration_in_minutes

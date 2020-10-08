@@ -8,7 +8,7 @@ class Formation < ApplicationRecord
   has_one_attached :image
 
   belongs_to :formation_category
-  has_many :schedules, as: :schedulable
+  has_many :schedules, -> {order(:time_range)}, as: :schedulable
 
   has_many :subscriptions, inverse_of: :formation
   has_many :participants, through: :subscriptions

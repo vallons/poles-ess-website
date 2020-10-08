@@ -18,21 +18,26 @@ module FormationHelper
     [formation&.start_date&.year, formation.title.truncate(150)].join(" - ")
   end
 
-  def formation_location(session)
-    full_city = [session.zipcode, session.city].join(" ")
-    [session.address, full_city].join(", ")
+  def formation_location(formation)
+    full_city = [formation.zipcode, formation.city].join(" ")
+    [formation.address, full_city].join(", ")
   end
 
-  def formation_dates(session)
-    session.schedules.map{ |schedule| formation_date(schedule) }.to_sentence(words_connector: ', ', last_word_connector: ' et ')
+  def formation_dates(formation)
+    schedules = formation.schedules
+    if schedules.same_times?
+      days = schedules.map{ |schedule| schedule_day(schedule) }.join(" & ")
+      hours = schedule_time(schedules.first)
+      [days, hours].join(", ")
+    else
+      schedules.map{ |schedule| formation_date(schedule) }.join(" & ")
+    end
   end
 
   def formation_date(schedule)
     return "" if schedule.date.blank?
-    day = I18n.l(schedule.date.to_date, format: :long_with_day)
-    start_at = I18n.l(schedule.start_at, format: :time)
-    end_at = I18n.l(schedule.end_at, format: :time)
-    hours = [start_at, end_at].join(" à ")
+    day = schedule_day(schedule)
+    hours = schedule_time(schedule)
     [day, hours].join(", ")
   end
 
