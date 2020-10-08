@@ -9,6 +9,7 @@ class Formation < ApplicationRecord
 
   belongs_to :formation_category
   has_many :schedules, -> {order(:time_range)}, as: :schedulable
+  has_one :first_schedule, -> {order(:time_range)}, as: :schedulable, class_name: 'Schedule'
 
   has_many :subscriptions, inverse_of: :formation
   has_many :participants, through: :subscriptions
@@ -26,6 +27,14 @@ class Formation < ApplicationRecord
 
   scope :sort_by_start_date, -> {
    joins(:schedules).merge(Schedule.sort_by_start_date)
+  }
+
+  scope :sort_by_future, -> {
+   eager_load(:first_schedule).merge(Schedule.future)
+  }
+
+  scope :sort_by_formation_category, -> {
+    group_by(&:formation_category).sort_by{ |cat, array| cat.position }
   }
 
   # Instance methods ====================================================

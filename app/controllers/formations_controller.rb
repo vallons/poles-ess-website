@@ -6,7 +6,12 @@ class FormationsController < ApplicationController
 
   def index
     @all_formation_categories = FormationCategory.order(:position)
-    @filtered_formation_categories = @all_formation_categories.includes(:formations).apply_filters(params)
+    @formations = Formation.apply_filters(params)
+    if params[:sort] == 'by_future'
+      @formations = @formations.sort_by_future
+    else
+      @formations = @formations.sort_by_formation_category
+    end
   end
 
   def show
