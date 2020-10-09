@@ -29,11 +29,16 @@ class Schedule < ApplicationRecord
   scope :in_time, -> (time) {
     between_datetime((Time.zone.now + time).beginning_of_day, (Time.zone.now + time).end_of_day)
   }
+
   scope :between_datetime, -> (start_date, end_date) {
     raise ArgumentError unless start_date.is_a?(Time)
     raise ArgumentError unless end_date.is_a?(Time)
 
     overlap(TimeRange.new(start_date.beginning_of_day, end_date.end_of_day))
+  }
+
+  scope :overlap, -> (time_range) {
+    where("schedules.time_range && tsrange(?,?, '()')", time_range.first, time_range.last)
   }
 
   scope :by_start_date, -> (date) {
@@ -48,7 +53,19 @@ class Schedule < ApplicationRecord
    order(:time_range)
   }
 
+  scope :by_year, -> (year) {
+    year_datetime = DateTime.new(year.to_i).in_time_zone
+    between_datetime(year_datetime.beginning_of_year, year_datetime.end_of_year)
+  }
+
   # Class Methods ==============================================================
+  def self.in_most_recent_year
+    current_year_schedules = self.between_datetime(Time.zone.now.beginning_of_year, Time.zone.now.end_of_year)
+    return current_year_schedules if current_year_schedules.any?
+    # Cas du site non mis à jour, avec dernières formations remontant à un ou 2 ans par ex
+    most_recent_date_with_formation = Schedule.sort_by_start_date.last.begin
+    self.between_datetime(most_recent_date_with_formation.beginning_of_year, most_recent_date_with_formation.end_of_year)
+  end
 
   def self.apply_filters(params)
     [
@@ -63,7 +80,7 @@ class Schedule < ApplicationRecord
     self.order(created_at: :desc)
   end
 
-  # check if schedules starts end ends at the same time
+  # check if schedules starts and ends at the same time
   def self.same_times?
     first_schedule = first
     all.all?{ |s| (s.comparable_start_at_time == first_schedule.comparable_start_at_time) && (s.comparable_end_at_time == first_schedule.comparable_end_at_time)}

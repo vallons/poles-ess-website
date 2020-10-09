@@ -13,7 +13,6 @@ class Formation < ApplicationRecord
   has_one :first_schedule, -> {order(:time_range)}, as: :schedulable, class_name: 'Schedule'
   accepts_nested_attributes_for :schedules, reject_if: :all_blank, allow_destroy: true
 
-
   has_many :subscriptions, inverse_of: :formation, dependent: :restrict_with_exception
   has_many :participants, through: :subscriptions
 
@@ -29,7 +28,7 @@ class Formation < ApplicationRecord
   }
 
   scope :sort_by_start_date, -> {
-   joins(:schedules).merge(Schedule.sort_by_start_date)
+   eager_load(:first_schedule).merge(Schedule.sort_by_start_date)
   }
 
   scope :sort_by_future, -> {
@@ -37,7 +36,15 @@ class Formation < ApplicationRecord
   }
 
   scope :sort_by_formation_category, -> {
-    group_by(&:formation_category).sort_by{ |cat, array| cat.position }
+    sort_by_start_date.group_by(&:formation_category).sort_by{ |cat, array| cat.position }
+  }
+
+  scope :in_most_recent_year, -> {
+    eager_load(:first_schedule).merge(Schedule.in_most_recent_year)
+  }
+
+  scope :by_year, -> (year) {
+    eager_load(:first_schedule).merge(Schedule.by_year(year))
   }
 
   # Instance methods ====================================================
@@ -63,6 +70,7 @@ class Formation < ApplicationRecord
   def self.apply_filters(params)
     [
       :by_formation_category,
+      :by_year,
     ].inject(all) do |relation, filter|
       next relation unless params[filter].present?
       relation.send(filter, params[filter])
@@ -70,7 +78,7 @@ class Formation < ApplicationRecord
   end
 
   def self.apply_sorts(params)
-      self.order(created_at: :desc)
+      self.sort_by_start_date
   end
 
   def self.default_tickets_count

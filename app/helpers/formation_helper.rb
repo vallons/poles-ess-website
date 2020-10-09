@@ -8,6 +8,12 @@ module FormationHelper
     end
   end
 
+  def formation_year_options
+    Formation.all.map do |formation|
+      [formation.first_schedule.time_range.begin.year, formation.first_schedule.time_range.begin.year]
+    end.uniq
+  end
+
   def formation_options(formations = Formation.all)
     formations.order(title: :asc).map do |formation|
       [formation_display_title(formation), formation.id]
