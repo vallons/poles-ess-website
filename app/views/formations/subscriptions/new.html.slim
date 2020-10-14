@@ -30,11 +30,14 @@
       .mb-10 data-target="nested-fields.links"
         = link_to "Ajouter un participant", "#", class: "underline", data: { action: "click->nested-fields#add_association" }
 
-      .mb-6
+      .mb-10
         label.block.text-gray-800
           = f.check_box :save_subscription, {class: 'mr-2 leading-tight'}
           = f.label :save_subscription, "Garder en mémoire les participants pour une autre inscription", class: 'font-bold'
-    
           p.text-sm.italic Vos prochains formulaires d'inscription seront pré-remplis et la liste des participants est gardée en mémoire tant que votre navigateur reste ouvert.
+
     .mx-auto.text-center
-      => f.submit "Valider l'inscription", class: 'bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded'
+      => f.submit "Valider l'inscription", class: 'mb-4 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded'
+      p.text-sm.italic.md:w-2/3.mx-auto
+        ' En cliquant sur "Valider", j’accepte que mes informations soient utilisées par le pôle ESS pour la gestion des formations, conformément à la
+        => link_to " politique de confidentialité",  "#", target: "_blank", class: "underline"

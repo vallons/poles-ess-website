@@ -15,6 +15,7 @@ class Formations::SubscriptionsController < Formations::BaseController
     @subscription = Subscription.new(subscription_params)
     respond_to do |format|
       if @subscription.save
+        @subscription.touch(:cgu_accepted_at)
         if save_subscription_is_checked?
           session[:current_subscription_id] = @subscription.id
         else
@@ -40,7 +41,7 @@ class Formations::SubscriptionsController < Formations::BaseController
   end
 
   def subscription_params
-    params.require(:subscription).permit(:formation_id, :save_subscription,
+    params.require(:subscription).permit(:formation_id, :save_subscription, :cgu_accepted,
       participants_attributes: [:organization, :firstname, :lastname, :email, :phone, :id, :_destroy])
   end
 
