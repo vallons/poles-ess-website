@@ -12,7 +12,7 @@ class Participant < ApplicationRecord
 
   # Validations ================================================================
 
-  validates :lastname, :firstname, :email,
+  validates :lastname, :firstname, :email, :phone,
             presence: true
 
   # Callbacks ===================================================================

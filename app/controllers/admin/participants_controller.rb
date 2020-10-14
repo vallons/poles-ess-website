@@ -26,7 +26,17 @@ class Admin::ParticipantsController < Admin::BaseController
     end
   end
 
-  def show
+  def edit
+  end
+
+  def update
+    if @participant.update_attributes(participant_params)
+      flash[:notice] = "Participant mis à jour avec succès"
+      redirect_to params[:continue].present? ? edit_admin_participant_path(@participant) : admin_participants_path
+    else
+      flash[:error] = "Une erreur s'est produite lors de la mise à jour du participant"
+      render :edit
+    end
   end
 
   def confirm_participation
