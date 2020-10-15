@@ -2,7 +2,7 @@ class Subscription < ApplicationRecord
 
   # Associations ===============================================================
   belongs_to :formation
-  has_many :participants, inverse_of: :subscription
+  has_many :participants, inverse_of: :subscription, dependent: :destroy
 
   attr_accessor :save_subscription
 

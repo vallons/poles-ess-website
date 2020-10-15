@@ -10,6 +10,7 @@ fr:
       setting:
         project_name:   Nom du pôle
         logo:           Logo
+        admin_emails:   Emails admin
     submit:
       setting:
         create: "Mettre à jour les paramètres"

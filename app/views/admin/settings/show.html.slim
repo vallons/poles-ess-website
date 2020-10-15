@@ -7,6 +7,10 @@
     .form-group
       = f.label :project_name
       = f.text_field :project_name, value: Setting.project_name, class: "form-control"
+    .form-group
+      = f.label :admin_emails
+      = f.text_area :admin_emails, value: Setting.admin_emails.join("\n"), class: "form-control"
+      p.small.font-italic Emails auxquels seront envoyées les notifications
 
     h4.mb-4 Logo
     .d-flex data-controller='file-upload'

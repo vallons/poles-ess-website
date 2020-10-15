@@ -1,0 +1,26 @@
+p Bonjour,
+
+p Nouvelle inscription pour une formation sur le site internet.
+
+h3
+  strong Formation :
+ul
+  li 
+    strong= @formation.title
+  li Dates : #{formation_dates(@formation)}
+  li Lieu : #{formation_location(@formation)}
+  li Intervenant.e : #{@formation.speaker}
+
+h3
+  strong Participant.es :
+ul
+  - @subscription.participants.each do |participant|
+    li
+      '[#{participant.organization}] 
+      strong #{ fullname(participant)} : 
+      ' #{ participant.email }, #{ participant.phone } #{'(sur liste d\'attente)' if participant.in_waiting_line? }
+
+p
+  ' Gérer les inscriptions à cette formation dans
+  => link_to "votre interface admin", admin_participants_url(by_formation: @formation.id)
+  ' .

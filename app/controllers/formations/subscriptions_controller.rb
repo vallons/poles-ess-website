@@ -16,6 +16,7 @@ class Formations::SubscriptionsController < Formations::BaseController
     respond_to do |format|
       if @subscription.save
         @subscription.touch(:cgu_accepted_at)
+        AdminMailer.with(subscription: @subscription).new_subscription.deliver_later
         if save_subscription_is_checked?
           session[:current_subscription_id] = @subscription.id
         else

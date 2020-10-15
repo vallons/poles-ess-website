@@ -1,0 +1,18 @@
+Bonjour,
+
+Nouvelle inscription pour une formation sur le site internet.
+
+Formation : 
+- <%= @formation.title %>
+- Dates : <%= formation_dates(@formation) %>
+- Lieu : <%= formation_location(@formation) %>
+- Intervenant.e : <%= @formation.speaker %>
+
+Participant.es :
+
+<% @subscription.participants.each do | participant| %>
+  - [<%=participant.organization%>] <%= fullname(participant)%> : <%= participant.email %>, <%= participant.phone %> <%= '(sur liste d\'attente)' if participant.in_waiting_line? %>
+<% end %>
+
+
+Gérer les inscriptions à cette formation sur <%= admin_participants_url(by_formation: @formation.id)%>.

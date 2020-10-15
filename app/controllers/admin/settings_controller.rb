@@ -19,7 +19,7 @@ class Admin::SettingsController < Admin::BaseController
   private
 
   def setting_params
-    params.require(:setting).permit(:project_name)
+    params.require(:setting).permit(:project_name, :admin_emails)
   end
 
   def setting_upload_params

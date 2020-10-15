@@ -5,6 +5,7 @@ class Setting < RailsSettings::Base
 
   field :project_name, type: :string, default: "Pôle ESS"
   field :logo_instance, type: :integer, default: 1, readonly: true
+  field :admin_emails, type: :array, default: %w[bonjour@lassembleuse.fr]
 
   validates :logo, content_type: { in: ['image/png', 'image/jpg', 'image/jpeg'], message: 'doit être une image' }
 
