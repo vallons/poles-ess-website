@@ -1,5 +1,5 @@
 class AdminMailer < ApplicationMailer
-  default to: Setting.admin_emails
+  default to: Setting.find_by(var: 'admin_emails').value
 
   helper :formation, :schedule, :application
 
