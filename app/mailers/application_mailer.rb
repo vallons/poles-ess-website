@@ -1,4 +1,4 @@
 class ApplicationMailer < ActionMailer::Base
-  default from: Setting.find_by(var: 'admin_emails').value.first
+  default from: 'bonjour@lassembleuse.fr'
   layout 'mailer'
 end
