@@ -4,6 +4,7 @@ h1.mb-5 Participant·es
 
 div data-controller='manage-index'
   .bg-light.p-3.mb-3
+    = link_to "Exporter csv", admin_participants_path(params: params.permit(:by_formation, :by_status), format: :csv), class: 'btn btn-info float-right'
     h3 Filtres
     = form_tag admin_participants_path, method: :get do
 

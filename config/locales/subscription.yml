@@ -11,3 +11,4 @@ fr:
         lastname: Le nom du participant
         firstname: Le prénom du participant
         email: L'email du participant
+        phone: Le téléphone du participant

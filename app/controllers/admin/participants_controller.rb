@@ -7,6 +7,13 @@ class Admin::ParticipantsController < Admin::BaseController
       .apply_sorts(params)
       # .page(params[:page]).per(20)
     @formation = Formation.find(params[:by_formation]) if params[:by_formation].present?
+    respond_to do |format|
+      format.html
+      format.csv do
+        result = CsvExport::Participant.new(@participants).call
+        send_data result, filename: "inscriptions_formation_#{ @formation.title.parameterize if @formation.present?}_#{I18n.l(Date.today, format: "%d-%m-%Y")}.csv", type: "text/csv; charset=utf-8; header=present"
+      end
+    end
   end
 
   def new
