@@ -1,0 +1,20 @@
+.title-wrapper
+  h1 Édition de l'actualité "#{@post.title}"
+
+  div.flex
+    = link_to admin_activities_path, class: "btn btn-light mr-4" do
+      i.fa.fa-chevron-left>
+      ' Retour
+    span.small
+      ' Créé le
+      strong => l @post.created_at
+      ' -
+      ' Mis à jour le
+      strong = l @post.updated_at
+
+  hr
+
+= form_for(@post, as: :post, \
+  url: admin_post_path(@post), html: {class: "form-horizontal"}) do |f| 
+
+  =  render partial: "form", locals: {f: f}

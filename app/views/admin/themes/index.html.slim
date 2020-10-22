@@ -50,6 +50,8 @@ h1.mb-5 Thèmes
             = link_to admin_activities_path(by_theme: theme.id), class: "btn btn-light btn-sm" do
               = theme.activities.count
           td.text-center
+            = link_to admin_posts_path(by_theme: theme.id), class: "btn btn-light btn-sm" do
+              = theme.posts.count
           td.text-center
           td=> link_to edit_admin_theme_path(theme), class: "btn btn-sm btn-info mr-2", title: "Editer" do
             i.fas.fa-pen

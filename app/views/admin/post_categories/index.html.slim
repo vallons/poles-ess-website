@@ -1,0 +1,46 @@
+= render layout: 'admin/posts/layout_index' do
+
+  = link_to "Créer une catégorie", new_admin_post_category_path, class:'btn btn-primary float-right'
+  h2.mb-5 Catégories d'actualité
+
+  .cadre-table
+    table.table.table-striped.table-hover.table-sm
+      thead
+        tr
+          th Position
+          th Date de création
+          th Titre
+          th.text-center Formations
+
+          th
+      tbody
+        - max_position    = @post_categories.map(&:position).compact.max || 1
+        - position_select = (1..max_position).map { |i| [i, i] }
+
+        - @post_categories.each do |post_category|
+          tr
+            td data-controller='manage-position'
+              = form_for post_category, as: :post_category, url: admin_post_category_path(post_category) do |f|
+                = f.select  :position, \
+                            options_for_select(position_select, post_category.position),\
+                            {},
+                            class: "form-control form-control-sm", \
+                            data: {action: 'change->manage-position#submitSelect'}
+
+            td= l post_category.created_at
+            td= post_category.title
+            td.text-center
+              = link_to admin_posts_path(by_post_category: post_category.id), class: "btn btn-light btn-sm" do
+                = post_category.posts.count
+            td=> link_to edit_admin_post_category_path(post_category), class: "btn btn-sm btn-info mr-2", title: "Editer" do
+              i.fas.fa-pen
+              = link_to admin_post_category_path(post_category), method: :delete, data: {confirm: "Confirmer la suppression ?"}, title: "Supprimer", class: "btn btn-sm btn-danger" do
+                i.far.fa-trash-alt
+
+
+        - if @post_categories.empty?
+          tr
+            td colspan="7"
+              p.mt-3.text-center: em.text-muted Aucune catégorie
+
+  / = paginate @post_categories  

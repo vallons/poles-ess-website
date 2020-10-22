@@ -1,0 +1,10 @@
+h1 Gestion des actualités
+
+
+ul.nav.nav-tabs.mb-3
+  li.nav-item
+    = active_link_to "Actualités", admin_posts_path, title: "Gérer les actus", class: "nav-link", active: :exclusive
+  li.nav-item
+    = active_link_to "Catégories", admin_post_categories_path, title: "Gérer les catégories", class: "nav-link", active: :exclusive
+
+= yield

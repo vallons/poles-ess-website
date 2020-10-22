@@ -1,0 +1,65 @@
+= f.form_errors
+
+.form-group.required
+  = f.label :title, class: "font-weight-bold"
+  = f.text_field :title, class: 'form-control'
+
+.form-group.required
+  = f.label :post_category_id, class: "font-weight-bold"
+  = f.select :post_category_id, post_category_options, {include_blank: 'Sélectionnez une catégorie'}, class: "form-control"
+
+
+.form-group
+  label.font-weight-bold Thèmes
+  .form-group
+    // simple way to remove all themes
+    = hidden_field_tag "post[theme_ids][]", nil
+    - Theme.all.each do |theme|
+      .form-check.form-check-inline
+        => f.check_box :theme_ids, {multiple: true, 
+                  checked: f.object.themes.include?(theme), 
+                  class: 'form-check-input'}, 
+                  theme.id, nil
+        = f.label :theme_ids, theme.title, value: theme.id, class: "form-check-label"
+
+.form-group
+  = f.label :description, class: "font-weight-bold"
+  = f.rich_text_area :description
+
+
+fieldset.mb-3
+  legend
+    ' Publication
+  - if !f.object.new_record?
+    em.label class="label-#{@post.publication_state}" = @post.publication_state_humanized
+
+  .row.xs-gutter
+    .col-6 data-controller="datepicker"
+      = f.label :published_at, class: "font-weight-bold"
+      .input__group
+        = f.text_field :published_at, class: "form-control",
+          value: safe_l(f.object.published_at.try(:to_date)),
+          data: { target: "datepicker.dateField" },
+          placeholder: "ex : jj/mm/yyyy",
+          maxlength: 10
+        span.icon-calendar
+    .col-6 data-controller="datepicker"
+      = f.label :expired_at, class: "font-weight-bold"
+      .input__group
+        = f.text_field :expired_at, class: "form-control",
+          value: safe_l(f.object.expired_at.try(:to_date)),
+          data: { target: "datepicker.dateField" },
+          placeholder: "ex : jj/mm/yyyy",
+          maxlength: 10
+        span.icon-calendar
+
+= render partial: 'admin/shared/picture_form', locals: { \
+  f: f, \
+  destroy_path: f.object.image.present? ? destroy_upload_admin_activity_path(f.object, f.object.image.id, redirect: :edit) : nil}
+
+= render partial: 'admin/seos/fields_for_form', locals: { f: f }
+
+.action-btns
+  => f.submit class: "btn btn-primary"
+  => f.submit_and_stay class: "btn btn-outline-primary"
+  = link_to "Annuler", admin_activities_path, class: "btn btn-link"

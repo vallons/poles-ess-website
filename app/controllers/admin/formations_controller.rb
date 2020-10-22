@@ -31,7 +31,7 @@ class Admin::FormationsController < Admin::BaseController
   end
 
   def update
-     if @formation.update_attributes(formation_params)
+    if @formation.update(formation_params)
       flash[:notice] = "Formation mis à jour avec succès"
       redirect_to params[:continue].present? ? edit_admin_formation_path(@formation) : admin_formations_path
     else

@@ -31,7 +31,7 @@ html lang="#{I18n.locale}"
                       i.fas.fa-fire>
                       ' Actions
                   li.nav-item
-                    = active_link_to "#", title: "Gérer les actus", class: "nav-link disabled", active: :exclusive do
+                    = active_link_to admin_posts_path, title: "Gérer les actus", class: "nav-link", active: :inclusive do
                       i.fas.fa-fire>
                       ' Actualités
                   li.nav-item
@@ -85,11 +85,6 @@ html lang="#{I18n.locale}"
                       i.fas.fa-cog>
                       ' Paramètres
 
-
-              - if model_is_defined("Post")
-                = submenu("Actualités", %w[posts blog_categories])
-                  li.nav-item = active_link_to 'Gérer les actualités', admin_blog_posts_path, active: :inclusive
-                  li.nav-item = active_link_to 'Gérer les catégories', admin_blog_categories_path, active: :inclusive
               - if model_is_defined("Contact")
                 li.nav-item = active_link_to 'Contacts', admin_contacts_path, active: :inclusive
 

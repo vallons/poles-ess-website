@@ -1,5 +1,4 @@
 class FormationCategory < ApplicationRecord
-
   include Seoable
 
   acts_as_list
@@ -8,12 +7,11 @@ class FormationCategory < ApplicationRecord
 
   # Validations ================================================================
 
-  validates :title,
-  presence: true
+  validates :title, presence: true
 
   # Scopes ====================================================================
 
-  scope :having_formations, -> { joins(:formations).uniq }
+  scope :having_formations, -> { joins(:formations).distinct }
   scope :by_formation_category, -> (val) {
     where(id: val)
   }
@@ -22,17 +20,17 @@ class FormationCategory < ApplicationRecord
 
   # Class Methods ==============================================================
 
-    def self.apply_filters(params)
+  def self.apply_filters(params)
     [
       :by_formation_category,
     ].inject(all) do |relation, filter|
       next relation unless params[filter].present?
+
       relation.send(filter, params[filter])
     end
   end
 
   def self.apply_sorts(params)
-      self.order(position: :desc)
+    self.order(position: :desc)
   end
-
 end

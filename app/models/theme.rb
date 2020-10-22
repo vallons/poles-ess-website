@@ -10,6 +10,8 @@ class Theme < ApplicationRecord
   has_many :theme_interfaces, dependent: :destroy
   has_many :activities, through: :theme_interfaces, source: :themable,
            source_type: 'Activity'
+  has_many :posts, through: :theme_interfaces, source: :themable,
+          source_type: 'Post'
 
   # Validations ================================================================
 
@@ -18,7 +20,9 @@ class Theme < ApplicationRecord
             presence: true
 
   # Scopes ====================================================================
- 
+
+  scope :having_activities, -> { joins(:activities).distinct }
+  scope :having_posts, -> { joins(:posts).distinct }
 
   # Instance methods ====================================================
 

@@ -6,9 +6,5 @@ module Themable
   included do
     has_many :theme_interfaces, as: :themable, dependent: :destroy, inverse_of: :themable
     has_many :themes, through: :theme_interfaces
-
   end
-
-  private
-
 end

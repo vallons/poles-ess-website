@@ -1,0 +1,5 @@
+ol.breadcrumb itemscope="" itemtype="http://schema.org/BreadcrumbList" itemref="#{'a' if !@breadcrumbs.blank?}"
+  - @breadcrumbs.each do |breadcrumb|
+    li.breadcrumb-item class="#{'active' if breadcrumb.equal? @breadcrumbs.last}"  itemprop="itemListElement" itemscope="" itemtype="http://schema.org/ListItem"
+      => link_to breadcrumb[1], itemtype:"http://schema.org/Thing" , itemscope: "", itemprop: "url" do 
+        span itemprop="name"= breadcrumb[0]

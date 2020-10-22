@@ -1,0 +1,23 @@
+.container.mx-auto.mb-5
+  = render 'home/breadcrumb'
+  h1.text-6xl.font-bold.text-center.mt-16.mb-4.text-gray-900 = @post.title
+
+  flex
+  - if @post.image.present?
+    = image_tag  @post.image, class: "mb-8 mx-auto"
+  .mb-24== @post.description
+
+  .post-footer.flex.justify-between
+    p.text-gray-800.mb-2 Publié le #{l(@post.published_at, format: :day)}
+    div
+      - if @post.post_category.present?
+        span.inline-block.bg-gray-200.rounded-full.px-3.py-1.text-sm.font-semibold.text-gray-700.mr-2.mb-2 
+          = link_to @post.post_category.title, posts_path({by_post_category: @post.post_category.id})
+      - @post.themes.each do |theme|
+        span.inline-block.bg-gray-200.rounded-full.px-3.py-1.text-sm.font-semibold.text-gray-700.mr-2.mb-2 
+          = link_to theme.title, posts_path({by_theme: theme.id})
+
+  - if @other_posts.any?
+    h2.text-2xl.font-bold.mt-12.mb-4 Découvrez d'autres actualités #{(@category.present? || @theme.present?) ? 'sur le même thème' : '' }
+    - @other_posts.each do |post|
+      = render 'posts/card', post: post

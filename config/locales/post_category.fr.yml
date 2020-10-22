@@ -1,0 +1,14 @@
+fr:
+  activerecord:
+    attributes:
+      post_category:
+        title:          Le titre
+
+  helpers:
+    label:
+      post_category:
+        title:          Titre
+    submit:
+      post_category:
+        create: "Créer la catégorie"
+        update: "Mettre à jour la catégorie"

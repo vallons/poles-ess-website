@@ -1,0 +1,24 @@
+fr:
+  activerecord:
+    attributes:
+      post:
+        title:          Le titre
+        description:    La description
+        post_category:  La catégorie
+        post_category_id:  La catégorie
+        published_at:   La date de publication
+        expired_at:     La date d'expiration
+
+  helpers:
+    label:
+      post:
+        title:          Titre
+        description:    Description
+        post_category:  Catégorie
+        post_category_id:  Catégorie
+        published_at:   Date de publication
+        expired_at:     Date d'expiration
+    submit:
+      post:
+        create: "Créer l'actualité"
+        update: "Mettre à jour l'actualité"

@@ -14,14 +14,16 @@ Rails.application.routes.draw do
     resources :activities, concerns: :upload_destroyable
     resources :seos, only: [:index, :edit, :update]
     resource :settings, only: [:create, :show], concerns: :upload_destroyable
+    resources :formation_categories
     resources :formations, concerns: :upload_destroyable
+    resources :post_categories
+    resources :posts, concerns: :upload_destroyable
     resources :participants do
       member do
         patch :confirm_participation
         patch :place_in_waiting_line
       end
     end
-    resources :formation_categories
     resources :interfaces, only: [:update]
 
     root to: "dashboard#index"
@@ -29,6 +31,7 @@ Rails.application.routes.draw do
 
   resources :themes, only: [:show]
   resources :activities, only: [:index, :show]
+  resources :posts, only: [:index, :show]
   resources :formations, only: [:index, :show, :edit, :update] do
     resources :subscriptions, controller: "formations/subscriptions", only: [:new, :create, :show]
   end

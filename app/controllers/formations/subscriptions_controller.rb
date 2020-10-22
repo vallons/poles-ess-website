@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Formations::SubscriptionsController < Formations::BaseController
 
   before_action :get_subscription, only: [:show]

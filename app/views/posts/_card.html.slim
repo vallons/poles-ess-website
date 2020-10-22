@@ -1,0 +1,14 @@
+.post-card.max-w-md.rounded.overflow-hidden.shadow-lg.mb-4
+  - if post.image.attached?
+    = image_tag post.image.variant(resize_to_fill: [500, 300]), class: "w-full"
+  .px-6.py-4
+    h3.font-bold.text-xl
+      = link_to post.title, post_path(post)
+    p.text-sm.text-gray-600.mb-2 = l(post.published_at, format: :day)
+    p.text-gray-700.text-base
+      == post.description.to_plain_text.truncate(250)
+  .px-6.pt-4.pb-2
+    - if post.post_category.present?
+      span.inline-block.bg-gray-200.rounded-full.px-3.py-1.text-sm.font-semibold.text-gray-700.mr-2.mb-2 = post.post_category.title
+    - post.themes.each do |theme|
+      span.inline-block.bg-gray-200.rounded-full.px-3.py-1.text-sm.font-semibold.text-gray-700.mr-2.mb-2 = theme.title

@@ -6,3 +6,11 @@
     .md:w-3/4.mx-auto
       p.text-xl.mb-6 Vous souhaitez gagner en compétence ou professionnaliser votre équipe ?
       = link_to "S'inscrire aux formations", formations_path, class: "bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+
+.container.mx-auto.mb-24
+  h2.text-3xl.uppercase.mb-3 Dernières actualités
+  - @posts.each do |post|
+    .w-1/2
+      = render 'posts/card', post: post
+
+  = link_to "Voir toutes les actualités", posts_path, class: "mt-4 underscore"

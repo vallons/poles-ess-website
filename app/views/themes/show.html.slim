@@ -1,6 +1,22 @@
-.container.mx-auto
+.container.mx-auto.mb-6
   h1.text-6xl.font-bold.text-center.mt-16.mb-4.text-gray-900 = @theme.title
   p.text-center.text-4xl.text-gray-800.mb-16 = @theme.baseline
   - if @theme.image.present?
     = image_tag  @theme.image, class: "mb-8 mx-auto"
   .mb-24== @theme.description
+
+
+  .flex
+    .w-2/3
+      h3.text-2xl.font-bold.mb-3 Les actions en lien avec cette mission
+      ul
+        - @theme.activities.order_by_theme_interface_position.each do |activity|
+          li = link_to activity.title, activity_path(activity), class: "underline"
+
+    .w-1/3
+      h3.text-2xl.font-bold.mb-3 Ressources
+
+
+  h2.text-2xl.font-bold.mt-12.mb-4 Les actualités en lien avec cette mission
+  - @theme.posts.each do |post|
+    = render 'posts/card', post: post

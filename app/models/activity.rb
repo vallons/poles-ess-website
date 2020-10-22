@@ -1,5 +1,4 @@
 class Activity < ApplicationRecord
-
   include Themable
   include Seoable
 
@@ -23,7 +22,7 @@ class Activity < ApplicationRecord
 
   # Instance methods ====================================================
 
-   # Class Methods ==============================================================
+  # Class Methods ==============================================================
 
   def self.apply_filters(params)
     [
