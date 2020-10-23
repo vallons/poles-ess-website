@@ -17,7 +17,7 @@ class Participant < ApplicationRecord
 
   # Callbacks ===================================================================
 
-  before_validation :set_status, on: :create
+  before_create :set_status#, on: :create
 
   private def set_status
     # la subscription n'est pas encore créée donc pas de lien direct avec formation
