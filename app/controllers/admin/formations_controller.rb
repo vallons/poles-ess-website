@@ -1,14 +1,14 @@
 class Admin::FormationsController < Admin::BaseController
-
   include DestroyableUpload
 
   before_action :get_formation, only: [:edit, :update, :destroy]
 
   def index
-    @formations = Formation
+    @pagy, @formations = pagy(
+       @formations = Formation
       .apply_filters(params)
-      .apply_sorts(params)
-      # .page(params[:page]).per(20)
+      .apply_sorts(params), items: 12
+    )
   end
 
   def new
@@ -63,5 +63,4 @@ class Admin::FormationsController < Admin::BaseController
   def get_formation
     @formation = Formation.from_param params[:id]
   end
-
 end

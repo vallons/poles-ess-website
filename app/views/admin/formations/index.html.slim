@@ -58,4 +58,4 @@ div data-controller='manage-index'
             td colspan="7"
               p.mt-3.text-center: em.text-muted Aucune formation
 
-  / = paginate @formations  
+  == render partial: 'pagy/bootstrap_nav', locals: {pagy: @pagy}

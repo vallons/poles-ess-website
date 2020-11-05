@@ -1,4 +1,5 @@
 class ApplicationController < ActionController::Base
+  include Pagy::Backend
 
   protect_from_forgery with: :exception
 
@@ -29,7 +30,6 @@ class ApplicationController < ActionController::Base
     @seo_description = seo.description if seo.description.present?
   end
 
-
   private
 
   def get_menu_items
@@ -41,7 +41,6 @@ class ApplicationController < ActionController::Base
     @seo_description ||= Setting.project_name
   end
 
-
   def flash_to_headers
     [:error, :alert, :warning, :notice].each do |type|
       if flash[type].present?
@@ -52,6 +51,4 @@ class ApplicationController < ActionController::Base
       end
     end
   end
-
-
 end
