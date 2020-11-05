@@ -10,7 +10,6 @@ class Schedule < ApplicationRecord
   validate :validate_time_range, if: -> { self.time_range.present? }
   # validates :time_range, :schedulable, presence: true
 
-
   # Scopes ====================================================================
 
   scope :future, -> {
@@ -122,7 +121,7 @@ class Schedule < ApplicationRecord
     start_at.utc.strftime( "%H%M%S%N" )
   end
 
-    def comparable_end_at_time
+  def comparable_end_at_time
     end_at.utc.strftime( "%H%M%S%N" )
   end
 
@@ -146,18 +145,23 @@ class Schedule < ApplicationRecord
 
   private
 
+
   def set_time_range
     if self.start_at.present? && self.end_at.present? && self.date.present?
       start_at = self.date + (Time.zone.parse(self.start_at.to_s)).seconds_since_midnight
       end_at = self.date + self.end_at.to_datetime.seconds_since_midnight
       self.time_range = TimeRange.new(start_at, end_at)
     end
+    # Return true because of this : https://stackoverflow.com/questions/22926614/rails-4-model-is-valid-but-wont-save
+    return true
   end
-
+  
   def validate_time_range
     if self.time_range.first >= self.time_range.last
       errors.add(:base, "L'heure de début doit être avant l'heure de fin.")
     end
+    # Return true because of this : https://stackoverflow.com/questions/22926614/rails-4-model-is-valid-but-wont-save
+    return true
   end
 
 

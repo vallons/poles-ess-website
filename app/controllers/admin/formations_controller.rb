@@ -31,8 +31,18 @@ class Admin::FormationsController < Admin::BaseController
   end
 
   def update
-    if @formation.update(formation_params)
-      flash[:notice] = "Formation mis à jour avec succès"
+    # weird bug preventing schedules modifications to be saved otherwise
+    @formation.assign_attributes(formation_params)
+    if formation_params[:schedules_attributes].present?
+      formation_params[:schedules_attributes].each do |idx, schedule_params|
+        schedule = @formation.schedules.find(schedule_params.fetch(:id))
+        schedule.assign_attributes(schedule_params.except(:_destroy))
+        schedule.save
+      end
+    end
+
+    if @formation.save
+      flash[:notice] = "Formation mise à jour avec succès"
       redirect_to params[:continue].present? ? edit_admin_formation_path(@formation) : admin_formations_path
     else
       flash[:error] = "Une erreur s'est produite lors de la mise à jour de la formation"
