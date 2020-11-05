@@ -85,7 +85,7 @@ class Schedule < ApplicationRecord
     all.all?{ |s| (s.comparable_start_at_time == first_schedule.comparable_start_at_time) && (s.comparable_end_at_time == first_schedule.comparable_end_at_time)}
   end
 
-# Instance methods ====================================================
+  # Instance methods ====================================================
 
   def date
     if @date.is_a?(ActiveSupport::TimeWithZone)

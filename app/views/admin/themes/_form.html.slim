@@ -16,6 +16,8 @@
   f: f, \
   destroy_path: f.object.image.present? ? destroy_upload_admin_theme_path(f.object, f.object.image.id, redirect: :edit) : nil}
 
+= render "admin/resources/nested_form", f: f
+
 = render partial: 'admin/seos/fields_for_form', locals: { f: f }
 
 .action-btns

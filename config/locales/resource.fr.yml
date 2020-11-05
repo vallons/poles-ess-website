@@ -1,0 +1,20 @@
+fr:
+  activerecord:
+    attributes:
+      resource:
+        title:          Le titre
+        category:       Le type
+        link:           Le lien 
+      resource/category:
+        link: Lien
+
+  helpers:
+    label:
+      resource:
+        title:          Titre
+        category:       Type
+        link:           Lien
+    submit:
+      resource:
+        create: "Créer la ressource"
+        update: "Mettre à jour la ressource"

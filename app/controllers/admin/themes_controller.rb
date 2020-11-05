@@ -12,6 +12,7 @@ class Admin::ThemesController < Admin::BaseController
   def new
     @theme = Theme.new
     @theme.build_seo
+    @theme.resources.new
   end
 
   def create
@@ -20,12 +21,14 @@ class Admin::ThemesController < Admin::BaseController
       flash[:notice] = "Le thème a été créé avec succès"
       redirect_to params[:continue].present? ? edit_admin_theme_path(@theme) : admin_themes_path
     else
+      @theme.resources.new if @theme.resources.empty?
       flash[:error] = "Une erreur s'est produite lors de la mise à jour du thème"
       render :new
     end
   end
 
   def edit
+    @theme.resources.new if @theme.resources.empty?
   end
 
   def update
@@ -52,7 +55,7 @@ class Admin::ThemesController < Admin::BaseController
 
   def theme_params
     params.require(:theme).permit(:title, :description, :baseline, :image, :position,
-        seo_attributes: seo_attributes
+        seo_attributes: seo_attributes, resources_attributes: resources_attributes
 )
   end
 

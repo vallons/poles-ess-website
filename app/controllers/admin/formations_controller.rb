@@ -35,9 +35,11 @@ class Admin::FormationsController < Admin::BaseController
     @formation.assign_attributes(formation_params)
     if formation_params[:schedules_attributes].present?
       formation_params[:schedules_attributes].each do |idx, schedule_params|
-        schedule = @formation.schedules.find(schedule_params.fetch(:id))
-        schedule.assign_attributes(schedule_params.except(:_destroy))
-        schedule.save
+        if schedule_params.fetch(:id).present?
+          schedule = @formation.schedules.find(schedule_params.fetch(:id))
+          schedule.assign_attributes(schedule_params.except(:_destroy))
+          schedule.save
+        end
       end
     end
 

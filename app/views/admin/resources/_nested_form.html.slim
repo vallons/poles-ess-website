@@ -1,0 +1,14 @@
+h4#resources.mb-4 Ressources
+
+div data-controller="nested-fields" data-nested-fields-all-deletable="true"
+  template data-target="nested-fields.template"
+    = f.fields_for :resources, Resource.new, child_index: 'NEW_RECORD' do |resource|
+      = render "admin/resources/fields", f: resource
+
+  = f.fields_for :resources do |ff|
+    = render "admin/resources/fields", f: ff
+
+  .text-center.mb-3 data-target="nested-fields.links"
+    = link_to "#", class: "btn btn-info btn-sm", data: { action: "click->nested-fields#add_association" } do
+      i.far.fa-plus-square>
+      ' Ajouter une ressource

@@ -8,7 +8,7 @@ require("@rails/actiontext");
 // require("jquery");
 // require("bootstrap");
 
-import "scripts/shared/controllers";
+import "scripts/shared";
 import "scripts/administration/controllers";
 
 

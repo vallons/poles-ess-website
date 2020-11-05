@@ -17,6 +17,17 @@ class Admin::BaseController < ApplicationController
 
   protected
 
+  def resources_attributes
+    [
+      :id,
+      :title,
+      :category,
+      :link,
+      :document,
+      :_destroy
+    ]
+  end
+
   def seo_attributes
     [
       :id,

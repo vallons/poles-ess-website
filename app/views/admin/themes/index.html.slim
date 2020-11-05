@@ -53,6 +53,8 @@ h1.mb-5 Thèmes
             = link_to admin_posts_path(by_theme: theme.id), class: "btn btn-light btn-sm" do
               = theme.posts.count
           td.text-center
+            = link_to edit_admin_theme_path(theme, anchor: 'resources'), class: "btn btn-light btn-sm" do
+              = theme.resources.count
           td=> link_to edit_admin_theme_path(theme), class: "btn btn-sm btn-info mr-2", title: "Editer" do
             i.fas.fa-pen
             = link_to admin_theme_path(theme), method: :delete, data: {confirm: "Confirmer la suppression ?"}, title: "Supprimer", class: "btn btn-sm btn-danger" do

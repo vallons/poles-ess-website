@@ -1,12 +1,18 @@
 import { Controller } from "stimulus";
 
+import { exists } from "@utils";
+
 export default class extends Controller {
   static targets = ["links", "template", "copyField"];
 
   connect() {
     this.wrapperClass = this.data.get("wrapperClass") || "nested-fields";
     this.firstNestedField = document.querySelector("." + this.wrapperClass);
-    document.querySelector(".js-delete-link").style.display = "none";
+    let deleteLinkExists = exists(document.querySelector(".js-delete-link"))
+    let allDeletable = this.data.get("allDeletable")
+    if (deleteLinkExists && !allDeletable) {
+      document.querySelector(".js-delete-link").style.display = "none";
+    }
   }
 
   add_association(event) {
