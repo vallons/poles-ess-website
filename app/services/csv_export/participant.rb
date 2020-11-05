@@ -5,11 +5,15 @@ module CsvExport
     private
 
     def headers
-      %w["DateInscription" "Structure" "Prénom" "Nom" "Email" "Téléphone" "Participation"]
+      %w["Formation" "DateFormation" "NbPlace" "DateInscription" "Structure" "Prénom" "Nom" "Email" "Téléphone" "Participation"]
     end
 
     def attributes(participant)
-      [ I18n.l(participant.created_at),
+      formation = participant.formation
+      return [ formation.title,
+        formation.schedules.map{ |s| s.time_range.begin.strftime("%d/%m/%Y") }.join(" - "),
+        formation.tickets_count,
+        I18n.l(participant.created_at),
         participant.organization,
         participant.firstname,
         participant.lastname,

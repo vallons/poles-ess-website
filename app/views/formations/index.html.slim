@@ -9,7 +9,7 @@
           ' Tri : 
         div
           => select_tag :sort, \
-            options_for_select([["Par catégorie", :by_formation_category],["Prochaines formations", :by_future]], params[:sort]), \
+            options_for_select([["Formation #{Time.zone.now.year}", :by_formation_category],["Prochaines formations", :by_future]], params[:sort]), \
             class:"w-full px-4 py-2", data: {action: 'change->manage-index#submitFilterForm'}
       h3.text-xl.mb-3 Filtrer
       .bg-gray-300.px-4.py-3
