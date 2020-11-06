@@ -2,7 +2,7 @@ class Schedule < ApplicationRecord
 
   attr_accessor :date, :start_at, :end_at
 
-  belongs_to :schedulable, polymorphic: true, inverse_of: :schedule
+  belongs_to :schedulable, polymorphic: true
 
   # Validations ================================================================
 

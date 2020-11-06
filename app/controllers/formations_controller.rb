@@ -2,7 +2,7 @@ class FormationsController < ApplicationController
 
   include SlugsAndRedirections
 
-  before_action :get_formation, only: [:show, :edit, :update]
+  before_action :get_formation, only: [:show]
 
   def index
     @all_formation_categories = FormationCategory.order(:position)

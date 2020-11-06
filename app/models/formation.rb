@@ -10,7 +10,7 @@ class Formation < ApplicationRecord
   belongs_to :formation_category
 
   has_many :schedules, -> {order(:time_range)}, as: :schedulable, inverse_of: :schedulable, dependent: :destroy
-  has_one :first_schedule, -> {order(:time_range)}, as: :schedulable, class_name: 'Schedule'
+  has_one :first_schedule, -> {order(:time_range)}, as: :schedulable, inverse_of: :schedulable, class_name: 'Schedule'
   accepts_nested_attributes_for :schedules, reject_if: :all_blank, allow_destroy: true
 
   has_many :subscriptions, inverse_of: :formation, dependent: :restrict_with_exception

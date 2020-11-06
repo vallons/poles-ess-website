@@ -1,5 +1,27 @@
-.container.mx-auto.mb-24
-  h1.text-xl Contenu
+.mx-auto.mb-24
+  .flex
+    .w-3/12.p-3
+      h3.text-sm.uppercase.mb-3 Prochains événements
+      - @agenda_items.each do |agenda_item|
+        - item = AgendaItemDecorator.new(agenda_item)
+        .flex.items-center.border.border-solid.border-gray-800.mb-2
+          .flex.flex-col.w-16.h-16.bg-gray-800.p-2.font-bold.text-white.uppercase.leading-4.text-center
+            .text-lg= item.day
+            .text-base= item.month
+            .text-xs= item.year
+          .p-2
+            = link_to item.title, item.url, target: "_blank"
+
+    .w-6/12.p-3
+      h3.text-sm.uppercase.mb-3 Quelques actions
+      .w-full.bg-gray-500
+        p Actions mises en avant
+    .w-3/12.p-3
+      h3.text-sm.uppercase.mb-3 Je suis...
+      .w-full.bg-gray-500
+        p Liste des profils
+
+
 
 .container.mx-auto.mb-24
   .w-1/2.text-center
@@ -9,8 +31,9 @@
 
 .container.mx-auto.mb-24
   h2.text-3xl.uppercase.mb-3 Dernières actualités
-  - @posts.each do |post|
-    .w-1/2
-      = render 'posts/card', post: post
+  .flex
+    - @posts.each do |post|
+      .w-1/2
+        = render 'posts/card', post: post
 
   = link_to "Voir toutes les actualités", posts_path, class: "mt-4 underscore"

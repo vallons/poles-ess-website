@@ -119,7 +119,7 @@ fr:
 
     # Don't forget the nil at the beginning; there's no such thing as a 0th month
     month_names: [~, Janvier, Février, Mars, Avril, Mai, Juin, Juillet, Août, Septembre, Octobre, Novembre, Décembre]
-    abbr_month_names: [~, Jan, Fév, Mar, Avr, Mai, Jui, Jui, Aou, Sep, Oct, Nov, Déc]
+    abbr_month_names: [~, Jan, Fév, Mar, Avr, Mai, Juin, Juil, Août, Sep, Oct, Nov, Déc]
     # Used in date_select and datime_select.
     order: "[ :day, :month, :year ]"
 
