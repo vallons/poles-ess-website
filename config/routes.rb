@@ -18,6 +18,7 @@ Rails.application.routes.draw do
     resources :formations, concerns: :upload_destroyable
     resources :post_categories
     resources :posts, concerns: :upload_destroyable
+    resources :email_templates, only: [:index, :edit, :update]
     resources :participants do
       member do
         patch :confirm_participation

@@ -1,0 +1,9 @@
+h1 Paramètres
+
+ul.nav.nav-tabs.mb-3
+  li.nav-item
+    = active_link_to "Global", admin_settings_path, title: "Paramètres globaux", class: "nav-link", active: :inclusive
+  li.nav-item
+    = active_link_to "Emails", admin_email_templates_path, title: "Paramètres des emails", class: "nav-link", active: :inclusive
+
+= yield

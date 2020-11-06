@@ -1,0 +1,11 @@
+Bonjour,
+
+Votre inscription à la formation <%= @formation.title %> a bien été enregistrée.
+
+Détails pratiques : 
+- Titre de la formation : <%= @formation.title %>
+- Dates : <%= formation_dates(@formation) %>
+- Lieu : <%= formation_location(@formation) %>
+- Intervenant.e : <%= @formation.speaker %>
+
+<%== @template.body.to_plain_text %>

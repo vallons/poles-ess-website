@@ -4,6 +4,8 @@ class Setting < RailsSettings::Base
   has_one_attached :logo
 
   field :project_name, type: :string, default: "Pôle ESS"
+  field :baseline, type: :string, default: "Dynamiser les projets d'utilité sociale sur le territoire"
+  field :baseline_pre, type: :string, default: "Accroche"
   field :logo_instance, type: :integer, default: 1, readonly: true
   field :admin_emails, type: :array, default: %w[bonjour@lassembleuse.fr]
 

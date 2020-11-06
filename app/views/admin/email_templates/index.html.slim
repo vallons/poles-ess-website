@@ -1,0 +1,30 @@
+= render layout: 'admin/settings/layout_index' do
+
+  h2.mb-5 Paramètre des emails
+
+  div data-controller='manage-index'
+
+    .cadre-table
+      table.table.table-striped.table-hover.table-sm
+        thead
+          tr
+            th Destinataire
+            th Objet
+
+            th
+        tbody
+
+          - @templates.each do |template|
+            tr
+              td= t_mailer(template.mailer)
+              td= t_mail_name(template.mail_name)
+              td=> link_to edit_admin_email_template_path(template), class: "btn btn-sm btn-info mr-2", title: "Editer" do
+                i.fas.fa-pen
+                = link_to admin_email_template_path(template), method: :delete, data: {confirm: "Confirmer la suppression ?"}, title: "Supprimer", class: "btn btn-sm btn-danger" do
+                  i.far.fa-trash-alt
+
+
+          - if @templates.empty?
+            tr
+              td colspan="7"
+                p.mt-3.text-center: em.text-muted Aucun modele

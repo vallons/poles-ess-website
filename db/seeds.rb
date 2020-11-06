@@ -22,3 +22,5 @@ end
 instance_logo = Setting.first_or_create(var: "logo_instance", value: 1)
 
 instance_logo.logo.attach(io: File.open('public/default-logo.png'), filename: 'default-logo.png', content_type: 'image/png')
+
+EmailTemplate.where(mailer: "ParticipantMailer", mail_name: "new_subscription").first_or_create(body: "Le pôle vous recontactera rapidement pour préciser les détails pratiques et le règlement.")

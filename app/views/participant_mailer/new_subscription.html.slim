@@ -1,0 +1,25 @@
+p Bonjour,
+
+p 
+  ' Votre inscription à la formation 
+  strong=> @formation.title
+  ' a bien été enregistrée.
+
+h3
+  strong Détails pratiques :
+ul
+  li 
+    strong Titre de la formation : 
+    = @formation.title
+  li 
+    strong Dates : 
+    = formation_dates(@formation)
+  li 
+    strong Lieu : 
+    = formation_location(@formation)
+  li 
+    strong Intervenant.e : 
+    = @formation.speaker
+
+== @template.body
+

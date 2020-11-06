@@ -1,0 +1,20 @@
+fr:
+  activerecord:
+    attributes:
+      email_template:
+        body:          Le corps du mail
+
+  helpers:
+    label:
+      email_template:
+        body:          Corps du mail
+    submit:
+      email_template:
+        create: "Créer le contenu"
+        update: "Mettre à jour le contenu"
+
+  email_template:
+    mailer:
+      ParticipantMailer: Participant
+    mail_name:
+      new_subscription: "Inscription à une formation"

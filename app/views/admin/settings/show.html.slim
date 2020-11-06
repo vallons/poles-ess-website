@@ -1,12 +1,17 @@
-.title-wrapper
-  h1
-    ' Paramètres généraux
-  hr
+= render layout: 'admin/settings/layout_index' do
+
+  h2.mb-3 Paramètrage global
 
   = form_for(Setting.new, url: admin_settings_path) do |f|
     .form-group
       = f.label :project_name
       = f.text_field :project_name, value: Setting.project_name, class: "form-control"
+    .form-group
+      = f.label :baseline
+      = f.text_field :baseline, value: Setting.baseline, class: "form-control"
+    .form-group
+      = f.label :baseline_pre
+      = f.text_field :baseline_pre, value: Setting.baseline_pre, class: "form-control"
     .form-group
       = f.label :admin_emails
       = f.text_area :admin_emails, value: Setting.admin_emails.join("\n"), class: "form-control"

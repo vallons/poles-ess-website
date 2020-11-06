@@ -1,0 +1,37 @@
+= f.form_errors
+
+- if (f.object.mailer == "ParticipantMailer" && f.object.mail_name = "new_subscription")
+  label.font-weight-bold Contenu du mail généré automatiquement :
+  .bg-light.p-3
+    p Bonjour,
+
+    p 
+      ' Votre inscription à la formation 
+      strong [Titre formation]
+      ' a bien été enregistrée.
+
+    h3
+      strong Détails pratiques :
+    ul
+      li 
+        strong Titre de la formation : 
+        ' [Titre formation]
+      li 
+        strong Dates : 
+        ' [Dates formation]
+      li 
+        strong Lieu : 
+        ' [Lieu formation]
+      li 
+        strong Intervenant.e : 
+        ' [Intervenant formation]
+
+.form-group
+  = f.label :body, class: "font-weight-bold"
+  = f.rich_text_area :body
+
+
+.action-btns
+  => f.submit class: "btn btn-primary"
+  => f.submit_and_stay class: "btn btn-outline-primary"
+  = link_to "Annuler", admin_activities_path, class: "btn btn-link"
