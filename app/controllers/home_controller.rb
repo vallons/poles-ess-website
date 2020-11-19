@@ -3,7 +3,7 @@
 class HomeController < ApplicationController
 
   def index
-    @agenda_items = Schedule.future.map{ |s| s.schedulable }.compact.uniq
+    @agenda_items = Schedule.future.sort_by_start_date.map{ |s| s.schedulable }.compact.uniq
     @posts = Post.published.order(published_at: :desc).limit(2)
   end
 
