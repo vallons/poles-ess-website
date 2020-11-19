@@ -1,0 +1,5 @@
+li
+  - if resource.link?
+    = link_to resource.title, resource.link, class: 'underline'
+  - else
+    = link_to resource.title, url_for(resource.document), class: 'underline', target: '_blank'
