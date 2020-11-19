@@ -1,5 +1,4 @@
 module ApplicationHelper
- include Pagy::Frontend
 
   def model_is_defined(model_name)
     model_file_path = Rails.root.join("app/models/#{model_name.underscore}.rb")

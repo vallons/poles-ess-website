@@ -20,7 +20,6 @@ gem 'acts_as_list'
 # Views ====================================================
 gem 'slim'
 gem 'active_link_to'
-gem 'pagy', '~> 3.5'
 gem 'kaminari'
 
 # Uploads ================================================
