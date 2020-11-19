@@ -21,6 +21,7 @@ gem 'acts_as_list'
 gem 'slim'
 gem 'active_link_to'
 gem 'pagy', '~> 3.5'
+gem 'kaminari'
 
 # Uploads ================================================
 gem 'image_processing'
@@ -48,6 +49,7 @@ group :development do
   gem 'spring-watcher-listen', '~> 2.0.0'
   gem 'i18n-debug'
   gem "letter_opener"
+  gem "bullet"
 end
 
 group :test do

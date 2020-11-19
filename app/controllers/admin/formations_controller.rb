@@ -4,11 +4,9 @@ class Admin::FormationsController < Admin::BaseController
   before_action :get_formation, only: [:edit, :update, :destroy]
 
   def index
-    @pagy, @formations = pagy(
-       @formations = Formation
+    @formations = Formation
       .apply_filters(params)
-      .apply_sorts(params), items: 12
-    )
+      .apply_sorts(params).page(params[:page]).per(25)
   end
 
   def new
