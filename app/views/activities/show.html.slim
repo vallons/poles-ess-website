@@ -1,7 +1,7 @@
 .container.mx-auto
   h1.text-6xl.font-bold.text-center.mt-16.mb-4.text-gray-900 = @activity.title
   .flex
-    - @activity.themes.each do |theme|
+    - @activity.themes.enabled.each do |theme|
       .bg-primary.px-3.py-2.mr-2
         = theme.title
   - if @activity.image.present?

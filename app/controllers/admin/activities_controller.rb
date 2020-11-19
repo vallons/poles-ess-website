@@ -53,7 +53,7 @@ class Admin::ActivitiesController < Admin::BaseController
   private # =====================================================
 
   def activity_params
-    params.require(:activity).permit(:title, :description, :image,
+    params.require(:activity).permit(:title, :description, :image, :enabled,
       theme_ids: [], seo_attributes: seo_attributes
 )
   end

@@ -32,7 +32,7 @@ class ApplicationController < ActionController::Base
   private
 
   def get_menu_items
-    @themes = Theme.order(:position)
+    @themes = Theme.enabled.includes(:seo, :activities).order(:position)
   end
 
   def set_default_seos!

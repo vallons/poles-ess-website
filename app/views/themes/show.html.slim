@@ -10,7 +10,7 @@
     .w-2/3
       h3.text-2xl.font-bold.mb-3 Les actions en lien avec cette mission
       ul
-        - @theme.activities.order_by_theme_interface_position.each do |activity|
+        - @theme.activities.enabled.order_by_theme_interface_position.each do |activity|
           li = link_to activity.title, activity_path(activity), class: "underline"
 
     - if @theme.resources.any?

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_11_06_152356) do
+ActiveRecord::Schema.define(version: 2020_11_19_151834) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -51,6 +51,7 @@ ActiveRecord::Schema.define(version: 2020_11_06_152356) do
     t.text "description"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.boolean "enabled", default: true
   end
 
   create_table "admins", force: :cascade do |t|
@@ -78,6 +79,7 @@ ActiveRecord::Schema.define(version: 2020_11_06_152356) do
     t.integer "position"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.boolean "enabled", default: true
   end
 
   create_table "formation_subscriptions", force: :cascade do |t|
@@ -98,6 +100,7 @@ ActiveRecord::Schema.define(version: 2020_11_06_152356) do
     t.float "cost"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.boolean "enabled", default: true
     t.index ["formation_category_id"], name: "index_formations_on_formation_category_id"
   end
 
@@ -120,17 +123,18 @@ ActiveRecord::Schema.define(version: 2020_11_06_152356) do
     t.string "type"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.boolean "enabled", default: true
   end
 
   create_table "posts", force: :cascade do |t|
     t.string "title"
-    t.text "teaser"
     t.text "description"
     t.datetime "published_at"
     t.datetime "expired_at"
     t.bigint "post_category_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.boolean "enabled", default: true
     t.index ["post_category_id"], name: "index_posts_on_post_category_id"
   end
 
@@ -143,6 +147,7 @@ ActiveRecord::Schema.define(version: 2020_11_06_152356) do
     t.bigint "resourceable_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.boolean "enabled", default: true
     t.index ["resourceable_type", "resourceable_id"], name: "index_resources_on_resourceable_type_and_resourceable_id"
   end
 
@@ -202,6 +207,7 @@ ActiveRecord::Schema.define(version: 2020_11_06_152356) do
     t.integer "position"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.boolean "enabled", default: true
   end
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"

@@ -54,7 +54,7 @@ class Admin::ThemesController < Admin::BaseController
   private # =====================================================
 
   def theme_params
-    params.require(:theme).permit(:title, :description, :baseline, :image, :position,
+    params.require(:theme).permit(:title, :description, :baseline, :image, :position, :enabled,
         seo_attributes: seo_attributes, resources_attributes: resources_attributes
 )
   end

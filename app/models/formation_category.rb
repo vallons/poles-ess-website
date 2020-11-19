@@ -1,5 +1,6 @@
 class FormationCategory < ApplicationRecord
   include Seoable
+  include Enablable
 
   acts_as_list
 

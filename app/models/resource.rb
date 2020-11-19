@@ -1,4 +1,5 @@
 class Resource < ApplicationRecord
+  include Enablable
 
   # Associations ===============================================================
 

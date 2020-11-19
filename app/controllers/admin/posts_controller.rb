@@ -77,6 +77,7 @@ class Admin::PostsController < Admin::BaseController
         :image,
         :published_at,
         :expired_at,
+        :enabled,
         theme_ids: [],
         seo_attributes: seo_attributes
       )

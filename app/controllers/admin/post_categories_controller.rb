@@ -51,7 +51,7 @@ class Admin::PostCategoriesController < Admin::BaseController
   private # =====================================================
 
   def post_category_params
-    params.require(:post_category).permit(:title, :position,
+    params.require(:post_category).permit(:title, :position, :enabled,
         seo_attributes: seo_attributes)
   end
 

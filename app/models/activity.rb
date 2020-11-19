@@ -1,6 +1,8 @@
 class Activity < ApplicationRecord
   include Themable
   include Seoable
+  include Enablable
+
 
   has_rich_text :description
   has_one_attached :image

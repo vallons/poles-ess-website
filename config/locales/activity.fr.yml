@@ -10,6 +10,7 @@ fr:
       activity:
         title:          Titre
         description:    Description
+        enabled: Visibilité
     submit:
       activity:
         create: "Créer l'action"

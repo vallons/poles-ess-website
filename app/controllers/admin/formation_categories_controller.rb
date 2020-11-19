@@ -49,7 +49,7 @@ class Admin::FormationCategoriesController < Admin::BaseController
   private # =====================================================
 
   def formation_category_params
-    params.require(:formation_category).permit(:title, :position,
+    params.require(:formation_category).permit(:title, :position, :enabled,
         seo_attributes: seo_attributes)
   end
 

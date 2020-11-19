@@ -2,6 +2,7 @@ class Theme < ApplicationRecord
 
   include Seoable
   include Resourceable
+  include Enablable
 
   has_rich_text :description
   has_one_attached :image

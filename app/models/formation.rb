@@ -3,6 +3,7 @@ class Formation < ApplicationRecord
   DEFAULT_TICKET_COUNT = 12
 
   include Seoable
+  include Enablable
 
   has_rich_text :description
   has_one_attached :image

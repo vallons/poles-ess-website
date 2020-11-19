@@ -3,7 +3,7 @@
 class Post < ApplicationRecord
   include Seoable
   include Themable
-
+  include Enablable
 
   # Configurations =============================================================
   PUBLICATION_STATES = {

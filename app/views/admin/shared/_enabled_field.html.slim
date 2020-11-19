@@ -1,0 +1,9 @@
+.form-group
+  = f.label :enabled, 'Visibilité', class: "font-weight-bold mr-3"
+  div
+    .form-check.form-check-inline
+      => f.radio_button :enabled, true, class: "form-check-input"
+      = f.label :enabled, 'Activé', value: true, class: "form-check-label"
+    .form-check.form-check-inline
+      => f.radio_button :enabled, false, class: "form-check-input"
+      = f.label :enabled, 'Désactivé', value: false, class: "form-check-label"

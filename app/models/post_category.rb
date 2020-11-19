@@ -2,6 +2,7 @@
 
 class PostCategory < ApplicationRecord
   include Seoable
+  include Enablable
 
   # Configurations =============================================================
   acts_as_list
