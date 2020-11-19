@@ -30,8 +30,8 @@
 fieldset.mb-3
   legend
     ' Publication
-  - if !f.object.new_record?
-    em.label class="label-#{@post.publication_state}" = @post.publication_state_humanized
+    / - if !f.object.new_record? && f.object.published_at
+    /   em.label class="label-#{@post.publication_state}" = @post.publication_state_humanized
 
   .row.xs-gutter
     .col-6 data-controller="datepicker"
@@ -43,6 +43,8 @@ fieldset.mb-3
           placeholder: "ex : jj/mm/yyyy",
           maxlength: 10
         span.icon-calendar
+      small.form-text.text-muted
+        ' Indiquez une date loin dans le temps pour passer en brouillon
     .col-6 data-controller="datepicker"
       = f.label :expired_at, class: "font-weight-bold"
       .input__group
@@ -52,6 +54,8 @@ fieldset.mb-3
           placeholder: "ex : jj/mm/yyyy",
           maxlength: 10
         span.icon-calendar
+      small.form-text.text-muted
+        ' Indiquez une date ultérieure à la date de publication mais passée pour archiver
 
 = render partial: 'admin/shared/picture_form', locals: { \
   f: f, \
