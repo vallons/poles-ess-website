@@ -5,7 +5,9 @@ class Admin::PostsController < Admin::BaseController
 
   def index
     params[:sort] ||= "sort_by_published_at desc"
-    @posts = Post.apply_filters(params).apply_sorts(params)
+    @posts = Post
+      .includes(:seo, :themes, :post_category)
+      .apply_filters(params).apply_sorts(params)
     # @pagy, @posts = pagy(Post.apply_filters(params))
   end
 
@@ -25,15 +27,16 @@ class Admin::PostsController < Admin::BaseController
       render :new
     end
   end
-
+  
   def edit
   end
-
+  
   def update
-    if @post.update(post_params)
+    if @post.update_attributes(post_params)
       flash[:notice] = "L'actualité a été mise à jour avec succès"
       redirect_to params[:continue].present? ? edit_admin_post_path(@post) : admin_posts_path
     else
+      p "error ================================="
       flash[:error] = "Une erreur s'est produite lors de la mise à jour de l'actualité"
       render :edit
     end

@@ -5,7 +5,7 @@ class Admin::ActivitiesController < Admin::BaseController
   before_action :get_activity, only: [:edit, :update, :destroy, :destroy_image]
 
   def index
-    @activities = Activity
+    @activities = Activity.includes(:seo, :themes)
       .apply_filters(params)
       .apply_sorts(params)
       # .page(params[:page]).per(20)

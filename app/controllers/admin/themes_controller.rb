@@ -5,7 +5,7 @@ class Admin::ThemesController < Admin::BaseController
   before_action :get_theme, only: [:edit, :update, :destroy, :destroy_image]
 
   def index
-    @themes = Theme.order(:position)
+    @themes = Theme.includes(:seo).order(:position)
       # .page(params[:page]).per(20)
   end
 
