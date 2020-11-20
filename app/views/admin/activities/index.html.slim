@@ -25,6 +25,7 @@ div data-controller='manage-index'
           th Date de création
           th Titre
           th Thèmes
+          th Mis en avant
 
           th
       tbody
@@ -53,6 +54,9 @@ div data-controller='manage-index'
               - activity.themes.each do |theme|
                 .badge.badge-secondary.mr-2
                   = theme.title
+            td.text-center
+              - if activity.highlighted?
+                = boolean_checkmark(activity.highlighted)
             td=> link_to edit_admin_activity_path(activity), class: "btn btn-sm btn-info mr-2", title: "Editer" do
               i.fas.fa-pen
               = link_to admin_activity_path(activity), method: :delete, data: {confirm: "Confirmer la suppression ?"}, title: "Supprimer", class: "btn btn-sm btn-danger" do

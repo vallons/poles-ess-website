@@ -50,5 +50,13 @@ module ApplicationHelper
     [model.firstname, model.lastname].join(" ")
   end
 
+  def boolean_text(bool)
+    I18n.t(bool, scope: [:boolean, :text])
+  end
+
+  def boolean_checkmark(bool)
+    I18n.t(bool, scope: [:boolean, :checkmark])
+  end
+
 
 end

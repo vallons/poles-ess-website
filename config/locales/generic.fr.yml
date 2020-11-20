@@ -193,12 +193,18 @@ fr:
   form_errors: Des erreurs ont été rencontrées
 
   boolean:
-    default:
+    text:
       :true: Oui
       :false: Non
     checkmark:
       :true: ✓
       :false: ×
+    color:
+      :true:  success
+      :false: danger
+    icon:
+      :true:  check
+      :false: times
 
   results:
     zero: "%{count} résultat"

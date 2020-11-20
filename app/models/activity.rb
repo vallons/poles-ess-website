@@ -11,8 +11,12 @@ class Activity < ApplicationRecord
 
   validates :title,
             presence: true
+  validates :home_title,
+            presence: true, if: :highlighted?
 
   # Scopes ====================================================================
+
+  scope :highlighted, -> { where(highlighted: true) }
 
   scope :by_theme, -> (val) {
     joins(:theme_interfaces).merge(ThemeInterface.by_theme(val))

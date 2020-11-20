@@ -3,6 +3,7 @@ fr:
     attributes:
       activity:
         title:          Le titre
+        home_title:     Intitulé vignette page d'accueil
         description:    La description
 
   helpers:
@@ -11,6 +12,7 @@ fr:
         title:          Titre
         description:    Description
         enabled: Visibilité
+        highlighted: Mise en avant
     submit:
       activity:
         create: "Créer l'action"
