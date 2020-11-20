@@ -61,7 +61,7 @@ html lang="#{I18n.locale}"
                 span.nav-link Contenus froids
                 ul
                   li.nav-item
-                    = active_link_to "#", title: "Gérer les actus", class: "nav-link disabled", active: :exclusive do
+                    = active_link_to admin_basic_pages_path, title: "Gérer les pages", class: "nav-link", active: :inclusive do
                       i.fas.fa-snowflake>
                       ' Pages
                   li.nav-item

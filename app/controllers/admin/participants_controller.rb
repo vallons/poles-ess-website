@@ -5,7 +5,7 @@ class Admin::ParticipantsController < Admin::BaseController
     @participants = Participant
       .apply_filters(params)
       .apply_sorts(params)
-      # .page(params[:page]).per(20)
+      .page(params[:page]).per(20)
     @formation = Formation.find(params[:by_formation]) if params[:by_formation].present?
     respond_to do |format|
       format.html

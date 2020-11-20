@@ -51,15 +51,15 @@ class Admin::PostsController < Admin::BaseController
     redirect_to admin_posts_path
   end
 
-  def picture_form
-    render partial: "picture_form", locals: { time: Time.current.to_i }
-  end
+  # def picture_form
+  #   render partial: "picture_form", locals: { time: Time.current.to_i }
+  # end
 
-  def sort_picture
-    picture = @post.pictures.find(params[:picture_id])
-    picture.insert_at(params[:position].to_i)
-    render partial: "picture_list"
-  end
+  # def sort_picture
+  #   picture = @post.pictures.find(params[:picture_id])
+  #   picture.insert_at(params[:position].to_i)
+  #   render partial: "picture_list"
+  # end
 
   private
 

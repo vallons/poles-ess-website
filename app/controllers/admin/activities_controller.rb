@@ -2,13 +2,13 @@ class Admin::ActivitiesController < Admin::BaseController
 
   include DestroyableUpload
 
-  before_action :get_activity, only: [:edit, :update, :destroy, :destroy_image]
+  before_action :get_activity, only: [:edit, :update, :destroy]
 
   def index
     @activities = Activity.includes(:seo, :themes)
       .apply_filters(params)
       .apply_sorts(params)
-      # .page(params[:page]).per(20)
+      .page(params[:page]).per(20)
   end
 
   def new
