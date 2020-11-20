@@ -14,10 +14,10 @@
 
     .w-6/12.p-3
       h3.text-sm.uppercase.mb-3 Quelques actions
-      .w-full.flex
+      .w-full.flex.flex-wrap
         - @highlighted_activities.each do |activity|
           .w-1/2.px-2
-            .bg-gray-500.w-full.h-48.p-5.flex.flex-col.content-center.justify-center
+            .bg-gray-500.w-full.h-48.p-5.flex.flex-col.content-center.justify-center.mb-4
               .text-lg Je veux
               .text-2xl = link_to activity.home_title, activity_path(activity)
 
