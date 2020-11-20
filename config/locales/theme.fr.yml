@@ -3,14 +3,14 @@ fr:
     attributes:
       theme:
         title:          Le titre
-        baseline:       Le slogan
+        baseline:       Le sous-titre
         description:    La description
 
   helpers:
     label:
       theme:
         title:          Titre
-        baseline:       Slogan
+        baseline:       Sous-titre
         description:    Description
     submit:
       theme:

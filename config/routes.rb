@@ -20,6 +20,7 @@ Rails.application.routes.draw do
     resources :posts, concerns: :upload_destroyable
     resources :email_templates, only: [:index, :edit, :update]
     resources :basic_pages
+    resources :main_pages, concerns: :upload_destroyable
     resources :participants do
       member do
         patch :confirm_participation
@@ -37,6 +38,8 @@ Rails.application.routes.draw do
   resources :formations, only: [:index, :show, :edit, :update] do
     resources :subscriptions, controller: "formations/subscriptions", only: [:new, :create, :show]
   end
+  resources :main_pages, only: [:show]
+  resources :basic_pages, only: [:show]
 
   root 'home#index'
 end

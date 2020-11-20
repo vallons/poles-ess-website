@@ -1,0 +1,63 @@
+= link_to "Créer une page", new_admin_main_page_path, class:'btn btn-primary float-right'
+h1.mb-5 Pages
+
+
+/ = render layout: 'admin/layout' do
+
+
+/ div.mb-3
+/   = form_tag admin_main_pages_path, method: :get, data: {is_filter_form: true} do
+
+/     .row
+/       .col-lg-6.col-12
+/         = select_tag :by_domain, \
+/           options_for_select(domain_options, params[:by_domain]), \
+/           prompt: "Tous les domaines",\
+/           class: "form-control dropdown-main_page", \
+/           id: "dropdown_main_page",  \
+/           onchange: "$('[data-is-filter-form]').submit()"
+
+.cadre-table
+  table.table.table-striped.table-hover.table-sm
+    thead
+      tr
+        th Position
+        th Date de création
+        th Titre
+        th.text-center Pages secondaires
+        th.text-center Ressources
+        th
+    tbody
+      - max_position    = @main_pages.map(&:position).compact.max || 1
+      - position_select = (1..max_position).map { |i| [i, i] }
+
+      - @main_pages.each do |main_page| 
+        tr
+          td data-controller='manage-position'
+            = form_for main_page, as: :main_page, url: admin_main_page_path(main_page) do |f|
+              = f.select  :position, \
+                          options_for_select(position_select, main_page.position),\
+                          {},
+                          class: "form-control form-control-sm", \
+                          data: {action: 'change->manage-position#submitSelect'}
+
+          td= l main_page.created_at
+          td= main_page.title
+          td.text-center
+            = link_to admin_basic_pages_path(by_main_page: main_page.id), class: "btn btn-light btn-sm" do
+              = main_page.basic_pages.count
+          td.text-center
+            = link_to edit_admin_main_page_path(main_page, anchor: 'resources'), class: "btn btn-light btn-sm" do
+              = main_page.resources.count
+          td=> link_to edit_admin_main_page_path(main_page), class: "btn btn-sm btn-info mr-2", title: "Editer" do
+            i.fas.fa-pen
+            = link_to admin_main_page_path(main_page), method: :delete, data: {confirm: "Confirmer la suppression ?"}, title: "Supprimer", class: "btn btn-sm btn-danger" do
+              i.far.fa-trash-alt
+
+
+      - if @main_pages.empty?
+        tr
+          td colspan="7"
+            p.mt-3.text-center: em.text-muted Aucune page
+
+= paginate @main_pages

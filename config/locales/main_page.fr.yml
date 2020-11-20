@@ -1,0 +1,19 @@
+fr:
+  activerecord:
+    attributes:
+      main_page:
+        title:          Le titre
+        baseline:       Le sous-titre
+        description:        Le contenu
+
+  helpers:
+    label:
+      main_page:
+        title:          Titre
+        baseline:       Sous-titre
+        description:        Contenu
+        enabled:        Visibilité
+    submit:
+      main_page:
+        create: "Créer la page"
+        update: "Mettre à jour la page"

@@ -61,10 +61,6 @@ html lang="#{I18n.locale}"
                 span.nav-link Contenus froids
                 ul
                   li.nav-item
-                    = active_link_to admin_basic_pages_path, title: "Gérer les pages", class: "nav-link", active: :inclusive do
-                      i.fas.fa-snowflake>
-                      ' Pages
-                  li.nav-item
                     = active_link_to admin_themes_path, title: "Gérer les thèmes", class: "nav-link", active: :inclusive do
                       i.far.fa-snowflake>
                       ' Thèmes
@@ -72,6 +68,14 @@ html lang="#{I18n.locale}"
                     = active_link_to "#", title: "Gérer les actus", class: "nav-link disabled", active: :exclusive do
                       i.fas.fa-snowflake>
                       ' Profils
+                  li.nav-item
+                    = active_link_to admin_main_pages_path, title: "Gérer les pages", class: "nav-link", active: :inclusive do
+                      i.fas.fa-snowflake>
+                      ' Pages principales
+                  li.nav-item
+                    = active_link_to admin_basic_pages_path, title: "Gérer les pages", class: "nav-link", active: :inclusive do
+                      i.fas.fa-snowflake>
+                      ' Pages secondaires
               li.nav-item.nav-header 
                 span.nav-link Configuration
                 ul 

@@ -1,0 +1,17 @@
+fr:
+  activerecord:
+    attributes:
+      basic_page:
+        title:          Le titre
+        content:        Le contenu
+
+  helpers:
+    label:
+      basic_page:
+        title:          Titre
+        content:        Contenu
+        enabled:        Visibilité
+    submit:
+      basic_page:
+        create: "Créer la page"
+        update: "Mettre à jour la page"
