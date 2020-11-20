@@ -3,7 +3,6 @@ class Activity < ApplicationRecord
   include Seoable
   include Enablable
 
-
   has_rich_text :description
   has_one_attached :image
 
@@ -17,14 +16,6 @@ class Activity < ApplicationRecord
   # Scopes ====================================================================
 
   scope :highlighted, -> { where(highlighted: true) }
-
-  scope :by_theme, -> (val) {
-    joins(:theme_interfaces).merge(ThemeInterface.by_theme(val))
-  }
-
-  scope :order_by_theme_interface_position, -> {
-    joins(:theme_interfaces).merge(ThemeInterface.order(position: :asc)).uniq
-  }
 
   # Instance methods ====================================================
 

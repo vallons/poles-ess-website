@@ -1,0 +1,33 @@
+= f.form_errors
+
+.form-group.required
+  = f.label :title, class: "font-weight-bold"
+  = f.text_field :title, class: 'form-control'
+
+.form-group
+  label.font-weight-bold Thèmes
+  .form-group
+    - Theme.all.each do |theme|
+      .form-check.form-check-inline
+        => f.check_box :theme_ids, {multiple: true,
+                  checked: f.object.themes.include?(theme),
+                  class: 'form-check-input'},
+                  theme.id, nil
+        = f.label :theme_ids, theme.title, value: theme.id, class: "form-check-label"
+
+.form-group
+  = f.label :content, class: "font-weight-bold"
+  = f.rich_text_area :content
+
+/ = render partial: 'admin/shared/picture_form', locals: { \
+/   f: f, \
+/   destroy_path: f.object.image.present? ? destroy_upload_admin_basic_page_path(f.object, f.object.image.id, redirect: :edit) : nil}
+
+= render "admin/shared/enabled_field", f: f
+
+= render partial: 'admin/seos/fields_for_form', locals: { f: f }
+
+.action-btns
+  => f.submit class: "btn btn-primary"
+  => f.submit_and_stay class: "btn btn-outline-primary"
+  = link_to "Annuler", admin_basic_pages_path, class: "btn btn-link"

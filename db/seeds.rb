@@ -24,3 +24,17 @@ instance_logo = Setting.first_or_create(var: "logo_instance", value: 1)
 instance_logo.logo.attach(io: File.open('public/default-logo.png'), filename: 'default-logo.png', content_type: 'image/png')
 
 EmailTemplate.where(mailer: "ParticipantMailer", mail_name: "new_subscription").first_or_create(body: "Le pôle vous recontactera rapidement pour préciser les détails pratiques et le règlement.")
+
+# Basïc Pages ==================================================
+[
+  { key: 'data_policy', title: "Politique de confidentialité", enabled: true },
+  { key: 'legal_mentions', title: "Mentions légales", enabled: true },
+  { key: 'key_numbers', title: "Chiffres-clés", enabled: true },
+  { key: 'ess_map', title: "Cartographie", enabled: true },
+  { key: 'membership', title: "Adhérer au pôle", enabled: true },
+].each do |option|
+  BasicPage.where(key: option[:key]).first_or_create(
+    enabled: option[:enabled], 
+    title: option[:title]
+  )
+end

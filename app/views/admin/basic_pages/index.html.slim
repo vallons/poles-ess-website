@@ -1,0 +1,71 @@
+= link_to "Créer une page", new_admin_basic_page_path, class:'btn btn-primary float-right'
+h1.mb-5 Pages
+
+div data-controller='manage-index'
+  .bg-light.p-3.mb-3
+    h3 Filtres
+    = form_tag admin_basic_pages_path, method: :get do
+
+      .row
+        .col-lg-4.col-md-6.col-12
+          = label_tag "Par thème"
+          = select_tag :by_theme, \
+            options_for_select(theme_options, params[:by_theme]), \
+            prompt: "Tous les thèmes",\
+            class: "form-control dropdown-action", \
+            id: "dropdown_action",  \
+            data: {action: 'change->manage-index#submitFilterForm'}
+
+
+  small = I18n.t(:results, count: @basic_pages.count)
+
+  table.table.table-striped.table-hover.table-sm
+    thead
+      tr
+        th Position
+        th Date de création
+        th Titre
+        th Thèmes
+        th Activé ?
+
+        th
+    tbody
+      - max_position    = interface_max_position(params, "Activity") || 1
+      - position_select = (1..max_position).map { |i| [i, i] }
+
+      - @basic_pages.each do |basic_page|
+        tr
+          - if active_interface_filter?(params)
+            td data-controller='manage-position'
+              - interface = get_interface(basic_page, params)
+              = form_for interface, as: :interface, url: admin_interface_path(interface, classname: interface.class.name) do |f|
+                = f.select  :position, \
+                            options_for_select(position_select, interface.position),\
+                            {},
+                            class: "form-control form-control-sm", \
+                            data: {action: 'change->manage-position#submitSelect'}
+          - else
+            td.text-center.disabled -
+          td= l basic_page.created_at
+          td= basic_page.title
+          / td= link_to admin_intervention_levels_path(by_basic_page: basic_page.id), class: "btn btn-light btn-sm" do
+          /   span.ion-ios-list-outline>
+          /   = basic_page.intervention_levels.count
+          td
+            - basic_page.themes.each do |theme|
+              .badge.badge-secondary.mr-2
+                = theme.title
+          td.text-center
+            - if basic_page.enabled?
+              = boolean_checkmark(basic_page.enabled)
+          td=> link_to edit_admin_basic_page_path(basic_page), class: "btn btn-sm btn-info mr-2", title: "Editer" do
+            i.fas.fa-pen
+            = link_to admin_basic_page_path(basic_page), method: :delete, data: {confirm: "Confirmer la suppression ?"}, title: "Supprimer", class: "btn btn-sm btn-danger" do
+              i.far.fa-trash-alt
+
+      - if @basic_pages.empty?
+        tr
+          td colspan="7"
+            p.mt-3.text-center: em.text-muted Aucune page
+
+  = paginate @basic_pages
