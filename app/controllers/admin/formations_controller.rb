@@ -6,7 +6,7 @@ class Admin::FormationsController < Admin::BaseController
   def index
     @formations = Formation
       .apply_filters(params)
-      .apply_sorts(params).page(params[:page]).per(25)
+      .page(params[:page]).per(25)
   end
 
   def new
