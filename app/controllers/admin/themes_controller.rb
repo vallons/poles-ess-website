@@ -2,7 +2,7 @@ class Admin::ThemesController < Admin::BaseController
 
   include DestroyableUpload
 
-  before_action :get_theme, only: [:edit, :update, :destroy, :destroy_image]
+  before_action :get_theme, only: [:edit, :update, :destroy]
 
   def index
     @themes = Theme.includes(:seo).order(:position)

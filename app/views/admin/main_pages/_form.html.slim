@@ -1,0 +1,28 @@
+= f.form_errors
+
+.form-group.required
+  = f.label :title
+  = f.text_field :title, class: 'form-control'
+
+.form-group.required
+  = f.label :baseline
+  = f.text_field :baseline, class: 'form-control'
+
+.form-group
+  = f.label :description
+  = f.rich_text_area :description
+
+= render partial: 'admin/shared/picture_form', locals: { \
+  f: f, \
+  destroy_path: f.object.image.present? ? destroy_upload_admin_main_page_path(f.object, f.object.image.id, redirect: :edit) : nil}
+
+= render "admin/resources/nested_form", f: f
+
+= render "admin/shared/enabled_field", f: f
+
+= render partial: 'admin/seos/fields_for_form', locals: { f: f }
+
+.action-btns
+  => f.submit class: "btn btn-primary"
+  => f.submit_and_stay class: "btn btn-outline-primary"
+  = link_to "Annuler", admin_main_pages_path, class: "btn btn-link"

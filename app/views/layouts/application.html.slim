@@ -47,7 +47,32 @@ html lang='fr'
                         li Ressources
                         li Nous rejoindre
 
+        - @main_pages.each do |main_page|
+          .text-xl
+            div.block-menu-toggler data-action="mouseenter->main-menu#openBlockMenu mouseleave->main-menu#closeBlockMenu"
+              = active_link_to main_page.title, main_page_path(main_page), title: main_page.title, class: "block w-full px-6 py-4 hover:bg-gray-800 active:bg-gray-800", active: :inclusive
+              nav.block-menu.absolute.top-0.left-side-menu.w-screen-side-menu.bg-gray-800.text-white data-target="main-menu.blockMenu"
+                .p-6
+                  .flex.justify-between.items-center
+                    h3.text-4xl.mb-3
+                      = link_to main_page.title, main_page_path(main_page)
+                    = link_to "En savoir plus", main_page_path(main_page), class: "underline"
+                  p = main_page.baseline
+                .p-6.flex
+                  => image_tag main_page.image.variant(resize_to_limit: [150, nil]) if main_page.image.present?
+                  .flex.w-full.ml-6
+                    .w-2/3
+                      h4.uppercase.font-bold.text-sm Nos actions
+                    .w-1/3
+                      h4.uppercase.font-bold.text-sm Pages en lien
+                      ul
+                        li Actualités
+                        li Ressources
+                        li Nous rejoindre
 
+
+      
+      
       nav.flex.items-center.justify-between.bg-primary.text-white.p-6
         button.flex.items-center.flex-1
           svg.fill-current.cursor-pointer viewBox="0 0 100 80" width="40" height="40" xmlns="http://www.w3.org/2000/svg" data-action="click->main-menu#toggleSideMenu"
