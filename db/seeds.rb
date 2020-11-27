@@ -5,6 +5,7 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+include Rails.application.routes.url_helpers
 
 # Admin ------------------------------------------------
 Admin.where(email: "bonjour@lassembleuse.fr").first_or_create(password: "password") if %w[development test].include?(Rails.env)
@@ -69,9 +70,9 @@ end
   { theme: 'Découvrir', menu_blocks: [
     { title: "Nos actions", position: 1, menu_items: []},
     { title: "", position: 2, menu_items: [
-      { title: "Chiffre-clés", url: "#", position: 1},
+      { title: "Chiffre-clés", url: basic_page_path(BasicPage.find_by(key: 'key_numbers')), position: 1},
       { title: "Ressources", url: "#", position: 2},
-      { title: "Actualités", url: "#", position: 3}
+      { title: "Actualités", url: posts_path, position: 3}
       ]
     }
     ]
@@ -79,9 +80,9 @@ end
   { theme: 'Entreprendre', menu_blocks: [
     { title: "Nos actions", position: 1, menu_items: [] },
     { title: "", position: 2, menu_items: [
-      { title: "Chiffre-clés", url: "#", position: 1},
+      { title: "Chiffre-clés", url: basic_page_path(BasicPage.find_by(key: 'key_numbers')), position: 1},
       { title: "Ressources", url: "#", position: 2},
-      { title: "Actualités", url: "#", position: 3}
+      { title: "Actualités", url: posts_path, position: 3}
     ] }
     ]
   }
@@ -110,8 +111,8 @@ end
       { title: "Partenaires", url: "#", position: 5 }
     ] },
     { title: "Agir avec le pôle", position: 2, menu_items: [
-      { title: "Adhérer au pôle", url: "#", position: 1},
-      { title: "Se former", url: "#", position: 2},
+      { title: "Adhérer au pôle", url: basic_page_path(BasicPage.find_by(key: 'membership')), position: 1},
+      { title: "Se former", url: formations_path, position: 2},
       { title: "Contacter le pôle", url: "#", position: 3}
       ]
     }
@@ -119,8 +120,8 @@ end
   },
   { main_page: "L'ESS", menu_blocks: [
     { title: "L'ESS sur le territoire", position: 1, menu_items: [
-      { title: "Chiffre-clés", url: "#", position: 1 },
-      { title: "Cartographie", url: "#", position: 2 },
+      { title: "Chiffre-clés", url: basic_page_path(BasicPage.find_by(key: 'key_numbers')), position: 1 },
+      { title: "Cartographie", url: basic_page_path(BasicPage.find_by(key: 'ess_map')), position: 2 },
       { title: "Exemples de projets", url: "#", position: 3 }
     ] },
     { title: "L'ESS en général", position: 2, menu_items: [

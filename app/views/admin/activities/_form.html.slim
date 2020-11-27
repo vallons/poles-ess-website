@@ -4,26 +4,6 @@
   = f.label :title, class: "font-weight-bold"
   = f.text_field :title, class: 'form-control'
 
-div data-controller="radio-tabs"
-  .row
-    .col
-      .form-group
-        = f.label :highlighted, class: "font-weight-bold mr-3"
-        div
-          .form-check.form-check-inline
-            => f.radio_button :highlighted, true, class: "form-check-input", data: { action: "change->radio-tabs#setCurrentTab", tab: true}
-            = f.label :highlighted, boolean_text(true), value: true, class: "form-check-label"
-          .form-check.form-check-inline
-            => f.radio_button :highlighted, false, class: "form-check-input", data: { action: "change->radio-tabs#setCurrentTab", tab: false}
-            = f.label :highlighted, boolean_text(false), value: false, class: "form-check-label"
-        .form-text.text-muted.small Les actions mises en avant apparaissent en page d'accueil
-    .col
-      div data-target="radio-tabs.content" data-tab="true"
-        .form-group.required
-          = f.label :home_title, class: "font-weight-bold"
-          = f.text_field :home_title, class: 'form-control', placeholder: "faire connaître l'économie sociale et solidaire dans mon école"
-          .form-text.text-muted.small Le titre doit compléter une phrase commençant par "Je veux..."
-
 .form-group
   label.font-weight-bold Thèmes
   .form-group

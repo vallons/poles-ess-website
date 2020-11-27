@@ -8,7 +8,7 @@ class Admin::ActivitiesController < Admin::BaseController
     @activities = Activity.includes(:seo, :themes)
       .apply_filters(params)
       .apply_sorts(params)
-      .page(params[:page]).per(20)
+      # .page(params[:page]).per(20)
   end
 
   def new

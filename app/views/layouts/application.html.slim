@@ -61,14 +61,13 @@ html lang='fr'
                 .p-6.flex
                   => image_tag main_page.image.variant(resize_to_limit: [150, nil]) if main_page.image.present?
                   .flex.w-full.ml-6
-                    .w-2/3
-                      h4.uppercase.font-bold.text-sm Nos actions
-                    .w-1/3
-                      h4.uppercase.font-bold.text-sm Pages en lien
-                      ul
-                        li Actualités
-                        li Ressources
-                        li Nous rejoindre
+                    - main_page.menu_blocks.each do |menu_block|
+                      .w-1/3
+                        - if menu_block.title.present?
+                          h4.uppercase.font-bold.text-sm = menu_block.title
+                        ul
+                          - menu_block.menu_items.each do |menu_item|
+                            li = link_to menu_item.title, menu_item.url
 
 
       
