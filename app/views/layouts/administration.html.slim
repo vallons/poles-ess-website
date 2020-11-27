@@ -69,13 +69,17 @@ html lang="#{I18n.locale}"
                       i.fas.fa-snowflake>
                       ' Profils
                   li.nav-item
-                    = active_link_to admin_main_pages_path, title: "Gérer les pages", class: "nav-link", active: :inclusive do
+                    = active_link_to admin_main_pages_path, title: "Gérer les pages principales", class: "nav-link", active: :inclusive do
                       i.fas.fa-snowflake>
                       ' Pages principales
                   li.nav-item
-                    = active_link_to admin_basic_pages_path, title: "Gérer les pages", class: "nav-link", active: :inclusive do
+                    = active_link_to admin_basic_pages_path, title: "Gérer les pages secondaires", class: "nav-link", active: :inclusive do
                       i.fas.fa-snowflake>
                       ' Pages secondaires
+                  li.nav-item
+                    = active_link_to admin_key_numbers_path, title: "Gérer les chiffres clés", class: "nav-link", active: :inclusive do
+                      i.fas.fa-snowflake>
+                      ' Chiffres clés
               li.nav-item.nav-header 
                 span.nav-link Configuration
                 ul 

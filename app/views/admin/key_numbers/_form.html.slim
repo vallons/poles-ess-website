@@ -1,0 +1,20 @@
+= f.form_errors
+
+.form-group.required
+  = f.label :number, class: "font-weight-bold"
+  = f.text_field :number, class: 'form-control'
+
+.form-group.required
+  = f.label :title, class: "font-weight-bold"
+  = f.text_field :title, class: 'form-control'
+
+.form-group.required
+  = f.label :source, class: "font-weight-bold"
+  = f.text_field :source, class: 'form-control'
+
+.form-group
+  = f.label :description, class: "font-weight-bold"
+  = f.rich_text_area :description
+
+= render "admin/shared/action_btns", f: f, index_path: admin_key_numbers_path
+

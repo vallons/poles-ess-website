@@ -4,20 +4,16 @@
   /   = image_tag  @basic_page.image, class: "mb-8 mx-auto"
   .mb-24== @basic_page.content
 
+  - if @key_numbers
+    .flex
+      - @key_numbers.each do |key_number|
+        .w-1/3
+          .max-w-md.rounded.overflow-hidden.shadow-lg.border.border-solid.border-gray-300.mb-4.mr-4
+            .div
+              .flex.flex-col.px-12.py-8.items-center
+                h3.font-bold.text-8xl = key_number.number
+                p.text-3xl = key_number.title
 
-  .flex
-    / .w-2/3
-    /   h3.text-2xl.font-bold.mb-3 Les actions en lien avec cette mission
-    /   ul
-        / - @basic_page.activities.enabled.order_by_basic_page_interface_position.each do |activity|
-        /   li = link_to activity.title, activity_path(activity), class: "underline"
-
-    / - if @basic_page.resources.any?
-    /   .w-1/3
-    /     h3.text-2xl.font-bold.mb-3 Ressources
-    /     ul
-    /       = render partial: 'resources/resource', collection: @basic_page.resources, as: :resource
-
-  / h2.text-2xl.font-bold.mt-12.mb-4 Les actualités en lien avec cette mission
-  / - @basic_page.posts.each do |post|
-  /   = render 'posts/card', post: post
+              p.px-6.py-4.text-right.text-sm.italic = key_number.source
+            .px-6.py-4.bg-gray-200
+              == key_number.description

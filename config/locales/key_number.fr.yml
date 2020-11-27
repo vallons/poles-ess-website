@@ -1,0 +1,22 @@
+fr:
+  activerecord:
+    attributes:
+      key_number:
+        title:          Le titre
+        description:    La description
+        number:         Le chiffre
+        source:         La source
+
+
+  helpers:
+    label:
+      key_number:
+        title:          Titre
+        description:    Description
+        number:         Chiffre
+        source:         Source
+        enabled:        Visibilité
+    submit:
+      key_number:
+        create: "Créer le chiffre"
+        update: "Mettre à jour le chiffre"

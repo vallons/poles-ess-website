@@ -1,0 +1,13 @@
+.title-wrapper
+  h1 Créer un chiffre clé
+
+  div.flex
+    = link_to admin_key_numbers_path, class: "btn btn-light mr-4" do
+      i.fa.fa-chevron-left>
+      ' Retour
+hr
+
+= form_for(@key_number, as: :key_number, \
+  url: admin_key_numbers_path, html: {class: "form-horizontal"}) do |f|
+
+  =  render partial: "form", locals: {f: f}

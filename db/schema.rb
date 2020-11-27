@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_11_26_092335) do
+ActiveRecord::Schema.define(version: 2020_11_27_165109) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -114,6 +114,17 @@ ActiveRecord::Schema.define(version: 2020_11_26_092335) do
     t.datetime "updated_at", precision: 6, null: false
     t.boolean "enabled", default: true
     t.index ["formation_category_id"], name: "index_formations_on_formation_category_id"
+  end
+
+  create_table "key_numbers", force: :cascade do |t|
+    t.string "title"
+    t.string "number"
+    t.string "source"
+    t.text "description"
+    t.integer "position"
+    t.boolean "enabled", default: true
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "main_pages", force: :cascade do |t|

@@ -1,0 +1,43 @@
+= link_to "Créer un chiffre clé", new_admin_key_number_path, class:'btn btn-primary float-right'
+h1.mb-5 Chiffres clés
+
+div data-controller='manage-index'
+
+  small = I18n.t(:results, count: @key_numbers.count)
+
+  table.table.table-striped.table-hover.table-sm
+    thead
+      tr
+        th Position
+        th Chiffre
+        th Titre
+        th.text-center Activé ?
+
+        th
+    tbody
+      - max_position    = @key_numbers.map(&:position).compact.max || 1
+      - position_select = (1..max_position).map { |i| [i, i] }
+
+      - @key_numbers.each do |key_number|
+        tr
+          td data-controller='manage-position'
+            = form_for key_number, as: :key_number, url: admin_key_number_path(key_number) do |f|
+              = f.select  :position, \
+                          options_for_select(position_select, key_number.position),\
+                          {},
+                          class: "form-control form-control-sm", \
+                          data: {action: 'change->manage-position#submitSelect'}
+          td= key_number.number
+          td= key_number.title
+          td.text-center
+            - if key_number.enabled?
+              = boolean_checkmark(key_number.enabled)
+          td=> link_to edit_admin_key_number_path(key_number), class: "btn btn-sm btn-info mr-2", title: "Editer" do
+            i.fas.fa-pen
+            = link_to admin_key_number_path(key_number), method: :delete, data: {confirm: "Confirmer la suppression ?"}, title: "Supprimer", class: "btn btn-sm btn-danger" do
+              i.far.fa-trash-alt
+
+      - if @key_numbers.empty?
+        tr
+          td colspan="7"
+            p.mt-3.text-center: em.text-muted Aucun chiffre
