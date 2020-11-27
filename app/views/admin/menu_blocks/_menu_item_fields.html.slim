@@ -1,0 +1,21 @@
+.nested-fields data-new_record="#{f.object.new_record?}" data-controller="drag"
+  div.draggable-item.bg-light.p-2.mb-2
+    = f.hidden_field :id
+    = f.hidden_field :_destroy
+    = f.hidden_field :position, data: { target: "drag.position" }
+    .form-row
+      .col-1.d-flex.justify-content-center.align-items-center.drag-area
+        div.fas.fa-grip-lines
+
+      .col-5
+        .form-group.mb-1
+          = f.label :title, class: "font-weight-bold"
+          = f.text_field :title, class: 'form-control'
+      .col-5
+        .form-group.mb-1
+          = f.label :url, class: "font-weight-bold"
+          = f.text_field :url, class: 'form-control'
+      .col-1.d-flex.justify-content-center.align-items-end
+        = link_to "#", data: { action: "click->nested-fields#remove_association" }, class: "js-delete-link btn btn-danger mb-1" do
+          i.far.fa-trash-alt
+

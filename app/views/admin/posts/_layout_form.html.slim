@@ -1,0 +1,22 @@
+.title-wrapper
+  h1 Édition de l'actualité "#{@post.title}"
+
+  div.flex
+    = link_to admin_activities_path, class: "btn btn-light mr-4" do
+      i.fa.fa-chevron-left>
+      ' Retour
+    span.small
+      ' Créé le
+      strong => l @post.created_at
+      ' -
+      ' Mis à jour le
+      strong = l @post.updated_at
+
+
+ul.nav.nav-tabs.my-3
+  li.nav-item
+    = active_link_to "Contenu", edit_admin_post_path(@post), title: "Gérer les contenus", class: "nav-link", active: :exclusive
+  li.nav-item
+    = active_link_to "Configuration", edit_configuration_admin_post_path(@post), title: "Gérer la configuration", class: "nav-link", active: :exclusive
+
+= yield

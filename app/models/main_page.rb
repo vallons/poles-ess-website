@@ -11,10 +11,13 @@ class MainPage < ApplicationRecord
 
   acts_as_list
 
+  # Associations ===============================================================
   has_many :page_jointures, dependent: :destroy
   has_many :basic_pages, through: :page_jointures
 
-  # Associations ===============================================================
+  has_many :menu_blocks, -> { order(:position) }, inverse_of: :main_page, dependent: :destroy
+  accepts_nested_attributes_for :menu_blocks, reject_if: :all_blank
+  has_many :menu_items, -> { order(:position) }, through: :menu_blocks
 
   # Callbacks ==================================================================
   validates :title, presence: true
@@ -32,7 +35,7 @@ class MainPage < ApplicationRecord
   end
 
   def self.apply_sorts(params)
-    self.order(created_at: :desc)
+    order(created_at: :desc)
   end
 
   # Instance Methods ===========================================================

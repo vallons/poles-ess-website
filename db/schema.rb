@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_11_20_123847) do
+ActiveRecord::Schema.define(version: 2020_11_26_092335) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -124,6 +124,27 @@ ActiveRecord::Schema.define(version: 2020_11_20_123847) do
     t.boolean "enabled", default: true
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "menu_blocks", force: :cascade do |t|
+    t.string "title"
+    t.integer "position"
+    t.bigint "main_page_id"
+    t.bigint "theme_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["main_page_id"], name: "index_menu_blocks_on_main_page_id"
+    t.index ["theme_id"], name: "index_menu_blocks_on_theme_id"
+  end
+
+  create_table "menu_items", force: :cascade do |t|
+    t.string "title"
+    t.string "url"
+    t.integer "position"
+    t.bigint "menu_block_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["menu_block_id"], name: "index_menu_items_on_menu_block_id"
   end
 
   create_table "page_jointures", force: :cascade do |t|

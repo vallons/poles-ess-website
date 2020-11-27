@@ -1,0 +1,16 @@
+fr:
+  activerecord:
+    attributes:
+      menu_block:
+        title:          Le titre de la colonne
+      menu_item:
+        title:          Le titre du lien
+        url:            L'url du lien
+
+  helpers:
+    label:
+      menu_block:
+        title:          Titre de la colonne de menu
+      menu_item:
+        title:          Titre du lien
+        url:            Url du lien

@@ -34,11 +34,6 @@
 /   f: f, \
 /   destroy_path: f.object.image.present? ? destroy_upload_admin_basic_page_path(f.object, f.object.image.id, redirect: :edit) : nil}
 
-= render "admin/shared/enabled_field", f: f
 
-= render partial: 'admin/seos/fields_for_form', locals: { f: f }
+= render "admin/shared/action_btns", f: f, index_path: admin_basic_pages_path
 
-.action-btns
-  => f.submit class: "btn btn-primary"
-  => f.submit_and_stay class: "btn btn-outline-primary"
-  = link_to "Annuler", admin_basic_pages_path, class: "btn btn-link"

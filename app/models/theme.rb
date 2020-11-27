@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 class Theme < ApplicationRecord
 
   include Seoable
@@ -14,6 +15,10 @@ class Theme < ApplicationRecord
            source_type: 'Activity'
   has_many :posts, through: :theme_interfaces, source: :themable,
           source_type: 'Post'
+
+  has_many :menu_blocks, -> { order(:position) }, inverse_of: :theme, dependent: :destroy
+  accepts_nested_attributes_for :menu_blocks, reject_if: :all_blank
+  has_many :menu_items, -> { order(:position) }, through: :menu_blocks
 
   # Validations ================================================================
 

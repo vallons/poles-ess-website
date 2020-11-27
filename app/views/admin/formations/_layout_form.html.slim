@@ -1,0 +1,22 @@
+.title-wrapper
+  h1 Édition de la formation "#{@formation.title}"
+
+  div.flex
+    = link_to admin_formations_path, class: "btn btn-light mr-4" do
+      i.fa.fa-chevron-left>
+      ' Retour
+    span.small
+      ' Créé le
+      strong => l @formation.created_at
+      ' -
+      ' Mis à jour le
+      strong = l @formation.updated_at
+
+
+ul.nav.nav-tabs.my-3
+  li.nav-item
+    = active_link_to "Contenu", edit_admin_formation_path(@formation), title: "Gérer les contenus", class: "nav-link", active: :exclusive
+  li.nav-item
+    = active_link_to "Configuration", edit_configuration_admin_formation_path(@formation), title: "Gérer la configuration", class: "nav-link", active: :exclusive
+
+= yield

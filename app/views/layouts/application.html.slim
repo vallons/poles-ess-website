@@ -35,17 +35,17 @@ html lang='fr'
                 .p-6.flex
                   => image_tag theme.image.variant(resize_to_limit: [150, nil]) if theme.image.present?
                   .flex.w-full.ml-6
-                    .w-2/3
-                      h4.uppercase.font-bold.text-sm Nos actions
-                      ul
-                        - theme.activities.enabled.order_by_theme_interface_position.each do |activity|
-                          li = link_to activity.title, activity_path(activity)
-                    .w-1/3
-                      h4.uppercase.font-bold.text-sm Pages en lien
-                      ul
-                        li Actualités
-                        li Ressources
-                        li Nous rejoindre
+                    - theme.menu_blocks.each do |menu_block|
+                      .w-1/3
+                        - if menu_block.title.present?
+                          h4.uppercase.font-bold.text-sm = menu_block.title
+                        ul
+                          - if menu_block.title == "Nos actions"
+                            - theme.activities.enabled.order_by_theme_interface_position.first(5).each do |activity|
+                              li = link_to activity.title, activity_path(activity)
+                          - else
+                            - menu_block.menu_items.each do |menu_item|
+                              li = link_to menu_item.title, menu_item.url
 
         - @main_pages.each do |main_page|
           .text-xl

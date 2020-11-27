@@ -1,0 +1,23 @@
+.title-wrapper
+  h1
+    ' Édition du thème "#{@theme.title}"
+
+  div.flex
+    = link_to admin_themes_path, class: "btn btn-light mr-4" do
+      i.fa.fa-chevron-left>
+      ' Retour
+    span.small
+      ' Créé le
+      strong => l @theme.created_at
+      ' -
+      ' Mis à jour le
+      strong = l @theme.updated_at
+
+
+ul.nav.nav-tabs.my-3
+  li.nav-item
+    = active_link_to "Contenu", edit_admin_theme_path(@theme), title: "Gérer les contenus", class: "nav-link", active: :exclusive
+  li.nav-item
+    = active_link_to "Configuration", edit_configuration_admin_theme_path(@theme), title: "Gérer la configuration", class: "nav-link", active: :exclusive
+
+= yield

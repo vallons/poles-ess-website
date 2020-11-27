@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class Admin::PostsController < Admin::BaseController
-  before_action :get_post, only: [:edit, :update, :destroy, :sort_picture]
+  before_action :get_post, except: %i[index new create]
 
   def index
     params[:sort] ||= "sort_by_published_at desc"
@@ -36,9 +36,21 @@ class Admin::PostsController < Admin::BaseController
       flash[:notice] = "L'actualité a été mise à jour avec succès"
       redirect_to params[:continue].present? ? edit_admin_post_path(@post) : admin_posts_path
     else
-      p "error ================================="
       flash[:error] = "Une erreur s'est produite lors de la mise à jour de l'actualité"
       render :edit
+    end
+  end
+
+  def edit_configuration
+  end
+
+  def update_configuration
+    if @post.update_attributes(post_params)
+      flash[:notice] = "L'actualité a été mise à jour avec succès"
+      redirect_to params[:continue].present? ? edit_configuration_admin_post_path(@post) : admin_posts_path
+    else
+      flash[:error] = "Une erreur s'est produite lors de la mise à jour de l'actualité"
+      render :edit_configuration
     end
   end
 
@@ -50,16 +62,6 @@ class Admin::PostsController < Admin::BaseController
     end
     redirect_to admin_posts_path
   end
-
-  # def picture_form
-  #   render partial: "picture_form", locals: { time: Time.current.to_i }
-  # end
-
-  # def sort_picture
-  #   picture = @post.pictures.find(params[:picture_id])
-  #   picture.insert_at(params[:position].to_i)
-  #   render partial: "picture_list"
-  # end
 
   private
 
