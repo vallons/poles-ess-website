@@ -1,0 +1,5 @@
+= render layout: 'admin/basic_pages/layout_form' do
+
+  = form_for(@basic_page, as: :basic_page, \
+    url: update_configuration_admin_basic_page_path(@basic_page), html: {class: "form-horizontal"}) do |f|
+    =  render "admin/shared/form_configuration", f: f, index_path: admin_basic_pages_path

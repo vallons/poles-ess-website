@@ -2,7 +2,7 @@ class Admin::ActivitiesController < Admin::BaseController
 
   include DestroyableUpload
 
-  before_action :get_activity, only: [:edit, :update, :destroy]
+  before_action :get_activity, except: %i[index new create]
 
   def index
     @activities = Activity.includes(:seo, :themes)
@@ -37,6 +37,19 @@ class Admin::ActivitiesController < Admin::BaseController
     else
       flash[:error] = "Une erreur s'est produite lors de la mise à jour de l'action"
       render :edit
+    end
+  end
+
+  def edit_configuration
+  end
+
+  def update_configuration
+    if @activity.update_attributes(activity_params)
+      flash[:notice] = "Action mise à jour avec succès"
+      redirect_to params[:continue].present? ? edit_configuration_admin_activity_path(@activity) : admin_activities_path
+    else
+      flash[:error] = "Une erreur s'est produite lors de la mise à jour de l'action"
+      render :edit_configuration
     end
   end
 

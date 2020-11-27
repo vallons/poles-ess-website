@@ -1,19 +1,5 @@
-.title-wrapper
-  h1 Édition de l'action "#{@activity.title}"
+= render layout: 'admin/activities/layout_form' do
 
-  div.flex
-    = link_to admin_activities_path, class: "btn btn-light mr-4" do
-      i.fa.fa-chevron-left>
-      ' Retour
-    span.small
-      ' Créé le
-      strong => l @activity.created_at
-      ' -
-      ' Mis à jour le
-      strong = l @activity.updated_at
-
-  hr
-
-= form_for(@activity, as: :activity, \
-  url: admin_activity_path(@activity), html: {class: "form-horizontal"}) do |f|
-  =  render partial: "form", locals: {f: f}
+  = form_for(@activity, as: :activity, \
+    url: admin_activity_path(@activity), html: {class: "form-horizontal"}) do |f|
+    =  render partial: "form", locals: {f: f}

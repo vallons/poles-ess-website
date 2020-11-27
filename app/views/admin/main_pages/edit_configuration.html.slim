@@ -2,4 +2,4 @@
 
   = form_for(@main_page, as: :main_page, \
     url: update_configuration_admin_main_page_path(@main_page), html: {class: "form-horizontal"}) do |f|
-    =  render partial: "form_configuration", locals: {f: f}
+    =  render "admin/shared/form_configuration", f: f, index_path: admin_main_pages_path

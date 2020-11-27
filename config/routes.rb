@@ -18,15 +18,15 @@ Rails.application.routes.draw do
 
   namespace :admin do
     resources :themes, concerns: [:upload_destroyable, :configurable]
-    resources :activities, concerns: :upload_destroyable
+    resources :activities, concerns: [:upload_destroyable, :configurable]
     resources :seos, only: [:index, :edit, :update]
     resource :settings, only: [:create, :show], concerns: :upload_destroyable
     resources :formation_categories
-    resources :formations, concerns: :upload_destroyable
+    resources :formations, concerns: [:upload_destroyable, :configurable]
     resources :post_categories
-    resources :posts, concerns: :upload_destroyable
+    resources :posts, concerns: [:upload_destroyable, :configurable]
     resources :email_templates, only: [:index, :edit, :update]
-    resources :basic_pages
+    resources :basic_pages, concerns: [:upload_destroyable, :configurable]
     resources :main_pages, concerns: [:upload_destroyable, :configurable]
     resources :participants do
       member do

@@ -1,20 +1,20 @@
 = link_to "Créer une page", new_admin_basic_page_path, class:'btn btn-primary float-right'
-h1.mb-5 Pages
+h1.mb-5 Pages secondaires
 
 div data-controller='manage-index'
-  .bg-light.p-3.mb-3
-    h3 Filtres
-    = form_tag admin_basic_pages_path, method: :get do
+  / .bg-light.p-3.mb-3
+  /   h3 Filtres
+  /   = form_tag admin_basic_pages_path, method: :get do
 
-      .row
-        .col-lg-4.col-md-6.col-12
-          = label_tag "Par thème"
-          = select_tag :by_theme, \
-            options_for_select(theme_options, params[:by_theme]), \
-            prompt: "Tous les thèmes",\
-            class: "form-control dropdown-action", \
-            id: "dropdown_action",  \
-            data: {action: 'change->manage-index#submitFilterForm'}
+  /     .row
+  /       .col-lg-4.col-md-6.col-12
+  /         = label_tag "Par thème"
+  /         = select_tag :by_theme, \
+  /           options_for_select(theme_options, params[:by_theme]), \
+  /           prompt: "Tous les thèmes",\
+  /           class: "form-control dropdown-action", \
+  /           id: "dropdown_action",  \
+  /           data: {action: 'change->manage-index#submitFilterForm'}
 
 
   small = I18n.t(:results, count: @basic_pages.count)
@@ -22,10 +22,11 @@ div data-controller='manage-index'
   table.table.table-striped.table-hover.table-sm
     thead
       tr
-        th Position
+        / th Position
         th Date de création
         th Titre
         th Thèmes
+        th Pages principales
         th Activé ?
 
         th
@@ -35,17 +36,17 @@ div data-controller='manage-index'
 
       - @basic_pages.each do |basic_page|
         tr
-          - if active_interface_filter?(params)
-            td data-controller='manage-position'
-              - interface = get_interface(basic_page, params)
-              = form_for interface, as: :interface, url: admin_interface_path(interface, classname: interface.class.name) do |f|
-                = f.select  :position, \
-                            options_for_select(position_select, interface.position),\
-                            {},
-                            class: "form-control form-control-sm", \
-                            data: {action: 'change->manage-position#submitSelect'}
-          - else
-            td.text-center.disabled -
+          / - if active_interface_filter?(params)
+          /   td data-controller='manage-position'
+          /     - interface = get_interface(basic_page, params)
+          /     = form_for interface, as: :interface, url: admin_interface_path(interface, classname: interface.class.name) do |f|
+          /       = f.select  :position, \
+          /                   options_for_select(position_select, interface.position),\
+          /                   {},
+          /                   class: "form-control form-control-sm", \
+          /                   data: {action: 'change->manage-position#submitSelect'}
+          / - else
+          /   td.text-center.disabled -
           td= l basic_page.created_at
           td= basic_page.title
           / td= link_to admin_intervention_levels_path(by_basic_page: basic_page.id), class: "btn btn-light btn-sm" do
@@ -55,6 +56,10 @@ div data-controller='manage-index'
             - basic_page.themes.each do |theme|
               .badge.badge-secondary.mr-2
                 = theme.title
+          td
+            - basic_page.main_pages.each do |main_page|
+              .badge.badge-secondary.mr-2
+                = main_page.title
           td.text-center
             - if basic_page.enabled?
               = boolean_checkmark(basic_page.enabled)

@@ -100,7 +100,6 @@ end
   end
 end
 
-
 [
   { main_page: 'Le pôle', menu_blocks: [
     { title: "Les composantes du pôle", position: 1, menu_items: [

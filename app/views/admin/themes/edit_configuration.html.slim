@@ -2,4 +2,4 @@
 
   = form_for(@theme, as: :theme, \
     url: update_configuration_admin_theme_path(@theme), html: {class: "form-horizontal"}) do |f|
-    =  render partial: "form_configuration", locals: {f: f}
+    =  render "admin/shared/form_configuration", f: f, index_path: admin_themes_path

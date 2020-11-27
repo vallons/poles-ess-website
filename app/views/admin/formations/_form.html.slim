@@ -61,11 +61,4 @@
           i.far.fa-plus-square>
           ' Ajouter une date
 
-= render "admin/shared/enabled_field", f: f
-
-= render partial: 'admin/seos/fields_for_form', locals: { f: f }
-
-.action-btns
-  => f.submit class: "btn btn-primary"
-  => f.submit "Sauver et rester sur la page", name: :continue, class: "btn btn-outline-primary"
-  = link_to "Annuler", admin_formations_path, class: "btn btn-link"
+= render "admin/shared/action_btns", f: f, index_path: admin_formations_path

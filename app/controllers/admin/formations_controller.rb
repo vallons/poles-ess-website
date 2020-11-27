@@ -1,7 +1,7 @@
 class Admin::FormationsController < Admin::BaseController
   include DestroyableUpload
 
-  before_action :get_formation, only: [:edit, :update, :destroy]
+  before_action :get_formation, except: %i[index new create]
 
   def index
     @formations = Formation
@@ -47,6 +47,19 @@ class Admin::FormationsController < Admin::BaseController
     else
       flash[:error] = "Une erreur s'est produite lors de la mise à jour de la formation"
       render :edit
+    end
+  end
+
+  def edit_configuration
+  end
+
+  def update_configuration
+    if @formation.update_attributes(formation_params)
+      flash[:notice] = "Formation mise à jour avec succès"
+      redirect_to params[:continue].present? ? edit_configuration_admin_formation_path(@formation) : admin_formations_path
+    else
+      flash[:error] = "Une erreur s'est produite lors de la mise à jour de la formation"
+      render :edit_configuration
     end
   end
 
