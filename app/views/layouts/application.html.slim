@@ -89,8 +89,8 @@ html lang='fr'
         .flex.items-center.text-white.flex-1.justify-end
           .flex.text-sm.items-center.justify-end
             = link_to "Formations", formations_path, class: "block mr-2"
-            a.block.hidden.md:inline-block.text-teal-200.hover:text-white.mr-4 href="#responsive-header" 
-              | Profils
+            / a.block.hidden.md:inline-block.text-teal-200.hover:text-white.mr-4 href="#responsive-header" 
+            /   | Profils
             a.inline-block.text-sm.px-4.py-2.leading-none.border.rounded.text-white.border-white.ml-2.hover:border-transparent.hover:text-teal-500.hover:bg-white href="#"  Contact
 
       = raw flash_messages
@@ -100,27 +100,24 @@ html lang='fr'
     .w-full.bg-gray-500
       .max-w-6xl.mx-auto
         .w-2/3.flex
-          .w-1/3.py-8
-            .text-primary.text-xl.uppercase Naviguer
+          .w-1/3.py-8.text-gray-50
+            .text-xl.uppercase Thèmes
             ul
-              li Découvrir
-              li Entreprendre
-              li Coopérer
-              li Dynamiser
-          .w-1/3.py-8
-            .text-primary.text-xl.uppercase S'identifier
+              - @themes.each do |theme|
+                li = link_to theme.title, theme_path(theme)
+          .w-1/3.py-8.text-gray-50
+            .text-xl.uppercase Profils
             ul 
               li Association
               li Porteur de projet
               li Collectivité
-          .w-1/3.py-8
-            .text-primary.text-xl.uppercase Approfondir
+          .w-1/3.py-8.text-gray-50
+            .text-xl.uppercase Liens rapides
             ul 
               li Actions
-              li Formations
-              li Chiffre-clés
-              li Ressources
-              li Ressources
+              li = link_to "Formations", formations_path
+              li = link_to @key_number_page.title, basic_page_path(@key_number_page)
+              li = link_to "Ressources", resources_path
         .w-1/3.py-8
           - if Setting.logo.present?
             => image_tag Setting.logo.variant(resize_to_limit: [nil, 150]), class: ""

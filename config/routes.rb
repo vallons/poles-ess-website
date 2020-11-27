@@ -48,6 +48,7 @@ Rails.application.routes.draw do
   end
   resources :main_pages, only: [:show]
   resources :basic_pages, only: [:show]
+  resources :resources, only: [:index]
 
   root 'home#index'
 end

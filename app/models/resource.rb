@@ -18,7 +18,9 @@ class Resource < ApplicationRecord
 
   # Scopes ====================================================================
 
-
+  # scope :by_theme, -> (val) {
+  #   where(theme_id: val)
+  # }
   # Class Methods ==============================================================
 
 
