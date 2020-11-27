@@ -1,8 +1,7 @@
 class Admin::MainPagesController < Admin::BaseController
-
   include DestroyableUpload
 
-  before_action :get_main_page, only: [:edit, :update, :destroy]
+  before_action :get_main_page, except: %i[index new create]
 
   def index
     @main_pages = MainPage.includes(:seo).order(:position)
@@ -33,7 +32,7 @@ class Admin::MainPagesController < Admin::BaseController
 
   def update
     if @main_page.update_attributes(main_page_params)
-      flash[:notice] = "Page miss à jour avec succès"
+      flash[:notice] = "Page mise à jour avec succès"
       redirect_to params[:continue].present? ? edit_admin_main_page_path(@main_page) : admin_main_pages_path
     else
       flash[:error] = "Une erreur s'est produite lors de la mise à jour de la page"
@@ -41,6 +40,19 @@ class Admin::MainPagesController < Admin::BaseController
     end
   end
 
+  def edit_configuration
+    2.times { @main_page.menu_blocks.new } if @main_page.menu_blocks.empty?
+  end
+
+  def update_configuration
+    if @main_page.update_attributes(main_page_params)
+      flash[:notice] = "Page mise à jour avec succès"
+      redirect_to params[:continue].present? ? edit_configuration_admin_main_page_path(@main_page) : admin_main_pages_path
+    else
+      flash[:error] = "Une erreur s'est produite lors de la mise à jour de la page"
+      render :edit_configuration
+    end
+  end
   def destroy
     begin
       @main_page.destroy!

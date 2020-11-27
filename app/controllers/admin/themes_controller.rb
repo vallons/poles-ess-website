@@ -1,5 +1,4 @@
 class Admin::ThemesController < Admin::BaseController
-
   include DestroyableUpload
 
   before_action :get_theme, except: %i[index new create]
@@ -50,7 +49,7 @@ class Admin::ThemesController < Admin::BaseController
       redirect_to params[:continue].present? ? edit_configuration_admin_theme_path(@theme) : admin_themes_path
     else
       flash[:error] = "Une erreur s'est produite lors de la mise à jour du thème"
-      render :edit
+      render :edit_configuration
     end
   end
 

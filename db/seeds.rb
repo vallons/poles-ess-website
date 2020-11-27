@@ -99,3 +99,49 @@ end
     end
   end
 end
+
+
+[
+  { main_page: 'Le pôle', menu_blocks: [
+    { title: "Les composantes du pôle", position: 1, menu_items: [
+      { title: "Présentation", url: "#", position: 1 },
+      { title: "Missions", url: "#", position: 2 },
+      { title: "Equipe", url: "#", position: 3 },
+      { title: "Adhérents", url: "#", position: 4 },
+      { title: "Partenaires", url: "#", position: 5 }
+    ] },
+    { title: "Agir avec le pôle", position: 2, menu_items: [
+      { title: "Adhérer au pôle", url: "#", position: 1},
+      { title: "Se former", url: "#", position: 2},
+      { title: "Contacter le pôle", url: "#", position: 3}
+      ]
+    }
+    ]
+  },
+  { main_page: "L'ESS", menu_blocks: [
+    { title: "L'ESS sur le territoire", position: 1, menu_items: [
+      { title: "Chiffre-clés", url: "#", position: 1 },
+      { title: "Cartographie", url: "#", position: 2 },
+      { title: "Exemples de projets", url: "#", position: 3 }
+    ] },
+    { title: "L'ESS en général", position: 2, menu_items: [
+      { title: "C'est quoi l'ESS ?", url: "#", position: 1},
+      { title: "Le réseau des pôles ESS", url: "#", position: 2},
+      { title: "Ressources", url: "#", position: 3}
+    ] }
+    ]
+  }
+].each do |option|
+  main_page = MainPage.where(title: option[:main_page]).first
+  next unless main_page.present?
+
+  option[:menu_blocks].each do |menu_block_h|
+    menu_block = main_page.menu_blocks.where(title: menu_block_h[:title]).first_or_create(position: menu_block_h[:position])
+    menu_block_h[:menu_items].each do |menu_item_h|
+      menu_block.menu_items.where(title: menu_item_h[:title]).first_or_create(
+        url: menu_item_h[:url],
+        position: menu_item_h[:position]
+      )
+    end
+  end
+end

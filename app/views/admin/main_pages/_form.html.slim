@@ -1,15 +1,15 @@
 = f.form_errors
 
 .form-group.required
-  = f.label :title
+  = f.label :title, class: "font-weight-bold"
   = f.text_field :title, class: 'form-control'
 
 .form-group.required
-  = f.label :baseline
+  = f.label :baseline, class: "font-weight-bold"
   = f.text_field :baseline, class: 'form-control'
 
 .form-group
-  = f.label :description
+  = f.label :description, class: "font-weight-bold"
   = f.rich_text_area :description
 
 = render partial: 'admin/shared/picture_form', locals: { \
@@ -18,11 +18,4 @@
 
 = render "admin/resources/nested_form", f: f
 
-= render "admin/shared/enabled_field", f: f
-
-= render partial: 'admin/seos/fields_for_form', locals: { f: f }
-
-.action-btns
-  => f.submit class: "btn btn-primary"
-  => f.submit_and_stay class: "btn btn-outline-primary"
-  = link_to "Annuler", admin_main_pages_path, class: "btn btn-link"
+= render "admin/main_pages/action_btns", f: f

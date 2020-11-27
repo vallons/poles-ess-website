@@ -15,6 +15,7 @@ class MenuBlock < ApplicationRecord
 
   def belongs_to_main_page_or_theme
     return true if main_page || theme
+
     errors.add(:base, :belongs_to_main_page_or_theme)
     false
   end

@@ -27,7 +27,7 @@ Rails.application.routes.draw do
     resources :posts, concerns: :upload_destroyable
     resources :email_templates, only: [:index, :edit, :update]
     resources :basic_pages
-    resources :main_pages, concerns: :upload_destroyable
+    resources :main_pages, concerns: [:upload_destroyable, :configurable]
     resources :participants do
       member do
         patch :confirm_participation

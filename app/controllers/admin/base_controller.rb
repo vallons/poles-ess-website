@@ -50,7 +50,4 @@ class Admin::BaseController < ApplicationController
       :description
     ]
   end
-
-  private
-
 end

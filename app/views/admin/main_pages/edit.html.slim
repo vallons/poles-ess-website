@@ -1,22 +1,5 @@
-.title-wrapper
-  h1
-    ' Édition de la page "#{@main_page.title}"
+= render layout: 'admin/main_pages/layout_form' do
 
-  div.flex
-    = link_to admin_main_pages_path, class: "btn btn-light mr-4" do
-      i.fa.fa-chevron-left>
-      ' Retour
-    span.small
-      ' Créé le
-      strong => l @main_page.created_at
-      ' -
-      ' Mis à jour le
-      strong = l @main_page.updated_at
-
-
-  hr
-
-= form_for(@main_page, as: :main_page, \
-  url: admin_main_page_path(@main_page), html: {class: "form-horizontal"}) do |f| 
-  
-  =  render partial: "form", locals: {f: f}
+  = form_for(@main_page, as: :main_page, \
+    url: admin_main_page_path(@main_page), html: {class: "form-horizontal"}) do |f| 
+    =  render partial: "form", locals: {f: f}
