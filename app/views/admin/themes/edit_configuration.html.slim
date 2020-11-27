@@ -1,0 +1,5 @@
+= render layout: 'admin/themes/layout_form' do
+
+  = form_for(@theme, as: :theme, \
+    url: update_configuration_admin_theme_path(@theme), html: {class: "form-horizontal"}) do |f|
+    =  render partial: "form_configuration", locals: {f: f}

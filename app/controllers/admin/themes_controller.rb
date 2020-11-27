@@ -2,11 +2,10 @@ class Admin::ThemesController < Admin::BaseController
 
   include DestroyableUpload
 
-  before_action :get_theme, only: [:edit, :update, :destroy]
+  before_action :get_theme, except: %i[index new create]
 
   def index
     @themes = Theme.includes(:seo).order(:position)
-      # .page(params[:page]).per(20)
   end
 
   def new
@@ -41,6 +40,20 @@ class Admin::ThemesController < Admin::BaseController
     end
   end
 
+  def edit_configuration
+    2.times { @theme.menu_blocks.new } if @theme.menu_blocks.empty?
+  end
+
+  def update_configuration
+    if @theme.update_attributes(theme_params)
+      flash[:notice] = "Thème mis à jour avec succès"
+      redirect_to params[:continue].present? ? edit_configuration_admin_theme_path(@theme) : admin_themes_path
+    else
+      flash[:error] = "Une erreur s'est produite lors de la mise à jour du thème"
+      render :edit
+    end
+  end
+
   def destroy
     begin
       @theme.destroy!
@@ -55,7 +68,7 @@ class Admin::ThemesController < Admin::BaseController
 
   def theme_params
     params.require(:theme).permit(:title, :description, :baseline, :image, :position, :enabled,
-        seo_attributes: seo_attributes, resources_attributes: resources_attributes
+        seo_attributes: seo_attributes, resources_attributes: resources_attributes, menu_blocks_attributes: menu_blocks_attributes
 )
   end
 

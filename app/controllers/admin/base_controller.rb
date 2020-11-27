@@ -28,6 +28,20 @@ class Admin::BaseController < ApplicationController
     ]
   end
 
+  def menu_blocks_attributes
+    [
+      :id,
+      :title,
+      menu_items_attributes: [
+        :id,
+        :title,
+        :url,
+        :position,
+        :_destroy
+      ]
+    ]
+  end
+
   def seo_attributes
     [
       :id,

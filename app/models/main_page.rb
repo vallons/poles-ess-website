@@ -13,6 +13,8 @@ class MainPage < ApplicationRecord
 
   has_many :page_jointures, dependent: :destroy
   has_many :basic_pages, through: :page_jointures
+  has_many :menu_blocks, dependent: :destroy
+
 
   # Associations ===============================================================
 

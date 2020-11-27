@@ -1,0 +1,23 @@
+h4#menu-blocks.mb-2 Menu
+
+.row
+  = f.fields_for :menu_blocks do |ff|
+    .col-6 data-controller="nested-fields" data-nested-fields-all-deletable="true"
+      .form-group.required
+        = ff.label :title, class: "font-weight-bold"
+        = ff.text_field :title, class: 'form-control'
+
+      template data-target="nested-fields.template"
+        = ff.fields_for :menu_items, MenuItem.new, child_index: 'NEW_RECORD' do |item|
+          = render "admin/menu_blocks/menu_item_fields", f: item
+
+      = ff.fields_for :menu_items do |fff|
+        = render "admin/menu_blocks/menu_item_fields", f: fff
+
+
+      /   = render "admin/resources/fields", f: ff
+
+      .text-center.mb-3 data-target="nested-fields.links"
+        = link_to "#", class: "btn btn-info btn-sm", data: { action: "click->nested-fields#add_association" } do
+          i.far.fa-plus-square>
+          ' Ajouter un lien
