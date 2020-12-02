@@ -3,6 +3,7 @@
 class Post < ApplicationRecord
   include Seoable
   include Themable
+  include Resourceable
   include Enablable
 
   # Configurations =============================================================

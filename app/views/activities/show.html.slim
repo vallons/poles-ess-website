@@ -6,4 +6,11 @@
         = theme.title
   - if @activity.image.present?
     = image_tag  @activity.image, class: "mb-8 mx-auto"
-  .mb-24== @activity.description
+  .flex.mb-24
+    .w-2/3
+      == @activity.description
+    - if @activity.resources.any?
+      .w-1/3
+        h3.text-2xl.font-bold.mb-3 Ressources
+        ul
+          = render partial: 'resources/resource', collection: @activity.resources, as: :resource

@@ -34,6 +34,7 @@
 /   f: f, \
 /   destroy_path: f.object.image.present? ? destroy_upload_admin_basic_page_path(f.object, f.object.image.id, redirect: :edit) : nil}
 
+= render "admin/resources/nested_form", f: f
 
 = render "admin/shared/action_btns", f: f, index_path: admin_basic_pages_path
 

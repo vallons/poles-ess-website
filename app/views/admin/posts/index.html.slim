@@ -51,6 +51,10 @@
                   .badge.badge-secondary.mr-2
                     = theme.title
               td = post.post_category&.title
+              td.text-center
+                = link_to edit_admin_post_path(post, anchor: 'resources'), class: "btn btn-light btn-sm" do
+                  = post.resources.count
+
               td = post.publication_state_humanized
               td=> link_to edit_admin_post_path(post), class: "btn btn-sm btn-info mr-2", title: "Editer" do
                 i.fas.fa-pen

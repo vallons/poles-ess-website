@@ -26,6 +26,7 @@ div data-controller='manage-index'
         th Date de création
         th Titre
         th Thèmes
+        th.text-center Ressources
         th Mis en avant
 
         th
@@ -55,6 +56,10 @@ div data-controller='manage-index'
             - activity.themes.each do |theme|
               .badge.badge-secondary.mr-2
                 = theme.title
+          td.text-center
+            = link_to edit_admin_activity_path(activity, anchor: 'resources'), class: "btn btn-light btn-sm" do
+              = activity.resources.count
+
           td.text-center
             - if activity.highlighted?
               = boolean_checkmark(activity.highlighted)

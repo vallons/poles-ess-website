@@ -14,23 +14,25 @@ class Admin::PostsController < Admin::BaseController
   def new
     @post = Post.new(published_at: Time.current)
     @post.build_seo
+    @post.resources.new
   end
 
   def create
     @post = Post.new(post_params)
-
     if @post.save
       flash[:notice] = "L'actualité a été créée avec succès"
       redirect_to params[:continue].present? ? edit_admin_post_path(@post) : admin_posts_path
     else
+      @post.resources.new if @post.resources.empty?
       flash[:error] = "Une erreur s'est produite lors de la création de l'actualité"
       render :new
     end
   end
-  
+
   def edit
+    @post.resources.new if @post.resources.empty?
   end
-  
+
   def update
     if @post.update_attributes(post_params)
       flash[:notice] = "L'actualité a été mise à jour avec succès"
@@ -81,7 +83,8 @@ class Admin::PostsController < Admin::BaseController
         :expired_at,
         :enabled,
         theme_ids: [],
-        seo_attributes: seo_attributes
+        seo_attributes: seo_attributes,
+        resources_attributes: resources_attributes
       )
   end
 end

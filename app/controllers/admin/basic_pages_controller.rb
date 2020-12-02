@@ -13,6 +13,7 @@ class Admin::BasicPagesController < Admin::BaseController
   def new
     @basic_page = BasicPage.new
     @basic_page.build_seo
+    @basic_page.resources.new
   end
 
   def create
@@ -26,7 +27,9 @@ class Admin::BasicPagesController < Admin::BaseController
     end
   end
 
-  def edit; end
+  def edit
+    @basic_page.resources.new if @basic_page.resources.empty?
+  end
 
   def update
     if @basic_page.update_attributes(basic_page_params)
@@ -77,6 +80,8 @@ class Admin::BasicPagesController < Admin::BaseController
       :title, :content, :enabled,
       theme_ids: [],
       main_page_ids: [],
-      seo_attributes: seo_attributes)
+      seo_attributes: seo_attributes,
+      resources_attributes: resources_attributes
+    )
   end
 end

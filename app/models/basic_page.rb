@@ -4,6 +4,7 @@ class BasicPage < ApplicationRecord
   # Configurations =============================================================
   include Themable
   include Seoable
+  include Resourceable
   include Enablable
 
   has_rich_text :content

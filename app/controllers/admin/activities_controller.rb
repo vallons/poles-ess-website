@@ -14,6 +14,7 @@ class Admin::ActivitiesController < Admin::BaseController
   def new
     @activity = Activity.new
     @activity.build_seo
+    @activity.resources.new
   end
 
   def create
@@ -22,12 +23,14 @@ class Admin::ActivitiesController < Admin::BaseController
       flash[:notice] = "L'action a été créé avec succès"
       redirect_to params[:continue].present? ? edit_admin_activity_path(@activity) : admin_activities_path
     else
+      @activity.resources.new if @activity.resources.empty?
       flash[:error] = "Une erreur s'est produite lors de la mise à jour de l'action"
       render :new
     end
   end
 
   def edit
+    @activity.resources.new if @activity.resources.empty?
   end
 
   def update
@@ -66,10 +69,11 @@ class Admin::ActivitiesController < Admin::BaseController
   private # =====================================================
 
   def activity_params
-    params.require(:activity).permit(:title, :description, :image, 
-      :enabled, :highlighted, :home_title,
-      theme_ids: [], seo_attributes: seo_attributes
-)
+    params.require(:activity).permit(
+      :title, :description, :image, :enabled, :highlighted, :home_title,
+      theme_ids: [], seo_attributes: seo_attributes,
+      resources_attributes: resources_attributes
+    )
   end
 
   def get_activity

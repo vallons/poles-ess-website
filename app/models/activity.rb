@@ -2,6 +2,7 @@ class Activity < ApplicationRecord
   include Themable
   include Seoable
   include Enablable
+  include Resourceable
 
   has_rich_text :description
   has_one_attached :image
