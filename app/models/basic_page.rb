@@ -15,6 +15,13 @@ class BasicPage < ApplicationRecord
 
   # Callbacks ==================================================================
   validates :title, presence: true
+  validates :key, uniqueness: true, unless: :destroyable?
+  
+  private def check_for_key
+    return true if key.nil?
+    throw :abort
+  end
+  before_destroy :check_for_key
 
   # Scopes =====================================================================
 
@@ -37,6 +44,8 @@ class BasicPage < ApplicationRecord
   end
 
   # Instance Methods ===========================================================
-
+  def destroyable?
+    key.nil?
+  end
   # private #=====================================================================
 end

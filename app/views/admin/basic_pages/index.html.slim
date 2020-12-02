@@ -69,8 +69,9 @@ div data-controller='manage-index'
               = boolean_checkmark(basic_page.enabled)
           td=> link_to edit_admin_basic_page_path(basic_page), class: "btn btn-sm btn-info mr-2", title: "Editer" do
             i.fas.fa-pen
-            = link_to admin_basic_page_path(basic_page), method: :delete, data: {confirm: "Confirmer la suppression ?"}, title: "Supprimer", class: "btn btn-sm btn-danger" do
-              i.far.fa-trash-alt
+            - if basic_page.destroyable?
+              = link_to admin_basic_page_path(basic_page), method: :delete, data: {confirm: "Confirmer la suppression ?"}, title: "Supprimer", class: "btn btn-sm btn-danger" do
+                i.far.fa-trash-alt
 
       - if @basic_pages.empty?
         tr
