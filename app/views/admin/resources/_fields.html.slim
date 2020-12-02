@@ -1,34 +1,36 @@
-.nested-fields data-new_record="#{f.object.new_record?}" data-controller="radio-tabs" class="bg-light px-4 py-3 mb-3"
-  = f.hidden_field :id
-  = f.hidden_field :_destroy
-  = link_to "#", data: { action: "click->nested-fields#remove_association" }, class: "js-delete-link btn btn-sm btn-danger float-right" do
-    i.far.fa-trash-alt
-  .row
-    .col
-      .form-group
-        = f.label :title, class: "font-weight-bold"
-        = f.text_field :title, class: 'form-control'
-      .form-group.mb-0
-        = f.label :category, class: "font-weight-bold mr-3"
-        div
-          - Resource.categories.each do |key, value|
-            .form-check.form-check-inline
-              => f.radio_button :category, key, class: "form-check-input", data: { action: "change->radio-tabs#setCurrentTab", tab: key}
-              = f.label :category, value: key, class: "form-check-label"
+.nested-fields data-new_record="#{f.object.new_record?}" data-controller="radio-tabs" class="bg-light px-4 py-3 mb-3 draggable-item" 
+    = f.hidden_field :id
+    = f.hidden_field :_destroy
+    = f.hidden_field :position, data: { target: "drag.position" }
 
-    .col
-      h5.mb-3 Contenu
-      div data-target="radio-tabs.content" data-tab="document"
-        - if f.object.document.present?
-          .d-flex
-            p.font-weight-bold Document actuel :
-            =>  link_to f.object.document.filename, url_for(f.object.document), target: '_blank', class: 'ml-1'
-          = f.label :document, "Modifier le document : ", class: "font-weight-bold"
-          = f.file_field :document
-        - else
-          => f.label :document, "Télécharger le document : ", class: "font-weight-bold"
-          => f.file_field :document
-      div data-target="radio-tabs.content" data-tab="link"
+    = link_to "#", data: { action: "click->nested-fields#remove_association" }, class: "js-delete-link btn btn-sm btn-danger float-right" do
+      i.far.fa-trash-alt
+    .row
+      .col
         .form-group
-          => f.label :link, class: "font-weight-bold"
-          = f.text_field :link, class: 'form-control'
+          = f.label :title, class: "font-weight-bold"
+          = f.text_field :title, class: 'form-control'
+        .form-group.mb-0
+          = f.label :category, class: "font-weight-bold mr-3"
+          div
+            - Resource.categories.each do |key, value|
+              .form-check.form-check-inline
+                => f.radio_button :category, key, class: "form-check-input", data: { action: "change->radio-tabs#setCurrentTab", tab: key}
+                = f.label :category, value: key, class: "form-check-label"
+
+      .col
+        h5.mb-3 Contenu
+        div data-target="radio-tabs.content" data-tab="document"
+          - if f.object.document.present?
+            .d-flex
+              p.font-weight-bold Document actuel :
+              =>  link_to f.object.document.filename, url_for(f.object.document), target: '_blank', class: 'ml-1'
+            = f.label :document, "Modifier le document : ", class: "font-weight-bold"
+            = f.file_field :document
+          - else
+            => f.label :document, "Télécharger le document : ", class: "font-weight-bold"
+            => f.file_field :document
+        div data-target="radio-tabs.content" data-tab="link"
+          .form-group
+            => f.label :link, class: "font-weight-bold"
+            = f.text_field :link, class: 'form-control'

@@ -24,6 +24,7 @@ class Admin::BaseController < ApplicationController
       :category,
       :link,
       :document,
+      :position,
       :_destroy
     ]
   end
