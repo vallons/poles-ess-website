@@ -4,9 +4,14 @@ fr:
       resource:
         title:          Le titre
         category:       Le type
-        link:           Le lien 
+        link:           Le lien
+      resources:
+        title:          Le titre de la resource
+        category:       Le type de la resource
+        link:           Le lien de la resource
       resource/category:
-        link: Lien
+        link: Le lien
+        document: Le document
 
   helpers:
     label:

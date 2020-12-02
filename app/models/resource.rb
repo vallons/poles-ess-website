@@ -15,11 +15,14 @@ class Resource < ApplicationRecord
 
   # Validations ================================================================
 
+  validates :title, presence: true
+  validates :link, presence: true, if: ->(r) { r.link? }
+  validates :document, presence: true, if: ->(r) { r.document? }
 
   # Scopes ====================================================================
 
-  # scope :by_theme, -> (val) {
-  #   where(theme_id: val)
+  # scope :by_theme, -> (id) {
+  #   where(resourceable_type: "Theme").where(resourceable_id: id)
   # }
   # Class Methods ==============================================================
 
