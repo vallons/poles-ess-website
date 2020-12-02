@@ -21,11 +21,20 @@ class Resource < ApplicationRecord
 
   # Scopes ====================================================================
 
-  # scope :by_theme, -> (id) {
-  #   where(resourceable_type: "Theme").where(resourceable_id: id)
-  # }
+  scope :by_theme, -> (id) {
+    where(resourceable_type: "Theme").where(resourceable_id: id)
+  }
+
   # Class Methods ==============================================================
 
+  def self.apply_filters(params)
+    [
+      :by_theme,
+    ].inject(all) do |relation, filter|
+      next relation unless params[filter].present?
+      relation.send(filter, params[filter])
+    end
+  end
 
   # Instance methods ====================================================
 
