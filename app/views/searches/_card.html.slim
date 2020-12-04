@@ -1,0 +1,12 @@
+- item = result.searchable
+.post-card.max-w-md.rounded.overflow-hidden.shadow-lg.mb-4
+  - if item.respond_to?(:image) && item.image.attached?
+    = image_tag item.image.variant(resize_to_fill: [500, 300]), class: "w-full"
+  .px-6.py-4
+    h3.font-bold.text-xl
+      = link_to item.title, item
+    p.text-gray-700.text-base
+      == item.description.to_plain_text.truncate(250)
+  .px-6.pt-4.pb-2
+      span.inline-block.bg-gray-200.rounded-full.px-3.py-1.text-sm.font-semibold.text-gray-700.mr-2.mb-2 
+        = class_name(item)

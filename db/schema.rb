@@ -10,10 +10,12 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_11_27_165109) do
+ActiveRecord::Schema.define(version: 2020_12_03_152122) do
 
   # These are extensions that must be enabled in order to support this database
+  enable_extension "pg_trgm"
   enable_extension "plpgsql"
+  enable_extension "unaccent"
 
   create_table "action_text_rich_texts", force: :cascade do |t|
     t.string "name", null: false
@@ -48,7 +50,7 @@ ActiveRecord::Schema.define(version: 2020_11_27_165109) do
 
   create_table "activities", force: :cascade do |t|
     t.string "title"
-    t.text "description"
+    t.text "search_description"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.boolean "enabled", default: true
@@ -70,7 +72,7 @@ ActiveRecord::Schema.define(version: 2020_11_27_165109) do
 
   create_table "basic_pages", force: :cascade do |t|
     t.string "title"
-    t.text "content"
+    t.text "search_description"
     t.integer "position"
     t.boolean "enabled", default: false
     t.string "key"
@@ -102,7 +104,7 @@ ActiveRecord::Schema.define(version: 2020_11_27_165109) do
 
   create_table "formations", force: :cascade do |t|
     t.string "title"
-    t.text "description"
+    t.text "search_description"
     t.bigint "formation_category_id"
     t.string "address"
     t.string "zipcode"
@@ -120,7 +122,7 @@ ActiveRecord::Schema.define(version: 2020_11_27_165109) do
     t.string "title"
     t.string "number"
     t.string "source"
-    t.text "description"
+    t.text "search_description"
     t.integer "position"
     t.boolean "enabled", default: true
     t.datetime "created_at", precision: 6, null: false
@@ -130,7 +132,7 @@ ActiveRecord::Schema.define(version: 2020_11_27_165109) do
   create_table "main_pages", force: :cascade do |t|
     t.string "title"
     t.string "baseline"
-    t.text "description"
+    t.text "search_description"
     t.integer "position"
     t.boolean "enabled", default: true
     t.datetime "created_at", precision: 6, null: false
@@ -180,6 +182,15 @@ ActiveRecord::Schema.define(version: 2020_11_27_165109) do
     t.index ["subscription_id"], name: "index_participants_on_subscription_id"
   end
 
+  create_table "pg_search_documents", force: :cascade do |t|
+    t.text "content"
+    t.string "searchable_type"
+    t.bigint "searchable_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["searchable_type", "searchable_id"], name: "index_pg_search_documents_on_searchable_type_and_searchable_id"
+  end
+
   create_table "post_categories", force: :cascade do |t|
     t.string "title"
     t.integer "position"
@@ -191,7 +202,7 @@ ActiveRecord::Schema.define(version: 2020_11_27_165109) do
 
   create_table "posts", force: :cascade do |t|
     t.string "title"
-    t.text "description"
+    t.text "search_description"
     t.datetime "published_at"
     t.datetime "expired_at"
     t.bigint "post_category_id"
@@ -266,7 +277,7 @@ ActiveRecord::Schema.define(version: 2020_11_27_165109) do
   create_table "themes", force: :cascade do |t|
     t.string "title"
     t.string "baseline"
-    t.text "description"
+    t.text "search_description"
     t.integer "position"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false

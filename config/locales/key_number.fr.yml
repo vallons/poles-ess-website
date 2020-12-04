@@ -1,5 +1,9 @@
 fr:
   activerecord:
+    models:
+      key_number:
+        one: Chiffre-clé
+        other: Chiffre-clés
     attributes:
       key_number:
         title:          Le titre

@@ -1,5 +1,9 @@
 fr:
   activerecord:
+    models:
+      theme:
+        one: Thème
+        other: Thèmes
     attributes:
       theme:
         title:          Le titre

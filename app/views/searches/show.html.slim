@@ -1,0 +1,10 @@
+.container.mx-auto.mb-6
+  .mb-4
+    h1.text-6xl.font-bold.text-center.mt-16.mb-4.text-gray-900 Votre recherche
+    .mx-auto.max-w-xl
+      = render 'searches/form'
+
+  ul.flex.flex-wrap
+    - @results.each do |result|
+      li.w-1/2
+        = render 'searches/card', result: result

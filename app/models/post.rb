@@ -5,6 +5,10 @@ class Post < ApplicationRecord
   include Themable
   include Resourceable
   include Enablable
+  include RichDescription
+
+  include PgSearch::Model
+  multisearchable against: [:title, :search_description]
 
   # Configurations =============================================================
   PUBLICATION_STATES = {
@@ -13,8 +17,6 @@ class Post < ApplicationRecord
     expired: "Expirée"
   }.freeze
 
-  has_rich_text :teaser
-  has_rich_text :description
   has_one_attached :image
 
   # Associations ===============================================================

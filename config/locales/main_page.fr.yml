@@ -1,5 +1,9 @@
 fr:
   activerecord:
+    models:
+      main_page:
+        one: Page principale
+        other: Pages principales
     attributes:
       main_page:
         title:          Le titre

@@ -27,8 +27,8 @@
         = f.label :main_page_ids, main_page.title, value: main_page.id, class: "form-check-label"
 
 .form-group
-  = f.label :content, class: "font-weight-bold"
-  = f.rich_text_area :content
+  = f.label :description, class: "font-weight-bold"
+  = f.rich_text_area :description
 
 / = render partial: 'admin/shared/picture_form', locals: { \
 /   f: f, \

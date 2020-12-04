@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   devise_for :admin
 
-   # Concerns ===================================================================
+  # Concerns ===================================================================
 
   concern :upload_destroyable do
     delete "destroy_upload/:upload_id", action: :destroy_upload, as: :destroy_upload, on: :member
@@ -40,6 +40,8 @@ Rails.application.routes.draw do
     root to: "dashboard#index"
   end
 
+  # Public ============================================
+
   resources :themes, only: [:show]
   resources :activities, only: [:index, :show]
   resources :posts, only: [:index, :show]
@@ -49,6 +51,7 @@ Rails.application.routes.draw do
   resources :main_pages, only: [:show]
   resources :basic_pages, only: [:show]
   resources :resources, only: [:index]
+  resource :search, only: [:show]
 
   root 'home#index'
 end

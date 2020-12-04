@@ -69,10 +69,7 @@ html lang='fr'
                           - menu_block.menu_items.each do |menu_item|
                             li = link_to menu_item.title, menu_item.url
 
-
-      
-      
-      nav.flex.items-center.justify-between.bg-primary.text-white.p-6
+      nav.flex.items-center.justify-between.bg-primary.text-white.px-6.py-4
         button.flex.items-center.flex-1
           svg.fill-current.cursor-pointer viewBox="0 0 100 80" width="40" height="40" xmlns="http://www.w3.org/2000/svg" data-action="click->main-menu#toggleSideMenu"
             title Menu
@@ -92,11 +89,22 @@ html lang='fr'
             / a.block.hidden.md:inline-block.text-teal-200.hover:text-white.mr-4 href="#responsive-header" 
             /   | Profils
             a.inline-block.text-sm.px-4.py-2.leading-none.border.rounded.text-white.border-white.ml-2.hover:border-transparent.hover:text-teal-500.hover:bg-white href="#"  Contact
+      nav.bg-gray-800.px-3
+        div.flex.justify-between.items-center
+          div.flex.justify-start.lg:w-0.lg:flex-1
+          div.lg:inline-flex.lg:flex-row.lg:m-auto.lg:w-auto.w-full.lg:items-center.items-start.flex.flex-col.lg:h-auto
+            - @themes.each do |theme|
+              = link_to theme.title, theme_path(theme), class: "lg:inline-flex lg:w-auto w-full px-3 py-2 rounded text-gray-200 items-center justify-center hover:text-white hover:underline"
+            - @main_pages.each do |main_page|
+              = link_to main_page.title, main_page_path(main_page), class: "lg:inline-flex lg:w-auto w-full px-3 py-2 rounded text-gray-200 items-center justify-center hover:text-white hover:underline"
+          div.flex.justify-end.lg:w-0.lg:flex-1
+            div.lg:inline-flex.lg:flex-row.lg:ml-auto.lg:w-auto.w-full.lg:items-center.items-start.flex.flex-col
+              = render 'searches/form'
 
       = raw flash_messages
 
       = yield
-                                                                                                                                                                                                                                                                                                                                                                                                                                                          
+
     .w-full.bg-gray-500
       .max-w-6xl.mx-auto
         .w-2/3.flex

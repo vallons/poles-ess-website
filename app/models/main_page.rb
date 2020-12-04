@@ -5,8 +5,11 @@ class MainPage < ApplicationRecord
   include Seoable
   include Resourceable
   include Enablable
+  include RichDescription
 
-  has_rich_text :description
+  include PgSearch::Model
+  multisearchable against: [:title, :baseline, :search_description]
+
   has_one_attached :image
 
   acts_as_list

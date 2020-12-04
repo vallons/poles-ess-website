@@ -3,8 +3,11 @@ class Activity < ApplicationRecord
   include Seoable
   include Enablable
   include Resourceable
+  include RichDescription
 
-  has_rich_text :description
+  include PgSearch::Model
+  multisearchable against: [:title, :home_title, :search_description]
+
   has_one_attached :image
 
   # Validations ================================================================

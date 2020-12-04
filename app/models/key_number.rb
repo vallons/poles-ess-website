@@ -3,10 +3,12 @@
 class KeyNumber < ApplicationRecord
   # Configurations =============================================================
   include Enablable
+  include RichDescription
 
   acts_as_list
 
-  has_rich_text :description
+  include PgSearch::Model
+  multisearchable against: [:title, :search_description, :source]
 
   # Associations ===============================================================
 

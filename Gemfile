@@ -16,6 +16,7 @@ gem 'bootsnap', '>= 1.4.2', require: false
 gem "devise", "~> 4.7"
 gem "rails-settings-cached", "~> 2.0"
 gem 'acts_as_list'
+gem 'pg_search'
 
 # Views ====================================================
 gem 'slim'

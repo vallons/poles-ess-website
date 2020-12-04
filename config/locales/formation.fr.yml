@@ -1,5 +1,9 @@
 fr:
   activerecord:
+    models:
+      formation:
+        one: Formation
+        other: Formations
     attributes: &attributes_active_records
       schedule:
         start_at: L'heure de début

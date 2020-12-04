@@ -1,10 +1,13 @@
 fr:
   activerecord:
+    models:
+      basic_page:
+        one: Sous-page
+        other: Sous-pages
     attributes:
       basic_page:
         title:          Le titre
         content:        Le contenu
-
   helpers:
     label:
       basic_page:

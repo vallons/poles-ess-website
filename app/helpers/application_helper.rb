@@ -58,5 +58,7 @@ module ApplicationHelper
     I18n.t(bool, scope: [:boolean, :checkmark])
   end
 
-
+  def class_name(item)
+    item.class.model_name.human
+  end
 end

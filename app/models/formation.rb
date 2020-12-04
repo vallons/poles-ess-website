@@ -4,8 +4,11 @@ class Formation < ApplicationRecord
 
   include Seoable
   include Enablable
+  include RichDescription
 
-  has_rich_text :description
+  include PgSearch::Model
+  multisearchable against: [:title, :search_description]
+
   has_one_attached :image
 
   belongs_to :formation_category

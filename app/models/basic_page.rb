@@ -6,8 +6,10 @@ class BasicPage < ApplicationRecord
   include Seoable
   include Resourceable
   include Enablable
+  include RichDescription
 
-  has_rich_text :content
+  include PgSearch::Model
+  multisearchable against: [:title, :search_description]
 
   # Associations ===============================================================
   has_many :page_jointures, dependent: :destroy

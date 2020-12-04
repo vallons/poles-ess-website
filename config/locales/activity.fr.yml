@@ -1,5 +1,9 @@
 fr:
   activerecord:
+    models:
+      activity:
+        one: Actions
+        other: Action
     attributes:
       activity:
         title:          Le titre

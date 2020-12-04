@@ -1,0 +1,5 @@
+= form_tag search_path, method: :get do
+  .flex.rounded-md.shadow-sm
+    = text_field_tag :query, params[:query], class: "flex-1 px-2 block w-full rounded-none rounded-l-md border border-gray-300"
+    = button_tag "", class: 'inline-flex items-center px-3 rounded-r-md border border-l-0 border-gray-300 bg-gray-50 text-gray-500 text-sm' do
+      i.fas.fa-search

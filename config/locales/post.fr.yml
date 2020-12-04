@@ -1,5 +1,9 @@
 fr:
   activerecord:
+    models:
+      post:
+        one: Actualité
+        other: Actualités
     attributes:
       post:
         title:          Le titre
