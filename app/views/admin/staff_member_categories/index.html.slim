@@ -1,0 +1,46 @@
+= render layout: 'admin/staff_members/layout_index' do
+
+  = link_to "Créer une catégorie", new_admin_staff_member_category_path, class:'btn btn-primary float-right'
+  h2.mb-5 Catégories de membre de l'équipe
+
+  .cadre-table
+    table.table.table-striped.table-hover.table-sm
+      thead
+        tr
+          th Position
+          th Date de création
+          th Titre
+          th.text-center Membres
+
+          th
+      tbody
+        - max_position    = @staff_member_categories.map(&:position).compact.max || 1
+        - position_select = (1..max_position).map { |i| [i, i] }
+
+        - @staff_member_categories.each do |staff_member_category|
+          tr
+            td data-controller='manage-position'
+              = form_for staff_member_category, as: :staff_member_category, url: admin_staff_member_category_path(staff_member_category) do |f|
+                = f.select  :position, \
+                            options_for_select(position_select, staff_member_category.position),\
+                            {},
+                            class: "form-control form-control-sm", \
+                            data: {action: 'change->manage-position#submitSelect'}
+
+            td= l staff_member_category.created_at
+            td= staff_member_category.title
+            td.text-center
+              = link_to admin_staff_members_path(by_staff_member_category: staff_member_category.id), class: "btn btn-light btn-sm" do
+                = staff_member_category.staff_members.count
+            td=> link_to edit_admin_staff_member_category_path(staff_member_category), class: "btn btn-sm btn-info mr-2", title: "Editer" do
+              i.fas.fa-pen
+              = link_to admin_staff_member_category_path(staff_member_category), method: :delete, data: {confirm: "Confirmer la suppression ?"}, title: "Supprimer", class: "btn btn-sm btn-danger" do
+                i.far.fa-trash-alt
+
+
+        - if @staff_member_categories.empty?
+          tr
+            td colspan="7"
+              p.mt-3.text-center: em.text-muted Aucune catégorie
+
+  / = paginate @staff_member_categories  

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_12_03_152122) do
+ActiveRecord::Schema.define(version: 2020_12_11_155814) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_trgm"
@@ -252,6 +252,24 @@ ActiveRecord::Schema.define(version: 2020_12_03_152122) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["var"], name: "index_settings_on_var", unique: true
+  end
+
+  create_table "staff_member_categories", force: :cascade do |t|
+    t.string "title"
+    t.integer "position"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "staff_members", force: :cascade do |t|
+    t.string "firstname"
+    t.string "lastname"
+    t.integer "position"
+    t.boolean "enabled", default: true
+    t.bigint "staff_member_category_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["staff_member_category_id"], name: "index_staff_members_on_staff_member_category_id"
   end
 
   create_table "subscriptions", force: :cascade do |t|

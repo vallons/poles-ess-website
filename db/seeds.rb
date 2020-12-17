@@ -106,7 +106,7 @@ end
     { title: "Les composantes du pôle", position: 1, menu_items: [
       { title: "Présentation", url: "#", position: 1 },
       { title: "Missions", url: "#", position: 2 },
-      { title: "Equipe", url: "#", position: 3 },
+      { title: "Equipe", url: staff_members_path, position: 3 },
       { title: "Adhérents", url: "#", position: 4 },
       { title: "Partenaires", url: "#", position: 5 }
     ] },

@@ -1,0 +1,9 @@
+h1 Gestion des membre de l'équipe
+
+ul.nav.nav-tabs.mb-3
+  li.nav-item
+    = active_link_to "Equipe", admin_staff_members_path, title: "Gérer les membres de l'équipe", class: "nav-link", active: :exclusive
+  li.nav-item
+    = active_link_to "Catégories", admin_staff_member_categories_path, title: "Gérer les catégories", class: "nav-link", active: :exclusive
+
+= yield

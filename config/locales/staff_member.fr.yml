@@ -1,0 +1,28 @@
+fr:
+  activerecord:
+    models:
+      staff_member:
+        one: Membre de l'équipe
+        other: Equipe
+    attributes:
+      staff_member:
+        firstname:          Le prénom
+        lastname:          Le nom
+        fullname:          Le nom
+        description:    La description
+        staff_member_category:  La catégorie
+        staff_member_category_id:  La catégorie
+
+  helpers:
+    label:
+      staff_member:
+        firstname:          Prénom
+        lastname:          Nom
+        fullname:          Nom
+        description:    Description
+        staff_member_category:  Catégorie
+        staff_member_category_id:  Catégorie
+    submit:
+      staff_member:
+        create: "Créer le membre de l'équipe"
+        update: "Mettre à jour le membre de l'équipe"

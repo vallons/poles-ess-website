@@ -1,0 +1,14 @@
+fr:
+  activerecord:
+    attributes:
+      staff_member_category:
+        title:          Le titre
+
+  helpers:
+    label:
+      staff_member_category:
+        title:          Titre
+    submit:
+      staff_member_category:
+        create: "Créer la catégorie"
+        update: "Mettre à jour la catégorie"

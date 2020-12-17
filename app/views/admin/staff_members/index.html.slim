@@ -1,0 +1,61 @@
+= render layout: 'admin/staff_members/layout_index' do
+
+  = link_to "Créer un membre de l'équipe", new_admin_staff_member_path, class:'btn btn-primary float-right'
+  h2.mb-5 Equipe
+
+  div data-controller='manage-index'
+    .bg-light.p-3.mb-3
+      h3 Filtres
+      = form_tag admin_staff_members_path, method: :get do
+
+        .row
+          .col-lg-4.col-md-6.col-12
+            = label_tag "Par catégorie"
+            = select_tag :by_staff_member_category, \
+              options_for_select(staff_member_category_options, params[:by_staff_member_category]), \
+              prompt: "Toutes les catégories",\
+              class: "form-control dropdown-action", \
+              id: "dropdown_action",  \
+              data: {action: 'change->manage-index#submitFilterForm'}
+
+    .cadre-table
+      table.table.table-striped.table-hover.table-sm
+        thead
+          tr
+            th Position
+            th Nom
+            th Catégorie
+
+            th
+        tbody
+          - max_position    = categorized_max_position(params, @staff_members) || 1
+          - position_select = (1..max_position).map { |i| [i, i] }
+
+          - @staff_members.each do |staff_member|
+            tr
+              - if active_category_filter?(params)
+                td data-controller='manage-position'
+                  / - interface = get_interface(activity, params)
+                  = form_for staff_member, as: :staff_member, url: admin_staff_member_path(staff_member) do |f|
+                    = f.select  :position, \
+                                options_for_select(position_select, staff_member.position),\
+                                {},
+                                class: "form-control form-control-sm", \
+                                data: {action: 'change->manage-position#submitSelect'}
+              - else
+                td.text-center.disabled -
+
+              td= staff_member.fullname
+              td = staff_member.staff_member_category&.title
+              td=> link_to edit_admin_staff_member_path(staff_member), class: "btn btn-sm btn-info mr-2", title: "Editer" do
+                i.fas.fa-pen
+                = link_to admin_staff_member_path(staff_member), method: :delete, data: {confirm: "Confirmer la suppression ?"}, title: "Supprimer", class: "btn btn-sm btn-danger" do
+                  i.far.fa-trash-alt
+
+
+          - if @staff_members.empty?
+            tr
+              td colspan="7"
+                p.mt-3.text-center: em.text-muted Aucun membre de l'équipe
+
+    / = paginate @staff_members

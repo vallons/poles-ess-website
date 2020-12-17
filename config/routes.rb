@@ -24,6 +24,8 @@ Rails.application.routes.draw do
     resources :formation_categories
     resources :post_categories
     resources :posts, concerns: [:upload_destroyable, :configurable]
+    resources :staff_member_categories
+    resources :staff_members, concerns: [:upload_destroyable, :configurable]
     resources :basic_pages, concerns: [:upload_destroyable, :configurable]
     resources :key_numbers
     resources :email_templates, only: [:index, :edit, :update]
@@ -43,15 +45,16 @@ Rails.application.routes.draw do
   # Public ============================================
 
   resources :themes, only: [:show]
-  resources :activities, only: [:index, :show]
-  resources :posts, only: [:index, :show]
+  resources :activities, only: [:index, :show], path: "actions"
+  resources :posts, only: [:index, :show], path: "actualites"
   resources :formations, only: [:index, :show, :edit, :update] do
-    resources :subscriptions, controller: "formations/subscriptions", only: [:new, :create, :show]
+    resources :subscriptions, controller: "formations/subscriptions", only: [:new, :create, :show], path: "inscription"
   end
-  resources :main_pages, only: [:show]
-  resources :basic_pages, only: [:show]
-  resources :resources, only: [:index]
-  resource :search, only: [:show]
+  resources :main_pages, only: [:show], path: "pages"
+  resources :basic_pages, only: [:show], path: "pages-secondaires"
+  resources :resources, only: [:index], path: "ressources"
+  resources :staff_members, only: [:index], path: "equipe"
+  resource :search, only: [:show], path: "recherche"
 
   root 'home#index'
 end
