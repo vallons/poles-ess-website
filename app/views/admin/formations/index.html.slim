@@ -1,63 +1,62 @@
-= link_to "Créer une formation", new_admin_formation_path, class:'btn btn-primary float-right'
-h1.mb-5 Formations
+= render layout: 'admin/formations/layout_index' do
+  = link_to "Créer une formation", new_admin_formation_path, class:'btn btn-primary float-right'
+  h1.mb-5 Formations
 
-div data-controller='manage-index'
-  .bg-light.p-3.mb-3
-    h3 Filtres
-    = form_tag admin_formations_path, method: :get do
+  div data-controller='manage-index'
+    .bg-light.p-3.mb-3
+      h3 Filtres
+      = form_tag admin_formations_path, method: :get do
 
-      .row
-        .col-lg-4.col-md-6.col-12
-          = label_tag "Par catégorie"
-          = select_tag :by_formation_category, \
-            options_for_select(formation_category_options, params[:by_formation_category]), \
-            prompt: "Toutes les catégories",\
-            class: "form-control dropdown-action", \
-            id: "dropdown_action",  \
-            data: {action: 'change->manage-index#submitFilterForm'}
-        .col-lg-4.col-md-6.col-12
-          = label_tag "Par année"
-          = select_tag :by_year, \
-            options_for_select(formation_year_options, params[:by_year]), \
-            prompt: "Toutes les années",\
-            class: "form-control dropdown-action", \
-            id: "dropdown_action",  \
-            data: {action: 'change->manage-index#submitFilterForm'}
+        .row
+          .col-lg-4.col-md-6.col-12
+            = label_tag "Par catégorie"
+            = select_tag :by_formation_category, \
+              options_for_select(formation_category_options, params[:by_formation_category]), \
+              prompt: "Toutes les catégories",\
+              class: "form-control dropdown-action", \
+              id: "dropdown_action",  \
+              data: {action: 'change->manage-index#submitFilterForm'}
+          .col-lg-4.col-md-6.col-12
+            = label_tag "Par année"
+            = select_tag :by_year, \
+              options_for_select(formation_year_options, params[:by_year]), \
+              prompt: "Toutes les années",\
+              class: "form-control dropdown-action", \
+              id: "dropdown_action",  \
+              data: {action: 'change->manage-index#submitFilterForm'}
 
-  small = I18n.t(:results, count: @formations.count)
+    small = I18n.t(:results, count: @formations.count)
 
-  table.table.table-striped.table-hover.table-sm
-    thead
-      tr
-        th Date de création
-        th Catégorie
-        th Titre
-        th Date(s)
-        th Places restantes
-        th Participants
-
-        th
-    tbody
-      - @formations.each do |formation|
+    table.table.table-striped.table-hover.table-sm
+      thead
         tr
-          td= l(formation.created_at, format: :day)
-          td= formation.formation_category.title
-          td= formation.title
-          td= schedule_dates(formation.schedules.order(:time_range).pluck(:time_range))
-          td.text-center= formation.is_full? ? "COMPLET" : formation.remaining_tickets
-          td.text-center
-            = link_to admin_participants_path(by_formation: formation.id), class: "btn btn-light btn-sm" do
-              = formation.participants.count
-          td=> link_to edit_admin_formation_path(formation), class: "btn btn-sm btn-info mr-2", title: "Editer" do
-            i.fas.fa-pen
-            = link_to admin_formation_path(formation), method: :delete, data: {confirm: "Confirmer la suppression ?"}, title: "Supprimer", class: "btn btn-sm btn-danger" do
-              i.far.fa-trash-alt
+          th Date de création
+          th Catégorie
+          th Titre
+          th Date(s)
+          th Places restantes
+          th Participants
 
+          th
+      tbody
+        - @formations.each do |formation|
+          tr
+            td= l(formation.created_at, format: :day)
+            td= formation.formation_category.title
+            td= formation.title
+            td= schedule_dates(formation.schedules.order(:time_range).pluck(:time_range))
+            td.text-center= formation.is_full? ? "COMPLET" : formation.remaining_tickets
+            td.text-center
+              = link_to admin_participants_path(by_formation: formation.id), class: "btn btn-light btn-sm" do
+                = formation.participants.count
+            td=> link_to edit_admin_formation_path(formation), class: "btn btn-sm btn-info mr-2", title: "Editer" do
+              i.fas.fa-pen
+              = link_to admin_formation_path(formation), method: :delete, data: {confirm: "Confirmer la suppression ?"}, title: "Supprimer", class: "btn btn-sm btn-danger" do
+                i.far.fa-trash-alt
 
-      - if @formations.empty?
-        tr
-          td colspan="7"
-            p.mt-3.text-center: em.text-muted Aucune formation
-  
-  = paginate @formations
-  / == render partial: 'pagy/bootstrap_nav', locals: {pagy: @pagy}
+        - if @formations.empty?
+          tr
+            td colspan="7"
+              p.mt-3.text-center: em.text-muted Aucune formation
+
+    = paginate @formations

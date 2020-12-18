@@ -44,19 +44,15 @@ html lang="#{I18n.locale}"
                   li.nav-item
                     = active_link_to admin_participants_path, title: "Gérer les participants", class: "nav-link", active: :inclusive do
                       i.fas.fa-chalkboard-teacher>
-                      ' Participants
+                      ' Participant·es
                   li.nav-item
                     = active_link_to admin_formations_path, title: "Gérer les formations", class: "nav-link", active: :inclusive do
                       i.fas.fa-chalkboard-teacher>
                       ' Formations
-                  li.nav-item
-                    = active_link_to admin_formation_categories_path, title: "Gérer les catégories de formation", class: "nav-link", active: :inclusive do
-                      i.fas.fa-chalkboard-teacher>
-                      ' Catégories
-                  li.nav-item
-                    = active_link_to "#", title: "Gérer les actus", class: "nav-link disabled", active: :exclusive do
-                      i.fas.fa-chalkboard-teacher>
-                      ' Paramètres
+                  / li.nav-item
+                  /   = active_link_to admin_formation_categories_path, title: "Gérer les catégories de formation", class: "nav-link", active: :inclusive do
+                  /     i.fas.fa-chalkboard-teacher>
+                  /     ' Catégories
               li.nav-item.nav-header
                 span.nav-link Contenus froids
                 ul
