@@ -1,0 +1,19 @@
+= f.form_errors
+
+.form-group.required
+  = f.label :title, class: "font-weight-bold"
+  = f.text_field :title, class: 'form-control'
+
+.form-group.required
+  = f.label :link, class: "font-weight-bold"
+  = f.text_field :link, class: 'form-control'
+
+
+  fieldset
+    legend Date
+    div data-controller="nested-fields"
+
+      = f.fields_for :schedule do |ff|
+        = render "schedule_fields", f: ff
+
+= render "admin/shared/action_btns", f: f, index_path: admin_events_path

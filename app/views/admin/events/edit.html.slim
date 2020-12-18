@@ -1,0 +1,5 @@
+= render layout: 'admin/events/layout_form' do
+
+  = form_for(@event, url: admin_event_path(@event), html: {class: "form-horizontal"}) do |f| 
+
+    =  render partial: "form", locals: {f: f}

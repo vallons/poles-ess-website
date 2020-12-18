@@ -81,6 +81,10 @@ html lang="#{I18n.locale}"
                       i.fas.fa-snowflake>
                       ' Equipe
                   li.nav-item
+                    = active_link_to admin_events_path, title: "Gérer les événements", class: "nav-link", active: :inclusive do
+                      i.fas.fa-snowflake>
+                      ' Evénements
+                  li.nav-item
                     = active_link_to admin_key_numbers_path, title: "Gérer les chiffres clés", class: "nav-link", active: :inclusive do
                       i.fas.fa-snowflake>
                       ' Chiffres clés

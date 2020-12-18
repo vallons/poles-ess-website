@@ -31,6 +31,7 @@ Rails.application.routes.draw do
     resources :email_templates, only: [:index, :edit, :update]
     resource :settings, only: [:create, :show], concerns: :upload_destroyable
     resources :seos, only: [:index, :edit, :update]
+    resources :events
     resources :participants do
       member do
         patch :confirm_participation

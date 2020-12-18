@@ -1,0 +1,38 @@
+fr:
+  activerecord:
+    models:
+      event:
+        one: Evénement
+        other: Evénements
+    attributes: &attributes_active_records
+      schedule:
+        start_at: L'heure de début
+        end_at: L'heure de fin
+        date: La date
+      event:
+        title:          Le titre
+        link:         Le lien 
+        schedule:        La date
+
+  activemodel:
+    models:
+      event: Evénement
+    attributes:
+      event:
+        title:          Le titre
+      <<: *attributes_active_records
+    errors:
+      models:
+        schedule:
+          attributes:
+            end_at: L'heure de fin
+
+  helpers:
+    label:
+      event:
+        title:          Titre
+        link:           Lien
+    submit:
+      event:
+        create: "Créer l'événement"
+        update: "Mettre à jour l'événement"

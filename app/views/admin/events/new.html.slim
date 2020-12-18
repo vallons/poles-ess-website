@@ -1,0 +1,12 @@
+.title-wrapper
+  h1 Créer une événement
+
+  div.flex
+    = link_to admin_events_path, class: "btn btn-light mr-4" do
+      i.fa.fa-chevron-left>
+      ' Retour
+
+hr
+
+= form_for(@event, url: admin_events_path, html: {class: "form-horizontal"}) do |f|
+  = render "form", f: f
