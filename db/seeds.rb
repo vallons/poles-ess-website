@@ -71,7 +71,7 @@ end
     position: option[:position]
   )
   option[:child_pages].each do |child_page_h|
-    child_page = main_page.child_pages.where(key: child_page_h[:key]).first_or_create(
+    main_page.child_pages.where(key: child_page_h[:key]).first_or_create(
       title: child_page_h[:title],
       enabled: child_page_h[:enabled],
       position: child_page_h[:position]
@@ -84,7 +84,7 @@ end
 [
   { theme: 'Découvrir', menu_blocks: [
     { title: "", position: 2, menu_items: [
-      { title: "Chiffre-clés", url: basic_page_path(BasicPage.find_by(key: 'key_numbers')), position: 1},
+      { title: "Chiffre-clés", url: main_page_path(MainPage.find_by(key: 'key_numbers')), position: 1},
       { title: "Ressources", url: "#", position: 2},
       { title: "Actualités", url: posts_path, position: 3}
       ]
@@ -93,7 +93,7 @@ end
   },
   { theme: 'Entreprendre', menu_blocks: [
     { title: "", position: 2, menu_items: [
-      { title: "Chiffre-clés", url: basic_page_path(BasicPage.find_by(key: 'key_numbers')), position: 1},
+      { title: "Chiffre-clés", url: main_page_path(MainPage.find_by(key: 'key_numbers')), position: 1},
       { title: "Ressources", url: "#", position: 2},
       { title: "Actualités", url: posts_path, position: 3}
     ] }
@@ -124,7 +124,7 @@ end
       { title: "Partenaires", url: "#", position: 5 }
     ] },
     { title: "Agir avec le pôle", position: 2, menu_items: [
-      { title: "Adhérer au pôle", url: basic_page_path(BasicPage.find_by(key: 'membership')), position: 1},
+      { title: "Adhérer au pôle", url: main_page_path(MainPage.find_by(key: 'membership')), position: 1},
       { title: "Se former", url: formations_path, position: 2},
       { title: "Contacter le pôle", url: "#", position: 3}
       ]
@@ -133,8 +133,8 @@ end
   },
   { main_page: "L'ESS", menu_blocks: [
     { title: "L'ESS sur le territoire", position: 1, menu_items: [
-      { title: "Chiffre-clés", url: basic_page_path(BasicPage.find_by(key: 'key_numbers')), position: 1 },
-      { title: "Cartographie", url: basic_page_path(BasicPage.find_by(key: 'ess_map')), position: 2 },
+      { title: "Chiffre-clés", url: main_page_path(MainPage.find_by(key: 'key_numbers')), position: 1 },
+      { title: "Cartographie", url: main_page_path(MainPage.find_by(key: 'ess_map')), position: 2 },
       { title: "Exemples de projets", url: "#", position: 3 }
     ] },
     { title: "L'ESS en général", position: 2, menu_items: [

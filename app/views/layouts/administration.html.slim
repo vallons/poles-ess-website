@@ -38,6 +38,10 @@ html lang="#{I18n.locale}"
                     = active_link_to "#", title: "Gérer les actus", class: "nav-link disabled", active: :exclusive do
                       i.fas.fa-fire>
                       ' Ressources
+                  li.nav-item
+                    = active_link_to admin_events_path, title: "Gérer les événements", class: "nav-link", active: :inclusive do
+                      i.fas.fa-fire>
+                      ' Evénements
               li.nav-item.nav-header
                 span.nav-link Formations
                 ul
@@ -49,10 +53,6 @@ html lang="#{I18n.locale}"
                     = active_link_to admin_formations_path, title: "Gérer les formations", class: "nav-link", active: :inclusive do
                       i.fas.fa-chalkboard-teacher>
                       ' Formations
-                  / li.nav-item
-                  /   = active_link_to admin_formation_categories_path, title: "Gérer les catégories de formation", class: "nav-link", active: :inclusive do
-                  /     i.fas.fa-chalkboard-teacher>
-                  /     ' Catégories
               li.nav-item.nav-header
                 span.nav-link Contenus froids
                 ul
@@ -64,23 +64,21 @@ html lang="#{I18n.locale}"
                     = active_link_to "#", title: "Gérer les actus", class: "nav-link disabled", active: :exclusive do
                       i.fas.fa-snowflake>
                       ' Profils
-                  li.nav-item
+                  li.nav-item class="#{'active' if in_special_pages_menu}"
                     = active_link_to admin_main_pages_path, title: "Gérer les pages principales", class: "nav-link", active: :inclusive do
                       i.fas.fa-snowflake>
                       ' Pages
-                  li.nav-item
-                    = active_link_to admin_staff_members_path, title: "Gérer les membres de l'équipe", class: "nav-link", active: :inclusive do
-                      i.fas.fa-snowflake>
-                      ' Equipe
-                  li.nav-item
-                    = active_link_to admin_events_path, title: "Gérer les événements", class: "nav-link", active: :inclusive do
-                      i.fas.fa-snowflake>
-                      ' Evénements
-                  li.nav-item
-                    = active_link_to admin_key_numbers_path, title: "Gérer les chiffres clés", class: "nav-link", active: :inclusive do
-                      i.fas.fa-snowflake>
-                      ' Chiffres clés
-              li.nav-item.nav-header 
+                    ul.dropdown
+                      li.nav-item
+                        = active_link_to admin_key_numbers_path, title: "Gérer les chiffres clés", class: "nav-link", active: :inclusive do
+                          i.fas.fa-snowflake>
+                          ' Chiffres clés
+                      li.nav-item
+                        = active_link_to admin_staff_members_path, title: "Gérer les membres de l'équipe", class: "nav-link", active: :inclusive do
+                          i.fas.fa-snowflake>
+                          ' Equipe
+
+              li.nav-item.nav-header
                 span.nav-link Configuration
                 ul
                   li.nav-item
@@ -108,11 +106,11 @@ html lang="#{I18n.locale}"
                 span.navbar-toggler-icon
               #navbarSupportedContent.collapse.navbar-collapse
                 ul.navbar-nav.ml-auto
-                  li.nav-item 
+                  li.nav-item
                     => active_link_to root_path, title: "Retour au site", class: "nav-link", active: :exclusive do
-                      i.far.fa-eye> 
+                      i.far.fa-eye>
                       ' Voir le site
-                  li.nav-item 
+                  li.nav-item
                     = active_link_to destroy_admin_session_path, title: "Se déconnecter", class: "nav-link", method: :delete do
                       i.fas.fa-sign-out-alt>
                       ' Déconnexion

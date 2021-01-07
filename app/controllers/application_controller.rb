@@ -33,8 +33,8 @@ class ApplicationController < ActionController::Base
 
   def get_menu_items
     @themes = Theme.enabled.includes(:seo, :activities).order(:position)
-    @main_pages = MainPage.enabled.includes(:seo, :basic_pages).order(:position)
-    @key_number_page = BasicPage.find_by(key: 'key_numbers')
+    @main_pages = MainPage.no_parent.enabled.includes(:seo).order(:position)
+    @key_number_page = MainPage.enabled.find_by(key: 'key_numbers')
   end
 
   def set_default_seos!

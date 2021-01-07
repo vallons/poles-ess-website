@@ -8,12 +8,6 @@ module PostHelper
     end
   end
 
-  def parent_page_options(parent_pages = MainPage.no_parent)
-    parent_pages.order(position: :asc).map do |parent_page|
-      [parent_page.title, parent_page.id]
-    end
-  end
-
   def post_options(posts = Post.all)
     posts.order(title: :asc).map do |post|
       [post.title, post.id]

@@ -33,12 +33,16 @@
             td= l child_page.created_at
             td= child_page.title
             td.text-center
-              = link_to edit_admin_main_page_child_page_path(@main_page, child_page, anchor: 'resources'), class: "btn btn-light btn-sm" do
-                = child_page.resources.count
+              - if child_page.special_page?
+                ' -
+              - else
+                = link_to edit_admin_main_page_child_page_path(@main_page, child_page, anchor: 'resources'), class: "btn btn-light btn-sm" do
+                  = child_page.resources.count
+
             td.text-center
               - if child_page.enabled?
                 = boolean_checkmark(child_page.enabled)
-            td=> link_to edit_admin_main_page_child_page_path(@main_page, child_page), class: "btn btn-sm btn-info mr-2", title: "Editer" do
+            td=> link_to edit_admin_page_path(child_page), class: "btn btn-sm btn-info mr-2", title: "Editer" do
               i.fas.fa-pen
               - if child_page.destroyable?
                 = link_to admin_main_page_child_page_path(@main_page, child_page), method: :delete, data: {confirm: "Confirmer la suppression ?"}, title: "Supprimer", class: "btn btn-sm btn-danger" do

@@ -53,6 +53,11 @@ class MainPage < ApplicationRecord
     key.nil?
   end
 
+  # MainPage rattachées à des modèles (ex : chiffres clés, membres..)
+  def special_page?
+    key.present? && Object.const_defined?(key.classify.to_sym)
+  end
+
   def no_parent?
     parent_page_id.nil?
   end
