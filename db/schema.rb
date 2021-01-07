@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_12_17_164719) do
+ActiveRecord::Schema.define(version: 2021_01_07_081726) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_trgm"
@@ -144,6 +144,9 @@ ActiveRecord::Schema.define(version: 2020_12_17_164719) do
     t.boolean "enabled", default: true
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.bigint "parent_page_id"
+    t.string "key"
+    t.index ["parent_page_id"], name: "index_main_pages_on_parent_page_id"
   end
 
   create_table "menu_blocks", force: :cascade do |t|
@@ -165,15 +168,6 @@ ActiveRecord::Schema.define(version: 2020_12_17_164719) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["menu_block_id"], name: "index_menu_items_on_menu_block_id"
-  end
-
-  create_table "page_jointures", force: :cascade do |t|
-    t.bigint "basic_page_id"
-    t.bigint "main_page_id"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["basic_page_id"], name: "index_page_jointures_on_basic_page_id"
-    t.index ["main_page_id"], name: "index_page_jointures_on_main_page_id"
   end
 
   create_table "participants", force: :cascade do |t|

@@ -30,9 +30,7 @@ EmailTemplate.where(mailer: "ParticipantMailer", mail_name: "new_subscription").
 [
   { key: 'data_policy', title: 'Politique de confidentialité', enabled: true },
   { key: 'legal_mentions', title: 'Mentions légales', enabled: true },
-  { key: 'key_numbers', title: 'Chiffres-clés', enabled: true },
-  { key: 'ess_map', title: 'Cartographie', enabled: true },
-  { key: 'membership', title: 'Adhérer au pôle', enabled: true },
+  { key: 'contact', title: 'Contact', enabled: true },
 ].each do |option|
   BasicPage.where(key: option[:key]).first_or_create(
     enabled: option[:enabled], 
@@ -55,20 +53,36 @@ end
 
 # Main Pages ==================================================
 [
-  { title: 'Le pôle', baseline: 'Une structure au service du territoire', position: 1 },
-  { title: "L'ESS", baseline: "Découvrez l'économie sociale et solidaire", position: 2 },
+  { title: 'Le pôle', baseline: 'Une structure au service du territoire', position: 1, child_pages: [
+    { key: nil, title: 'Missions', enabled: true, position: 1 },
+    { key: 'staff_member', title: 'Equipe', enabled: true, position: 2 },
+    { key: 'adherent', title: 'Adhérents', enabled: true, position: 3 },
+    { key: 'partner', title: 'Partenaires', enabled: true, position: 4 },
+    { key: 'membership', title: 'Adhérer au pôle', enabled: true, position: 5 },
+  ] },
+  { title: "L'ESS", baseline: "Découvrez l'économie sociale et solidaire", position: 2, child_pages: [
+    { key: nil, title: "C'est quoi l'ESS?", enabled: true, position: 1 },
+    { key: 'key_numbers', title: 'Chiffres-clés', enabled: true, position: 2 },
+    { key: 'ess_map', title: 'Cartographie', enabled: true, position: 3 },
+  ] },
 ].each do |option|
-  MainPage.where(title: option[:title]).first_or_create(
+  main_page = MainPage.where(title: option[:title]).first_or_create(
     baseline: option[:baseline],
     position: option[:position]
   )
+  option[:child_pages].each do |child_page_h|
+    child_page = main_page.child_pages.where(key: child_page_h[:key]).first_or_create(
+      title: child_page_h[:title],
+      enabled: child_page_h[:enabled],
+      position: child_page_h[:position]
+    )
+  end
 end
 
 # Menu Items ==================================================
 
 [
   { theme: 'Découvrir', menu_blocks: [
-    { title: "Nos actions", position: 1, menu_items: []},
     { title: "", position: 2, menu_items: [
       { title: "Chiffre-clés", url: basic_page_path(BasicPage.find_by(key: 'key_numbers')), position: 1},
       { title: "Ressources", url: "#", position: 2},
@@ -78,7 +92,6 @@ end
     ]
   },
   { theme: 'Entreprendre', menu_blocks: [
-    { title: "Nos actions", position: 1, menu_items: [] },
     { title: "", position: 2, menu_items: [
       { title: "Chiffre-clés", url: basic_page_path(BasicPage.find_by(key: 'key_numbers')), position: 1},
       { title: "Ressources", url: "#", position: 2},

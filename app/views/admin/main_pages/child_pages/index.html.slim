@@ -1,0 +1,52 @@
+= render layout: 'admin/main_pages/layout_form' do
+
+  = link_to "Créer une sous-page", new_admin_main_page_child_page_path(@main_page), class:'btn btn-primary float-right'
+  h3.mb-5 Sous-pages
+
+  div data-controller='manage-index'
+    small = I18n.t(:results, count: @child_pages.count)
+
+    table.table.table-striped.table-hover.table-sm
+      thead
+        tr
+          th Position
+          th Date de création
+          th Titre
+          th.text-center Ressources
+          th.text-center Activé ?
+
+          th
+      tbody
+        - max_position    = @child_pages.map(&:position).compact.max || 1
+        - position_select = (1..max_position).map { |i| [i, i] }
+
+        - @child_pages.each do |child_page|
+          tr
+            td data-controller='manage-position'
+              = form_for child_page, as: :child_page, url: admin_main_page_child_page_path(@main_page, child_page) do |f|
+                = f.select  :position, \
+                            options_for_select(position_select, child_page.position),\
+                            {},
+                            class: "form-control form-control-sm", \
+                            data: {action: 'change->manage-position#submitSelect'}
+
+            td= l child_page.created_at
+            td= child_page.title
+            td.text-center
+              = link_to edit_admin_main_page_child_page_path(@main_page, child_page, anchor: 'resources'), class: "btn btn-light btn-sm" do
+                = child_page.resources.count
+            td.text-center
+              - if child_page.enabled?
+                = boolean_checkmark(child_page.enabled)
+            td=> link_to edit_admin_main_page_child_page_path(@main_page, child_page), class: "btn btn-sm btn-info mr-2", title: "Editer" do
+              i.fas.fa-pen
+              - if child_page.destroyable?
+                = link_to admin_main_page_child_page_path(@main_page, child_page), method: :delete, data: {confirm: "Confirmer la suppression ?"}, title: "Supprimer", class: "btn btn-sm btn-danger" do
+                  i.far.fa-trash-alt
+
+        - if @child_pages.empty?
+          tr
+            td colspan="7"
+              p.mt-3.text-center: em.text-muted Aucune page
+
+    = paginate @child_pages

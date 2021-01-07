@@ -18,7 +18,9 @@ Rails.application.routes.draw do
 
   namespace :admin do
     resources :themes, concerns: [:upload_destroyable, :configurable]
-    resources :main_pages, concerns: [:upload_destroyable, :configurable]
+    resources :main_pages, concerns: [:upload_destroyable, :configurable] do
+      resources :child_pages, controller: "main_pages/child_pages", concerns: [:upload_destroyable, :configurable]
+    end
     resources :activities, concerns: [:upload_destroyable, :configurable]
     resources :formations, concerns: [:upload_destroyable, :configurable]
     resources :formation_categories

@@ -24,7 +24,7 @@ h1.mb-5 Pages principales
         th Position
         th Date de création
         th Titre
-        th.text-center Pages secondaires
+        th.text-center Sous-pages
         th.text-center Ressources
         th
     tbody
@@ -44,15 +44,16 @@ h1.mb-5 Pages principales
           td= l main_page.created_at
           td= main_page.title
           td.text-center
-            = link_to admin_basic_pages_path(by_main_page: main_page.id), class: "btn btn-light btn-sm" do
-              = main_page.basic_pages.count
+            = link_to admin_main_page_child_pages_path(main_page), class: "btn btn-light btn-sm" do
+              = main_page.child_pages.count
           td.text-center
             = link_to edit_admin_main_page_path(main_page, anchor: 'resources'), class: "btn btn-light btn-sm" do
               = main_page.resources.count
           td=> link_to edit_admin_main_page_path(main_page), class: "btn btn-sm btn-info mr-2", title: "Editer" do
             i.fas.fa-pen
-            = link_to admin_main_page_path(main_page), method: :delete, data: {confirm: "Confirmer la suppression ?"}, title: "Supprimer", class: "btn btn-sm btn-danger" do
-              i.far.fa-trash-alt
+            - if main_page.destroyable?
+              = link_to admin_main_page_path(main_page), method: :delete, data: {confirm: "Confirmer la suppression ?"}, title: "Supprimer", class: "btn btn-sm btn-danger" do
+                i.far.fa-trash-alt
 
 
       - if @main_pages.empty?

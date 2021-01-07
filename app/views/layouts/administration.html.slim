@@ -67,11 +67,7 @@ html lang="#{I18n.locale}"
                   li.nav-item
                     = active_link_to admin_main_pages_path, title: "Gérer les pages principales", class: "nav-link", active: :inclusive do
                       i.fas.fa-snowflake>
-                      ' Pages principales
-                  li.nav-item
-                    = active_link_to admin_basic_pages_path, title: "Gérer les pages secondaires", class: "nav-link", active: :inclusive do
-                      i.fas.fa-snowflake>
-                      ' Pages secondaires
+                      ' Pages
                   li.nav-item
                     = active_link_to admin_staff_members_path, title: "Gérer les membres de l'équipe", class: "nav-link", active: :inclusive do
                       i.fas.fa-snowflake>
@@ -86,7 +82,11 @@ html lang="#{I18n.locale}"
                       ' Chiffres clés
               li.nav-item.nav-header 
                 span.nav-link Configuration
-                ul 
+                ul
+                  li.nav-item
+                    = active_link_to admin_basic_pages_path, title: "Gérer les pages légales", class: "nav-link", active: :inclusive do
+                      i.fas.fa-snowflake>
+                      ' Pages légales
                   li.nav-item
                     = active_link_to admin_seos_path, title: "Gérer le référencement", class: "nav-link", active: :inclusive do
                       i.fas.fa-cog>
@@ -100,15 +100,6 @@ html lang="#{I18n.locale}"
               - if model_is_defined("Contact")
                 li.nav-item = active_link_to 'Contacts', admin_contacts_path, active: :inclusive
 
-                  / Hide basic pages link if none has been generated in seeds
-                  / - if BasicPage.exists?
-                  /   = submenu("Pages", %w[basic_pages])
-                  /     - BasicPage.all.each do |basic_page|
-                  /       li.nav-item = active_link_to basic_page.title, [:edit, :admin, basic_page]
-
-                  / = submenu("Configurations", %w[seos admins])
-                  /   li.nav-item = active_link_to 'Gérer les admins', admin_admins_path
-                  /   li.nav-item = active_link_to 'SEO pages statiques', admin_seos_path
         .col-10.p-0
           header
             nav.navbar.navbar-expand-lg.navbar-dark.bg-dark

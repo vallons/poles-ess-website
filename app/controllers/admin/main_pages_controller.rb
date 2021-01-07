@@ -4,7 +4,7 @@ class Admin::MainPagesController < Admin::BaseController
   before_action :get_main_page, except: %i[index new create]
 
   def index
-    @main_pages = MainPage.includes(:seo).order(:position)
+    @main_pages = MainPage.no_parent.includes(:seo).order(:position)
       .page(params[:page]).per(20)
   end
 
@@ -33,7 +33,7 @@ class Admin::MainPagesController < Admin::BaseController
   def update
     if @main_page.update_attributes(main_page_params)
       flash[:notice] = "Page mise à jour avec succès"
-      redirect_to params[:continue].present? ? edit_admin_main_page_path(@main_page) : admin_main_pages_path
+      redirect_after_update_main_page(@main_page)
     else
       flash[:error] = "Une erreur s'est produite lors de la mise à jour de la page"
       render :edit
@@ -53,6 +53,7 @@ class Admin::MainPagesController < Admin::BaseController
       render :edit_configuration
     end
   end
+
   def destroy
     begin
       @main_page.destroy!
@@ -66,13 +67,12 @@ class Admin::MainPagesController < Admin::BaseController
   private # =====================================================
 
   def main_page_params
-    params.require(:main_page).permit(:title, :baseline, :description, :image, :position, :enabled,
-        seo_attributes: seo_attributes, resources_attributes: resources_attributes
-)
+    params.require(:main_page).permit(:title, :baseline, :description, :image, :position, :enabled, :parent_page_id,
+      seo_attributes: seo_attributes, resources_attributes: resources_attributes, menu_blocks_attributes: menu_blocks_attributes
+    )
   end
 
   def get_main_page
     @main_page = MainPage.from_param params[:id]
   end
- 
 end

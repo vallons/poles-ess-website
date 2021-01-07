@@ -12,13 +12,11 @@ class BasicPage < ApplicationRecord
   multisearchable against: [:title, :search_description]
 
   # Associations ===============================================================
-  has_many :page_jointures, dependent: :destroy
-  has_many :main_pages, through: :page_jointures
 
   # Callbacks ==================================================================
   validates :title, presence: true
   validates :key, uniqueness: true, unless: :destroyable?
-  
+
   private def check_for_key
     return true if key.nil?
     throw :abort

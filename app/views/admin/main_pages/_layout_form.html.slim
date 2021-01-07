@@ -16,8 +16,10 @@
 
 ul.nav.nav-tabs.my-3
   li.nav-item
-    = active_link_to "Contenu", edit_admin_main_page_path(@main_page), title: "Gérer les contenus", class: "nav-link", active: :exclusive
+    = active_link_to "Contenu", edit_admin_main_page_path(@main_page), title: "Gérer les contenus", class: "nav-link", active: :inclusive
   li.nav-item
-    = active_link_to "Configuration", edit_configuration_admin_main_page_path(@main_page), title: "Gérer la configuration", class: "nav-link", active: :exclusive
+    = active_link_to "Sous-pages", admin_main_page_child_pages_path(@main_page), title: "Gérer les sous_pages", class: "nav-link", active: :inclusive
+  li.nav-item
+    = active_link_to "Configuration", edit_configuration_admin_main_page_path(@main_page), title: "Gérer la configuration", class: "nav-link", active: :inclusive
 
 = yield

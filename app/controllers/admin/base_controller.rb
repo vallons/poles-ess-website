@@ -51,4 +51,12 @@ class Admin::BaseController < ApplicationController
       :description
     ]
   end
+
+  def redirect_after_update_main_page(page)
+    if page.no_parent?
+      redirect_to params[:continue].present? ? edit_admin_main_page_path(page) : admin_main_pages_path
+    else
+      redirect_to params[:continue].present? ? edit_admin_main_page_child_page_path(page.parent_page, page) : admin_main_page_child_pages_path(page.parent_page)
+    end
+  end
 end

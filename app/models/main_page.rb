@@ -1,5 +1,4 @@
 # frozen_string_literal: true
-
 class MainPage < ApplicationRecord
   # Configurations =============================================================
   include Seoable
@@ -12,11 +11,11 @@ class MainPage < ApplicationRecord
 
   has_one_attached :image
 
-  acts_as_list
+  acts_as_list scope: [:parent_page_id]
 
   # Associations ===============================================================
-  has_many :page_jointures, dependent: :destroy
-  has_many :basic_pages, through: :page_jointures
+  belongs_to :parent_page, class_name: 'MainPage', optional: true
+  has_many :child_pages, -> { order(:position) }, class_name: 'MainPage', foreign_key: 'parent_page_id'
 
   has_many :menu_blocks, -> { order(:position) }, inverse_of: :main_page, dependent: :destroy
   accepts_nested_attributes_for :menu_blocks, reject_if: :all_blank
@@ -24,24 +23,37 @@ class MainPage < ApplicationRecord
 
   # Callbacks ==================================================================
   validates :title, presence: true
+  validates :key, uniqueness: true, unless: :destroyable?
+
+  private def check_for_key
+    return true if key.nil?
+    throw :abort
+  end
+  before_destroy :check_for_key
 
   # Scopes =====================================================================
+  scope :no_parent, -> { where(parent_page_id: nil) }
 
   # Class Methods ==============================================================
   def self.apply_filters(params)
     [
-
     ].inject(all) do |relation, filter|
       next relation unless params[filter].present?
+
       relation.send(filter, params[filter])
     end
   end
 
-  def self.apply_sorts(params)
+  def self.apply_sorts(*)
     order(created_at: :desc)
   end
 
   # Instance Methods ===========================================================
+  def destroyable?
+    key.nil?
+  end
 
-  # private #=====================================================================
+  def no_parent?
+    parent_page_id.nil?
+  end
 end
