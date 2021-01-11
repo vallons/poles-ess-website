@@ -1,0 +1,9 @@
+h1 Gestion des partenaires
+
+ul.nav.nav-tabs.mb-3
+  li.nav-item
+    = active_link_to "partenaires", admin_partners_path, title: "Gérer les partenaires", class: "nav-link", active: :exclusive
+  li.nav-item
+    = active_link_to "Catégories", admin_partner_categories_path, title: "Gérer les catégories", class: "nav-link", active: :exclusive
+
+= yield

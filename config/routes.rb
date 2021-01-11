@@ -30,6 +30,8 @@ Rails.application.routes.draw do
     resources :staff_members, concerns: [:upload_destroyable, :configurable]
     resources :adherent_categories
     resources :adherents, concerns: [:upload_destroyable, :configurable]
+    resources :partner_categories
+    resources :partners, concerns: [:upload_destroyable, :configurable]
     resources :basic_pages, concerns: [:upload_destroyable, :configurable]
     resources :key_numbers
     resources :email_templates, only: [:index, :edit, :update]
@@ -60,6 +62,7 @@ Rails.application.routes.draw do
   resources :resources, only: [:index], path: "ressources"
   resources :staff_members, only: [:index], path: "equipe"
   resources :adherents, only: [:index], path: "adherents"
+  resources :partners, only: [:index], path: "partenaires"
   resource :search, only: [:show], path: "recherche"
 
   root 'home#index'

@@ -121,7 +121,7 @@ end
       { title: "Missions", url: "#", position: 2 },
       { title: "Equipe", url: staff_members_path, position: 3 },
       { title: "Adhérents", url: adherents_path, position: 4 },
-      { title: "Partenaires", url: "#", position: 5 }
+      { title: "Partenaires", url: partners_path, position: 5 }
     ] },
     { title: "Agir avec le pôle", position: 2, menu_items: [
       { title: "Adhérer au pôle", url: main_page_path(MainPage.find_by(key: 'membership')), position: 1},

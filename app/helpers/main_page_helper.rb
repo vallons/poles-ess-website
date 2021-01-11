@@ -23,6 +23,7 @@ module MainPageHelper
     if page.special_page?
       polymorphic_path(page.key.classify.constantize)
     else
+      main_page_path(page)
     end
   end
 

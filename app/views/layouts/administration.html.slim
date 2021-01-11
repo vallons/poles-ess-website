@@ -81,6 +81,10 @@ html lang="#{I18n.locale}"
                         = active_link_to admin_adherents_path, title: "Gérer les adhérents", class: "nav-link", active: :inclusive do
                           i.fas.fa-snowflake>
                           ' Adhérents
+                      li.nav-item
+                        = active_link_to admin_partners_path, title: "Gérer les adhérents", class: "nav-link", active: :inclusive do
+                          i.fas.fa-snowflake>
+                          ' Partenaires
 
               li.nav-item.nav-header
                 span.nav-link Configuration

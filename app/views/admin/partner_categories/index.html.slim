@@ -1,0 +1,46 @@
+= render layout: 'admin/partners/layout_index' do
+
+  = link_to "Créer une catégorie", new_admin_partner_category_path, class:'btn btn-primary float-right'
+  h2.mb-5 Catégories de partenaire
+
+  .cadre-table
+    table.table.table-striped.table-hover.table-sm
+      thead
+        tr
+          th Position
+          th Date de création
+          th Titre
+          th.text-center Partenaires
+
+          th
+      tbody
+        - max_position    = @partner_categories.map(&:position).compact.max || 1
+        - position_select = (1..max_position).map { |i| [i, i] }
+
+        - @partner_categories.each do |partner_category|
+          tr
+            td data-controller='manage-position'
+              = form_for partner_category, as: :partner_category, url: admin_partner_category_path(partner_category) do |f|
+                = f.select  :position, \
+                            options_for_select(position_select, partner_category.position),\
+                            {},
+                            class: "form-control form-control-sm", \
+                            data: {action: 'change->manage-position#submitSelect'}
+
+            td= l partner_category.created_at
+            td= partner_category.title
+            td.text-center
+              = link_to admin_partners_path(by_partner_category: partner_category.id), class: "btn btn-light btn-sm" do
+                = partner_category.partners.count
+            td=> link_to edit_admin_partner_category_path(partner_category), class: "btn btn-sm btn-info mr-2", title: "Editer" do
+              i.fas.fa-pen
+              = link_to admin_partner_category_path(partner_category), method: :delete, data: {confirm: "Confirmer la suppression ?"}, title: "Supprimer", class: "btn btn-sm btn-danger" do
+                i.far.fa-trash-alt
+
+
+        - if @partner_categories.empty?
+          tr
+            td colspan="7"
+              p.mt-3.text-center: em.text-muted Aucune catégorie
+
+  / = paginate @partner_categories  

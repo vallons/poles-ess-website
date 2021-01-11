@@ -1,0 +1,14 @@
+fr:
+  activerecord:
+    attributes:
+      partner_category:
+        title:          Le titre
+
+  helpers:
+    label:
+      partner_category:
+        title:          Titre
+    submit:
+      partner_category:
+        create: "Créer la catégorie"
+        update: "Mettre à jour la catégorie"

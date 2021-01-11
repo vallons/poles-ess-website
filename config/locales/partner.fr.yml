@@ -1,0 +1,26 @@
+fr:
+  activerecord:
+    models:
+      partner:
+        one: Partenaire
+        other: Partenaires
+    attributes:
+      partner:
+        title:          Le nom
+        link:          Le site web
+        description:    La description
+        partner_category:  La catégorie
+        partner_category_id:  La catégorie
+
+  helpers:
+    label:
+      partner:
+        title:          Nom
+        link:          Site web
+        description:    Description
+        partner_category:  Catégorie
+        partner_category_id:  Catégorie
+    submit:
+      partner:
+        create: "Créer le partenaire"
+        update: "Mettre à jour le partenaire"

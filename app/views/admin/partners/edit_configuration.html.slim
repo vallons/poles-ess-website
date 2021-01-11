@@ -1,0 +1,5 @@
+= render layout: 'admin/partners/layout_form' do
+
+  = form_for(@partner, as: :partner, \
+    url: update_configuration_admin_partner_path(@partner), html: {class: "form-horizontal"}) do |f|
+    =  render "admin/shared/form_configuration", f: f, index_path: admin_partners_path

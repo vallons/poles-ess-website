@@ -12,5 +12,4 @@ class MainPagesController < ApplicationController
   def get_main_page
     @main_page = get_object_from_param_or_redirect(MainPage)
   end
- 
 end

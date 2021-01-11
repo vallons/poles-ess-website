@@ -4,10 +4,11 @@ module CategoryPositionHelper
     return 1 unless active_category_filter?(params)
     return staff_member_max_position(scope) if staff_member_category_filter?(params)
     return adherent_max_position(scope) if adherent_category_filter?(params)
+    return partner_max_position(scope) if partner_category_filter?(params)
   end
 
   def active_category_filter?(params)
-    staff_member_category_filter?(params) || adherent_category_filter?(params)
+    staff_member_category_filter?(params) || adherent_category_filter?(params) || partner_category_filter?(params)
   end
 
   protected
@@ -38,5 +39,19 @@ module CategoryPositionHelper
 
   def adherent_category
     AdherentCategory.find(params[:by_adherent_category])
+  end
+
+  # Partenaire Category ===================================
+
+  def partner_max_position(scope)
+    scope.by_partner_category(partner_category).map(&:position).compact.max
+  end
+
+  def partner_category_filter?(params)
+    params[:by_partner_category].present?
+  end
+
+  def partner_category
+    AdherentCategory.find(params[:by_partner_category])
   end
 end

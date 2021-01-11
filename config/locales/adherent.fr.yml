@@ -2,8 +2,8 @@ fr:
   activerecord:
     models:
       adherent:
-        one: Membre de l'équipe
-        other: Equipe
+        one: Adhérent
+        other: Adhérents
     attributes:
       adherent:
         title:          Le nom

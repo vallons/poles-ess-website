@@ -21,4 +21,4 @@
       ul
         - @main_page.child_pages.each do |child_page|
           li
-            = link_to child_page.title, main_page_path(child_page), class: 'underline'
+            = link_to child_page.title, show_page_path(child_page), class: 'underline'
