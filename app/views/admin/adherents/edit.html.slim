@@ -1,0 +1,5 @@
+= render layout: 'admin/adherents/layout_form' do
+  = form_for(@adherent, as: :adherent, \
+    url: admin_adherent_path(@adherent), html: {class: "form-horizontal"}) do |f| 
+
+    =  render partial: "form", locals: {f: f}

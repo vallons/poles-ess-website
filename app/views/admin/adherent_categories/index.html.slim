@@ -1,0 +1,46 @@
+= render layout: 'admin/adherents/layout_index' do
+
+  = link_to "Créer une catégorie", new_admin_adherent_category_path, class:'btn btn-primary float-right'
+  h2.mb-5 Catégories d'adhérent
+
+  .cadre-table
+    table.table.table-striped.table-hover.table-sm
+      thead
+        tr
+          th Position
+          th Date de création
+          th Titre
+          th.text-center Adhérents
+
+          th
+      tbody
+        - max_position    = @adherent_categories.map(&:position).compact.max || 1
+        - position_select = (1..max_position).map { |i| [i, i] }
+
+        - @adherent_categories.each do |adherent_category|
+          tr
+            td data-controller='manage-position'
+              = form_for adherent_category, as: :adherent_category, url: admin_adherent_category_path(adherent_category) do |f|
+                = f.select  :position, \
+                            options_for_select(position_select, adherent_category.position),\
+                            {},
+                            class: "form-control form-control-sm", \
+                            data: {action: 'change->manage-position#submitSelect'}
+
+            td= l adherent_category.created_at
+            td= adherent_category.title
+            td.text-center
+              = link_to admin_adherents_path(by_adherent_category: adherent_category.id), class: "btn btn-light btn-sm" do
+                = adherent_category.adherents.count
+            td=> link_to edit_admin_adherent_category_path(adherent_category), class: "btn btn-sm btn-info mr-2", title: "Editer" do
+              i.fas.fa-pen
+              = link_to admin_adherent_category_path(adherent_category), method: :delete, data: {confirm: "Confirmer la suppression ?"}, title: "Supprimer", class: "btn btn-sm btn-danger" do
+                i.far.fa-trash-alt
+
+
+        - if @adherent_categories.empty?
+          tr
+            td colspan="7"
+              p.mt-3.text-center: em.text-muted Aucune catégorie
+
+  / = paginate @adherent_categories  

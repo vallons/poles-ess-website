@@ -18,7 +18,7 @@ class StaffMember < ApplicationRecord
   # Scopes =====================================================================
   scope :by_lastname, ->(val) {
     val.downcase!
-    where(StaffMember.arel_table[:by_lastname].matches("%#{val}%"))
+    where(StaffMember.arel_table[:lastname].matches("%#{val}%"))
   }
   scope :by_staff_member_category, ->(val) { where(staff_member_category_id: val) }
   scope :sort_by_staff_member_category_title, ->(order) { joins(:staff_member_category).order(Category.arel_table[:title].public_send(order.downcase)) }

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_01_07_081726) do
+ActiveRecord::Schema.define(version: 2021_01_11_173352) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_trgm"
@@ -56,6 +56,24 @@ ActiveRecord::Schema.define(version: 2021_01_07_081726) do
     t.boolean "enabled", default: true
     t.boolean "highlighted", default: false
     t.string "home_title"
+  end
+
+  create_table "adherent_categories", force: :cascade do |t|
+    t.string "title"
+    t.integer "position"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "adherents", force: :cascade do |t|
+    t.string "title"
+    t.string "link"
+    t.integer "position"
+    t.boolean "enabled", default: true
+    t.bigint "adherent_category_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["adherent_category_id"], name: "index_adherents_on_adherent_category_id"
   end
 
   create_table "admins", force: :cascade do |t|
@@ -146,6 +164,7 @@ ActiveRecord::Schema.define(version: 2021_01_07_081726) do
     t.datetime "updated_at", precision: 6, null: false
     t.bigint "parent_page_id"
     t.string "key"
+    t.boolean "undeletable", default: false
     t.index ["parent_page_id"], name: "index_main_pages_on_parent_page_id"
   end
 

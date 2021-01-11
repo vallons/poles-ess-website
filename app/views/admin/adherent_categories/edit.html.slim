@@ -1,0 +1,21 @@
+.title-wrapper
+  h1
+    ' Édition de la catégorie "#{@adherent_category.title}"
+
+  div.flex
+    = link_to admin_adherent_categories_path, class: "btn btn-light mr-4" do
+      i.fa.fa-chevron-left>
+      ' Retour
+    span.small
+      ' Créé le
+      strong => l @adherent_category.created_at
+      ' -
+      ' Mis à jour le
+      strong = l @adherent_category.updated_at
+
+  hr
+
+= form_for(@adherent_category, as: :adherent_category, \
+  url: admin_adherent_category_path(@adherent_category), html: {class: "form-horizontal"}) do |f| 
+
+  =  render partial: "form", locals: {f: f}

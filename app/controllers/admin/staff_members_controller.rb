@@ -55,7 +55,7 @@ class Admin::StaffMembersController < Admin::BaseController
     begin
       flash[:notice] = "Le membre de l'équipe a bien été supprimée" if @staff_member.destroy
     rescue ActiveRecord::DeleteRestrictionError
-      flash[:error] = "Cette actualité ne peut être supprimée car des éléments lui sont dépendants"
+      flash[:error] = "Ce membre de l'équipe ne peut être supprimé car des éléments lui sont dépendants"
     end
     redirect_to admin_staff_members_path
   end

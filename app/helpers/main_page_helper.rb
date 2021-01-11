@@ -28,7 +28,9 @@ module MainPageHelper
 
   def in_special_pages_menu
     params[:controller] == 'admin/key_numbers' ||
-    params[:controller] == 'admin/staff_members'
+    params[:controller] == 'admin/staff_members' ||
+    params[:controller] == 'admin/adherents'
+
   end
 
 end

@@ -1,0 +1,12 @@
+= f.form_errors
+
+.form-group.required
+  = f.label :title, class: "font-weight-bold"
+  = f.text_field :title, class: 'form-control'
+
+= render partial: 'admin/seos/fields_for_form', locals: { f: f }
+
+.action-btns
+  => f.submit class: "btn btn-primary"
+  => f.submit_and_stay class: "btn btn-outline-primary"
+  = link_to "Annuler", admin_adherent_categories_path, class: "btn btn-link"

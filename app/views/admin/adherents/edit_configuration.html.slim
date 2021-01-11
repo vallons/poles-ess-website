@@ -1,0 +1,5 @@
+= render layout: 'admin/adherents/layout_form' do
+
+  = form_for(@adherent, as: :adherent, \
+    url: update_configuration_admin_adherent_path(@adherent), html: {class: "form-horizontal"}) do |f|
+    =  render "admin/shared/form_configuration", f: f, index_path: admin_adherents_path

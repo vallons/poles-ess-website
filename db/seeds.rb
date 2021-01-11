@@ -120,7 +120,7 @@ end
       { title: "Présentation", url: "#", position: 1 },
       { title: "Missions", url: "#", position: 2 },
       { title: "Equipe", url: staff_members_path, position: 3 },
-      { title: "Adhérents", url: "#", position: 4 },
+      { title: "Adhérents", url: adherents_path, position: 4 },
       { title: "Partenaires", url: "#", position: 5 }
     ] },
     { title: "Agir avec le pôle", position: 2, menu_items: [

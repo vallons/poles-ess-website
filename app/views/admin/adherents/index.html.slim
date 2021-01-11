@@ -1,0 +1,61 @@
+= render layout: 'admin/adherents/layout_index' do
+
+  = link_to "Créer un adhérent", new_admin_adherent_path, class:'btn btn-primary float-right'
+  h2.mb-5 Adhérents
+
+  div data-controller='manage-index'
+    .bg-light.p-3.mb-3
+      h3 Filtres
+      = form_tag admin_adherents_path, method: :get do
+
+        .row
+          .col-lg-4.col-md-6.col-12
+            = label_tag "Par catégorie"
+            = select_tag :by_adherent_category, \
+              options_for_select(adherent_category_options, params[:by_adherent_category]), \
+              prompt: "Toutes les catégories",\
+              class: "form-control dropdown-action", \
+              id: "dropdown_action",  \
+              data: {action: 'change->manage-index#submitFilterForm'}
+
+    .cadre-table
+      table.table.table-striped.table-hover.table-sm
+        thead
+          tr
+            th Position
+            th Nom
+            th Catégorie
+
+            th
+        tbody
+          - max_position    = categorized_max_position(params, @adherents) || 1
+          - position_select = (1..max_position).map { |i| [i, i] }
+
+          - @adherents.each do |adherent|
+            tr
+              - if active_category_filter?(params)
+                td data-controller='manage-position'
+                  / - interface = get_interface(activity, params)
+                  = form_for adherent, as: :adherent, url: admin_adherent_path(adherent) do |f|
+                    = f.select  :position, \
+                                options_for_select(position_select, adherent.position),\
+                                {},
+                                class: "form-control form-control-sm", \
+                                data: {action: 'change->manage-position#submitSelect'}
+              - else
+                td.text-center.disabled -
+
+              td= adherent.title
+              td = adherent.adherent_category&.title
+              td=> link_to edit_admin_adherent_path(adherent), class: "btn btn-sm btn-info mr-2", title: "Editer" do
+                i.fas.fa-pen
+                = link_to admin_adherent_path(adherent), method: :delete, data: {confirm: "Confirmer la suppression ?"}, title: "Supprimer", class: "btn btn-sm btn-danger" do
+                  i.far.fa-trash-alt
+
+
+          - if @adherents.empty?
+            tr
+              td colspan="7"
+                p.mt-3.text-center: em.text-muted Aucun adhérent
+
+    / = paginate @adherents
