@@ -1,5 +1,5 @@
 = link_to "Créer une page", new_admin_basic_page_path, class:'btn btn-primary float-right'
-h1.mb-5 Pages secondaires
+h1.mb-5 Pages légales
 
 div data-controller='manage-index'
   / .bg-light.p-3.mb-3
@@ -25,8 +25,6 @@ div data-controller='manage-index'
         / th Position
         th Date de création
         th Titre
-        th Thèmes
-        th Pages principales
         th.text-center Ressources
         th Activé ?
 
@@ -50,17 +48,6 @@ div data-controller='manage-index'
           /   td.text-center.disabled -
           td= l basic_page.created_at
           td= basic_page.title
-          / td= link_to admin_intervention_levels_path(by_basic_page: basic_page.id), class: "btn btn-light btn-sm" do
-          /   span.ion-ios-list-outline>
-          /   = basic_page.intervention_levels.count
-          td
-            - basic_page.themes.each do |theme|
-              .badge.badge-secondary.mr-2
-                = theme.title
-          td
-            - basic_page.main_pages.each do |main_page|
-              .badge.badge-secondary.mr-2
-                = main_page.title
           td.text-center
             = link_to edit_admin_basic_page_path(basic_page, anchor: 'resources'), class: "btn btn-light btn-sm" do
               = basic_page.resources.count

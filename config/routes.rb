@@ -54,7 +54,7 @@ Rails.application.routes.draw do
     resources :subscriptions, controller: "formations/subscriptions", only: [:new, :create, :show], path: "inscription"
   end
   resources :main_pages, only: [:show], path: "pages"
-  resources :basic_pages, only: [:show], path: "pages-secondaires"
+  resources :basic_pages, only: [:show], path: "pages-legales"
   resources :resources, only: [:index], path: "ressources"
   resources :staff_members, only: [:index], path: "equipe"
   resource :search, only: [:show], path: "recherche"

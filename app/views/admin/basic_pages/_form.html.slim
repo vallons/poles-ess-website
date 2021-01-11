@@ -16,17 +16,6 @@
         = f.label :theme_ids, theme.title, value: theme.id, class: "form-check-label"
 
 .form-group
-  label.font-weight-bold Pages principales
-  .form-group
-    - MainPage.all.each do |main_page|
-      .form-check.form-check-inline
-        => f.check_box :main_page_ids, {multiple: true,
-                  checked: f.object.main_pages.include?(main_page),
-                  class: 'form-check-input'},
-                  main_page.id, nil
-        = f.label :main_page_ids, main_page.title, value: main_page.id, class: "form-check-label"
-
-.form-group
   = f.label :description, class: "font-weight-bold"
   = f.rich_text_area :description
 

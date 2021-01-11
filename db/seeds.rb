@@ -33,7 +33,7 @@ EmailTemplate.where(mailer: "ParticipantMailer", mail_name: "new_subscription").
   { key: 'contact', title: 'Contact', enabled: true },
 ].each do |option|
   BasicPage.where(key: option[:key]).first_or_create(
-    enabled: option[:enabled], 
+    enabled: option[:enabled],
     title: option[:title]
   )
 end
@@ -85,7 +85,7 @@ end
   { theme: 'Découvrir', menu_blocks: [
     { title: "", position: 2, menu_items: [
       { title: "Chiffre-clés", url: main_page_path(MainPage.find_by(key: 'key_numbers')), position: 1},
-      { title: "Ressources", url: "#", position: 2},
+      { title: "Ressources", url: resources_path, position: 2},
       { title: "Actualités", url: posts_path, position: 3}
       ]
     }
@@ -94,7 +94,7 @@ end
   { theme: 'Entreprendre', menu_blocks: [
     { title: "", position: 2, menu_items: [
       { title: "Chiffre-clés", url: main_page_path(MainPage.find_by(key: 'key_numbers')), position: 1},
-      { title: "Ressources", url: "#", position: 2},
+      { title: "Ressources", url: resources_path, position: 2},
       { title: "Actualités", url: posts_path, position: 3}
     ] }
     ]
@@ -126,7 +126,7 @@ end
     { title: "Agir avec le pôle", position: 2, menu_items: [
       { title: "Adhérer au pôle", url: main_page_path(MainPage.find_by(key: 'membership')), position: 1},
       { title: "Se former", url: formations_path, position: 2},
-      { title: "Contacter le pôle", url: "#", position: 3}
+      { title: "Contacter le pôle", url: basic_page_path(BasicPage.find_by(key: 'contact')), position: 3}
       ]
     }
     ]

@@ -62,8 +62,9 @@ class Schedule < ApplicationRecord
     current_year_schedules = self.between_datetime(Time.zone.now.beginning_of_year, Time.zone.now.end_of_year)
     return current_year_schedules if current_year_schedules.any?
     # Cas du site non mis à jour, avec dernières formations remontant à un ou 2 ans par ex
-    most_recent_date_with_formation = Schedule.sort_by_start_date.last.begin
-    self.between_datetime(most_recent_date_with_formation.beginning_of_year, most_recent_date_with_formation.end_of_year)
+    most_recent_date_with_formation = Schedule.sort_by_start_date.last&.begin
+    return self.between_datetime(most_recent_date_with_formation.beginning_of_year, most_recent_date_with_formation.end_of_year) if most_recent_date_with_formation
+    return all
   end
 
   def self.apply_filters(params)
