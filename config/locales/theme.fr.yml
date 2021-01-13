@@ -9,6 +9,8 @@ fr:
         title:          Le titre
         baseline:       Le sous-titre
         description:    La description
+      theme/menu_blocks/menu_items:
+        url: L'url du lien
 
   helpers:
     label:

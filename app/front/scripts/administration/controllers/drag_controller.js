@@ -23,6 +23,10 @@ export default class extends Controller {
   }
 
   end(event) {
-    this.position.value = event.newIndex + 1;
+    for (let item of this.element.childNodes) {
+      const index = [...this.element.childNodes].indexOf(item);
+      item.querySelector('[data-target="drag.position"]').value = index +1;
+    }
+    // this.position.value = event.newIndex + 1;
   }
 }

@@ -10,9 +10,9 @@ h4#menu-blocks.mb-2 Menu
       template data-target="nested-fields.template"
         = ff.fields_for :menu_items, MenuItem.new, child_index: 'NEW_RECORD' do |item|
           = render "admin/menu_blocks/menu_item_fields", f: item
-
-      = ff.fields_for :menu_items do |fff|
-        = render "admin/menu_blocks/menu_item_fields", f: fff
+      div data-controller="drag"
+        = ff.fields_for :menu_items do |fff|
+          = render "admin/menu_blocks/menu_item_fields", f: fff
 
 
       /   = render "admin/resources/fields", f: ff
