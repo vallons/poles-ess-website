@@ -5,4 +5,4 @@
   - @staff_member_categories.each do |category|
     h2.text-4xl.font-bold.text-gray-900.mb-6.text-center = category.title
     .flex.flex-nowrap.justify-center
-      = render partial: 'staff_members/card', collection: category.staff_members, as: :staff_member
+      = render partial: 'staff_members/card', collection: category.staff_members.enabled, as: :staff_member

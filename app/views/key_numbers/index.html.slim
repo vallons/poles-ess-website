@@ -1,0 +1,17 @@
+.container.mx-auto.mb-3
+  / = render 'home/breadcrumb'
+  h1.text-6xl.font-bold.text-center.mt-16.mb-16.text-gray-900 Chiffres clés
+
+  .flex.flex-wrap
+    - @key_numbers.order(:position).each do |key_number|
+      .w-1/3
+        .max-w-md.rounded.overflow-hidden.shadow-lg.border.border-solid.border-gray-300.mb-4.mr-4
+          .div
+            .flex.flex-col.px-12.py-8.items-center
+              h3.font-bold.text-8xl = key_number.number
+              p.text-3xl = key_number.title
+
+            p.px-6.py-4.text-right.text-sm.italic = key_number.source
+          - if key_number.description.present?
+            .px-6.py-4.bg-gray-200
+              == key_number.description

@@ -133,7 +133,7 @@ end
   },
   { main_page: "L'ESS", menu_blocks: [
     { title: "L'ESS sur le territoire", position: 1, menu_items: [
-      { title: "Chiffre-clés", url: main_page_path(MainPage.find_by(key: 'key_numbers')), position: 1 },
+      { title: "Chiffre-clés", url: key_numbers_path, position: 1 },
       { title: "Cartographie", url: main_page_path(MainPage.find_by(key: 'ess_map')), position: 2 },
       { title: "Exemples de projets", url: "#", position: 3 }
     ] },

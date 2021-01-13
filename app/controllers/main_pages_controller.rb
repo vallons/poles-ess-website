@@ -5,6 +5,7 @@ class MainPagesController < ApplicationController
   before_action :get_main_page, only: [:show]
 
   def show
+    redirect_to polymorphic_path(@main_page.key.classify.constantize) if @main_page.special_page?
   end
 
   private # =====================================================

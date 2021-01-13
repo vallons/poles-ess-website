@@ -1,7 +1,7 @@
 class ResourcesController < ApplicationController
 
   def index
-    @resources = Resource.apply_filters(params).order(:created_at)
+    @resources = Resource.enabled.apply_filters(params).order(:created_at)
     @themes = Theme.enabled.order(:position)
   end
 

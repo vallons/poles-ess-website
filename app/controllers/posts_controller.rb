@@ -6,8 +6,8 @@ class PostsController < ApplicationController
   before_action :set_base_breadcrumbs
 
   def index
-    @post_categories = PostCategory.having_posts.order(:position)
-    @themes = Theme.having_posts.order(:position)
+    @post_categories = PostCategory.enabled.having_posts.order(:position)
+    @themes = Theme.enabled.having_posts.order(:position)
     @posts = Post.published.apply_filters(params).order(published_at: :desc)
   end
 

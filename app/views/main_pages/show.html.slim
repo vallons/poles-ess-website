@@ -5,8 +5,8 @@
     = image_tag  @main_page.image, class: "mb-8 mx-auto"
   .mb-24== @main_page.description
 
-  - if @main_page.key == "key_numbers"
-    = render 'main_pages/key_numbers'
+  / - if @main_page.key == "key_numbers"
+  /   = render 'main_pages/key_numbers'
 
   .flex
     - if @main_page.resources.any?
