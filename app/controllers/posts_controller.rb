@@ -7,7 +7,7 @@ class PostsController < ApplicationController
 
   def index
     @post_categories = PostCategory.enabled.having_posts.order(:position)
-    @themes = Theme.enabled.having_posts.order(:position)
+    @post_themes = Theme.enabled.having_posts.order(:position)
     @posts = Post.published.apply_filters(params).order(published_at: :desc)
   end
 

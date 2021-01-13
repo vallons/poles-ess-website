@@ -11,7 +11,7 @@
           .mb-3
             h4.font-bold Par Thème
 
-            - @themes.each do |theme|
+            - @post_themes.each do |theme|
               div
                 = label_tag "by_theme[#{theme.id}]" do
                   => check_box_tag "by_theme[]", theme.id, \
