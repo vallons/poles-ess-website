@@ -7,6 +7,7 @@ class HomeController < ApplicationController
     @posts = Post.enabled.includes(:seo, :themes, :post_category)
       .published.order(published_at: :desc).limit(2)
     @highlighted_activities = Activity.highlighted.order(Arel.sql('RANDOM()'))
+    @profiles = Profile.enabled.order(:position)
   end
 
 end

@@ -23,8 +23,12 @@
 
     .w-3/12.p-3
       h3.text-sm.uppercase.mb-3 Je suis...
-      .w-full.bg-gray-500
-        p Liste des profils
+      - @profiles.each do |profile|
+        .flex.items-center.border.border-solid.border-gray-500.mb-2
+          .flex.flex-col.w-16.h-16.bg-gray-500.p-2.font-bold.text-white.uppercase.leading-4.text-center
+            p icone
+          .p-2
+            = link_to profile.title, profile_path(profile)
 
 .container.mx-auto.mb-24
   .w-1/2.text-center
