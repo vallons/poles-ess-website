@@ -9,25 +9,22 @@ div data-controller='manage-index'
 
       .row
         .col-lg-4.col-md-6.col-12
-          = label_tag "Par thème"
-          = select_tag :by_theme, \
-            options_for_select(theme_options, params[:by_theme]), \
-            prompt: "Tous les thèmes",\
-            class: "form-control dropdown-action", \
-            id: "dropdown_action",  \
-            data: {action: 'change->manage-index#submitFilterForm'}
+          = render 'admin/themes/form_items/by_theme_select'
+        .col-lg-4.col-md-6.col-12
+          = render 'admin/profiles/form_items/by_profile_select'
 
   small = I18n.t(:results, count: @activities.count)
-  
+
   table.table.table-striped.table-hover.table-sm
     thead
       tr
         th Position
         th Date de création
         th Titre
-        th Thèmes
+        th.text-center Thèmes
+        th.text-center Profils
         th.text-center Ressources
-        th Mis en avant
+        th.text-center Mis en avant
 
         th
     tbody
@@ -39,9 +36,12 @@ div data-controller='manage-index'
           - if active_interface_filter?(params)
             td data-controller='manage-position'
               - interface = get_interface(activity, params)
+              - p interface
+              - p interface.position
+              - p '----------------------'
               = form_for interface, as: :interface, url: admin_interface_path(interface, classname: interface.class.name) do |f|
                 = f.select  :position, \
-                            options_for_select(position_select, interface.position),\
+                            options_for_select(position_select,item_position(params, activity)),\
                             {},
                             class: "form-control form-control-sm", \
                             data: {action: 'change->manage-position#submitSelect'}
@@ -52,10 +52,14 @@ div data-controller='manage-index'
           / td= link_to admin_intervention_levels_path(by_activity: activity.id), class: "btn btn-light btn-sm" do
           /   span.ion-ios-list-outline>
           /   = activity.intervention_levels.count
-          td
+          td.text-center
             - activity.themes.each do |theme|
               .badge.badge-secondary.mr-2
                 = theme.title
+          td.text-center
+            - activity.profiles.each do |profile|
+              .badge.badge-secondary.mr-2
+                = profile.title
           td.text-center
             = link_to edit_admin_activity_path(activity, anchor: 'resources'), class: "btn btn-light btn-sm" do
               = activity.resources.count

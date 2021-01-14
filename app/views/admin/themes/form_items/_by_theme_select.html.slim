@@ -1,0 +1,7 @@
+= label_tag "Par thème"
+= select_tag :by_theme, \
+  options_for_select(theme_options, params[:by_theme]), \
+  prompt: "Tous les thèmes",\
+  class: "form-control dropdown-action", \
+  id: "dropdown_action",  \
+  data: {action: 'change->manage-index#submitFilterForm'}

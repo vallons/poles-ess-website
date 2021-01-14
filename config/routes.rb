@@ -18,6 +18,7 @@ Rails.application.routes.draw do
 
   namespace :admin do
     resources :themes, concerns: [:upload_destroyable, :configurable]
+    resources :profiles, concerns: [:upload_destroyable, :configurable]
     resources :main_pages, concerns: [:upload_destroyable, :configurable] do
       resources :child_pages, controller: "main_pages/child_pages", concerns: [:upload_destroyable, :configurable]
     end
@@ -52,6 +53,7 @@ Rails.application.routes.draw do
   # Public ============================================
 
   resources :themes, only: [:show]
+  resources :profiles, only: [:show]
   resources :activities, only: [:index, :show], path: "actions"
   resources :posts, only: [:index, :show], path: "actualites"
   resources :formations, only: [:index, :show, :edit, :update] do

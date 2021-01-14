@@ -1,0 +1,7 @@
+= label_tag "Par profil"
+= select_tag :by_profile, \
+  options_for_select(profile_options, params[:by_profile]), \
+  prompt: "Tous les profils",\
+  class: "form-control dropdown-action", \
+  id: "dropdown_action",  \
+  data: {action: 'change->manage-index#submitFilterForm'}

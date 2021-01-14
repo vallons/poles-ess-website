@@ -1,0 +1,67 @@
+= link_to "Créer un profil", new_admin_profile_path, class:'btn btn-primary float-right'
+h1.mb-5 Profils
+
+
+/ = render layout: 'admin/layout' do
+
+
+/ div.mb-3
+/   = form_tag admin_profiles_path, method: :get, data: {is_filter_form: true} do
+
+/     .row
+/       .col-lg-6.col-12
+/         = select_tag :by_domain, \
+/           options_for_select(domain_options, params[:by_domain]), \
+/           prompt: "Tous les domaines",\
+/           class: "form-control dropdown-profile", \
+/           id: "dropdown_profile",  \
+/           onchange: "$('[data-is-filter-form]').submit()"
+
+.cadre-table
+  table.table.table-striped.table-hover.table-sm
+    thead
+      tr
+        th Position
+        th Date de création
+        th Titre
+        th.text-center Actions
+        th.text-center Actualités
+        th.text-center Ressources
+        th
+    tbody
+      - max_position    = @profiles.map(&:position).compact.max || 1
+      - position_select = (1..max_position).map { |i| [i, i] }
+
+      - @profiles.each do |profile| 
+        tr
+          td data-controller='manage-position'
+            = form_for profile, as: :profile, url: admin_profile_path(profile) do |f|
+              = f.select  :position, \
+                          options_for_select(position_select, profile.position),\
+                          {},
+                          class: "form-control form-control-sm", \
+                          data: {action: 'change->manage-position#submitSelect'}
+
+          td= l profile.created_at
+          td= profile.title
+          td.text-center
+            = link_to admin_activities_path(by_profile: profile.id), class: "btn btn-light btn-sm" do
+              = profile.activities.count
+          td.text-center
+            = link_to admin_posts_path(by_profile: profile.id), class: "btn btn-light btn-sm" do
+              = profile.posts.count
+          td.text-center
+            = link_to edit_admin_profile_path(profile, anchor: 'resources'), class: "btn btn-light btn-sm" do
+              = profile.resources.count
+          td=> link_to edit_admin_profile_path(profile), class: "btn btn-sm btn-info mr-2", title: "Editer" do
+            i.fas.fa-pen
+            = link_to admin_profile_path(profile), method: :delete, data: {confirm: "Confirmer la suppression ?"}, title: "Supprimer", class: "btn btn-sm btn-danger" do
+              i.far.fa-trash-alt
+
+
+      - if @profiles.empty?
+        tr
+          td colspan="7"
+            p.mt-3.text-center: em.text-muted Aucun profil
+
+/ = paginate @profiles  

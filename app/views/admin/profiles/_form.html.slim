@@ -4,8 +4,9 @@
   = f.label :title, class: "font-weight-bold"
   = f.text_field :title, class: 'form-control'
 
-= render "admin/themes/form_items/theme_checkboxes", f: f
-= render "admin/profiles/form_items/profile_checkboxes", f: f
+.form-group.required
+  = f.label :baseline, class: "font-weight-bold"
+  = f.text_field :baseline, class: 'form-control'
 
 .form-group
   = f.label :description, class: "font-weight-bold"
@@ -13,7 +14,8 @@
 
 = render partial: 'admin/shared/picture_form', locals: { \
   f: f, \
-  destroy_path: f.object.image.present? ? destroy_upload_admin_activity_path(f.object, f.object.image.id, redirect: :edit) : nil}
+  destroy_path: f.object.image.present? ? destroy_upload_admin_profile_path(f.object, f.object.image.id, redirect: :edit) : nil}
+
 = render "admin/resources/nested_form", f: f
 
-= render "admin/shared/action_btns", f: f, index_path: admin_activities_path
+= render "admin/shared/action_btns", f: f, index_path: admin_profiles_path

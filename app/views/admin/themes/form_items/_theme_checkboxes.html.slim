@@ -1,0 +1,12 @@
+.form-group
+  label.font-weight-bold Thèmes
+  .form-group
+    // simple way to remove all themes
+    = hidden_field_tag "post[theme_ids][]", nil
+    - Theme.all.each do |theme|
+      .form-check.form-check-inline
+        => f.check_box :theme_ids, {multiple: true, 
+                  checked: f.object.themes.include?(theme), 
+                  class: 'form-check-input'}, 
+                  theme.id, nil
+        = f.label :theme_ids, theme.title, value: theme.id, class: "form-check-label"

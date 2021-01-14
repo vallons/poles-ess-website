@@ -83,6 +83,7 @@ class Admin::PostsController < Admin::BaseController
         :expired_at,
         :enabled,
         theme_ids: [],
+        profile_ids: [],
         seo_attributes: seo_attributes,
         resources_attributes: resources_attributes
       )

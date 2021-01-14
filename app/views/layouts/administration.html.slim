@@ -61,7 +61,7 @@ html lang="#{I18n.locale}"
                       i.far.fa-snowflake>
                       ' Thèmes
                   li.nav-item
-                    = active_link_to "#", title: "Gérer les actus", class: "nav-link disabled", active: :exclusive do
+                    = active_link_to admin_profiles_path, title: "Gérer les profils", class: "nav-link", active: :inclusive do
                       i.fas.fa-snowflake>
                       ' Profils
                   li.nav-item class="#{'active' if in_special_pages_menu}"

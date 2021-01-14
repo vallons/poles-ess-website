@@ -1,0 +1,23 @@
+.title-wrapper
+  h1
+    ' Édition du profil "#{@profile.title}"
+
+  div.flex
+    = link_to admin_profiles_path, class: "btn btn-light mr-4" do
+      i.fa.fa-chevron-left>
+      ' Retour
+    span.small
+      ' Créé le
+      strong => l @profile.created_at
+      ' -
+      ' Mis à jour le
+      strong = l @profile.updated_at
+
+
+ul.nav.nav-tabs.my-3
+  li.nav-item
+    = active_link_to "Contenu", edit_admin_profile_path(@profile), title: "Gérer les contenus", class: "nav-link", active: :exclusive
+  li.nav-item
+    = active_link_to "Configuration", edit_configuration_admin_profile_path(@profile), title: "Gérer la configuration", class: "nav-link", active: :exclusive
+
+= yield

@@ -19,6 +19,9 @@ fr:
         title:          Titre
         category:       Type
         link:           Lien
+      resource/category:
+        link: Lien
+        document: Document
     submit:
       resource:
         create: "Créer la ressource"

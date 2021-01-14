@@ -50,6 +50,21 @@ end
   )
 end
 
+# Profiles ==================================================
+[
+  { title: 'Association', key: 'association', baseline: 'Voir ce que le pôle ESS peut proposer aux associations', position: 1 },
+  { title: "Porteur de projet", key: 'porteur', baseline: "Voir ce que le pôle ESS peut proposer aux porteurs de projet", position: 2 },
+  { title: "Collectivité", key: 'collectivite', baseline: 'Voir ce que le pôle ESS peut proposer aux collectivités', position: 3 },
+  { title: "Entreprise", key: 'entreprise', baseline: 'Voir ce que le pôle ESS peut proposer aux entreprises', position: 4 },
+  { title: "École", key: 'ecole', baseline: 'Voir ce que le pôle ESS peut proposer aux écoles', position: 5 },
+].each do |option|
+  Profile.where(key: option[:key]).first_or_create(
+    title: option[:title],
+    baseline: option[:baseline],
+    position: option[:position]
+  )
+end
+
 
 # Main Pages ==================================================
 [

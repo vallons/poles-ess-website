@@ -3,6 +3,7 @@
 class Post < ApplicationRecord
   include Seoable
   include Themable
+  include Profilable
   include Resourceable
   include Enablable
   include RichDescription
@@ -32,9 +33,6 @@ class Post < ApplicationRecord
     where(Post.arel_table[:title].matches("%#{val}%"))
   }
   scope :by_post_category, ->(val) { where(post_category_id: val) }
-  scope :by_theme, -> (val) {
-    joins(:theme_interfaces).merge(ThemeInterface.by_theme(val))
-  }
 
   scope :sort_by_post_category_title, ->(order) { joins(:post_category).order(Category.arel_table[:title].public_send(order.downcase)) }
   scope :draft, -> { where(Post.arel_table[:published_at].gt(Time.current)) }
@@ -63,6 +61,7 @@ class Post < ApplicationRecord
     klass = klass.by_title(params[:by_title]) if params[:by_title].present?
     klass = klass.by_post_category(params[:by_post_category]) if params[:by_post_category].present?
     klass = klass.by_theme(params[:by_theme]) if params[:by_theme].present?
+    klass = klass.by_profile(params[:by_profile]) if params[:by_profile].present?
     klass.all
   end
 

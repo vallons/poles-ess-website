@@ -8,19 +8,8 @@
   = f.label :post_category_id, class: "font-weight-bold"
   = f.select :post_category_id, post_category_options, {include_blank: 'Sélectionnez une catégorie'}, class: "form-control"
 
-
-.form-group
-  label.font-weight-bold Thèmes
-  .form-group
-    // simple way to remove all themes
-    = hidden_field_tag "post[theme_ids][]", nil
-    - Theme.all.each do |theme|
-      .form-check.form-check-inline
-        => f.check_box :theme_ids, {multiple: true, 
-                  checked: f.object.themes.include?(theme), 
-                  class: 'form-check-input'}, 
-                  theme.id, nil
-        = f.label :theme_ids, theme.title, value: theme.id, class: "form-check-label"
+= render "admin/themes/form_items/theme_checkboxes", f: f
+= render "admin/profiles/form_items/profile_checkboxes", f: f
 
 .form-group
   = f.label :description, class: "font-weight-bold"

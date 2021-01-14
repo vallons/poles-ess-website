@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_01_11_191326) do
+ActiveRecord::Schema.define(version: 2021_01_14_090600) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_trgm"
@@ -248,6 +248,28 @@ ActiveRecord::Schema.define(version: 2021_01_11_191326) do
     t.datetime "updated_at", precision: 6, null: false
     t.boolean "enabled", default: true
     t.index ["post_category_id"], name: "index_posts_on_post_category_id"
+  end
+
+  create_table "profile_interfaces", force: :cascade do |t|
+    t.bigint "profile_id"
+    t.string "profilable_type"
+    t.bigint "profilable_id"
+    t.integer "position"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["profilable_type", "profilable_id"], name: "index_profile_interfaces_on_profilable_type_and_profilable_id"
+    t.index ["profile_id"], name: "index_profile_interfaces_on_profile_id"
+  end
+
+  create_table "profiles", force: :cascade do |t|
+    t.string "title"
+    t.string "key"
+    t.string "baseline"
+    t.text "search_description"
+    t.integer "position"
+    t.boolean "enabled", default: true
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "resources", force: :cascade do |t|
