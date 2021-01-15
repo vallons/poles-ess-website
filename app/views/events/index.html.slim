@@ -1,0 +1,25 @@
+.container.mx-auto.mb-3
+  / = render 'home/breadcrumb'
+  h1.text-6xl.font-bold.text-center.mt-16.mb-4.text-gray-900 Événements
+
+  h2.text-2xl.font-bold.text-center.mt-16.mb-4.text-gray-900 Événements futurs
+  - @future_events.each do |agenda_item|
+    - item = AgendaItemDecorator.new(agenda_item)
+    .flex.items-center.border.border-solid.border-gray-800.mb-2
+      .flex.flex-col.w-16.h-16.bg-gray-800.p-2.font-bold.text-white.uppercase.leading-4.text-center
+        .text-lg= item.day
+        .text-base= item.month
+        .text-xs= item.year
+      .p-2
+        = link_to item.title, item.url, target: "_blank"
+
+  h2.text-2xl.font-bold.text-center.mt-16.mb-4.text-gray-900 Événements passés
+  - @past_events.each do |agenda_item|
+    - item = AgendaItemDecorator.new(agenda_item)
+    .flex.items-center.border.border-solid.border-gray-800.mb-2
+      .flex.flex-col.w-16.h-16.bg-gray-800.p-2.font-bold.text-white.uppercase.leading-4.text-center
+        .text-lg= item.day
+        .text-base= item.month
+        .text-xs= item.year
+      .p-2
+        = link_to item.title, item.url, target: "_blank"

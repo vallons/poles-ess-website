@@ -66,6 +66,7 @@ Rails.application.routes.draw do
   resources :adherents, only: [:index], path: "adherents"
   resources :partners, only: [:index], path: "partenaires"
   resources :key_numbers, only: [:index], path: "chiffres-cles"
+  resources :events, only: [:index], path: "evenements"
   resource :search, only: [:show], path: "recherche"
 
   root 'home#index'

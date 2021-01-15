@@ -12,8 +12,12 @@ class Event < ApplicationRecord
             presence: true
 
   # Scopes ====================================================================
+  
+    scope :newest_first, -> {
+     eager_load(:schedule).merge(Schedule.newest_first)
+    }
 
-  scope :sort_by_start_date, -> {
+  scope :oldest_first, -> {
     eager_load(:schedule).merge(Schedule.sort_by_start_date)
   }
 

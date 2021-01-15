@@ -11,6 +11,7 @@
             .text-xs= item.year
           .p-2
             = link_to item.title, item.url, target: "_blank"
+      = link_to "Voir tous les événements", events_path, class: "underline"
 
     .w-6/12.p-3
       h3.text-sm.uppercase.mb-3 Quelques actions

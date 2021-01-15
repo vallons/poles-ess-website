@@ -4,7 +4,7 @@ class Admin::EventsController < Admin::BaseController
   before_action :get_event, except: %i[index new create]
 
   def index
-    @events = Event
+    @events = Event.newest_first
       .page(params[:page]).per(25)
   end
 

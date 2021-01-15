@@ -9,10 +9,6 @@ class AdherentsController < ApplicationController
 
   private # =====================================================
 
-  def get_adherent
-    @adherent = get_object_from_param_or_redirect(Adherent)
-  end
-
   def set_breadcrumbs
     @breadcrumbs = []
     @breadcrumbs << [ "Accueil",    root_path ]

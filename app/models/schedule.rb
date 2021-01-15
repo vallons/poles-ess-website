@@ -52,6 +52,14 @@ class Schedule < ApplicationRecord
    order(:time_range)
   }
 
+  scope :oldest_first, -> {
+    order(time_range: :asc)
+  }
+
+  scope :newest_first, -> {
+    order(time_range: :desc)
+  }
+
   scope :by_year, -> (year) {
     year_datetime = DateTime.new(year.to_i).in_time_zone
     between_datetime(year_datetime.beginning_of_year, year_datetime.end_of_year)
