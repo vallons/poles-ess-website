@@ -1,17 +1,16 @@
 .container.mx-auto.mb-3
-  = render 'home/breadcrumb'
-  h1.text-6xl.font-bold.text-center.mt-16.mb-4.text-gray-900 Actualités
+  h1.text-6xl.font-bold.text-center.mt-16.mb-4.text-gray-900 Actions
 
   .flex
     .md:w-1/4.px-8 data-controller='manage-index'
-      = form_tag posts_path, method: :get do
+      = form_tag activities_path, method: :get do
 
         h3.text-xl.mb-3 Filtrer
         .bg-gray-300.px-4.py-3
           .mb-3
             h4.font-bold Par Thème
 
-            - @post_themes.each do |theme|
+            - @activity_themes.each do |theme|
               div
                 = label_tag "by_theme[#{theme.id}]" do
                   => check_box_tag "by_theme[]", theme.id, \
@@ -21,7 +20,8 @@
                   => theme.title
           .mb-3
             h4.font-bold Par Profil
-            - @post_profiles.each do |profile|
+
+            - @activity_profiles.each do |profile|
               div
                 = label_tag "by_profile[#{profile.id}]" do
                   => check_box_tag "by_profile[]", profile.id, \
@@ -29,23 +29,12 @@
                     id: "by_profile_#{profile.id}", \
                     data: {action: 'change->manage-index#submitFilterForm'}
                   => profile.title
-          .mb-3
-            h4.font-bold Par catégorie
-
-            - @post_categories.each do |category|
-              div
-                = label_tag "by_post_category[#{category.id}]" do
-                  => check_box_tag "by_post_category[]", category.id, \
-                    params[:by_post_category].present? && params[:by_post_category].include?(category.id.to_s), \
-                    id: "by_post_category_#{category.id}", \
-                    data: {action: 'change->manage-index#submitFilterForm'}
-                  => category.title
 
     .md:w-3/4.px-8
-      - if @posts.any?
-          - @posts.each do |post|
-            = render 'posts/card', post: post
-      - if @posts.empty?
-        p Pas d'actualités correpondantes à vos critères
+      - if @activities.any?
+          - @activities.each do |activity|
+            = render 'activities/card', activity: activity
+      - if @activities.empty?
+        p Pas d'actions correpondantes à vos critères
         p
-          = link_to "Retourner voir toutes les actualités", posts_path, class: "underline"
+          = link_to "Retourner voir toutes les actualités", activities_path, class: "underline"
