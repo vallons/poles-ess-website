@@ -34,7 +34,7 @@ h1.mb-5 Pages principales
       - @main_pages.each do |main_page| 
         tr
           td data-controller='manage-position'
-            = form_for main_page, as: :main_page, url: admin_main_page_path(main_page) do |f|
+            = form_for main_page, as: :page, url: admin_main_page_path(main_page) do |f|
               = f.select  :position, \
                           options_for_select(position_select, main_page.position),\
                           {},
@@ -49,7 +49,7 @@ h1.mb-5 Pages principales
           td.text-center
             = link_to edit_admin_main_page_path(main_page, anchor: 'resources'), class: "btn btn-light btn-sm" do
               = main_page.resources.count
-          td=> link_to edit_admin_main_page_path(main_page), class: "btn btn-sm btn-info mr-2", title: "Editer" do
+          td=> link_to edit_admin_page_path(main_page), class: "btn btn-sm btn-info mr-2", title: "Editer" do
             i.fas.fa-pen
             - if main_page.destroyable?
               = link_to admin_main_page_path(main_page), method: :delete, data: {confirm: "Confirmer la suppression ?"}, title: "Supprimer", class: "btn btn-sm btn-danger" do

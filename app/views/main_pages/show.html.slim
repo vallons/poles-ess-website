@@ -15,10 +15,10 @@
         ul
           = render partial: 'resources/resource', collection: @main_page.resources, as: :resource
 
-  - if @main_page.child_pages.any?
+  - if @main_page.child_pages.enabled.any?
     .w-1/3
       h3.text-2xl.font-bold.mb-3 Pour aller plus loin
       ul
-        - @main_page.child_pages.each do |child_page|
+        - @main_page.child_pages.enabled.each do |child_page|
           li
             = link_to child_page.title, show_page_path(child_page), class: 'underline'

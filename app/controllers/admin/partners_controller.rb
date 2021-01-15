@@ -7,6 +7,7 @@ class Admin::PartnersController < Admin::BaseController
     @partners = Partner
       .includes(:seo, :partner_category)
       .apply_filters(params).apply_sorts(params)
+    @page = MainPage.find_by(key: "partner")
   end
 
   def new

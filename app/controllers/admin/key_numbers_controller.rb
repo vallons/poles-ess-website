@@ -5,6 +5,7 @@ class Admin::KeyNumbersController < Admin::BaseController
 
   def index
     @key_numbers = KeyNumber.order(:position)
+    @page = MainPage.find_by(key: "key_number")
   end
 
   def new

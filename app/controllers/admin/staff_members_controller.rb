@@ -7,6 +7,8 @@ class Admin::StaffMembersController < Admin::BaseController
     @staff_members = StaffMember
       .includes(:seo, :staff_member_category)
       .apply_filters(params).apply_sorts(params)
+    @page = MainPage.find_by(key: "staff_member")
+
   end
 
   def new

@@ -1,9 +1,9 @@
 # frozen_string_literal: true
 
 class Post < ApplicationRecord
-  include Seoable
   include Themable
   include Profilable
+  include Seoable
   include Resourceable
   include Enablable
   include RichDescription

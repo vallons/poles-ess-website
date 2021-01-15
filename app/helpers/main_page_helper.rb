@@ -15,8 +15,16 @@ module MainPageHelper
         nil
       end
     else
-      edit_admin_main_page_child_page_path(page.parent_page, page)
+      edit_child_or_main_page_path(page)
     end
+  end
+
+  def edit_child_or_main_page_path(page)
+    page.no_parent? ? edit_admin_main_page_path(page) : edit_admin_main_page_child_page_path(page.parent_page, page)
+  end
+
+  def update_child_or_main_page_path(page)
+    page.no_parent? ? admin_main_page_path(page) : admin_main_page_child_page_path(page.parent_page, page)
   end
 
   def show_page_path(page)
@@ -31,7 +39,7 @@ module MainPageHelper
     params[:controller] == 'admin/key_numbers' ||
     params[:controller] == 'admin/staff_members' ||
     params[:controller] == 'admin/adherents'
-
+    params[:controller] == 'admin/partners'
   end
 
 end

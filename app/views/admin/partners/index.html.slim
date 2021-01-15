@@ -1,22 +1,27 @@
 = render layout: 'admin/partners/layout_index' do
 
   = link_to "Créer un partenaire", new_admin_partner_path, class:'btn btn-primary float-right'
-  h2.mb-5 partenaires
+  h2.mb-5 Partenaires
 
   div data-controller='manage-index'
-    .bg-light.p-3.mb-3
-      h3 Filtres
-      = form_tag admin_partners_path, method: :get do
+    .row
+      .col-md-8
+        .bg-light.p-3.mb-3
+          h3 Filtres
+          = form_tag admin_partners_path, method: :get do
 
-        .row
-          .col-lg-4.col-md-6.col-12
-            = label_tag "Par catégorie"
-            = select_tag :by_partner_category, \
-              options_for_select(partner_category_options, params[:by_partner_category]), \
-              prompt: "Toutes les catégories",\
-              class: "form-control dropdown-action", \
-              id: "dropdown_action",  \
-              data: {action: 'change->manage-index#submitFilterForm'}
+            .row
+              .col-lg-4.col-md-6.col-12
+                = label_tag "Par catégorie"
+                = select_tag :by_partner_category, \
+                  options_for_select(partner_category_options, params[:by_partner_category]), \
+                  prompt: "Toutes les catégories",\
+                  class: "form-control dropdown-action", \
+                  id: "dropdown_action",  \
+                  data: {action: 'change->manage-index#submitFilterForm'}
+      .col-md-4
+        .bg-light.p-3.mb-3
+          = render 'admin/main_pages/form_elements/parent_page_select_form', page: @page
 
     .cadre-table
       table.table.table-striped.table-hover.table-sm

@@ -35,6 +35,7 @@ class ApplicationController < ActionController::Base
     @themes = Theme.enabled.includes(:seo, :activities).order(:position)
     @main_pages = MainPage.no_parent.enabled.includes(:seo).order(:position)
     @key_number_page = MainPage.enabled.find_by(key: 'key_numbers')
+    @profiles = Profile.enabled.order(:position)
   end
 
   def set_default_seos!

@@ -23,7 +23,7 @@
         - @child_pages.each do |child_page|
           tr
             td data-controller='manage-position'
-              = form_for child_page, as: :child_page, url: admin_main_page_child_page_path(@main_page, child_page) do |f|
+              = form_for child_page, as: :page, url: admin_main_page_child_page_path(@main_page, child_page) do |f|
                 = f.select  :position, \
                             options_for_select(position_select, child_page.position),\
                             {},

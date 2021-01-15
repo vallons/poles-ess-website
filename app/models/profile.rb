@@ -19,10 +19,6 @@ class Profile < ApplicationRecord
   has_many :posts, through: :profile_interfaces, source: :profilable,
           source_type: 'Post'
 
-  has_many :menu_blocks, -> { order(:position) }, inverse_of: :profile, dependent: :destroy
-  accepts_nested_attributes_for :menu_blocks, reject_if: :all_blank
-  has_many :menu_items, -> { order(:position) }, through: :menu_blocks
-
   # Validations ================================================================
 
   validates :title,

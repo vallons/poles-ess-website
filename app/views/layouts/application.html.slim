@@ -107,9 +107,8 @@ html lang='fr'
           .w-1/3.py-8.text-gray-50
             .text-xl.uppercase Profils
             ul 
-              li Association
-              li Porteur de projet
-              li Collectivité
+              - @profiles.each do |profile|
+                li = link_to profile.title, profile_path(profile)
           .w-1/3.py-8.text-gray-50
             .text-xl.uppercase Liens rapides
             ul 

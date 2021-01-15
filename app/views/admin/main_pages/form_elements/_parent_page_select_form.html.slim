@@ -1,0 +1,6 @@
+= form_for(page, as: :page, \
+  url: update_child_or_main_page_path(page), html: {class: "form-horizontal"}) do |f|
+  .form-group
+    = f.label :parent_page_id, class: "font-weight-bold"
+    = f.select :parent_page_id, parent_page_options, {include_blank: 'Sans parente'}, class: "form-control"
+  = f.submit "Valider", class: "btn btn-primary"

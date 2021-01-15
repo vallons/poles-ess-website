@@ -4,19 +4,24 @@
   h2.mb-5 Equipe
 
   div data-controller='manage-index'
-    .bg-light.p-3.mb-3
-      h3 Filtres
-      = form_tag admin_staff_members_path, method: :get do
+    .row
+      .col-md-8
+        .bg-light.p-3.mb-3
+          h3 Filtres
+          = form_tag admin_staff_members_path, method: :get do
 
-        .row
-          .col-lg-4.col-md-6.col-12
-            = label_tag "Par catégorie"
-            = select_tag :by_staff_member_category, \
-              options_for_select(staff_member_category_options, params[:by_staff_member_category]), \
-              prompt: "Toutes les catégories",\
-              class: "form-control dropdown-action", \
-              id: "dropdown_action",  \
-              data: {action: 'change->manage-index#submitFilterForm'}
+            .row
+              .col-lg-4.col-md-6.col-12
+                = label_tag "Par catégorie"
+                = select_tag :by_staff_member_category, \
+                  options_for_select(staff_member_category_options, params[:by_staff_member_category]), \
+                  prompt: "Toutes les catégories",\
+                  class: "form-control dropdown-action", \
+                  id: "dropdown_action",  \
+                  data: {action: 'change->manage-index#submitFilterForm'}
+      .col-md-4
+        .bg-light.p-3.mb-3
+          = render 'admin/main_pages/form_elements/parent_page_select_form', page: @page
 
     .cadre-table
       table.table.table-striped.table-hover.table-sm

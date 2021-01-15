@@ -2,7 +2,7 @@
   label.font-weight-bold Profils
   .form-group
     // simple way to remove all profiles
-    = hidden_field_tag "post[profile_ids][]", nil
+    = hidden_field_tag "#{f.object.class.name.underscore}[profile_ids][]", nil
     - Profile.all.each do |profile|
       .form-check.form-check-inline
         => f.check_box :profile_ids, {multiple: true, 

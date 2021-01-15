@@ -7,6 +7,7 @@ class Admin::AdherentsController < Admin::BaseController
     @adherents = Adherent
       .includes(:seo, :adherent_category)
       .apply_filters(params).apply_sorts(params)
+    @page = MainPage.find_by(key: "adherent")
   end
 
   def new

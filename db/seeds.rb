@@ -77,7 +77,7 @@ end
   ] },
   { title: "L'ESS", baseline: "Découvrez l'économie sociale et solidaire", position: 2, child_pages: [
     { key: nil, title: "C'est quoi l'ESS?", enabled: true, position: 1 },
-    { key: 'key_numbers', title: 'Chiffres-clés', enabled: true, position: 2 },
+    { key: 'key_number', title: 'Chiffres-clés', enabled: true, position: 2 },
     { key: 'ess_map', title: 'Cartographie', enabled: true, position: 3 },
   ] },
 ].each do |option|
@@ -99,7 +99,7 @@ end
 [
   { theme: 'Découvrir', menu_blocks: [
     { title: "", position: 2, menu_items: [
-      { title: "Chiffre-clés", url: main_page_path(MainPage.find_by(key: 'key_numbers')), position: 1},
+      { title: "Chiffre-clés", url: key_numbers_path, position: 1},
       { title: "Ressources", url: resources_path, position: 2},
       { title: "Actualités", url: posts_path, position: 3}
       ]
@@ -108,7 +108,7 @@ end
   },
   { theme: 'Entreprendre', menu_blocks: [
     { title: "", position: 2, menu_items: [
-      { title: "Chiffre-clés", url: main_page_path(MainPage.find_by(key: 'key_numbers')), position: 1},
+      { title: "Chiffre-clés", url: key_numbers_path, position: 1},
       { title: "Ressources", url: resources_path, position: 2},
       { title: "Actualités", url: posts_path, position: 3}
     ] }

@@ -21,3 +21,5 @@ fr:
       main_page:
         create: "Créer la page"
         update: "Mettre à jour la page"
+  attributes:
+    parent_page_id: Page parente

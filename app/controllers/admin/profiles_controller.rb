@@ -40,7 +40,6 @@ class Admin::ProfilesController < Admin::BaseController
   end
 
   def edit_configuration
-    2.times { @profile.menu_blocks.new } if @profile.menu_blocks.empty?
   end
 
   def update_configuration
@@ -68,7 +67,7 @@ class Admin::ProfilesController < Admin::BaseController
   def profile_params
     params.require(:profile).permit(
       :title, :description, :baseline, :image, :position, :enabled,
-      seo_attributes: seo_attributes, resources_attributes: resources_attributes, menu_blocks_attributes: menu_blocks_attributes
+      seo_attributes: seo_attributes, resources_attributes: resources_attributes
     )
   end
 

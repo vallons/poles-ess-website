@@ -67,7 +67,7 @@ class Admin::MainPages::ChildPagesController < Admin::MainPages::BaseController
 
   # strong parameters
   def child_page_params
-    params.require(:child_page).permit(
+    params.require(:page).permit(
       :title, :description, :enabled, :parent_page_id, :position,
       seo_attributes: seo_attributes,
       resources_attributes: resources_attributes
