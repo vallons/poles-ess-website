@@ -7,8 +7,8 @@ class Schedule < ApplicationRecord
   # Validations ================================================================
 
   before_validation :set_time_range#, unless: -> { self.time_range.present? }
+  validates :time_range, presence: true
   validate :validate_time_range, if: -> { self.time_range.present? }
-  # validates :time_range, :schedulable, presence: true
 
   # Scopes ====================================================================
 

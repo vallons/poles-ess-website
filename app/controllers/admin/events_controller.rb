@@ -10,7 +10,7 @@ class Admin::EventsController < Admin::BaseController
 
   def new
     @event = Event.new
-    @event.build_schedule
+    @event.build_schedule(start_at: '10:00', end_at: '18:00')
   end
 
   def create
