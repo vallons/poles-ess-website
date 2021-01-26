@@ -10,8 +10,11 @@
       = f.label :baseline
       = f.text_field :baseline, value: Setting.baseline, class: "form-control"
     .form-group
-      = f.label :baseline_pre
-      = f.text_field :baseline_pre, value: Setting.baseline_pre, class: "form-control"
+      = f.label :newsletter_subscription_title
+      = f.text_field :newsletter_subscription_title, value: Setting.newsletter_subscription_title, class: "form-control"
+    .form-group
+      = f.label :newsletter_subscription_description
+      = f.text_field :newsletter_subscription_description, value: Setting.newsletter_subscription_description, class: "form-control"
     .form-group
       = f.label :admin_emails
       = f.text_area :admin_emails, value: Setting.admin_emails.join("\n"), class: "form-control"

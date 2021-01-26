@@ -1,7 +1,20 @@
+.home-bg.flex
+  .w-2/5
+  .home-baseline.w-2/5.p-12.flex.items-center
+    .text-4xl.uppercase = Setting.baseline
+
+.mx-auto.bg-primary.text-white
+  .flex
+    .w-2/12.p-3.text-center.font-bold
+      h3.text-sm.uppercase Prochains événements
+    .w-8/12.p-3.text-center.font-bold
+      h3.text-sm.uppercase Quelques actions
+    .w-2/12.p-3.text-center.font-bold
+      h3.text-sm.uppercase Je suis...
+
 .mx-auto.mb-24
   .flex
-    .w-3/12.p-3
-      h3.text-sm.uppercase.mb-3 Prochains événements
+    .w-2/12.p-3
       - @agenda_items.each do |agenda_item|
         - item = AgendaItemDecorator.new(agenda_item)
         .flex.items-center.border.border-solid.border-gray-800.mb-2
@@ -13,8 +26,7 @@
             = link_to item.title, item.url, target: "_blank"
       = link_to "Voir tous les événements", events_path, class: "underline"
 
-    .w-6/12.p-3
-      h3.text-sm.uppercase.mb-3 Quelques actions
+    .w-8/12.p-3
       .w-full.flex.flex-wrap
         - @highlighted_activities.each do |activity|
           .w-1/2.pr-4.mb-4
@@ -22,8 +34,7 @@
               .text-lg Je veux
               .text-2xl = link_to activity.home_title, activity_path(activity)
 
-    .w-3/12.p-3
-      h3.text-sm.uppercase.mb-3 Je suis...
+    .w-2/12.p-3
       - @profiles.each do |profile|
         .flex.items-center.border.border-solid.border-gray-500.mb-2
           .flex.flex-col.w-16.h-16.bg-gray-500.p-2.font-bold.text-white.uppercase.leading-4.text-center

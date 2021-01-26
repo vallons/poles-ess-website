@@ -32,10 +32,12 @@ class ApplicationController < ActionController::Base
   private
 
   def get_menu_items
-    @themes = Theme.enabled.includes(:seo, :activities).order(:position)
+    @themes     = Theme.enabled.includes(:seo, :activities).order(:position)
     @main_pages = MainPage.no_parent.enabled.includes(:seo).order(:position)
-    @key_number_page = MainPage.enabled.find_by(key: 'key_numbers')
-    @profiles = Profile.enabled.order(:position)
+    @profiles   = Profile.enabled.order(:position)
+    @key_number_page  = MainPage.enabled.find_by(key: 'key_numbers')
+    @membership_page  = MainPage.enabled.find_by(key: 'membership')
+    @contact_page     = BasicPage.find_by(key: 'contact')
   end
 
   def set_default_seos!

@@ -17,13 +17,26 @@ html, body
 .block-menu-toggler
   .block-menu
     display: none
+  &::before
+    display: block
+    content: attr(title)
+    font-weight: bold
+    height: 0
+    overflow: hidden
+    visibility: hidden
   &.active
-    background-color: theme('colors.gray.800')
+    font-weight: bold
     .block-menu
       display: block
+      font-weight: normal
 
 .trix-content
   h1
     @apply text-xl
   a
     text-decoration: underline
+
+.footer-line
+  height: 15px
+.footer-line-xl
+  height: 2rem

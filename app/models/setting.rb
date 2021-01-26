@@ -5,7 +5,8 @@ class Setting < RailsSettings::Base
 
   field :project_name, type: :string, default: "Pôle ESS"
   field :baseline, type: :string, default: "Dynamiser les projets d'utilité sociale sur le territoire"
-  field :baseline_pre, type: :string, default: "Accroche"
+  field :newsletter_subscription_title, type: :string, default: "Inscrivez-vous à notre anti-newsletter"
+  field :newsletter_subscription_description, type: :string, default: "Anti-newsletter ? Une info par lettre, soignée et choyée, à échéance régulière dans votre boîte aux lettres"
   field :logo_instance, type: :integer, default: 1, readonly: true
   field :admin_emails, type: :array, default: %w[bonjour@lassembleuse.fr]
 

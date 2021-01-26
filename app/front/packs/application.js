@@ -16,7 +16,9 @@ import 'scripts/application/controllers'
 import 'scripts/application/utils'
 
 // STYLE =========================================================================
+import "../styles/vendors.scss";
 import "../styles/application.scss";
+const images = require.context("../images", true);
 
 
 
