@@ -1,0 +1,20 @@
+div.block-menu-toggler data-action="mouseenter->main-menu#openBlockMenu mouseleave->main-menu#closeBlockMenu"
+  = active_link_to item.title, item_path, title: item.title, active: :inclusive, class: "relative lg:inline-flex lg:w-auto w-full px-3 py-2 rounded items-center justify-center text-primary hover:font-bold uppercase"
+  nav.block-menu.absolute.left-0.w-full.bg-gray-300.text-gray-800.border-t.border-white data-target="main-menu.blockMenu"
+    .container.mx-auto.flex.py-12
+      .w-1/2.px-4
+        h3.mb-3.uppercase.text-primary.font-bold= link_to item.baseline, item_path
+        p = item.description.to_plain_text.truncate(200)
+        = link_to "Lire la suite", item_path, class: "underline"
+      - if item.is_a?(Theme) && item.activities.enabled.any?
+        .w-1/4.px-4
+          h4.uppercase.text-sm.text-primary.mb-2 = "Nos actions"
+          - item.activities.enabled.order_by_theme_interface_position.first(5).each do |activity|
+            li.list-none = link_to activity.title, activity_path(activity)
+      - item.menu_blocks.each do |menu_block|
+        .w-1/4.px-4
+          - if menu_block.title.present?
+            h4.uppercase.text-sm.text-primary.mb-2 = menu_block.title
+          ul
+            - menu_block.menu_items.each do |menu_item|
+              li = link_to menu_item.title, menu_item.url

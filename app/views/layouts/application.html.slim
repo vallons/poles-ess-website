@@ -26,9 +26,9 @@ html lang='fr'
               rect y="60" width="100" height="15" rx="8"
           = link_to root_path, title: "Page d'accueil", class: "block flex items-center w-auto" do
             - if Setting.logo.present?
-              => image_tag Setting.logo.variant(resize_to_limit: [nil, 50]), class: "mr-3"
-            span.font-semibold.text-xl.tracking-tight = Setting.project_name
-        .flex.items-center.flex-1.justify-end.px-6.py-4.bg-gray-200
+              => image_tag Setting.logo.variant(resize_to_limit: [nil, 50]), class: "mr-3", title: Setting.project_name
+            / span.font-semibold.text-xl.tracking-tight = Setting.project_name
+        .flex.items-center.flex-1.justify-end.px-6.py-4.bg-gray-100
           .flex.text-sm.items-center.justify-end
             = link_to main_page_path(@membership_page), class: "flex flex-col items-center px-2 uppercase text-primary" do
               = image_pack_tag "picto/picto-adhesion.svg", class: "w-10 mb-2"
@@ -47,54 +47,12 @@ html lang='fr'
           div.flex.justify-start.lg:w-0.lg:flex-1
           div.lg:inline-flex.lg:flex-row.lg:m-auto.lg:w-auto.w-full.lg:items-center.items-start.flex.flex-col.lg:h-auto
             - @themes.each do |theme|
-              div.block-menu-toggler data-action="mouseenter->main-menu#openBlockMenu mouseleave->main-menu#closeBlockMenu"
-                = active_link_to theme.title, theme_path(theme), active: :inclusive, class: "relative lg:inline-flex lg:w-auto w-full px-3 py-2 rounded items-center justify-center text-primary hover:font-bold"
-                nav.block-menu.absolute.left-0.w-full.bg-gray-800.text-white.border-t.border-white data-target="main-menu.blockMenu"
-                  .p-6
-                    .flex.justify-between.items-center
-                      h3.text-4xl.mb-3
-                        = link_to theme.title, theme_path(theme)
-                      = link_to "En savoir plus", theme_path(theme), class: "underline"
-                    p = theme.baseline
-                  .p-6.flex
-                    => image_tag theme.image.variant(resize_to_limit: [150, nil]) if theme.image.present?
-                    .flex.w-full.ml-6
-                      - if theme.activities.enabled.any?
-                        .w-1/3
-                          h4.uppercase.font-bold.text-sm = "Nos actions"
-                          - theme.activities.enabled.order_by_theme_interface_position.first(5).each do |activity|
-                            li = link_to activity.title, activity_path(activity)
-                      - theme.menu_blocks.each do |menu_block|
-                        .w-1/3
-                          - if menu_block.title.present?
-                            h4.uppercase.font-bold.text-sm = menu_block.title
-                          ul
-                            - menu_block.menu_items.each do |menu_item|
-                              li = link_to menu_item.title, menu_item.url
+              = render "layouts/block_menu", item: theme, item_path: theme_path(theme)
             - @main_pages.each do |main_page|
-              div.block-menu-toggler data-action="mouseenter->main-menu#openBlockMenu mouseleave->main-menu#closeBlockMenu"
-                = active_link_to main_page.title, main_page_path(main_page), active: :inclusive, class: "lg:inline-flex lg:w-auto w-full px-3 py-2 rounded text-primary items-center justify-center hover:font-bold"
-                nav.block-menu.absolute.left-0.w-full.bg-gray-800.text-white.border-t.border-white data-target="main-menu.blockMenu"
-                  .p-6
-                    .flex.justify-between.items-center
-                      h3.text-4xl.mb-3
-                        = link_to main_page.title, main_page_path(main_page)
-                      = link_to "En savoir plus", main_page_path(main_page), class: "underline"
-                    p = main_page.baseline
-                  .p-6.flex
-                    => image_tag main_page.image.variant(resize_to_limit: [150, nil]) if main_page.image.present?
-                    .flex.w-full.ml-6
-                      - main_page.menu_blocks.each do |menu_block|
-                        .w-1/3
-                          - if menu_block.title.present?
-                            h4.uppercase.font-bold.text-sm = menu_block.title
-                          ul
-                            - menu_block.menu_items.each do |menu_item|
-                              li = link_to menu_item.title, menu_item.url
+              = render "layouts/block_menu", item: main_page, item_path: main_page_path(main_page)
           div.flex.justify-end.lg:w-0.lg:flex-1
             div.lg:inline-flex.lg:flex-row.lg:ml-auto.lg:w-auto.w-full.lg:items-center.items-start.flex.flex-col
               = render 'searches/form'
-
 
       = raw flash_messages
 

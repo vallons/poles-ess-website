@@ -15,20 +15,29 @@ html, body
   transform: translateX(0)
 
 .block-menu-toggler
+  > a
+    display: inline-block
+		text-align: center
   .block-menu
     display: none
-  &::before
-    display: block
-    content: attr(title)
-    font-weight: bold
-    height: 0
-    overflow: hidden
-    visibility: hidden
+    text-align: left
   &.active
-    font-weight: bold
-    .block-menu
+    > a
+      font-weight: bold
+
+@media (min-width: 1024px)
+  .block-menu-toggler
+    > a::before
       display: block
-      font-weight: normal
+      content: attr(title)
+      font-weight: bold
+      height: 0
+      overflow: hidden
+      visibility: hidden
+    &.active
+      .block-menu
+        font-weight: normal
+        display: block
 
 .trix-content
   h1
