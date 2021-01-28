@@ -17,9 +17,9 @@ html lang='fr'
   body.h-full
     .relative data-controller="main-menu"
       nav.flex.justify-between
-        div.bg-primary.text-white.flex.w-2/12.px-6.py-4.items-center
+        div.bg-primary.text-white.flex.w-1/2.md:w-1/6.px-6.py-4.items-center
           button.flex.items-center.flex-1.block.md:hidden
-            svg.fill-current.cursor-pointer viewBox="0 0 100 80" width="40" height="40" xmlns="http://www.w3.org/2000/svg" data-action="click->main-menu#toggleSideMenu"
+            svg.fill-current.cursor-pointer viewBox="0 0 100 80" width="40" height="40" xmlns="http://www.w3.org/2000/svg" data-action="click->main-menu#toggleMobileMenu"
               title Menu
               rect width="100" height="15" rx="8"
               rect y="30" width="100" height="15" rx="8"
@@ -29,29 +29,29 @@ html lang='fr'
               => image_tag Setting.logo.variant(resize_to_limit: [nil, 50]), class: "mr-3", title: Setting.project_name
             / span.font-semibold.text-xl.tracking-tight = Setting.project_name
         .flex.items-center.flex-1.justify-end.px-6.py-4.bg-gray-100
-          .flex.text-sm.items-center.justify-end
-            = link_to main_page_path(@membership_page), class: "flex flex-col items-center px-2 uppercase text-primary" do
+          .flex.text-xs.md:text-sm.items-center.justify-end
+            = link_to main_page_path(@membership_page), class: "hidden md:flex flex-col items-center px-2 uppercase text-primary" do
               = image_pack_tag "picto/picto-adhesion.svg", class: "w-10 mb-2"
               ' Adhésion
             = link_to formations_path, class: "flex flex-col items-center px-2 uppercase text-primary" do
               = image_pack_tag "picto/picto-adhesion.svg", class: "w-10 mb-2"
               ' Formations
-            = link_to formations_path, class: "flex flex-col items-center px-2 uppercase text-primary" do
+            = link_to main_page_path(@ess_map_page), class: "hidden md:flex flex flex-col items-center px-2 uppercase text-primary" do
               = image_pack_tag "picto/picto-adhesion.svg", class: "w-10 mb-2"
               ' Cartographie
             = link_to basic_page_path(@contact_page), class: "flex flex-col items-center pl-2 uppercase text-primary" do
               = image_pack_tag "picto/picto-adhesion.svg", class: "w-10 mb-2"
               ' Contact
-      nav.relative.bg-white.px-6
-        div.flex.justify-between.items-center
+      nav.relative.bg-white.px-6.hidden.md:block data-target="main-menu.mobileMenu"
+        div.flex.flex-col.md:flex-row.justify-between.items-center
           div.flex.justify-start.lg:w-0.lg:flex-1
-          div.lg:inline-flex.lg:flex-row.lg:m-auto.lg:w-auto.w-full.lg:items-center.items-start.flex.flex-col.lg:h-auto
+          div.md:inline-flex.md:flex-row.md:m-auto.md:w-auto.w-full.md:items-center.items-start.flex.flex-col.md:h-auto
             - @themes.each do |theme|
               = render "layouts/block_menu", item: theme, item_path: theme_path(theme)
             - @main_pages.each do |main_page|
               = render "layouts/block_menu", item: main_page, item_path: main_page_path(main_page)
-          div.flex.justify-end.lg:w-0.lg:flex-1
-            div.lg:inline-flex.lg:flex-row.lg:ml-auto.lg:w-auto.w-full.lg:items-center.items-start.flex.flex-col
+          div.flex.justify-end.md:w-0.md:flex-1.w-full
+            div.md:flex-row.md:ml-auto.md:w-auto.w-full.items-start.flex.px-3.py-2.md:p-0
               = render 'searches/form'
 
       = raw flash_messages
@@ -61,29 +61,29 @@ html lang='fr'
     .footer
       .footer-line.w-full.bg-primary
       .newsletter-subscription.bg-gray-200
-        .max-w-6xl.mx-auto.flex.py-10
-          .w-3/5.text-right
+        .max-w-6xl.mx-auto.flex.flex-col.md:flex-row.py-10
+          .w-full.md:w-3/5.text-right
             p.uppercase = Setting.newsletter_subscription_title
             p.text-sm = Setting.newsletter_subscription_description
-          .w-2/5.flex
+          .w-full.md:w-2/5.flex
             = text_field_tag :email, "", class: "flex-1 px-2 block w-full rounded-none border border-gray-300 mx-3"
             = button_tag "Envoyer", class: 'inline-flex items-center px-3 border border-gray-300 bg-gray-50 text-gray-500 text-sm'
       .footer-line-xl.w-full.bg-white
 
       .w-full.bg-gray-200
-        .max-w-6xl.mx-auto.flex
-          .w-2/3.flex
-            .w-1/3.py-8
+        .max-w-6xl.mx-auto.flex.flex-col.md:flex-row
+          .w-full.md:w-2/3.flex.flex-col.md:flex-row
+            .w-full.md:w-1/3.py-3.md:py-8.px-3
               .text-xl.uppercase.text-primary Thèmes
               ul
                 - @themes.each do |theme|
                   li = link_to theme.title, theme_path(theme), class: "text-gray-600"
-            .w-1/3.py-8
+            .w-full.md:w-1/3.py-3.md:py-8.px-3
               .text-xl.uppercase.text-primary Profils
               ul 
                 - @profiles.each do |profile|
                   li = link_to profile.title, profile_path(profile), class: "text-gray-600"
-            .w-1/3.py-8
+            .w-full.md:w-1/3.py-3.md:py-8.px-3
               .text-xl.uppercase.text-primary Liens rapides
               ul.text-gray-600
                 li = link_to "Actualités", posts_path
@@ -92,13 +92,13 @@ html lang='fr'
                 li = link_to "Formations", formations_path
                 li = link_to "Chiffres clés", key_numbers_path
                 li = link_to "Ressources", resources_path
-          .w-1/3.py-8
+          .w-full.md:w-1/3.py-3.md:py-8.px-3
             - if Setting.logo.present?
               => image_tag Setting.logo.variant(resize_to_limit: [nil, 150]), class: ""
 
       .bg-primary.py-8
-        .container.mx-auto.flex.justify-between
-          .links.flex.justify-between.text-gray-800
+        .container.mx-auto.flex.flex-col.md:flex-row.justify-between
+          .links.flex.flex-col.md:flex-row.justify-between.text-gray-800
             .credit.px-3
               => Date.current.year
               => link_to "l'assembleuse", "https://www.lassembleuse.fr/"

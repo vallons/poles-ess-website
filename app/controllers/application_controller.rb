@@ -37,6 +37,7 @@ class ApplicationController < ActionController::Base
     @profiles   = Profile.enabled.order(:position)
     @key_number_page  = MainPage.enabled.find_by(key: 'key_numbers')
     @membership_page  = MainPage.enabled.find_by(key: 'membership')
+    @ess_map_page     = MainPage.find_by(key: 'ess_map')
     @contact_page     = BasicPage.find_by(key: 'contact')
   end
 
