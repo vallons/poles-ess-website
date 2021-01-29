@@ -9,26 +9,18 @@
       .p-3.text-center.font-bold.bg-primary.text-white
         h3.text-sm.uppercase Prochains événements
       .p-3
-        - @agenda_items.each do |agenda_item|
-          - item = AgendaItemDecorator.new(agenda_item)
-          .flex.items-center.border.border-solid.border-gray-800.mb-2
-            .flex.flex-col.w-16.h-16.bg-gray-800.p-2.font-bold.text-white.uppercase.leading-4.text-center
-              .text-lg= item.day
-              .text-base= item.month
-              .text-xs= item.year
-            .p-2
-              = link_to item.title, item.url, target: "_blank"
+        = render partial: 'events/event_card', collection: @agenda_items, as: :agenda_item
         = link_to "Voir tous les événements", events_path, class: "underline"
     .w-full.md:w-3/5
       .p-3.text-center.font-bold.bg-primary.text-white
         h3.text-sm.uppercase Quelques actions
-      .p-3
-        .w-full.flex.flex-wrap.flex-col.md:flex-row
-          - @highlighted_activities.each do |activity|
-            .w-full.md:w-1/2.md:pr-4.mb-4
-              .bg-gray-500.w-full.h-48.p-5.flex.flex-col.content-center.justify-center
-                .text-lg Je veux
-                .text-2xl = link_to activity.home_title, activity_path(activity)
+      
+      .w-full.flex.flex-wrap.flex-col.md:flex-row
+        - @highlighted_activities.each do |activity|
+          .w-full.md:w-1/2.mb-4.p-3
+            .bg-gray-500.w-full.h-48.p-5.flex.flex-col.content-center.justify-center
+              .text-lg Je souhaite
+              .text-2xl = link_to activity.home_title, activity_path(activity)
     .w-full.md:w-1/5
       .p-3.text-center.font-bold.bg-primary.text-white
         h3.text-sm.uppercase Je suis...

@@ -18,7 +18,7 @@ class AgendaItemDecorator < SimpleDelegator
   end
 
   def month
-    date.strftime("%b")
+    I18n.l(date, format: '%B')
   end
 
   def year

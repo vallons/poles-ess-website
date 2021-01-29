@@ -48,6 +48,7 @@ html lang='fr'
           div.md:inline-flex.md:flex-row.md:m-auto.md:w-auto.w-full.md:items-center.items-start.flex.flex-col.md:h-auto
             - @themes.each do |theme|
               = render "layouts/block_menu", item: theme, item_path: theme_path(theme)
+            .separator.h-7
             - @main_pages.each do |main_page|
               = render "layouts/block_menu", item: main_page, item_path: main_page_path(main_page)
           div.flex.justify-end.md:w-0.md:flex-1.w-full

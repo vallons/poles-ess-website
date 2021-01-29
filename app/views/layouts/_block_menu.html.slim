@@ -7,11 +7,13 @@ div.block-menu-toggler data-action="mouseenter->main-menu#openBlockMenu mouselea
         p = item.description.to_plain_text.truncate(200)
         = link_to "Lire la suite", item_path, class: "underline"
       - if item.is_a?(Theme) && item.activities.enabled.any?
+        .separator.h-40
         .w-1/4.px-4
           h4.uppercase.text-sm.text-primary.mb-2 = "Nos actions"
           - item.activities.enabled.order_by_theme_interface_position.first(5).each do |activity|
             li.list-none = link_to activity.title, activity_path(activity)
       - item.menu_blocks.each do |menu_block|
+        .separator.h-40
         .w-1/4.px-4
           - if menu_block.title.present?
             h4.uppercase.text-sm.text-primary.mb-2 = menu_block.title
