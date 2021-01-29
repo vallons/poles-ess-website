@@ -24,13 +24,13 @@ Setting.logo_instance = 1  if Setting.logo_instance.blank?
 Setting.logo_instance.logo.attach(io: File.open('public/logo.png'), filename: 'logo.png', content_type: 'image/png')
 Setting.logo_instance_primary = 1  if Setting.logo_instance_primary.blank?
 Setting.logo_instance_primary.logo.attach(io: File.open('public/logo-primary.png'), filename: 'logo-primary.png', content_type: 'image/png')
-Setting.pole_name = "Pôle ESS"                        if Setting.pole_name.blank?
+Setting.pole_name = "Pôle ESS Vallons Solidaires"                        if Setting.pole_name.blank?
 Setting.pole_address = "Maison des associations"      if Setting.pole_address.blank?
 Setting.pole_address_complementary = "46 rue bidule"  if Setting.pole_address_complementary.blank?
 Setting.pole_city = "35999 Ville-de-Bretagne"         if Setting.pole_city.blank?
 Setting.pole_phone = "02 99 00 01 02"                 if Setting.pole_phone.blank?
 Setting.pole_mail = "pole@pole.fr"                    if Setting.pole_mail.blank?
-Setting.baseline = "Dynamiser les projets d'utilité sociale sur le territoire"    if Setting.baseline.blank?
+Setting.baseline = "Dynamiser les projets d'utilité sociale sur le territoire des Vallons de Vilaine"    if Setting.baseline.blank?
 Setting.newsletter_subscription_title = "Inscrivez-vous à notre anti-newsletter"  if Setting.newsletter_subscription_title.blank?
 Setting.newsletter_subscription_description = "Anti-newsletter ? Une info par lettre, soignée et choyée, à échéance régulière dans votre boîte aux lettres" if Setting.newsletter_subscription_description.blank?
 Setting.contact_bloc_description = "Vous avez des tonnes de question ? Vous souhaitez mieux identifier ce qui existe sur le territoire ?" if Setting.contact_bloc_description.blank?
@@ -54,9 +54,11 @@ end
 
 # Themes ==================================================
 [
-  { title: 'Découvrir', baseline: 'Découvrir et faire connaître une économie alternative : sociale, solidaire et écologique', position: 1 },
-  { title: "Entreprendre", baseline: "Etre accompagné pour créer ou développer mon projet d’utilité sociale", position: 2 },
-  { title: "Coopérer", baseline: 'Prendre part à des projets coopératifs', position: 3 },
+  { title: 'Découvrir', baseline: 'Découvrir et faire connaître une économique alternative: sociale, solidaire et écologique', position: 1 },
+  { title: "Coopérer", baseline: 'Soutenir et accompagner des projets créatifs, collectifs et coopératifs', position: 2 },
+  { title: "Entreprendre", baseline: "Etre accompagné.e pour créer ou développer mon projet d’utilité sociale", position: 3 },
+  { title: "Dynamiser", baseline: "Pour faire réseau, créer du lien et faire connaître les projets à forte valeur humaine !", position: 4 },
+  { title: "Se former", baseline: "Pour accompagner les associations et entrepreneur.e.s du territoire dans leurs fonctions et missions", position: 5 },
 ].each do |option|
   Theme.where(title: option[:title]).first_or_create(
     baseline: option[:baseline],
