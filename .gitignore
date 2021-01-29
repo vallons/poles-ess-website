@@ -41,3 +41,5 @@ yarn-debug.log*
 # Custom
 config/database.yml
 .env
+
+db/seeds.rb
