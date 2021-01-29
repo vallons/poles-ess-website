@@ -33,6 +33,25 @@ mailjet:
 Vous aurez peut-être à arrêter spring pour que tout soit pris en compte :
 `rails spring stop`
 
+## Déployer
+
+Générer les credentials de production : 
+`EDITOR=vim rails credentials:edit --environment production`
+
+Configurer openstack :
+
+```
+openstack:
+  container: nom-container
+  auth_url: https://auth.cloud.ovh.net/v3
+  username: "username"
+  api_key: vOtReClE
+  region: "GRA"
+  temp_url_key: temp_url
+```
+
+Copier votre clé `production.key` sur scalingo (`RAILS_MASTER_KEY`)
+
 ## Se synchroniser avec le repo original forké
 
 ```
