@@ -1,14 +1,13 @@
 # frozen_string_literal: true
 
 class Admin::SettingsController < Admin::BaseController
-
   include DestroyableUpload
 
   def create
     setting_params.keys.each do |key|
       Setting.send("#{key}=", setting_params[key].strip) unless setting_params[key].nil?
     end
-    if setting_upload_params.present? && !(Setting.logo_instance.update_attributes(setting_upload_params))
+    if setting_upload_params.present? && !(Setting.logo_instance.update(setting_upload_params))
       update_logos
     else
       flash[:notice] = "Les paramètres ont bien été mis à jour"
@@ -19,7 +18,7 @@ class Admin::SettingsController < Admin::BaseController
   private
 
   def setting_params
-    params.require(:setting).permit(:pole_name, :pole_address, :pole_city, :pole_phone, :pole_mail,
+    params.require(:setting).permit(:pole_name, :pole_address, :pole_address_complementary, :pole_city, :pole_phone, :pole_mail,
       :baseline, :newsletter_subscription_title, :newsletter_subscription_description, :admin_emails)
   end
 
@@ -34,8 +33,8 @@ class Admin::SettingsController < Admin::BaseController
   def update_logos
     logo_instance = Setting.logo_instance
     logo_instance_primary = Setting.logo_instance_primary
-    if logo_instance.update_attributes(setting_upload_params) & logo_instance_primary.update_attributes(setting_logo_primary_params)
-      flash[:notice] = "Les paramètres ont bien été mis à jour"
+    if logo_instance.update(setting_upload_params) & logo_instance_primary.update(setting_logo_primary_params)
+      flash[:notice] = 'Les paramètres ont bien été mis à jour'
     else
       flash[:error] = logo_instance.errors.full_messages.first
     end

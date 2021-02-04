@@ -2,19 +2,20 @@
 class Setting < RailsSettings::Base
   cache_prefix { "v1" }
   has_one_attached :logo
+  has_one_attached :logo_primary
 
-  field :pole_name, type: :string, default: "Pôle ESS"
-  field :pole_address, type: :string, default: "46 rue bidule"
-  field :pole_city, type: :string, default: "35999 Ville-de-Bretagne"
-  field :pole_phone, type: :string, default: "02 99 00 01 02"
-  field :pole_mail, type: :string, default: "pole@pole.fr"
-  field :baseline, type: :string, default: "Dynamiser les projets d'utilité sociale sur le territoire"
-  field :newsletter_subscription_title, type: :string, default: "Inscrivez-vous à notre anti-newsletter"
-  field :newsletter_subscription_description, type: :string, default: "Anti-newsletter ? Une info par lettre, soignée et choyée, à échéance régulière dans votre boîte aux lettres"
+  field :pole_name, type: :string
+  field :pole_address, type: :string
+  field :pole_address_complementary, type: :string
+  field :pole_city, type: :string
+  field :pole_phone, type: :string
+  field :pole_mail, type: :string
+  field :baseline, type: :string
+  field :newsletter_subscription_title, type: :string
+  field :newsletter_subscription_description, type: :string
   field :logo_instance, type: :integer, default: 1, readonly: true
-  field :logo_instance_primary, type: :integer, default: 1, readonly: true
   field :logo_instance_primary, type: :integer, default: 2, readonly: true
-  field :admin_emails, type: :array, default: %w[bonjour@lassembleuse.fr]
+  field :admin_emails, type: :array
 
   validates :logo, content_type: { in: ['image/png', 'image/jpg', 'image/jpeg'], message: 'doit être une image' }
 

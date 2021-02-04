@@ -101,6 +101,8 @@ html lang='fr'
               p.uppercase= Setting.pole_name
             - if Setting.pole_address.present?
               p= Setting.pole_address
+            - if Setting.pole_address_complementary.present?
+              p= Setting.pole_address_complementary
             - if Setting.pole_city.present?
               p= Setting.pole_city
             - if Setting.pole_phone.present?

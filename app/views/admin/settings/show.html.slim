@@ -6,9 +6,12 @@
     .form-group
       = f.label :pole_name
       = f.text_field :pole_name, value: Setting.pole_name, class: "form-control"
-        .form-group
+    .form-group
       = f.label :pole_address
       = f.text_field :pole_address, value: Setting.pole_address, class: "form-control"
+    .form-group
+      = f.label :pole_address_complementary
+      = f.text_field :pole_address_complementary, value: Setting.pole_address_complementary, class: "form-control"
     .form-group
       = f.label :pole_city
       = f.text_field :pole_city, value: Setting.pole_city, class: "form-control"
