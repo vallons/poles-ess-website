@@ -26,10 +26,10 @@ Setting.logo_instance_primary = 1  if Setting.logo_instance_primary.blank?
 Setting.logo_instance_primary.logo.attach(io: File.open('public/logo-primary.png'), filename: 'logo-primary.png', content_type: 'image/png')
 Setting.pole_name = "Pôle ESS Vallons Solidaires"                        if Setting.pole_name.blank?
 Setting.pole_address = "Maison des associations"      if Setting.pole_address.blank?
-Setting.pole_address_complementary = "46 rue bidule"  if Setting.pole_address_complementary.blank?
-Setting.pole_city = "35999 Ville-de-Bretagne"         if Setting.pole_city.blank?
-Setting.pole_phone = "02 99 00 01 02"                 if Setting.pole_phone.blank?
-Setting.pole_mail = "pole@pole.fr"                    if Setting.pole_mail.blank?
+Setting.pole_address_complementary = "43 rue de Fagues"  if Setting.pole_address_complementary.blank?
+Setting.pole_city = "35580 GUICHEN "         if Setting.pole_city.blank?
+Setting.pole_phone = "07 61 20 87 01"                 if Setting.pole_phone.blank?
+Setting.pole_mail = "pole@vallons-solidaires.fr"                    if Setting.pole_mail.blank?
 Setting.baseline = "Dynamiser les projets d'utilité sociale sur le territoire des Vallons de Vilaine"    if Setting.baseline.blank?
 Setting.newsletter_subscription_title = "Inscrivez-vous à notre anti-newsletter"  if Setting.newsletter_subscription_title.blank?
 Setting.newsletter_subscription_description = "Anti-newsletter ? Une info par lettre, soignée et choyée, à échéance régulière dans votre boîte aux lettres" if Setting.newsletter_subscription_description.blank?
@@ -68,11 +68,11 @@ end
 
 # Profiles ==================================================
 [
-  { title: 'Association', key: 'association', baseline: 'Voir ce que le pôle ESS peut proposer aux associations', position: 1 },
-  { title: "Porteur de projet", key: 'porteur', baseline: "Voir ce que le pôle ESS peut proposer aux porteurs de projet", position: 2 },
-  { title: "Collectivité", key: 'collectivite', baseline: 'Voir ce que le pôle ESS peut proposer aux collectivités', position: 3 },
-  { title: "Entreprise", key: 'entreprise', baseline: 'Voir ce que le pôle ESS peut proposer aux entreprises', position: 4 },
-  { title: "École", key: 'ecole', baseline: 'Voir ce que le pôle ESS peut proposer aux écoles', position: 5 },
+  { title: 'Association', key: 'association', baseline: 'Je suis salarié.e, administrateur.rice, adhérent.e et souhaite me former, avoir des informations concernant des dispositifs, financements ou avoir un conseil sur le projet de mon association', position: 1 },
+  { title: "Porteur.euse d’idée/de projet", key: 'porteur', baseline: "J’ai une idée d’entreprise, un projet en émergence ou suis en reconversion professionnelle et ai besoin d’être orienté.e", position: 2 },
+  { title: "Collectivité territoriale/EPCI", key: 'collectivite', baseline: 'Je souhaite développer l’ESS sur ma collectivité, favoriser les projets collectifs, former les élu.e.s et agents territoriaux de ma collectivité à l’ESS et cherche un accompagnement, de la ressource', position: 3 },
+  { title: "Dirigeant.e d’entreprise", key: 'entreprise', baseline: 'Je souhaite céder mon entreprise en SCOP, développer mon réseau et cherche un accompagnement, de la ressource', position: 4 },
+  { title: "Collège/Lycée/Centre de formation/Faculté", key: 'ecole', baseline: 'Je souhaite faire découvrir l’ESS aux étudiant.e.s, sensibiliser à de nouveaux métiers, monter un projet en ESS au sein de l’établissement et recherche un.e intervenant.e', position: 5 },
 ].each do |option|
   Profile.where(key: option[:key]).first_or_create(
     title: option[:title],
@@ -81,17 +81,17 @@ end
   )
 end
 
-
 # Main Pages ==================================================
 [
-  { title: 'Le pôle', baseline: 'Une structure au service du territoire', position: 1, child_pages: [
-    { key: nil, title: 'Missions', enabled: true, position: 1 },
-    { key: 'staff_member', title: 'Equipe', enabled: true, position: 2 },
-    { key: 'adherent', title: 'Adhérents', enabled: true, position: 3 },
-    { key: 'partner', title: 'Partenaires', enabled: true, position: 4 },
-    { key: 'membership', title: 'Adhérer au pôle', enabled: true, position: 5 },
+  { title: 'Vallons Solidaires', baseline: 'Une structure pour le développement de projets à fort potentiel humain', position: 1, child_pages: [
+    { key: nil, title: 'Présentation', enabled: true, position: 1 },
+    { key: nil, title: 'Missions', enabled: true, position: 2 },
+    { key: 'staff_member', title: 'Equipe', enabled: true, position: 3 },
+    { key: 'adherent', title: 'Adhérents', enabled: true, position: 4 },
+    { key: 'partner', title: 'Partenaires', enabled: true, position: 5 },
+    { key: 'membership', title: 'Adhérer au pôle', enabled: true, position: 6 },
   ] },
-  { title: "L'ESS", baseline: "Découvrez l'économie sociale et solidaire", position: 2, child_pages: [
+  { title: "L'ESS", baseline: "Découvrez une économie qui a du sens et des valeurs fortes", position: 2, child_pages: [
     { key: nil, title: "C'est quoi l'ESS?", enabled: true, position: 1 },
     { key: 'key_number', title: 'Chiffres-clés', enabled: true, position: 2 },
     { key: 'ess_map', title: 'Cartographie', enabled: true, position: 3 },
@@ -102,8 +102,8 @@ end
     position: option[:position]
   )
   option[:child_pages].each do |child_page_h|
-    main_page.child_pages.where(key: child_page_h[:key]).first_or_create(
-      title: child_page_h[:title],
+    main_page.child_pages.where(title: child_page_h[:title]).first_or_create(
+      key: child_page_h[:key],
       enabled: child_page_h[:enabled],
       position: child_page_h[:position]
     )
@@ -111,7 +111,6 @@ end
 end
 
 # Menu Items ==================================================
-
 [
   { theme: 'Découvrir', menu_blocks: [
     { title: "", position: 2, menu_items: [
@@ -122,11 +121,32 @@ end
     }
     ]
   },
+  { theme: 'Coopérer', menu_blocks: [
+    { title: "", position: 2, menu_items: [
+      { title: "M'inspirer", url: '#', position: 1},
+      { title: "Ressources", url: resources_path, position: 2},
+      { title: "Actualités", url: posts_path, position: 3}
+    ] }
+    ]
+  },
   { theme: 'Entreprendre', menu_blocks: [
     { title: "", position: 2, menu_items: [
       { title: "Chiffre-clés", url: key_numbers_path, position: 1},
       { title: "Ressources", url: resources_path, position: 2},
       { title: "Actualités", url: posts_path, position: 3}
+    ] }
+    ]
+  },
+  { theme: 'Dynamiser', menu_blocks: [
+    { title: "", position: 2, menu_items: [
+      { title: "Actualités", url: key_numbers_path, position: 1},
+      { title: "Adhérent.e.s à Vallons Solidaires", url: adherents_path, position: 2},
+    ] }
+    ]
+  },
+  { theme: 'Se former', menu_blocks: [
+    { title: "", position: 2, menu_items: [
+      { title: "Actualités", url: posts_path, position: 1}
     ] }
     ]
   }
@@ -146,32 +166,33 @@ end
 end
 
 [
-  { main_page: 'Le pôle', menu_blocks: [
-    { title: "Les composantes du pôle", position: 1, menu_items: [
+  { main_page: 'Vallons Solidaires', menu_blocks: [
+    { title: "Pôle ESS des Vallons de Vilaine", position: 1, menu_items: [
       { title: "Présentation", url: "#", position: 1 },
       { title: "Missions", url: "#", position: 2 },
       { title: "Equipe", url: staff_members_path, position: 3 },
-      { title: "Adhérents", url: adherents_path, position: 4 },
+      { title: "Adhérent.e.s", url: adherents_path, position: 4 },
       { title: "Partenaires", url: partners_path, position: 5 }
     ] },
-    { title: "Agir avec le pôle", position: 2, menu_items: [
-      { title: "Adhérer au pôle", url: main_page_path(MainPage.find_by(key: 'membership')), position: 1},
-      { title: "Se former", url: formations_path, position: 2},
-      { title: "Contacter le pôle", url: basic_page_path(BasicPage.find_by(key: 'contact')), position: 3}
+    { title: "Agir avec Vallons Solidaires", position: 2, menu_items: [
+      { title: "Adhérer à Vallons Solidaires", url: main_page_path(MainPage.find_by(key: 'membership')), position: 1},
+      { title: "Participer au réseau ESS", url: formations_path, position: 2},
+      { title: "Contacter Vallons Solidaires", url: basic_page_path(BasicPage.find_by(key: 'contact')), position: 3}
       ]
     }
     ]
   },
   { main_page: "L'ESS", menu_blocks: [
-    { title: "L'ESS sur le territoire", position: 1, menu_items: [
-      { title: "Chiffre-clés", url: key_numbers_path, position: 1 },
+    { title: "L’ESS en Vallons de Vilaine", position: 1, menu_items: [
+      { title: "Représentation", url: '#', position: 1 },
       { title: "Cartographie", url: main_page_path(MainPage.find_by(key: 'ess_map')), position: 2 },
-      { title: "Exemples de projets", url: "#", position: 3 }
-    ] },
-    { title: "L'ESS en général", position: 2, menu_items: [
-      { title: "C'est quoi l'ESS ?", url: "#", position: 1},
-      { title: "Le réseau des pôles ESS", url: "#", position: 2},
-      { title: "Ressources", url: "#", position: 3}
+      { title: "Projets inspirants", url: "#", position: 3 },
+      { title: "Soutiens", url: "#", position: 4 }
+      ] },
+      { title: "C'est quoi l'ESS ?", position: 2, menu_items: [
+      { title: "Chiffre-clés", url: key_numbers_path, position: 1 },
+      { title: "L'ESS en Bretagne'", url: "#", position: 2},
+      { title: "Ressources", url: resources_path, position: 3}
     ] }
     ]
   }
@@ -188,4 +209,17 @@ end
       )
     end
   end
+
+  # Formation ==================================================
+  [
+    { title: 'Communication et mobilisation', position: 1 },
+    { title: "Financement et organisation", position: 2 },
+    { title: "Emploi",  position: 3 },
+    { title: "Communication bienveillante",  position: 4 },
+  ].each do |option|
+    FormationCategory.where(title: option[:title]).first_or_create(
+      position: option[:position]
+    )
+  end
+
 end
