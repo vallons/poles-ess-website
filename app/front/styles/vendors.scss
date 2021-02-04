@@ -1,9 +1,13 @@
 $fa-font-path: '~@fortawesome/fontawesome-free/webfonts';
 
 :root {
-  --color-primary: #5c6ac4;
+  --color-primary-hs: 232, 47%;
+  --color-primary-l: 56%;
+  --color-primary: hsl(var(--color-primary-hs),var(--color-primary-l));
+  --color-primary-light: hsl(var(--color-primary-hs),calc(var(--color-primary-l) + 5%));
+  --color-primary-dark: hsl(var(--color-primary-hs),calc(var(--color-primary-l) - 5%));
   --color-primary-rgb: 92, 106, 196;
-  --color-secondary: #ecc94b;
+  --color-secondary: #72fce0;
 }
 
 @import "~@fortawesome/fontawesome-free/scss/fontawesome";

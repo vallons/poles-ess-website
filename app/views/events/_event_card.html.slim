@@ -1,8 +1,8 @@
 - item = AgendaItemDecorator.new(agenda_item)
-.flex.items-center.border.border-solid.border-gray-800.mb-2
-  .flex.flex-col.w-24.h-16.bg-gray-800.p-1.font-bold.text-white.uppercase.leading-4.text-center
+.flex.items-center.mb-2.cursor-pointer.box-link
+  .flex.flex-col.flex-shrink-0.w-24.h-16.p-1.bg-gray-200.border.border-gray-300.font-bold.text-gray-700.uppercase.leading-4.text-center
     .text-lg.leading-snug= item.day
     .text-sm.leading-tight= item.month
     .text-xs.leading-tight= item.year
   .p-2
-    = link_to item.title, item.url, target: "_blank"
+    = link_to item.title, item.url, target: "_blank", class: 'itc-demi uppercase'

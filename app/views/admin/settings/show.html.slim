@@ -4,8 +4,21 @@
 
   = form_for(Setting.new, url: admin_settings_path) do |f|
     .form-group
-      = f.label :project_name
-      = f.text_field :project_name, value: Setting.project_name, class: "form-control"
+      = f.label :pole_name
+      = f.text_field :pole_name, value: Setting.pole_name, class: "form-control"
+        .form-group
+      = f.label :pole_address
+      = f.text_field :pole_address, value: Setting.pole_address, class: "form-control"
+    .form-group
+      = f.label :pole_city
+      = f.text_field :pole_city, value: Setting.pole_city, class: "form-control"
+    .form-group
+      = f.label :pole_phone
+      = f.text_field :pole_phone, value: Setting.pole_phone, class: "form-control"
+    .form-group
+      = f.label :pole_mail
+      = f.text_field :pole_mail, value: Setting.pole_mail, class: "form-control"
+
     .form-group
       = f.label :baseline
       = f.text_field :baseline, value: Setting.baseline, class: "form-control"
@@ -20,10 +33,10 @@
       = f.text_area :admin_emails, value: Setting.admin_emails.join("\n"), class: "form-control"
       p.small.font-italic Emails auxquels seront envoyées les notifications
 
-    h4.mb-4 Logo
+    h4.mb-4 Logo blanc
     .d-flex data-controller='file-upload'
       - if Setting.logo.present?
-        .mr-4
+        .mr-4.bg-light
           => image_tag Setting.logo.variant(resize_to_limit: [150, nil])
       div
         .form-group
@@ -39,6 +52,26 @@
                         method: :delete, class: 'btn btn-sm btn-outline-danger' do
               i.fas.fa-trash-alt>
               ' Supprimer l'image actuelle
+
+    / h4.mb-4 Logo couleur
+    / .d-flex data-controller='file-upload'
+    /   - if Setting.logo_primary.present?
+    /     .mr-4.bg-light
+    /       => image_tag Setting.logo_primary.variant(resize_to_limit: [150, nil])
+    /   div
+    /     .form-group
+    /       = f.label :logo_primary, for: "logo-primary", class: 'btn btn-sm btn-outline-info' do
+    /         i.fas.fa-file-upload>
+    /         ' Sélectionner le logo
+    /       = f.file_field :logo_primary, id: "logo-primary", class: "d-none", data:{action: 'change->file-upload#displayFileName'}
+    /       div
+    /         small data-target="file-upload.nameDisplayed"
+    /     - if Setting.logo_primary.present?
+    /       .form-group
+    /         = link_to destroy_upload_admin_settings_path(Setting.logo_primary.id, redirect: :show),
+    /                     method: :delete, class: 'btn btn-sm btn-outline-danger' do
+    /           i.fas.fa-trash-alt>
+    /           ' Supprimer l'image actuelle
 
     .action-btns
       => f.submit class: "btn btn-primary"

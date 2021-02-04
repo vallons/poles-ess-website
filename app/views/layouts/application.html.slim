@@ -17,7 +17,7 @@ html lang='fr'
   body.h-full
     .relative data-controller="main-menu"
       nav.flex.justify-between
-        div.bg-primary.text-white.flex.w-1/2.md:w-1/6.px-6.py-4.items-center
+        div.bg-primary.text-white.flex.w-1/2.md:w-1/6.px-6.py-2.items-center
           button.flex.items-center.flex-1.block.md:hidden
             svg.fill-current.cursor-pointer viewBox="0 0 100 80" width="40" height="40" xmlns="http://www.w3.org/2000/svg" data-action="click->main-menu#toggleMobileMenu"
               title Menu
@@ -26,21 +26,21 @@ html lang='fr'
               rect y="60" width="100" height="15" rx="8"
           = link_to root_path, title: "Page d'accueil", class: "block flex items-center w-auto" do
             - if Setting.logo.present?
-              => image_tag Setting.logo.variant(resize_to_limit: [nil, 50]), class: "mr-3", title: Setting.project_name
-            / span.font-semibold.text-xl.tracking-tight = Setting.project_name
+              => image_tag Setting.logo.variant(resize_to_limit: [nil, 75]), class: "mr-3", title: Setting.pole_name
+            / span.font-semibold.text-xl.tracking-tight = Setting.pole_name
         .flex.items-center.flex-1.justify-end.px-6.py-4.bg-gray-100
           .flex.text-xs.md:text-sm.items-center.justify-end
             = link_to main_page_path(@membership_page), class: "hidden md:flex flex-col items-center px-2 uppercase text-primary" do
-              = image_pack_tag "picto/picto-adhesion.svg", class: "w-10 mb-2"
+              = image_pack_tag "picto/Picto-adhesion.svg", class: "w-10 mb-2"
               ' Adhésion
             = link_to formations_path, class: "flex flex-col items-center px-2 uppercase text-primary" do
-              = image_pack_tag "picto/picto-adhesion.svg", class: "w-10 mb-2"
+              = image_pack_tag "picto/Picto-formations.svg", class: "w-10 mb-2"
               ' Formations
             = link_to main_page_path(@ess_map_page), class: "hidden md:flex flex flex-col items-center px-2 uppercase text-primary" do
-              = image_pack_tag "picto/picto-adhesion.svg", class: "w-10 mb-2"
+              = image_pack_tag "picto/Picto-carto.svg", class: "w-10 mb-2"
               ' Cartographie
             = link_to basic_page_path(@contact_page), class: "flex flex-col items-center pl-2 uppercase text-primary" do
-              = image_pack_tag "picto/picto-adhesion.svg", class: "w-10 mb-2"
+              = image_pack_tag "picto/Picto-adhesion.svg", class: "w-10 mb-2"
               ' Contact
       nav.relative.bg-white.px-6.hidden.md:block data-target="main-menu.mobileMenu"
         div.flex.flex-col.md:flex-row.justify-between.items-center
@@ -75,27 +75,38 @@ html lang='fr'
         .max-w-6xl.mx-auto.flex.flex-col.md:flex-row
           .w-full.md:w-2/3.flex.flex-col.md:flex-row
             .w-full.md:w-1/3.py-3.md:py-8.px-3
-              .text-xl.uppercase.text-primary Thèmes
+              .footer-title Thèmes
               ul
                 - @themes.each do |theme|
-                  li = link_to theme.title, theme_path(theme), class: "text-gray-600"
+                  li = link_to theme.title, theme_path(theme), class: "footer-link"
             .w-full.md:w-1/3.py-3.md:py-8.px-3
-              .text-xl.uppercase.text-primary Profils
+              .footer-title Profils
               ul 
                 - @profiles.each do |profile|
-                  li = link_to profile.title, profile_path(profile), class: "text-gray-600"
+                  li = link_to profile.title, profile_path(profile), class: "footer-link"
             .w-full.md:w-1/3.py-3.md:py-8.px-3
-              .text-xl.uppercase.text-primary Liens rapides
+              .footer-title Liens rapides
               ul.text-gray-600
-                li = link_to "Actualités", posts_path
-                li = link_to "Actions", activities_path
-                li = link_to "Evénements", events_path
-                li = link_to "Formations", formations_path
-                li = link_to "Chiffres clés", key_numbers_path
-                li = link_to "Ressources", resources_path
-          .w-full.md:w-1/3.py-3.md:py-8.px-3
-            - if Setting.logo.present?
-              => image_tag Setting.logo.variant(resize_to_limit: [nil, 150]), class: ""
+                li = link_to "Actualités", posts_path, class: "footer-link"
+                li = link_to "Actions", activities_path, class: "footer-link"
+                li = link_to "Evénements", events_path, class: "footer-link"
+                li = link_to "Formations", formations_path, class: "footer-link"
+                li = link_to "Chiffres clés", key_numbers_path, class: "footer-link"
+                li = link_to "Ressources", resources_path, class: "footer-link"
+          .separator.h-7.my-auto
+          .w-full.md:w-1/3.py-3.md:py-8.px-3.text-gray-600
+            - if Setting.logo_primary.present?
+              => image_tag Setting.logo_primary.variant(resize_to_limit: [nil, 150]), class: ""
+            - if Setting.pole_name.present?
+              p.uppercase= Setting.pole_name
+            - if Setting.pole_address.present?
+              p= Setting.pole_address
+            - if Setting.pole_city.present?
+              p= Setting.pole_city
+            - if Setting.pole_phone.present?
+              p= link_to Setting.pole_phone, "tel:#{Setting.pole_phone}", class: "text-primary"
+            - if Setting.pole_mail.present?
+              p= link_to Setting.pole_mail, "mailto:#{Setting.pole_mail}", class: "text-primary"
 
       .bg-primary.py-8
         .container.mx-auto.flex.flex-col.md:flex-row.justify-between

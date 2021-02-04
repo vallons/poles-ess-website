@@ -12,12 +12,12 @@ class ApplicationController < ActionController::Base
   protected
 
   def seo_title
-    [@seo_title, Setting.project_name].join(' - ')
+    [@seo_title, Setting.pole_name].join(' - ')
   end
   helper_method :seo_title
 
   def seo_description
-    [@seo_description, Setting.project_name].join(' - ')
+    [@seo_description, Setting.pole_name].join(' - ')
   end
   helper_method :seo_description
 
@@ -42,8 +42,8 @@ class ApplicationController < ActionController::Base
   end
 
   def set_default_seos!
-    @seo_title       ||= Setting.project_name
-    @seo_description ||= Setting.project_name
+    @seo_title       ||= Setting.pole_name
+    @seo_description ||= Setting.pole_name
   end
 
   def flash_to_headers

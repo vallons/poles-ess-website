@@ -2,7 +2,7 @@ fr:
   activerecord:
     attributes:
       setting:
-        project_name:   Le nom du pôle
+        pole_name:   Le nom du pôle
         baseline:       La phrase d'accroche
         baseline_pre:   L'entête de la phrase d'accroche
         logo:           Le logo
@@ -10,7 +10,7 @@ fr:
   helpers:
     label:
       setting:
-        project_name:   Nom du pôle
+        pole_name:   Nom du pôle
         baseline:       Phrase d'accroche
         baseline_pre:   Entête phrase d'accroche
         logo:           Logo

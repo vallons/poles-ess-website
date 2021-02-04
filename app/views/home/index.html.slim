@@ -1,50 +1,51 @@
 .home-bg.flex
   .w-1/3.md:w-2/5
   .home-baseline.w-2/3.md:w-2/5.p-12.flex.items-center
-    .text-xl.md:text-4xl.uppercase = Setting.baseline
+    .text-xl.md:text-4xl.uppercase.itc-md-cn = Setting.baseline
 
 .mx-auto.mb-24
   .flex.flex-col.md:flex-row
     .w-full.md:w-1/5
       .p-3.text-center.font-bold.bg-primary.text-white
-        h3.text-sm.uppercase Prochains événements
+        h3.text-sm.uppercase.itc-demi événements
       .p-3
         = render partial: 'events/event_card', collection: @agenda_items, as: :agenda_item
-        = link_to "Voir tous les événements", events_path, class: "underline"
+        = link_to "Voir tous les événements", events_path, class: "uppercase text-sm underline"
     .w-full.md:w-3/5
       .p-3.text-center.font-bold.bg-primary.text-white
-        h3.text-sm.uppercase Quelques actions
-      
+        h3.text-sm.uppercase.itc-demi Découvrez nos actions
+
       .w-full.flex.flex-wrap.flex-col.md:flex-row
         - @highlighted_activities.each do |activity|
-          .w-full.md:w-1/2.mb-4.p-3
-            .bg-gray-500.w-full.h-48.p-5.flex.flex-col.content-center.justify-center
-              .text-lg Je souhaite
-              .text-2xl = link_to activity.home_title, activity_path(activity)
+          .w-full.md:w-1/2.p-3
+            .bg-primary.hover:bg-primary-dark.w-full.h-52.p-5.flex.flex-col.content-center.justify-between.items-center.text-center.box-link.cursor-pointer
+              div.text-white.uppercase
+                .text-base.itc-demi.text-secondary.mb-2 Je souhaite
+                .text-xl.itc-md-cn = activity.home_title
+              = link_to activity.title, activity_path(activity), class: 'rounded-full px-4 py-2 bg-white text-primary text-xs text-center uppercase'
     .w-full.md:w-1/5
       .p-3.text-center.font-bold.bg-primary.text-white
-        h3.text-sm.uppercase Je suis...
+        h3.text-sm.uppercase.itc-demi Je suis...
       .p-3
-        - @profiles.each do |profile|
-          .flex.items-center.border.border-solid.border-gray-500.mb-2
-            .flex.flex-col.w-16.h-16.bg-gray-500.p-2.font-bold.text-white.uppercase.leading-4.text-center
-              p icone
-            .p-2
-              = link_to profile.title, profile_path(profile)
+        = render partial: 'profiles/card', collection: @profiles, as: :profile
 
+.flex.flex-col.md:flex-row.mx-auto.mb-24
+  .w-full.md:w-1/2.text-center.bg-gray-200.py-6.pr-6.md:mr-3
+    .md:w-3/5.ml-auto
+      p.text-xl.uppercase.mb-3 Vous souhaitez gagner en compétence ou professionnaliser votre équipe ?
+      = image_pack_tag "picto/Picto-formations.svg", class: "w-20 mb-6 mx-auto"
+      = link_to "S'inscrire aux formations", formations_path, class: "bg-primary hover:bg-primary-dark text-sm text-secondary uppercase pt-3 pb-2 px-4"
+  .w-full.md:w-1/2.text-center.bg-gray-200.py-6.pl-6.md:ml-3
+    .md:w-3/5.mr-auto
+      p.text-xl.uppercase.mb-3 Vous souhaitez participer à la dynamique de l'ESS sur votre territoire ?
+      = image_pack_tag "picto/Picto-adhesion.svg", class: "w-20 mb-6 mx-auto"
+      = link_to "Adhérer au pôle", main_page_path(@membership_page), class: "bg-primary hover:bg-primary-dark text-sm text-secondary uppercase  pt-3 pb-2 px-4"
 
-
-.container.mx-auto.mb-24
-  .w-full.md:w-1/2.text-center
-    .md:w-3/4.mx-auto
-      p.text-xl.mb-6 Vous souhaitez gagner en compétence ou professionnaliser votre équipe ?
-      = link_to "S'inscrire aux formations", formations_path, class: "bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
-
-.container.mx-auto.mb-24
-  h2.text-3xl.uppercase.mb-3 Dernières actualités
+.container.mx-auto.text-primary.mb-24
+  h2.text-3xl.uppercase.mb-5 Dernières actualités
   .flex.flex-col.md:flex-row
     - @posts.each do |post|
       .w-full.md:w-1/2.px-4
         = render 'posts/card', post: post
 
-  = link_to "Voir toutes les actualités", posts_path, class: "mt-4 underscore"
+  = link_to "Voir toutes les actualités", posts_path, class: "w-full text-center inline-block mt-4 uppercase text-sm underline"

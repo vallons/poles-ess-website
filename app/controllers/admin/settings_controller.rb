@@ -9,7 +9,7 @@ class Admin::SettingsController < Admin::BaseController
       Setting.send("#{key}=", setting_params[key].strip) unless setting_params[key].nil?
     end
     if setting_upload_params.present? && !(Setting.logo_instance.update_attributes(setting_upload_params))
-      update_logo
+      update_logos
     else
       flash[:notice] = "Les paramètres ont bien été mis à jour"
     end
@@ -19,16 +19,22 @@ class Admin::SettingsController < Admin::BaseController
   private
 
   def setting_params
-    params.require(:setting).permit(:project_name, :admin_emails)
+    params.require(:setting).permit(:pole_name, :pole_address, :pole_city, :pole_phone, :pole_mail,
+      :baseline, :newsletter_subscription_title, :newsletter_subscription_description, :admin_emails)
   end
 
   def setting_upload_params
     params.require(:setting).permit(:logo)
   end
 
-  def update_logo
+  def setting_logo_primary_params
+    params.require(:setting).permit(:logo_primary)
+  end
+
+  def update_logos
     logo_instance = Setting.logo_instance
-    if logo_instance.update_attributes(setting_upload_params)
+    logo_instance_primary = Setting.logo_instance_primary
+    if logo_instance.update_attributes(setting_upload_params) & logo_instance_primary.update_attributes(setting_logo_primary_params)
       flash[:notice] = "Les paramètres ont bien été mis à jour"
     else
       flash[:error] = logo_instance.errors.full_messages.first

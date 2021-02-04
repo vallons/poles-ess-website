@@ -3,9 +3,15 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        primary: 'var(--color-primary)',
-        secondary: 'var(--color-secondary)'
-      }
+        primary: {
+          light: "var(--color-primary-light)",
+          DEFAULT: "var(--color-primary)",
+          dark: "var(--color-primary-dark)",
+        },
+        secondary: {
+          DEFAULT: "var(--color-secondary)",
+        },
+      },
     },
     container: {
       padding: {
@@ -16,7 +22,7 @@ module.exports = {
       },
     },
     inset: {
-      '0': 0,
+      0: 0,
       auto: "auto",
       48: "12rem",
     },
