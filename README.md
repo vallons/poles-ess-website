@@ -52,6 +52,8 @@ openstack:
 
 Copier votre clé `production.key` sur scalingo (`RAILS_MASTER_KEY`)
 
+Ajouter le repo de scalingo : ` git remote add scalingo git@ssh.osc-fr1.scalingo.com:xxx.git `  (adresse dans le menu 'Code' de l'interface web de scalingo)
+
 ## Se synchroniser avec le repo original forké
 
 ```
