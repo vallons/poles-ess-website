@@ -20,20 +20,21 @@ end
 
 # Settings ----------------------------------------------
 
-instance_logo = Setting.first_or_create(var: "logo_instance", value: 1)
-instance_logo.logo.attach(io: File.open('public/logo.png'), filename: 'logo.png', content_type: 'image/png')
-instance_logo_primary = Setting.first_or_create(var: "instance_logo_primary", value: 2)
-instance_logo_primary.logo.attach(io: File.open('public/logo-primary.png'), filename: 'logo-primary.png', content_type: 'image/png')
-Setting.first_or_create(var: "pole_name", value: "Pôle ESS")
-Setting.first_or_create(var: "pole_address", value: "Maison des associations")
-Setting.first_or_create(var: "pole_address_complementary", value: "46 rue bidule")
-Setting.first_or_create(var: "pole_city", value: "35999 Ville-de-Bretagne")
-Setting.first_or_create(var: "pole_phone", value: "02 99 00 01 02")
-Setting.first_or_create(var: "pole_mail", value: "pole@pole.fr")
-Setting.first_or_create(var: "baseline", value: "Dynamiser les projets d'utilité sociale sur le territoire")
-Setting.first_or_create(var: "newsletter_subscription_title", value: "Inscrivez-vous à notre anti-newsletter")
-Setting.first_or_create(var: "newsletter_subscription_description", value: "Anti-newsletter ? Une info par lettre, soignée et choyée, à échéance régulière dans votre boîte aux lettres")
-Setting.first_or_create(var: "admin_emails", value:  %w[bonjour@lassembleuse.fr])
+Setting.logo_instance = 1  if Setting.logo_instance.blank?
+Setting.logo_instance.logo.attach(io: File.open('public/logo.png'), filename: 'logo.png', content_type: 'image/png')
+Setting.logo_instance_primary = 1  if Setting.logo_instance_primary.blank?
+Setting.logo_instance_primary.logo.attach(io: File.open('public/logo-primary.png'), filename: 'logo-primary.png', content_type: 'image/png')
+Setting.pole_name = "Pôle ESS"                        if Setting.pole_name.blank?
+Setting.pole_address = "Maison des associations"      if Setting.pole_address.blank?
+Setting.pole_address_complementary = "46 rue bidule"  if Setting.pole_address_complementary.blank?
+Setting.pole_city = "35999 Ville-de-Bretagne"         if Setting.pole_city.blank?
+Setting.pole_phone = "02 99 00 01 02"                 if Setting.pole_phone.blank?
+Setting.pole_mail = "pole@pole.fr"                    if Setting.pole_mail.blank?
+Setting.baseline = "Dynamiser les projets d'utilité sociale sur le territoire"    if Setting.baseline.blank?
+Setting.newsletter_subscription_title = "Inscrivez-vous à notre anti-newsletter"  if Setting.newsletter_subscription_title.blank?
+Setting.newsletter_subscription_description = "Anti-newsletter ? Une info par lettre, soignée et choyée, à échéance régulière dans votre boîte aux lettres"                        if Setting.newsletter_subscription_description.blank?
+Setting.admin_emails = %w[bonjour@lassembleuse.fr]    if Setting.admin_emails.blank?
+
 EmailTemplate.where(mailer: "ParticipantMailer", mail_name: "new_subscription").first_or_create(body: "Le pôle vous recontactera rapidement pour préciser les détails pratiques et le règlement.")
 
 # Basic Pages ==================================================
