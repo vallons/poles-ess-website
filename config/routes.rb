@@ -68,6 +68,7 @@ Rails.application.routes.draw do
   resources :key_numbers, only: [:index], path: "chiffres-cles"
   resources :events, only: [:index], path: "evenements"
   resource :search, only: [:show], path: "recherche"
+  resource :newsletters, only: [:create]
 
   root 'home#index'
 end

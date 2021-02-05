@@ -65,10 +65,12 @@ html lang='fr'
         .max-w-6xl.mx-auto.flex.flex-col.md:flex-row.py-10
           .w-full.md:w-3/5.text-right
             p.uppercase = Setting.newsletter_subscription_title
-            p.text-sm = Setting.newsletter_subscription_description
-          .w-full.md:w-2/5.flex
-            = text_field_tag :email, "", class: "flex-1 px-2 block w-full rounded-none border border-gray-300 mx-3"
-            = button_tag "Envoyer", class: 'inline-flex items-center px-3 border border-gray-300 bg-gray-50 text-gray-500 text-sm'
+            p.text-xs = Setting.newsletter_subscription_description
+          .w-full.md:w-2/5
+            = form_with url: newsletters_path, method: :post, local: true, class: "flex" do |f|
+              = f.email_field :email, placeholder: 'Votre email', 'aria-label': 'Votre email', required: true, class: "flex-1 px-2 block w-full rounded-none border border-gray-300 mx-3"
+              = f.submit 'Envoyer', class: 'button bold', class: 'inline-flex items-center px-3 border border-gray-300 bg-gray-50 text-gray-500 text-sm'
+
       .footer-line-xl.w-full.bg-white
 
       .w-full.bg-gray-200

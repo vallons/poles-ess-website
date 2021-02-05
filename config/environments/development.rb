@@ -41,7 +41,18 @@ Rails.application.configure do
 
   config.action_mailer.delivery_method = :letter_opener
   config.action_mailer.perform_deliveries = true
-  
+
+  # if ENV['SENDINBLUE_API_KEY'].present?
+  #   config.action_mailer.delivery_method = :smtp
+  #   config.action_mailer.smtp_settings = {
+  #     user_name: ENV['SENDINBLUE_USER_NAME'],
+  #     password: ENV['SENDINBLUE_SMTP_KEY'],
+  #     address: 'smtp-relay.sendinblue.com',
+  #     port: '587',
+  #     authentication: 'cram_md5'
+  #   }
+  # end
+
   # Print deprecation notices to the Rails logger.
   config.active_support.deprecation = :log
 

@@ -31,7 +31,8 @@ gem 'activestorage-openstack'
 # Quality =================================================
 gem 'rollbar'
 
-gem 'mailjet'
+# Mail ====================================================
+gem 'sib-api-v3-sdk'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
