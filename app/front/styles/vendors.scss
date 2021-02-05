@@ -1,12 +1,14 @@
 $fa-font-path: '~@fortawesome/fontawesome-free/webfonts';
 
 :root {
-  --color-primary-hs: 27, 80%;
-  --color-primary-l: 46%;
+
+  --color-primary-hs: 28, 83%;
+  --color-primary-l: 47%;
+  --color-primary-rgb: 218, 114, 20;
+
   --color-primary: hsl(var(--color-primary-hs),var(--color-primary-l));
   --color-primary-light: hsl(var(--color-primary-hs),calc(var(--color-primary-l) + 5%));
   --color-primary-dark: hsl(var(--color-primary-hs),calc(var(--color-primary-l) - 5%));
-  --color-primary-rgb: 210, 109, 24;
 
   --color-secondary-hs: 27, 100%;
   --color-secondary-l: 70%;
