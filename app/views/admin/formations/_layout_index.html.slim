@@ -2,8 +2,10 @@ h1 Gestion des formations
 
 ul.nav.nav-tabs.mb-3
   li.nav-item
-    = active_link_to "Formations", admin_formations_path, title: "Gérer les foramtions", class: "nav-link", active: :exclusive
+    = active_link_to "Formations", admin_formations_path, title: "Gérer les formations", class: "nav-link", active: :inclusive
   li.nav-item
-    = active_link_to "Catégories", admin_formation_categories_path, title: "Gérer les catégories", class: "nav-link", active: :exclusive
+    = active_link_to "Catégories", admin_formation_categories_path, title: "Gérer les catégories", class: "nav-link", active: :inclusive
+  li.nav-item
+    = active_link_to "Programmes PDF", admin_formation_programs_path, title: "Gérer les programmes psf", class: "nav-link", active: :inclusive
 
 = yield

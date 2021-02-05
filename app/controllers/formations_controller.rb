@@ -8,6 +8,7 @@ class FormationsController < ApplicationController
     @all_formation_categories = FormationCategory.enabled.order(:position)
     @formations = Formation.enabled.includes(:formation_category, :seo)
     .apply_filters(params)
+    @formation_programs = FormationProgram.enabled.order(:position)
     if params[:sort] == 'by_future'
       @formations = @formations.sort_by_future.sort_by_start_date
     else

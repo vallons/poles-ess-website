@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_01_14_090600) do
+ActiveRecord::Schema.define(version: 2021_02_05_142542) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_trgm"
@@ -119,6 +119,14 @@ ActiveRecord::Schema.define(version: 2021_01_14_090600) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.boolean "enabled", default: true
+  end
+
+  create_table "formation_programs", force: :cascade do |t|
+    t.string "title"
+    t.integer "position"
+    t.boolean "enabled", default: true
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "formation_subscriptions", force: :cascade do |t|

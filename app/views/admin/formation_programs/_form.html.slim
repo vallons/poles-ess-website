@@ -1,0 +1,23 @@
+= f.form_errors
+
+.form-group.required
+  = f.label :title, class: "font-weight-bold"
+  = f.text_field :title, class: 'form-control'
+
+.form-group
+  - if f.object.document.present?
+    .d-flex
+      p.font-weight-bold Document actuel :
+      =>  link_to f.object.document.filename, url_for(f.object.document), target: '_blank', class: 'ml-1'
+    = f.label :document, "Modifier le document : ", class: "font-weight-bold"
+    = f.file_field :document
+  - else
+    => f.label :document, "Télécharger le document : ", class: "font-weight-bold"
+    => f.file_field :document
+
+= render "admin/shared/enabled_field", f: f
+
+.action-btns
+  => f.submit class: "btn btn-primary"
+  => f.submit_and_stay class: "btn btn-outline-primary"
+  = link_to "Annuler", admin_formation_programs_path, class: "btn btn-link"

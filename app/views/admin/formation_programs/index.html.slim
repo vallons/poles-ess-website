@@ -1,0 +1,39 @@
+= render layout: 'admin/formations/layout_index' do
+  = link_to "Télécharger un programme", new_admin_formation_program_path, class:'btn btn-primary float-right'
+  h1.mb-5 Programmes de formation
+
+  .cadre-table
+    table.table.table-striped.table-hover.table-sm
+      thead
+        tr
+          th Position
+          th Titre
+
+          th
+      tbody
+        - max_position    = @formation_programs.map(&:position).compact.max || 1
+        - position_select = (1..max_position).map { |i| [i, i] }
+
+        - @formation_programs.each do |formation_program| 
+          tr
+            td data-controller='manage-position'
+              = form_for formation_program, as: :formation_program, url: admin_formation_program_path(formation_program) do |f|
+                = f.select  :position, \
+                            options_for_select(position_select, formation_program.position),\
+                            {},
+                            class: "form-control form-control-sm", \
+                            data: {action: 'change->manage-position#submitSelect'}
+
+            td= formation_program.title
+            td=> link_to edit_admin_formation_program_path(formation_program), class: "btn btn-sm btn-info mr-2", title: "Editer" do
+              i.fas.fa-pen
+              = link_to admin_formation_program_path(formation_program), method: :delete, data: {confirm: "Confirmer la suppression ?"}, title: "Supprimer", class: "btn btn-sm btn-danger" do
+                i.far.fa-trash-alt
+
+
+        - if @formation_programs.empty?
+          tr
+            td colspan="7"
+              p.mt-3.text-center: em.text-muted Aucun programme
+
+  / = paginate @formation_programs  

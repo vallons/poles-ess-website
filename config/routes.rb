@@ -25,6 +25,7 @@ Rails.application.routes.draw do
     resources :activities, concerns: [:upload_destroyable, :configurable]
     resources :formations, concerns: [:upload_destroyable, :configurable]
     resources :formation_categories
+    resources :formation_programs
     resources :post_categories
     resources :posts, concerns: [:upload_destroyable, :configurable]
     resources :staff_member_categories

@@ -1,0 +1,14 @@
+fr:
+  activerecord:
+    attributes:
+      formation_program:
+        title:          Le titre
+
+  helpers:
+    label:
+      formation_program:
+        title:          Titre
+    submit:
+      formation_program:
+        create: "Créer le programme"
+        update: "Mettre à jour le programme"

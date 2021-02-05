@@ -1,0 +1,21 @@
+.title-wrapper
+  h1
+    ' Édition du programme "#{@formation_program.title}"
+
+  div.flex
+    = link_to admin_formation_programs_path, class: "btn btn-light mr-4" do
+      i.fa.fa-chevron-left>
+      ' Retour
+    span.small
+      ' Créé le
+      strong => l @formation_program.created_at
+      ' -
+      ' Mis à jour le
+      strong = l @formation_program.updated_at
+
+  hr
+
+= form_for(@formation_program, as: :formation_program, \
+  url: admin_formation_program_path(@formation_program), html: {class: "form-horizontal"}) do |f| 
+
+  =  render partial: "form", locals: {f: f}

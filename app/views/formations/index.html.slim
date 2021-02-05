@@ -4,15 +4,16 @@
 .flex
   .md:w-1/4.px-8 data-controller='manage-index'
     = form_tag formations_path, method: :get do
-      .mb-3.flex
+      .mb-4.flex
         .mr-2.font-bold
           ' Tri : 
         div
           => select_tag :sort, \
             options_for_select([["Formation #{Time.zone.now.year}", :by_formation_category],["Prochaines formations", :by_future]], params[:sort]), \
             class:"w-full px-4 py-2", data: {action: 'change->manage-index#submitFilterForm'}
+
       h3.text-xl.mb-3 Filtrer
-      .bg-gray-300.px-4.py-3
+      .bg-gray-300.px-4.py-3.mb-8
         h4.font-bold Par catégorie
 
         - @all_formation_categories.each do |category|
@@ -23,6 +24,14 @@
                 id: "by_formation_category_#{category.id}", \
                 data: {action: 'change->manage-index#submitFilterForm'}
               => category.title
+
+      - if @formation_programs.any?
+        h3.text-xl.mb-3 Programmes de formation
+        ul
+          - @formation_programs.each do |program|
+            li
+              = link_to program.title, url_for(program.document), class: 'underline', target: '_blank'
+
 
   .md:w-3/4.px-8
     - if params[:sort] == 'by_future'
