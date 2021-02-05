@@ -17,7 +17,7 @@ div data-controller='manage-index'
         tr
           td= l(event.created_at, format: :day)
           td= event.title
-          td= schedule_date(event.schedule.time_range)
+          td= schedule_dates(event.schedules.order(:time_range).pluck(:time_range))
           td=> link_to edit_admin_event_path(event), class: "btn btn-sm btn-info mr-2", title: "Editer" do
             i.fas.fa-pen
             = link_to admin_event_path(event), method: :delete, data: {confirm: "Confirmer la suppression ?"}, title: "Supprimer", class: "btn btn-sm btn-danger" do

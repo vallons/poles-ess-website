@@ -1,5 +1,4 @@
 class PostsController < ApplicationController
-
   include SlugsAndRedirections
 
   before_action :get_post, only: [:show]
@@ -23,7 +22,6 @@ class PostsController < ApplicationController
   end
 
   private # =====================================================
-
   def get_post
     @post = get_object_from_param_or_redirect(Post)
   end

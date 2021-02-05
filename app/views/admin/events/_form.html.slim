@@ -8,12 +8,6 @@
   = f.label :link, class: "font-weight-bold"
   = f.text_field :link, class: 'form-control'
 
-
-  fieldset
-    legend Date
-    div data-controller="nested-fields"
-
-      = f.fields_for :schedule do |ff|
-        = render "schedule_fields", f: ff
+  = render 'admin/schedules/schedules_form', f: f
 
 = render "admin/shared/action_btns", f: f, index_path: admin_events_path

@@ -80,7 +80,7 @@ class Admin::FormationsController < Admin::BaseController
       :speaker, :tickets_count, :cost, :address ,:zipcode, :city, :id, :image, :enabled,
       schedules_attributes: [:date, :start_at, :end_at, :id, :_destroy],
       seo_attributes: seo_attributes
-)
+    )
   end
 
   def get_formation

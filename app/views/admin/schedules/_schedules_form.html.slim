@@ -1,0 +1,14 @@
+fieldset
+  legend Date(s)
+  div data-controller="nested-fields"
+    template data-target="nested-fields.template"
+      = f.fields_for :schedules, Schedule.new, child_index: 'NEW_RECORD' do |schedule|
+        = render "admin/schedules/schedule_fields", f: schedule
+
+    = f.fields_for :schedules do |ff|
+      = render "admin/schedules/schedule_fields", f: ff
+
+    .text-center.mb-3 data-target="nested-fields.links" 
+      = link_to "#", class: "btn btn-info btn-sm", data: { action: "click->nested-fields#add_association" } do
+        i.far.fa-plus-square>
+        ' Ajouter une date

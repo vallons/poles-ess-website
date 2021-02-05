@@ -2,11 +2,11 @@ class AgendaItemDecorator < SimpleDelegator
   include Rails.application.routes.url_helpers
 
   def date
-    if respond_to? :schedules
-      schedules.first.time_range.begin
-    else
-      schedule.time_range.begin
-    end
+    time_range.begin
+  end
+
+  def title
+    schedulable.title
   end
 
   def l_date
@@ -26,10 +26,11 @@ class AgendaItemDecorator < SimpleDelegator
   end
 
   def url
-    if self.__getobj__.is_a?(Formation)
-      formation_path(self)
-    elsif self.__getobj__.is_a?(Event)
-      link
+    # byebug
+    if schedulable.is_a?(Formation)
+      formation_path(schedulable)
+    elsif schedulable.is_a?(Event)
+      schedulable.link
     end
   end
 
