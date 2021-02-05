@@ -62,7 +62,7 @@ class Post < ApplicationRecord
     klass = klass.by_post_category(params[:by_post_category]) if params[:by_post_category].present?
     klass = klass.by_theme(params[:by_theme]) if params[:by_theme].present?
     klass = klass.by_profile(params[:by_profile]) if params[:by_profile].present?
-    klass.all
+    klass.distinct
   end
 
   def self.apply_sorts(params)
