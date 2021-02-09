@@ -13,7 +13,7 @@ class Subscription < ApplicationRecord
   private def notify_participant
     p "notify_participant ================================================="
     participants.each do |participant|
-      ParticipantMailer.with(participant: participant).new_subscription.deliver_later
+      ParticipantMailer.with(participant: participant).new_subscription.deliver_now
     end
   end
   after_create :notify_participant
