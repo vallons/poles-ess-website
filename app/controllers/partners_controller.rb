@@ -14,9 +14,10 @@ class PartnersController < ApplicationController
   end
 
   def set_breadcrumbs
+    parent_page = MainPage.find_by(key: "partner").parent_page
     @breadcrumbs = []
     @breadcrumbs << [ "Accueil",    root_path ]
-    @breadcrumbs << [ "Le pôle",    main_page_path(MainPage.find_by(title: "Le pôle")) ]
+    @breadcrumbs << [ parent_page.title,    main_page_path(parent_page) ] if parent_page.present?
     @breadcrumbs << [ "Partenaires",      partners_path ]
   end
 end
