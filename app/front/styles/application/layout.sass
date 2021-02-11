@@ -24,6 +24,7 @@ html, body
   .block-menu
     display: none
     text-align: left
+    z-index: 3
   &.active
     > a
       font-weight: bold
@@ -75,6 +76,15 @@ html, body
 
 .separator
   border-left: 1px solid var(--color-primary)
+
+.sr-only
+  position: absolute
+  clip: rect(1px, 1px, 1px, 1px)
+  padding: 0
+  border: 0
+  height: 1px
+  width: 1px
+  overflow: hidden
 
 
 .bg-pic

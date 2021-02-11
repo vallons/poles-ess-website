@@ -63,12 +63,12 @@ html lang='fr'
       .footer-line.w-full.bg-primary
       .newsletter-subscription.bg-gray-200
         .max-w-6xl.mx-auto.flex.flex-col.md:flex-row.py-10
-          .w-full.md:w-3/5.text-right
+          .w-full.md:w-3/5.text-center.md:text-right.px-6
             p.uppercase = Setting.newsletter_subscription_title
             p.text-xs = Setting.newsletter_subscription_description
-          .w-full.md:w-2/5
+          .w-full.md:w-2/5.px-6
             = form_with url: newsletters_path, method: :post, local: true, class: "flex" do |f|
-              = f.email_field :email, placeholder: 'Votre email', 'aria-label': 'Votre email', required: true, class: "flex-1 px-2 block w-full rounded-none border border-gray-300 mx-3"
+              = f.email_field :email, placeholder: 'Votre email', 'aria-label': 'Votre email', required: true, class: "flex-1 px-2 block w-full rounded-none border border-gray-300 mr-3"
               = f.submit 'Envoyer', class: 'button bold', class: 'inline-flex items-center px-3 border border-gray-300 bg-gray-50 text-gray-500 text-sm'
 
       .footer-line-xl.w-full

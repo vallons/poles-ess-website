@@ -1,25 +1,31 @@
-.mb-6
-  h3.text-2xl.font-bold.text-gray-900 = formation.title
-  = formation.formation_category.title
-  - if formation.image.attached?
-    = image_tag formation.image, class: "mb-8 mx-auto"
-  .mb-3 == formation.description
-  .bg-gray-300.px-4.py-3.mb-3.flex
-    .w-3/4
-      p = formation_dates(formation)
-      p 
-        span.uppercase.font-bold Lieu : 
-        => formation_location(formation)
-      p 
-        span.uppercase.font-bold Intervenant·e : 
-        => formation.speaker
-      p 
-        span.uppercase.font-bold Tarif : 
-        => number_to_euro(formation.cost)
-    - if formation.future?
-      .w-1/4.text-right
-        div class="mb-2 #{'font-bold text-red-600' if formation.is_full?}"
-          = formation_tickets_status(formation)
-        div class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded text-center"
-          = link_to "S'inscrire #{'sur liste d\'attente' if formation.is_full?}", new_formation_subscription_path(formation)
+.mb-12
+  .flex.flex-col.md:flex-row
+    .w-full.md:w-3/5.px-8 
+      h3.text-2xl.text-primary.itc-demi.uppercase.mb-3 = formation.title
+      - unless params['sort']=='by_formation_category'
+        = formation.formation_category.title
+      .mb-3.text-sm == formation.description
 
+    .w-full.md:w-2/5
+      - if formation.image.attached?
+        = image_tag formation.image, class: "mb-8 mx-auto"
+
+  .px-8
+    .bg-gray-200.px-4.py-3.mb-3.flex.flex-col.md:flex-row.text-sm
+      .w-full.md:w-3/4
+        p.text-primary.uppercase = formation_dates(formation)
+        p
+          span.text-primary.uppercase Lieu : 
+          => formation_location(formation)
+        p
+          span.text-primary.uppercase Intervenant·e : 
+          => formation.speaker
+        p
+          span.text-primary.uppercase Tarif : 
+          => number_to_euro(formation.cost)
+      - if formation.future?
+        .w-full.md:w-1/4.text-center
+          div class="mb-2 italic #{'font-bold text-red-600' if formation.is_full?}"
+            = formation_tickets_status(formation)
+          div class="bg-primary hover:bg-primary-dark text-secondary font-bold py-2 px-4"
+            = link_to "Je m'inscris #{'sur liste d\'attente' if formation.is_full?}", new_formation_subscription_path(formation)

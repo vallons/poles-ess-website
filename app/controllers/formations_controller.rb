@@ -3,6 +3,7 @@ class FormationsController < ApplicationController
   include SlugsAndRedirections
 
   before_action :get_formation, only: [:show]
+  before_action :set_base_breadcrumbs
 
   def index
     @all_formation_categories = FormationCategory.enabled.order(:position)
@@ -17,12 +18,17 @@ class FormationsController < ApplicationController
   end
 
   def show
+    @breadcrumbs << [ @formation.title,  formation_path(@formation) ]
   end
 
   private # =====================================================
-
   def get_formation
     @formation = get_object_from_param_or_redirect(Formation)
   end
 
+  def set_base_breadcrumbs
+    @breadcrumbs = []
+    @breadcrumbs << [ "Accueil",         root_path ]
+    @breadcrumbs << [ "Formations",      formations_path ]
+  end
 end
