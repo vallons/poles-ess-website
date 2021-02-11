@@ -9,6 +9,7 @@ module.exports = {
           dark: "var(--color-primary-dark)",
         },
         secondary: {
+          light: "var(--color-secondary-light)",
           DEFAULT: "var(--color-secondary)",
         },
       },

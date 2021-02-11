@@ -7,6 +7,8 @@ html, body
   height: 100%
   margin: 0
   font-family: 'ITC Avant Garde Gothic Std Book'
+  background-image: url("../images/bruit.png")
+  background-repeat: repeat
 
 // MENU
 .mobile-menu
@@ -25,6 +27,17 @@ html, body
   &.active
     > a
       font-weight: bold
+
+.picto-link
+  @apply text-primary
+  text-transform: uppercase
+  &:hover, &:active, .active
+    font-weight: bold
+@media (min-width: 1024px)
+  .picto-link
+    display: flex
+    flex-direction: column
+    align-items: center
 
 @media (min-width: 1024px)
   .block-menu-toggler
@@ -62,3 +75,29 @@ html, body
 
 .separator
   border-left: 1px solid var(--color-primary)
+
+
+.bg-pic
+  background-repeat: no-repeat
+  background-attachment: scroll
+  position: absolute
+
+.pic-home-01
+  height: 80%
+  width: 80%
+  background-size: 42%
+  background-position: -12% -5%
+
+.pic-home-02
+  height: 100%
+  width: 100%
+  background-size: 250px
+  background-position: 100% 0%
+
+.pic-home-03
+  height: 100%
+  width: 100%
+  // background-size: 30%
+  // background-position: 130% 140%
+  background-size: 600px
+  background-position: bottom -350px right -350px

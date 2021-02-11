@@ -61,4 +61,8 @@ module ApplicationHelper
   def class_name(item)
     item.class.model_name.human
   end
+
+  def public_file_exists?(filename)
+    File.file? "#{Rails.public_path}/#{filename}"
+  end
 end
