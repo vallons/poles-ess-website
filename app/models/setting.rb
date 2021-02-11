@@ -13,6 +13,8 @@ class Setting < RailsSettings::Base
   field :baseline, type: :string
   field :newsletter_subscription_title, type: :string
   field :newsletter_subscription_description, type: :string
+  field :contact_bloc_description, type: :string
+  field :contact_bloc_button, type: :string
   field :logo_instance, type: :integer, default: 1, readonly: true
   field :logo_instance_primary, type: :integer, default: 2, readonly: true
   field :admin_emails, type: :array

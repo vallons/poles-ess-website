@@ -7,30 +7,45 @@
       = f.label :pole_name
       = f.text_field :pole_name, value: Setting.pole_name, class: "form-control"
     .form-group
-      = f.label :pole_address
-      = f.text_field :pole_address, value: Setting.pole_address, class: "form-control"
-    .form-group
-      = f.label :pole_address_complementary
-      = f.text_field :pole_address_complementary, value: Setting.pole_address_complementary, class: "form-control"
-    .form-group
-      = f.label :pole_city
-      = f.text_field :pole_city, value: Setting.pole_city, class: "form-control"
-    .form-group
-      = f.label :pole_phone
-      = f.text_field :pole_phone, value: Setting.pole_phone, class: "form-control"
-    .form-group
-      = f.label :pole_mail
-      = f.text_field :pole_mail, value: Setting.pole_mail, class: "form-control"
-
-    .form-group
       = f.label :baseline
       = f.text_field :baseline, value: Setting.baseline, class: "form-control"
-    .form-group
-      = f.label :newsletter_subscription_title
-      = f.text_field :newsletter_subscription_title, value: Setting.newsletter_subscription_title, class: "form-control"
-    .form-group
-      = f.label :newsletter_subscription_description
-      = f.text_field :newsletter_subscription_description, value: Setting.newsletter_subscription_description, class: "form-control"
+    
+    fieldset.border.p-2
+      legend.w-auto Informations de contact
+      .form-group
+        = f.label :pole_address
+        = f.text_field :pole_address, value: Setting.pole_address, class: "form-control"
+      .form-group
+        = f.label :pole_address_complementary
+        = f.text_field :pole_address_complementary, value: Setting.pole_address_complementary, class: "form-control"
+      .form-group
+        = f.label :pole_city
+        = f.text_field :pole_city, value: Setting.pole_city, class: "form-control"
+      .form-group
+        = f.label :pole_phone
+        = f.text_field :pole_phone, value: Setting.pole_phone, class: "form-control"
+      .form-group
+        = f.label :pole_mail
+        = f.text_field :pole_mail, value: Setting.pole_mail, class: "form-control"
+    
+    fieldset.border.p-2
+      legend.w-auto Bloc newsletter
+      .form-group
+        = f.label :newsletter_subscription_title
+        = f.text_field :newsletter_subscription_title, value: Setting.newsletter_subscription_title, class: "form-control"
+      .form-group
+        = f.label :newsletter_subscription_description
+        = f.text_field :newsletter_subscription_description, value: Setting.newsletter_subscription_description, class: "form-control"
+    
+    fieldset.border.p-2
+      legend.w-auto Bloc contact
+      .form-group
+        = f.label :contact_bloc_description
+        = f.text_field :contact_bloc_description, value: Setting.contact_bloc_description, class: "form-control"
+      .form-group
+        = f.label :contact_bloc_button
+        = f.text_field :contact_bloc_button, value: Setting.contact_bloc_button, class: "form-control"
+    
     .form-group
       = f.label :admin_emails
       = f.text_area :admin_emails, value: Setting.admin_emails.join("\n"), class: "form-control"

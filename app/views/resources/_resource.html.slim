@@ -1,7 +1,7 @@
 li
   - if resource.link?
-    = link_to resource.title, resource.link, class: 'underline'
+    = link_to resource.title, resource.link, class: 'underline text-primary'
   - elsif resource.document? && resource.document.present?
-    = link_to resource.title, url_for(resource.document), class: 'underline', target: '_blank'
+    = link_to resource.title, url_for(resource.document), class: 'underline text-primary', target: '_blank'
   - else
     p.font-bold = resource.title

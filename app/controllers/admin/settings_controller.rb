@@ -19,7 +19,8 @@ class Admin::SettingsController < Admin::BaseController
 
   def setting_params
     params.require(:setting).permit(:pole_name, :pole_address, :pole_address_complementary, :pole_city, :pole_phone, :pole_mail,
-      :baseline, :newsletter_subscription_title, :newsletter_subscription_description, :admin_emails)
+      :baseline, :newsletter_subscription_title, :newsletter_subscription_description, :admin_emails,
+      :contact_bloc_description, :contact_bloc_button)
   end
 
   def setting_upload_params

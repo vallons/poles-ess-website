@@ -32,7 +32,9 @@ Setting.pole_phone = "02 99 00 01 02"                 if Setting.pole_phone.blan
 Setting.pole_mail = "pole@pole.fr"                    if Setting.pole_mail.blank?
 Setting.baseline = "Dynamiser les projets d'utilité sociale sur le territoire"    if Setting.baseline.blank?
 Setting.newsletter_subscription_title = "Inscrivez-vous à notre anti-newsletter"  if Setting.newsletter_subscription_title.blank?
-Setting.newsletter_subscription_description = "Anti-newsletter ? Une info par lettre, soignée et choyée, à échéance régulière dans votre boîte aux lettres"                        if Setting.newsletter_subscription_description.blank?
+Setting.newsletter_subscription_description = "Anti-newsletter ? Une info par lettre, soignée et choyée, à échéance régulière dans votre boîte aux lettres" if Setting.newsletter_subscription_description.blank?
+Setting.contact_bloc_description = "Vous avez des tonnes de question ? Vous souhaitez mieux identifier ce qui existe sur le territoire ?" if Setting.contact_bloc_description.blank?
+Setting.contact_bloc_button = "Contacter le pôle" if Setting.contact_bloc_button.blank?
 Setting.admin_emails = %w[bonjour@lassembleuse.fr]    if Setting.admin_emails.blank?
 
 EmailTemplate.where(mailer: "ParticipantMailer", mail_name: "new_subscription").first_or_create(body: "Le pôle vous recontactera rapidement pour préciser les détails pratiques et le règlement.")

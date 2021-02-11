@@ -40,7 +40,7 @@ html lang='fr'
               = image_pack_tag "picto/Picto-carto.svg", class: "w-10 mb-2"
               ' Cartographie
             = link_to basic_page_path(@contact_page), class: "picto-link pl-2" do
-              = image_pack_tag "picto/Picto-adhesion.svg", class: "w-10 mb-2"
+              = image_pack_tag "picto/Picto-contact.svg", class: "w-10 mb-2"
               ' Contact
       nav.relative.bg-white.px-6.hidden.md:block data-target="main-menu.mobileMenu"
         div.flex.flex-col.md:flex-row.justify-between.items-center
@@ -48,7 +48,7 @@ html lang='fr'
           div.md:inline-flex.md:flex-row.md:m-auto.md:w-auto.w-full.md:items-center.items-start.flex.flex-col.md:h-auto
             - @themes.each do |theme|
               = render "layouts/block_menu", item: theme, item_path: theme_path(theme)
-            .separator.h-7
+            .separator.h-7.hidden.md:block
             - @main_pages.each do |main_page|
               = render "layouts/block_menu", item: main_page, item_path: main_page_path(main_page)
           div.flex.justify-end.md:w-0.md:flex-1.w-full
