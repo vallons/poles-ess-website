@@ -1,0 +1,7 @@
+- if activities.any?
+  section.mb-6
+    .bg-primary-bis.mb-3.px-6.pt-4.pb-3
+      h3.text-xl.uppercase.itc-demi.text-white Nos actions
+    ul
+      - activities.order_by_theme_interface_position.each do |activity|
+        li = link_to activity.title, activity_path(activity), class: "text-primary underline"

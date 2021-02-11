@@ -1,0 +1,6 @@
+- if resources.any?
+  section.mb-6
+    .bg-primary-bis.mb-3.px-6.pt-4.pb-3
+      h3.text-xl.uppercase.itc-demi.text-white Ressources
+    ul
+      = render partial: 'resources/resource', collection: resources, as: :resource

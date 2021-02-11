@@ -6,35 +6,17 @@
     - if @theme.image.present?
       = image_tag  @theme.image, class: "mb-8 mx-auto"
     .mb-24== @theme.description
-  
+
   .md:w-2/6.px-4.md:pr-0
-    - if @theme.activities.enabled.any?
-      section.mb-6
-        .bg-primary.mb-3.px-6.pt-4.pb-3
-          h3.text-xl.uppercase.itc-demi.text-white Nos actions
-        ul
-          - @theme.activities.enabled.order_by_theme_interface_position.each do |activity|
-            li = link_to activity.title, activity_path(activity), class: "text-primary underline"
-    - if @theme.resources.enabled.any?
-      section.mb-6
-        .bg-primary.mb-3.px-6.pt-4.pb-3
-          h3.text-xl.uppercase.itc-demi.text-white Ressources
-        ul
-          = render partial: 'resources/resource', collection: @theme.resources.enabled, as: :resource
+    = render 'activities/section', activities: @theme.activities.enabled
+    = render 'resources/section', resources: @theme.resources.enabled
 
     .bg-gray-200.p-12.text-center
       h4.uppercase.mb-3= Setting.contact_bloc_description
       = image_pack_tag "picto/Picto-contact.svg", class: "w-14 mb-6 mx-auto"
       = link_to Setting.contact_bloc_button, basic_page_path(@contact_page), class: "bg-primary hover:bg-primary-dark text-sm text-white uppercase pt-3 pb-2 px-4"
 
-
-
 .flex.flex-col.md:flex-row.mt-4
   .md:w-1/6
   .md:4/6
-    - if @theme.posts.published.any?
-      h2.text-2xl.text-primary.uppercase.mt-12.mb-4 Dernières actualités
-      .grid.grid-cols-1.md:grid-cols-2.gap-4
-        - @theme.posts.published.each do |post|
-          div
-            = render 'posts/card', post: post
+    = render 'posts/section', posts: @theme.posts.published.order(published_at: :desc)
