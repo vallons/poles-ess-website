@@ -2,8 +2,8 @@ fr:
   activerecord:
     models:
       activity:
-        one: Actions
-        other: Action
+        one: Action
+        other: Actions
     attributes:
       activity:
         title:          Le titre

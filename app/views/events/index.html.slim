@@ -1,9 +1,16 @@
-.container.mx-auto.mb-3
-  / = render 'layouts/breadcrumb'
-  h1.text-6xl.font-bold.text-center.mt-16.mb-4.text-gray-900 Événements
+.tabs.flex.flex-col.md:flex-row.mt-4
+  .md:w-1/6
+  .md:w-3/6.bg-white.p-6
+    h1.itc-demi.text-4xl.text-primary.uppercase.mt-6.mb-4 Événements
 
-  h2.text-2xl.font-bold.text-center.mt-16.mb-4.text-gray-900 Événements futurs
-  = render partial: 'events/event_card', collection: @future_events, as: :agenda_item
+    .flex.flex-col.sm:flex-row.mb-6
+      = active_link_to "Événements futurs", events_path, active: :exclusive, class: "itc-demi w-1/2 text-xl text-gray-500 uppercase py-4 px-6 block hover:text-primary focus:outline-none bg-gray-100 border-transparent border-b-gray-300 border-b-2"
+      = active_link_to "Événements passés", past_events_path, active: :exclusive, class: "itc-demi w-1/2 text-xl text-gray-500 uppercase py-4 px-6 block hover:text-primary focus:outline-none bg-gray-100 border-transparent border-b-gray-300 border-b-2"
+    
+    = render partial: 'events/event_card', collection: @events, as: :agenda_item
+/       text-gray-600.py-4.px-6.block.hover:text-primary-dark.focus:outline-none.text-primary-dark.border-b-2.font-medium.border-primary-dark
+/         label.nav for='future'
+/     h2.itc-demi.text-xl.text-primary.uppercase 
 
-  h2.text-2xl.font-bold.text-center.mt-16.mb-4.text-gray-900 Événements passés
-  = render partial: 'events/event_card', collection: @past_events, as: :agenda_item
+
+/ past_events_path
