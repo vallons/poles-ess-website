@@ -1,16 +1,16 @@
 - content_for :title, 'Chiffres clés'
 
 = render layout: 'layouts/base' do
-  .flex.flex-wrap
+  .flex.flex-wrap.flex-col.md:flex-row
     - @key_numbers.order(:position).each do |key_number|
-      .w-1/3
-        .max-w-md.rounded.overflow-hidden.shadow-lg.border.border-solid.border-gray-300.mb-4.mr-4
+      .md:w-1/3
+        .max-w-md.overflow-hidden.shadow-lg.border.border-solid.border-gray-300.mb-4.mr-4
           .div
             .flex.flex-col.px-12.py-8.items-center
-              h3.font-bold.text-8xl = key_number.number
-              p.text-3xl = key_number.title
+              h3.itc-demi.text-8xl = key_number.number
+              p.text-3xl.uppercase.text-center = key_number.title
 
             p.px-6.py-4.text-right.text-sm.italic = key_number.source
           - if key_number.description.present?
-            .px-6.py-4.bg-gray-200
+            .px-6.py-4.bg-gray-100
               == key_number.description

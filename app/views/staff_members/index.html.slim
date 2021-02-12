@@ -2,6 +2,7 @@
 
 = render layout: 'layouts/base' do
   - @staff_member_categories.each do |category|
-    h2.itc-demi.text-2xl.text-primary.uppercase.mb-6.text-center = category.title
-    .grid.grid-cols-1.md:grid-cols-2.gap-4
-      = render partial: 'shared/person_card', collection: category.staff_members.enabled, as: :person
+    .mb-12
+      h2.itc-demi.text-2xl.text-primary.uppercase.mb-6.text-center = category.title
+      .grid.grid-cols-1.md:grid-cols-3.gap-4
+        = render partial: 'shared/person_card', collection: category.staff_members.enabled, as: :person
