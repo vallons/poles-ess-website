@@ -69,7 +69,7 @@ html lang='fr'
           .w-full.md:w-2/5.px-6
             = form_with url: newsletters_path, method: :post, local: true, class: "flex" do |f|
               = f.email_field :email, placeholder: 'Votre email', 'aria-label': 'Votre email', required: true, class: "flex-1 px-2 block w-full rounded-none border border-gray-300 mr-3"
-              = f.submit 'Envoyer', class: 'button bold', class: 'inline-flex items-center px-3 border border-gray-300 bg-gray-50 text-gray-500 text-sm'
+              = f.submit 'Envoyer', class: 'btn btn-default'
 
       .footer-line-xl.w-full
 

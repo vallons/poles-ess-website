@@ -1,7 +1,6 @@
-.container.mx-auto.mb-3
-  / = render 'layouts/breadcrumb'
-  h1.text-6xl.font-bold.text-center.mt-16.mb-16.text-gray-900 Chiffres clés
+- content_for :title, 'Chiffres clés'
 
+= render layout: 'layouts/base' do
   .flex.flex-wrap
     - @key_numbers.order(:position).each do |key_number|
       .w-1/3

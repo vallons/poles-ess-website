@@ -13,16 +13,7 @@
   .px-8
     .bg-gray-200.px-4.py-3.mb-3.flex.flex-col.md:flex-row.text-sm
       .w-full.md:w-3/4
-        p.text-primary.uppercase = formation_dates(formation)
-        p
-          span.text-primary.uppercase Lieu : 
-          => formation_location(formation)
-        p
-          span.text-primary.uppercase Intervenant·e : 
-          => formation.speaker
-        p
-          span.text-primary.uppercase Tarif : 
-          => number_to_euro(formation.cost)
+        = render 'formations/meta_info', formation: formation
       - if formation.future?
         .w-full.md:w-1/4.text-center
           div class="mb-2 italic #{'font-bold text-red-600' if formation.is_full?}"

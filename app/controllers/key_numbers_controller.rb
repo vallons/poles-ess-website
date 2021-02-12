@@ -1,6 +1,6 @@
 class KeyNumbersController < ApplicationController
 
-  # before_action :set_breadcrumbs
+  before_action :set_breadcrumbs
 
   def index
     @key_numbers = KeyNumber.enabled.order(:position)
@@ -8,10 +8,9 @@ class KeyNumbersController < ApplicationController
 
   private # =====================================================
 
-  # def set_breadcrumbs
-  #   @breadcrumbs = []
-  #   @breadcrumbs << [ "Accueil",    root_path ]
-  #   @breadcrumbs << [ "L'ESS'",    main_page_path(MainPage.find_by(title: "L'ESS")) ]
-  #   @breadcrumbs << [ "Chiffre-clés",  adherents_path ]
-  # end
+  def set_breadcrumbs
+    @breadcrumbs = []
+    @breadcrumbs << [ "Accueil",    root_path ]
+    @breadcrumbs << [ "Chiffre-clés",  key_numbers_path ]
+  end
 end

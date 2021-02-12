@@ -121,3 +121,27 @@ html, body
     border: 1px solid #ccc
     border-bottom: 2px solid var(--color-primary)
     background-color: #fff
+
+.btn
+  @apply inline-flex
+  @apply items-center
+  @apply pt-3
+  @apply pb-2
+  @apply px-4
+  @apply text-sm
+  @apply uppercase
+  cursor: pointer
+
+.btn-default
+  @apply border
+  @apply border-gray-300
+  @apply bg-gray-50
+  @apply text-gray-500
+  &:hover
+    @apply bg-gray-100
+
+.btn-primary
+  @apply bg-primary
+  @apply text-white
+  &:hover
+    @apply bg-primary-dark

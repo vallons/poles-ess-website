@@ -1,0 +1,10 @@
+p.text-primary.uppercase = formation_dates(formation)
+p
+  span.text-primary.uppercase Lieu : 
+  => formation_location(formation)
+p
+  span.text-primary.uppercase Intervenant·e : 
+  => formation.speaker
+p
+  span.text-primary.uppercase Tarif : 
+  | #{number_to_euro(formation.cost)} / personne

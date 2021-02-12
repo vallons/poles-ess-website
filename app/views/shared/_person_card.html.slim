@@ -1,0 +1,12 @@
+.staff_member-card.max-w-md.rounded.overflow-hidden.shadow-lg.mb-4
+  - if person.image.attached?
+    = image_tag person.image.variant(resize_to_fill: [500, 300]), class: "w-full"
+  .px-6.py-4
+    h3.font-bold.text-xl
+      - if person.respond_to?(:link) && person.link.present?
+        = link_to person.title, person.link, class: 'hover:underline'
+      - else
+        = person.title
+    - if person.description.present?
+      p.text-gray-700.text-sm
+        == person.description
