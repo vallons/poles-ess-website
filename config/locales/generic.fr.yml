@@ -232,3 +232,6 @@ fr:
       next: Suivant
       previous: "Précédent"
       truncate: "&hellip;"
+
+  attributes:
+    short_description: Description courte

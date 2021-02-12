@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_02_05_142542) do
+ActiveRecord::Schema.define(version: 2021_02_12_091332) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_trgm"
@@ -56,6 +56,7 @@ ActiveRecord::Schema.define(version: 2021_02_05_142542) do
     t.boolean "enabled", default: true
     t.boolean "highlighted", default: false
     t.string "home_title"
+    t.string "short_description"
   end
 
   create_table "adherent_categories", force: :cascade do |t|
@@ -173,6 +174,7 @@ ActiveRecord::Schema.define(version: 2021_02_05_142542) do
     t.bigint "parent_page_id"
     t.string "key"
     t.boolean "undeletable", default: false
+    t.string "short_description"
     t.index ["parent_page_id"], name: "index_main_pages_on_parent_page_id"
   end
 
@@ -278,6 +280,7 @@ ActiveRecord::Schema.define(version: 2021_02_05_142542) do
     t.boolean "enabled", default: true
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.string "short_description"
   end
 
   create_table "resources", force: :cascade do |t|
@@ -368,6 +371,7 @@ ActiveRecord::Schema.define(version: 2021_02_05_142542) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.boolean "enabled", default: true
+    t.string "short_description"
   end
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"

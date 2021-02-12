@@ -66,7 +66,7 @@ class Admin::ProfilesController < Admin::BaseController
 
   def profile_params
     params.require(:profile).permit(
-      :title, :description, :baseline, :image, :position, :enabled,
+      :title, :description, :short_description, :baseline, :image, :position, :enabled,
       seo_attributes: seo_attributes, resources_attributes: resources_attributes
     )
   end

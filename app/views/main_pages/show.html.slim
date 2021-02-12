@@ -3,6 +3,8 @@
   p.text-center.text-4xl.text-gray-800.mb-16 = @main_page.baseline
   - if @main_page.image.present?
     = image_tag  @main_page.image, class: "mb-8 mx-auto"
+    - if @main_page.short_description.present?
+      p.mb-24.text-primary.text-lg= @main_page.short_description
   .mb-24== @main_page.description
 
   / - if @main_page.key == "key_numbers"

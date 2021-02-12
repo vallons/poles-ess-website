@@ -67,7 +67,7 @@ class Admin::MainPagesController < Admin::BaseController
   private # =====================================================
 
   def main_page_params
-    params.require(:page).permit(:title, :baseline, :description, :image, :position, :enabled, :parent_page_id,
+    params.require(:page).permit(:title, :baseline, :description, :short_description, :image, :position, :enabled, :parent_page_id,
       seo_attributes: seo_attributes, resources_attributes: resources_attributes, menu_blocks_attributes: menu_blocks_attributes
     )
   end

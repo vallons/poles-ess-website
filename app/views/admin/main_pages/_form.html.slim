@@ -12,6 +12,10 @@
   = f.label :parent_page_id, class: "font-weight-bold"
   = f.select :parent_page_id, parent_page_options(MainPage.no_parent.where.not(id: f.object.id)), {include_blank: 'Sans parente'}, class: "form-control"
 
+.form-group.required
+  = f.label :short_description, class: "font-weight-bold"
+  = f.text_field :short_description, class: 'form-control'
+
 .form-group
   = f.label :description, class: "font-weight-bold"
   = f.rich_text_area :description

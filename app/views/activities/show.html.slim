@@ -2,12 +2,14 @@
   .md:w-1/6
   .md:w-3/6.bg-white.p-6
     h1.itc-demi.text-4xl.text-primary.uppercase.mt-6.mb-4  = @activity.title
-    .flex
+    .flex.mb-8
       - @activity.themes.enabled.each do |theme|
         .bg-primary.px-3.py-2.mr-2
           = theme.title
     - if @activity.image.present?
       = image_tag  @activity.image, class: "mb-8 mx-auto"
+    - if @activity.short_description.present?
+      p.mb-24.text-primary.text-lg= @activity.short_description
     .mb-24
       == @activity.description
 

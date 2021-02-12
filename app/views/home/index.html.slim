@@ -42,14 +42,15 @@
       = image_pack_tag "picto/Picto-adhesion.svg", class: "w-20 mb-6 mx-auto"
       = link_to "Adhérer au pôle", main_page_path(@membership_page), class: "bg-primary hover:bg-primary-dark text-sm text-secondary uppercase  pt-3 pb-2 px-4"
 
-section.relative
-  = render 'layouts/bg-pic', filename: 'pic-home-02'
-  = render 'layouts/bg-pic', filename: 'pic-home-03'
-  .container.mx-auto.text-primary.pt-24
-    h2.text-3xl.uppercase.mb-5 Dernières actualités
-    .flex.flex-col.md:flex-row
-      - @posts.each do |post|
-        .w-full.md:w-1/2.px-4
-          = render 'posts/card', post: post
+- if @posts.any?
+  section.relative
+    = render 'layouts/bg-pic', filename: 'pic-home-02'
+    = render 'layouts/bg-pic', filename: 'pic-home-03'
+    .container.mx-auto.text-primary.pt-24
+      h2.text-3xl.uppercase.mb-5 Dernières actualités
+      .flex.flex-col.md:flex-row
+        - @posts.each do |post|
+          .w-full.md:w-1/2.px-4
+            = render 'posts/card', post: post
 
-    = link_to "Voir toutes les actualités", posts_path, class: "w-full text-center inline-block mt-4 mb-24 uppercase text-sm underline"
+      = link_to "Voir toutes les actualités", posts_path, class: "w-full text-center inline-block mt-4 mb-24 uppercase text-sm underline"

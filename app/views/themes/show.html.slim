@@ -5,6 +5,8 @@
     p.itc-demi.text-xl.text-primary.uppercase.mb-16 = @theme.baseline
     - if @theme.image.present?
       = image_tag  @theme.image, class: "mb-8 mx-auto"
+    - if @theme.short_description.present?
+      p.mb-24.text-primary.text-lg= @theme.short_description
     .mb-24== @theme.description
 
   .md:w-2/6.px-4.md:pr-0

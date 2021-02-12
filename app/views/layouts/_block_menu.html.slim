@@ -4,7 +4,7 @@ div.block-menu-toggler data-action="mouseenter->main-menu#openBlockMenu mouselea
     .container.mx-auto.flex.py-12
       .w-1/2.px-4
         h3.mb-3.uppercase.text-primary.font-bold= link_to item.baseline, item_path
-        p.text-sm = item.description.to_plain_text.truncate(200)
+        p.text-sm = item.short_description
         = link_to "Lire la suite", item_path, class: "underline"
       - if item.is_a?(Theme) && item.activities.enabled.any?
         .separator.h-40

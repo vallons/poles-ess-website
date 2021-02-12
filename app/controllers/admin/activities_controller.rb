@@ -70,7 +70,7 @@ class Admin::ActivitiesController < Admin::BaseController
 
   def activity_params
     params.require(:activity).permit(
-      :title, :description, :image, :enabled, :highlighted, :home_title,
+      :title, :description, :short_description, :image, :enabled, :highlighted, :home_title,
       theme_ids: [], profile_ids: [], seo_attributes: seo_attributes,
       resources_attributes: resources_attributes
     )
