@@ -3,9 +3,9 @@
     h4.uppercase.text-primary.mb-2 Catégorie
     - post_categories.each do |post_category|
 
-      div.flex.flex.row.justify-between.c-checkbox.relative
+      div.flex.flex.row.justify-between.c-checkbox.relative.cursor-pointer
         => check_box_tag "by_post_category[]", post_category.id, \
           params[:by_post_category].present? && params[:by_post_category].include?(post_category.id.to_s), \
           id: "by_post_category_#{post_category.id}", class: 'sr-only', \
           data: {action: 'change->manage-index#submitFilterForm'}
-        = label_tag "by_post_category[#{post_category.id}]", post_category.title, class: "c-checkbox__label"
+        = label_tag "by_post_category[#{post_category.id}]", post_category.title, class: "c-checkbox__label cursor-pointer"

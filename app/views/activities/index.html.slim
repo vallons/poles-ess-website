@@ -1,40 +1,25 @@
-.container.mx-auto.mb-3
-  h1.text-6xl.font-bold.text-center.mt-16.mb-4.text-gray-900 Actions
+.flex.flex-col.md:flex-row.mt-4
+  .md:w-1/5
+  .md:w-4/5
+    / = render 'layouts/breadcrumb'
 
-  .flex
-    .md:w-1/4.px-8 data-controller='manage-index'
-      = form_tag activities_path, method: :get do
+.flex.flex-col.md:flex-row.mt-4
+  .md:w-1/5 data-controller='manage-index'
+    details.md:hidden.px-8
+      summary.uppercase.text-primary.mb-3.cursor-pointer Filtrer
+      = render 'activities/filters'
+    .hidden.px-8.md:block
+      = render 'activities/filters'
 
-        h3.text-xl.mb-3 Filtrer
-        .bg-gray-300.px-4.py-3
-          .mb-3
-            h4.font-bold Par Thème
-
-            - @activity_themes.each do |theme|
-              div
-                = label_tag "by_theme[#{theme.id}]" do
-                  => check_box_tag "by_theme[]", theme.id, \
-                    params[:by_theme].present? && params[:by_theme].include?(theme.id.to_s), \
-                    id: "by_theme_#{theme.id}", \
-                    data: {action: 'change->manage-index#submitFilterForm'}
-                  => theme.title
-          .mb-3
-            h4.font-bold Par Profil
-
-            - @activity_profiles.each do |profile|
-              div
-                = label_tag "by_profile[#{profile.id}]" do
-                  => check_box_tag "by_profile[]", profile.id, \
-                    params[:by_profile].present? && params[:by_profile].include?(profile.id.to_s), \
-                    id: "by_profile_#{profile.id}", \
-                    data: {action: 'change->manage-index#submitFilterForm'}
-                  => profile.title
-
-    .md:w-3/4.px-8
-      - if @activities.any?
-          - @activities.each do |activity|
-            = render 'activities/card', activity: activity
-      - if @activities.empty?
-        p Pas d'actions correpondantes à vos critères
+  .md:w-4/5.bg-white.mb-16
+    h1.text-5xl.md:text-6xl.px-8.my-12.text-primary.itc-demi.uppercase Nos actions
+    .px-16
+      = render partial: 'activities/card', collection: @activities, as: :activity
+    - if @activities.empty?
+      .text-center
+        p.text-lg.mb-6 Il n'y a pas encore d'actions #{'correpondantes à vos critères' if filtering_in_progress(params)}
         p
-          = link_to "Retourner voir toutes les actualités", activities_path, class: "underline"
+          - if filtering_in_progress(params)
+            = link_to "Retourner voir toutes les actions", activities_path, class: "uppercase text-primary underline"
+          -else 
+            = link_to "Retourner à la page d'accueil", root_path, class: "uppercase text-primary underline"

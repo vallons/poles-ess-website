@@ -3,9 +3,9 @@
     h4.uppercase.text-primary.mb-2 Profil
     - profiles.each do |profile|
 
-      div.flex.flex.row.justify-between.c-checkbox.relative
+      div.flex.flex.row.justify-between.c-checkbox.relative.cursor-pointer
         => check_box_tag "by_profile[]", profile.id, \
           params[:by_profile].present? && params[:by_profile].include?(profile.id.to_s), \
           id: "by_profile_#{profile.id}", class: 'sr-only', \
           data: {action: 'change->manage-index#submitFilterForm'}
-        = label_tag "by_profile[#{profile.id}]", profile.title, class: "c-checkbox__label"
+        = label_tag "by_profile[#{profile.id}]", profile.title, class: "c-checkbox__label cursor-pointer"

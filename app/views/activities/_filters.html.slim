@@ -1,0 +1,5 @@
+= form_tag activities_path, method: :get do
+
+  .mb-16
+    = render 'themes/by_theme_filter', themes: @activity_themes
+    = render 'profiles/by_profile_filter', profiles: @activity_profiles
