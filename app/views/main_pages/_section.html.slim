@@ -1,0 +1,6 @@
+- if main_pages.any?
+  section.mb-6
+    .bg-primary-bis.mb-3.px-6.pt-4.pb-3
+      h3.text-xl.uppercase.itc-demi.text-white Pour aller plus loin
+    ul
+      = render partial: 'main_pages/main_page', collection: main_pages, as: :main_page

@@ -1,20 +1,15 @@
-.container.mx-auto.mb-5
-  = render 'layouts/breadcrumb'
-  h1.text-6xl.font-bold.text-center.mt-16.mb-4.text-gray-900 = @post.title
-
-  flex
-  - if @post.image.present?
-    = image_tag  @post.image, class: "mb-8 mx-auto"
-  .flex.mb-24
-    .w-2/3
-      == @post.description
-    - if @post.resources.any?
-      .w-1/3
-        h3.text-2xl.font-bold.mb-3 Ressources
-        ul
-          = render partial: 'resources/resource', collection: @post.resources, as: :resource
-
-  .post-footer.flex.justify-between
+.flex.flex-col.md:flex-row.mt-4
+  .md:w-1/6
+  .md:w-4/6
+    = render 'layouts/breadcrumb'
+.flex.flex-col.md:flex-row.mt-4
+  .md:w-1/6
+  .md:w-3/6.bg-white.p-6
+    h1.itc-demi.text-4xl.text-primary.uppercase.mt-6.mb-4 = @post.title
+    - if @post.image.present?
+      = image_tag  @post.image, class: "mb-8 mx-auto"
+    .mb-24== @post.description
+  .md:w-2/6.px-4.md:pr-0
     p.text-gray-800.mb-2 Publié le #{l(@post.published_at, format: :day)}
     div
       - if @post.post_category.present?
@@ -23,8 +18,10 @@
       - @post.themes.enabled.each do |theme|
         span.inline-block.bg-gray-200.rounded-full.px-3.py-1.text-sm.font-semibold.text-gray-700.mr-2.mb-2 
           = link_to theme.title, posts_path({by_theme: theme.id})
+    = render 'resources/section', resources: @post.resources.enabled
 
-  - if @other_posts.any?
-    h2.text-2xl.font-bold.mt-12.mb-4 Découvrez d'autres actualités #{(@category.present? || @theme.present?) ? 'sur le même thème' : '' }
-    - @other_posts.each do |post|
-      = render 'posts/card', post: post
+
+.flex.flex-col.md:flex-row.mt-4
+  .md:w-1/6
+  .md:4/6
+    = render 'posts/section', posts: @other_posts

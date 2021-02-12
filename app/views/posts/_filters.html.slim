@@ -1,0 +1,6 @@
+= form_tag posts_path, method: :get do
+
+  .mb-16
+    = render 'themes/by_theme_filter', themes: @post_themes
+    = render 'profiles/by_profile_filter', profiles: @post_profiles
+    = render 'posts/by_post_category_filter', post_categories: @post_categories

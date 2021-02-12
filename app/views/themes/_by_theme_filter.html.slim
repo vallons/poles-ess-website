@@ -1,0 +1,11 @@
+- if themes.any?
+  .mb-8
+    h4.uppercase.text-primary.mb-2 Thème
+    - themes.each do |theme|
+
+      div.flex.flex.row.justify-between.c-checkbox.relative
+        => check_box_tag "by_theme[]", theme.id, \
+          params[:by_theme].present? && params[:by_theme].include?(theme.id.to_s), \
+          id: "by_theme_#{theme.id}", class: 'sr-only', \
+          data: {action: 'change->manage-index#submitFilterForm'}
+        = label_tag "by_theme[#{theme.id}]", theme.title, class: "c-checkbox__label"

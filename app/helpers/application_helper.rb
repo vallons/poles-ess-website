@@ -65,4 +65,8 @@ module ApplicationHelper
   def public_file_exists?(filename)
     File.file? "#{Rails.public_path}/#{filename}"
   end
+
+  def filtering_in_progress(params)
+    params[:by_theme].present? || params[:by_profile].present? || params[:by_post_category].present?
+  end
 end
