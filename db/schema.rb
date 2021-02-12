@@ -130,12 +130,6 @@ ActiveRecord::Schema.define(version: 2021_02_12_091332) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
-  create_table "formation_subscriptions", force: :cascade do |t|
-    t.integer "formation_id"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-  end
-
   create_table "formations", force: :cascade do |t|
     t.string "title"
     t.text "search_description"
@@ -173,7 +167,6 @@ ActiveRecord::Schema.define(version: 2021_02_12_091332) do
     t.datetime "updated_at", precision: 6, null: false
     t.bigint "parent_page_id"
     t.string "key"
-    t.boolean "undeletable", default: false
     t.string "short_description"
     t.index ["parent_page_id"], name: "index_main_pages_on_parent_page_id"
   end
