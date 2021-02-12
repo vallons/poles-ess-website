@@ -1,0 +1,5 @@
+= form_tag resources_path, method: :get do
+
+  .mb-16
+    = render 'themes/by_theme_filter', themes: @resource_themes
+    = render 'profiles/by_profile_filter', profiles: @resource_profiles

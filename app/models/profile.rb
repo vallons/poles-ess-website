@@ -29,6 +29,7 @@ class Profile < ApplicationRecord
 
   scope :having_activities, -> { joins(:activities).distinct }
   scope :having_posts, -> { joins(:posts).distinct }
+  scope :having_resources, -> { joins(:resources).distinct }
 
   # Instance methods ====================================================
 end

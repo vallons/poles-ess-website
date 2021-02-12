@@ -24,6 +24,7 @@ class Resource < ApplicationRecord
   scope :by_theme, -> (id) {
     where(resourceable_type: "Theme").where(resourceable_id: id)
   }
+  
 
   # Class Methods ==============================================================
 

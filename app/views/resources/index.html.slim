@@ -1,40 +1,25 @@
-.container.mx-auto.mb-3
-  h1.text-6xl.font-bold.text-center.mt-12.mb-4.text-gray-900 Ressources
+.flex.flex-col.md:flex-row.mt-4
+  .md:w-1/5
+  .md:w-4/5
+    / = render 'layouts/breadcrumb'
 
-  .flex
-    .md:w-1/4.px-8 data-controller='manage-index'
-      = form_tag resources_path, method: :get do
+.flex.flex-col.md:flex-row.mt-4
+  .md:w-1/5 data-controller='manage-index'
+    details.md:hidden.px-8
+      summary.uppercase.text-primary.mb-3.cursor-pointer Filtrer
+      = render 'resources/filters'
+    .hidden.px-8.md:block
+      = render 'resources/filters'
 
-        h3.text-xl.mb-3 Filtrer
-        .bg-gray-300.px-4.py-3
-          .mb-3
-            h4.font-bold Par Thème
-
-            - @themes.each do |theme|
-              div
-                = label_tag "by_theme[#{theme.id}]" do
-                  => check_box_tag "by_theme[]", theme.id, \
-                    params[:by_theme].present? && params[:by_theme].include?(theme.id.to_s), \
-                    id: "by_theme_#{theme.id}", \
-                    data: {action: 'change->manage-index#submitFilterForm'}
-                  => theme.title
-          / .mb-3
-
-          /   h4.font-bold Par catégorie
-
-          /   - @resource _categories.each do |category|
-          /     div
-          /       = label_tag "by_resource  _category[#{category.id}]" do
-          /         => check_box_tag "by_resource _category[]", category.id, \
-          /           params[:by_resource _category].present? && params[:by_resource _category].include?(category.id.to_s), \
-          /           id: "by_resource  _category_#{category.id}", \
-          /           data: {action: 'change->manage-index#submitFilterForm'}
-          /         => category.title
-
-    .md:w-3/4.px-8
-      - if @resources.any?
-        = render partial: 'resources/resource', collection: @resources, as: :resource
-      - if @resources.empty?
-        p Pas de ressource correpondantes à vos critères
+  .md:w-4/5.bg-white.mb-16
+    h1.text-5xl.md:text-6xl.px-8.my-12.text-primary.itc-demi.uppercase Ressources
+    .px-16
+      = render partial: 'resources/resource', collection: @resources, as: :resource
+    - if @resources.empty?
+      .text-center
+        p.text-lg.mb-6 Il n'y a pas encore de ressources #{'correpondantes à vos critères' if filtering_in_progress(params)}
         p
-          = link_to "Retourner voir toutes les ressources", resources_path, class: "underline"
+          - if filtering_in_progress(params)
+            = link_to "Retourner voir toutes les ressources", resources_path, class: "uppercase text-primary underline"
+          -else 
+            = link_to "Retourner à la page d'accueil", root_path, class: "uppercase text-primary underline"
