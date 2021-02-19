@@ -1,0 +1,4 @@
+.relationships.leading-3
+  - item.relationships.each do |item|
+    .inline.text-xs.text-gray-400.uppercase.italic
+      = link_to item.title, polymorphic_path(item)

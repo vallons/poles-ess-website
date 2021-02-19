@@ -7,7 +7,7 @@
     - if post.image.attached?
       = image_tag post.image.variant(resize_to_fill: [500, 300]), class: "w-full"
     .py-4
-      h3.text-lg.uppercase.text-primary
+      h3.text-lg.uppercase.text-primary.leading-5.mb-2
         = link_to post.title, post_path(post)
 
       p.text-gray-700.text-sm

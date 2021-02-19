@@ -7,7 +7,7 @@ class ActivitiesController < ApplicationController
   def index
     @activity_themes = Theme.enabled.having_activities.order(:position)
     @activity_profiles = Profile.enabled.having_activities.order(:position)
-    @activities = Activity.enabled.apply_filters(params).order(title: :asc)
+    @activities = Activity.enabled.includes(:themes, :profiles).apply_filters(params).order(title: :asc)
   end
 
   def show

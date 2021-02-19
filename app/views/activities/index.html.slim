@@ -13,7 +13,7 @@
 
   .md:w-4/5.bg-white.mb-16
     h1.main-title.px-8.my-12 Nos actions
-    .px-16
+    .grid.grid-cols-1.md:grid-cols-2.gap-4.px-8
       = render partial: 'activities/card', collection: @activities, as: :activity
     - if @activities.empty?
       .text-center

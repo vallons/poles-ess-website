@@ -24,6 +24,12 @@ class Activity < ApplicationRecord
 
   # Instance methods ====================================================
 
+  def relationships
+    relationships = []
+    relationships << self.themes.enabled
+    relationships << self.profiles.enabled
+    relationships.flatten
+  end
   # Class Methods ==============================================================
 
   def self.apply_filters(params)
