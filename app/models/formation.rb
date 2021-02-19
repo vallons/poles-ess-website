@@ -1,7 +1,5 @@
 class Formation < ApplicationRecord
 
-  DEFAULT_TICKET_COUNT = 12
-
   include Seoable
   include Enablable
   include Schedulable
@@ -60,7 +58,7 @@ class Formation < ApplicationRecord
   end
 
   def self.default_tickets_count
-    Formation::DEFAULT_TICKET_COUNT
+    Setting.default_tickets_count
   end
 
   def self.default

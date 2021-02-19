@@ -11,11 +11,28 @@ fr:
     label:
       setting:
         pole_name:   Nom du pôle
+        pole_address: Adresse du pôle
+        pole_address_complementary: Complément d'adresse
+        pole_city:    Ville
+        pole_phone:   Téléphone
+        pole_mail:    Email de contact
         baseline:       Phrase d'accroche
         baseline_pre:   Entête phrase d'accroche
+        newsletter_subscription_title: Bloc newsletter - titre
+        newsletter_subscription_description: Bloc newsletter - description
+        contact_bloc_description: Bloc contact - description
+        contact_bloc_button: Bloc contact - bouton
+        default_tickets_count: Nombre de participant formation par défaut
         logo:           Logo
         admin_emails:   Emails admin
     submit:
       setting:
         create: "Mettre à jour les paramètres"
         update: "Mettre à jour les paramètres"
+
+
+      newsletter_subscription_title:
+      newsletter_subscription_description:
+      contact_bloc_description:
+      contact_bloc_button:
+      default_tickets_count:

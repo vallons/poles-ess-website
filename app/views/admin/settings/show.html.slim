@@ -36,7 +36,7 @@
       .form-group
         = f.label :newsletter_subscription_description
         = f.text_field :newsletter_subscription_description, value: Setting.newsletter_subscription_description, class: "form-control"
-    
+
     fieldset.border.p-2
       legend.w-auto Bloc contact
       .form-group
@@ -45,7 +45,11 @@
       .form-group
         = f.label :contact_bloc_button
         = f.text_field :contact_bloc_button, value: Setting.contact_bloc_button, class: "form-control"
-    
+
+    .form-group
+      = f.label :default_tickets_count
+      = f.number_field :default_tickets_count, value: Setting.default_tickets_count, class: "form-control"
+
     .form-group
       = f.label :admin_emails
       = f.text_area :admin_emails, value: Setting.admin_emails.join("\n"), class: "form-control"
