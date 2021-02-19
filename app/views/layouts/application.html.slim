@@ -30,16 +30,16 @@ html lang='fr'
             / span.font-semibold.text-xl.tracking-tight = Setting.pole_name
         .flex.items-center.flex-1.justify-end.px-6.py-4
           .flex.text-xs.md:text-sm.items-center.justify-end
-            = link_to main_page_path(@membership_page), class: "hidden picto-link px-2" do
+            = active_link_to main_page_path(@membership_page), active: :inclusive, class: "hidden picto-link px-2" do
               = image_pack_tag "picto/Picto-adhesion.svg", class: "w-10 mb-2"
               ' Adhésion
-            = link_to formations_path, class: "picto-link px-2" do
+            = active_link_to formations_path, active: :inclusive, class: "picto-link px-2" do
               = image_pack_tag "picto/Picto-formations.svg", class: "w-10 mb-2"
               ' Formations
-            = link_to main_page_path(@ess_map_page), class: "hidden picto-link px-2" do
+            = active_link_to main_page_path(@ess_map_page), active: :inclusive, class: "hidden picto-link px-2" do
               = image_pack_tag "picto/Picto-carto.svg", class: "w-10 mb-2"
               ' Cartographie
-            = link_to basic_page_path(@contact_page), class: "picto-link pl-2" do
+            = active_link_to basic_page_path(@contact_page), active: :inclusive, class: "picto-link pl-2" do
               = image_pack_tag "picto/Picto-contact.svg", class: "w-10 mb-2"
               ' Contact
       nav.relative.bg-white.px-6.hidden.md:block data-target="main-menu.mobileMenu"

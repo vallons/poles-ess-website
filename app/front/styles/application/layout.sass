@@ -21,31 +21,23 @@ html, body
   > a
     display: inline-block
 		text-align: center
+  > a.active
+    font-family: 'ITC Avant Garde Gothic Std Demi'
+
   .block-menu
     display: none
     text-align: left
     z-index: 3
   &.active
     > a
-      font-weight: bold
-
-.picto-link
-  @apply text-primary
-  text-transform: uppercase
-  &:hover, &:active, .active
-    font-weight: bold
-@media (min-width: 1024px)
-  .picto-link
-    display: flex
-    flex-direction: column
-    align-items: center
+      font-family: 'ITC Avant Garde Gothic Std Demi'
 
 @media (min-width: 1024px)
   .block-menu-toggler
     > a::before
       display: block
       content: attr(title)
-      font-weight: bold
+      font-family: 'ITC Avant Garde Gothic Std Demi'
       height: 0
       overflow: hidden
       visibility: hidden
@@ -53,6 +45,17 @@ html, body
       .block-menu
         font-weight: normal
         display: block
+
+.picto-link
+  @apply text-primary
+  text-transform: uppercase
+  &:hover, &:active, &.active
+    font-family: 'ITC Avant Garde Gothic Std Medium'
+@media (min-width: 1024px)
+  .picto-link
+    display: flex
+    flex-direction: column
+    align-items: center
 
 .trix-content
   h1
@@ -152,3 +155,15 @@ html, body
   @apply text-white
   &:hover
     @apply bg-primary-dark
+
+.main-title
+  @apply text-4xl
+  @apply text-primary
+  @apply itc-demi
+  @apply uppercase
+
+.title-2
+  @apply text-2xl
+  @apply text-primary
+  @apply itc-demi
+  @apply uppercase

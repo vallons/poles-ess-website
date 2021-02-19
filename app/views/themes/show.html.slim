@@ -1,8 +1,8 @@
 .flex.flex-col.md:flex-row.mt-4
   .md:w-1/6
   .md:w-3/6.bg-white.p-6
-    h1.itc-demi.text-4xl.text-primary.uppercase.mt-6.mb-4 = @theme.title
-    p.itc-demi.text-xl.text-primary.uppercase.mb-16 = @theme.baseline
+    h1.main-title.mt-6.mb-4 = @theme.title
+    p.title-2.mb-16 = @theme.baseline
     - if @theme.image.present?
       = image_tag  @theme.image, class: "mb-8 mx-auto"
     - if @theme.short_description.present?

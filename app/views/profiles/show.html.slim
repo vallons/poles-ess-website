@@ -1,8 +1,8 @@
 .flex.flex-col.md:flex-row.mt-4
   .md:w-1/6
   .md:w-3/6.bg-white.p-6
-    h1.itc-demi.text-4xl.text-primary.uppercase.mt-6.mb-4 = @profile.title
-    p.itc-demi.text-xl.text-primary.uppercase.mb-16 = @profile.baseline
+    h1.main-title.mt-6.mb-4 = @profile.title
+    p.title-2.mb-16 = @profile.baseline
     - if @profile.image.present?
       = image_tag  @profile.image, class: "mb-8 mx-auto"
     - if @profile.short_description.present?

@@ -12,7 +12,7 @@
       = render 'activities/filters'
 
   .md:w-4/5.bg-white.mb-16
-    h1.text-5xl.md:text-6xl.px-8.my-12.text-primary.itc-demi.uppercase Nos actions
+    h1.main-title.px-8.my-12 Nos actions
     .px-16
       = render partial: 'activities/card', collection: @activities, as: :activity
     - if @activities.empty?

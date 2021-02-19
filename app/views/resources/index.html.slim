@@ -12,7 +12,7 @@
       = render 'resources/filters'
 
   .md:w-4/5.bg-white.mb-16
-    h1.text-5xl.md:text-6xl.px-8.my-12.text-primary.itc-demi.uppercase Ressources
+    h1.main-title.px-8.my-12 Ressources
     .px-16
       = render partial: 'resources/resource', collection: @resources, as: :resource
     - if @resources.empty?
