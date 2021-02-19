@@ -8,16 +8,16 @@ deploy_site () {
 }
 
 deploy_site_vallons () {
-  Echo 'Debut deploiement vallons'
+  echo 'Debut deploiement vallons'
   deploy_site '../vallons-website'
-  Echo 'Fin deploiement vallons'
+  echo 'Fin deploiement vallons'
 }
 
 deploy_site_broceliande () {
-  Echo 'Debut deploiement broceliande'
+  echo 'Debut deploiement broceliande'
   deploy_site '../broceliande-website'
   git push -f scalingo master
-  Echo 'Fin deploiement broceliande'
+  echo 'Fin deploiement broceliande'
 }
 
 deploy_site_vallons

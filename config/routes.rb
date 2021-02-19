@@ -72,6 +72,8 @@ Rails.application.routes.draw do
   end
   resource :search, only: [:show], path: "recherche"
   resource :newsletters, only: [:create]
+  resource :sitemap, only: [:show]
+
 
   root 'home#index'
 end

@@ -1,0 +1,7 @@
+- content_for :title, 'Plan du site'
+
+= render layout: 'layouts/base' do
+
+  .sitemap
+    - @site_map.each do |elements|
+      = raw site_map_html(elements)
