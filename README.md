@@ -29,3 +29,7 @@ Cloud OVH : https://git.happy-dev.fr/snippets/7#ovh-public-cloud-stockage-des-ob
   scalingo -a pole-ess-staging run --env RAILS_MASTER_KEY=value
 
   EDITOR=vim rails credentials:edit --environment staging
+
+
+Pour déployer les forks :
+  `./deploy-forks.sh`

@@ -1,5 +1,4 @@
 class Formation < ApplicationRecord
-
   include Seoable
   include Enablable
   include Schedulable
@@ -54,7 +53,7 @@ class Formation < ApplicationRecord
   end
 
   def self.apply_sorts(params)
-      self.sort_by_start_date
+    sort_by_start_date
   end
 
   def self.default_tickets_count
@@ -67,5 +66,4 @@ class Formation < ApplicationRecord
     formation.schedules.new
     formation
   end
-
 end

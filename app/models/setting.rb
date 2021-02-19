@@ -19,6 +19,8 @@ class Setting < RailsSettings::Base
   field :logo_instance, type: :integer, default: 1, readonly: true
   field :logo_instance_primary, type: :integer, default: 2, readonly: true
   field :admin_emails, type: :array
+  field :facebook, type: :string
+  field :instagram, type: :string
 
   validates :logo, content_type: { in: ['image/png', 'image/jpg', 'image/jpeg'], message: 'doit être une image' }
 
