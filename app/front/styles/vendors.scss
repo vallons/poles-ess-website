@@ -14,7 +14,8 @@ $fa-font-path: '~@fortawesome/fontawesome-free/webfonts';
   --color-secondary-light: hsl(var(--color-secondary-hs),calc(var(--color-secondary-l) + 25%));
   --color-secondary-dark: hsl(var(--color-secondary-hs),calc(var(--color-secondary-l) - 8%));
 
-  --color-tercery: #42322b
+  --color-tercery: #42322b;
+  --color-tercery-rgb: 66, 50, 43;
 }
 
 @import "~@fortawesome/fontawesome-free/scss/fontawesome";
