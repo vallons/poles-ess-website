@@ -6,7 +6,7 @@
 
   .my-12
     h3.text-2xl.uppercase.itc-demi Formation
-    .bg-c-gray-light.p-4
+    .bg-c-gray-100.p-4
       p.font-bold= @formation.title
       p = formation_dates(@formation)
       p
@@ -18,7 +18,7 @@
 
   .my-12
     h3.text-2xl.uppercase.itc-demi Participants
-    .bg-c-gray-light.p-4
+    .bg-c-gray-100.p-4
       ul
         - @subscription.participants.each do |participant|
           li

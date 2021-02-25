@@ -1,6 +1,6 @@
 .home-bg.flex
   .w-1/3.md:w-2/5
-  .home-baseline.w-2/3.md:w-2/5.p-12.flex.items-center
+  .home-baseline.w-2/3.md:w-2/5.p-20.flex.items-center
     .home-baseline_text.text-xl.md:text-4xl.uppercase.itc-md-cn.text-center = Setting.baseline
     .home-baseline_texture
 
@@ -31,15 +31,15 @@
         = render partial: 'profiles/card', collection: @profiles, as: :profile
 
 .flex.flex-col.md:flex-row.mx-auto.mb-3
-  .w-full.md:w-1/2.text-center.bg-c-gray-light.py-12.pr-6.md:mr-3.relative
+  .w-full.md:w-1/2.text-center.bg-c-gray-100.py-12.pr-6.md:mr-3.relative
     = render 'layouts/bg-pic', filename: 'pic-home-01'
     .md:w-3/5.ml-auto
-      p.text-xl.uppercase.mb-3 Vous souhaitez gagner en compétence ou professionnaliser votre équipe ?
+      p.text-xl.text-c-gray-600.uppercase.mb-3 Vous souhaitez gagner en compétence ou professionnaliser votre équipe ?
       = image_pack_tag "picto/Picto-formations.svg", class: "w-20 mb-6 mx-auto"
       = link_to "S'inscrire aux formations", formations_path, class: "btn btn-primary"
-  .w-full.md:w-1/2.text-center.bg-c-gray-light.py-12.pl-6.md:ml-3
+  .w-full.md:w-1/2.text-center.bg-c-gray-100.py-12.pl-6.md:ml-3
     .md:w-3/5.mr-auto
-      p.text-xl.uppercase.mb-3 Vous souhaitez participer à la dynamique de l'ESS sur votre territoire ?
+      p.text-xl.text-c-gray-600.uppercase.mb-3 Vous souhaitez participer à la dynamique de l'ESS sur votre territoire ?
       = image_pack_tag "picto/Picto-adhesion.svg", class: "w-20 mb-6 mx-auto"
       = link_to "Adhérer au pôle", main_page_path(@membership_page), class: "btn btn-primary"
 
@@ -47,8 +47,8 @@
   section.relative
     = render 'layouts/bg-pic', filename: 'pic-home-02'
     = render 'layouts/bg-pic', filename: 'pic-home-03'
-    .container.mx-auto.text-primary.pt-24
-      h2.text-3xl.uppercase.mb-5 Dernières actualités
+    .container.mx-auto.pt-24
+      h2.text-primary.text-3xl.uppercase.mb-5 Dernières actualités
       .flex.flex-col.md:flex-row
         - @posts.each do |post|
           .w-full.md:w-1/2.px-4

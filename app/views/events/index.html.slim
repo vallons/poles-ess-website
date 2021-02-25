@@ -4,7 +4,7 @@
     h1.main-title.mt-6.mb-4 Événements
 
     .flex.flex-col.sm:flex-row.mb-6
-      = active_link_to "Événements futurs", events_path, active: :exclusive, class: "itc-demi w-1/2 text-xl uppercase py-4 px-6 block hover:text-primary focus:outline-none c-gray-light border-transparent border-b-gray-300 border-b-2"
-      = active_link_to "Événements passés", past_events_path, active: :exclusive, class: "itc-demi w-1/2 text-xl uppercase py-4 px-6 block hover:text-primary focus:outline-none c-gray-light border-transparent border-b-gray-300 border-b-2"
+      = active_link_to "Événements futurs", events_path, active: :exclusive, class: "itc-demi w-1/2 text-xl uppercase py-4 px-6 block hover:text-primary focus:outline-none c-gray-100 border-transparent border-b-gray-300 border-b-2"
+      = active_link_to "Événements passés", past_events_path, active: :exclusive, class: "itc-demi w-1/2 text-xl uppercase py-4 px-6 block hover:text-primary focus:outline-none c-gray-100 border-transparent border-b-gray-300 border-b-2"
 
     = render partial: 'events/event_card', collection: @events, as: :agenda_item

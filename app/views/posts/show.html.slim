@@ -13,10 +13,10 @@
     p.mb-2 Publié le #{l(@post.published_at, format: :day)}
     div
       - if @post.post_category.present?
-        span.inline-block.bg-c-gray-light.rounded-full.px-3.py-1.text-sm.font-semibold.mr-2.mb-2 
+        span.inline-block.bg-c-gray-100.rounded-full.px-3.py-1.text-sm.font-semibold.mr-2.mb-2 
           = link_to @post.post_category.title, posts_path({by_post_category: @post.post_category.id})
       - @post.themes.enabled.each do |theme|
-        span.inline-block.bg-c-gray-light.rounded-full.px-3.py-1.text-sm.font-semibold.mr-2.mb-2 
+        span.inline-block.bg-c-gray-100.rounded-full.px-3.py-1.text-sm.font-semibold.mr-2.mb-2 
           = link_to theme.title, posts_path({by_theme: theme.id})
     = render 'resources/section', resources: @post.resources.enabled
 

@@ -140,6 +140,12 @@
   src: local('ITC Avant Garde Gothic Std Bold Oblique'), url('../fonts/ITCAvantGarde/ITCAvantGardeStdBoldObl.woff') format('woff');
 }
 
+@font-face {
+  font-family: 'Calibri';
+  font-style: normal;
+  font-weight: 400;
+  src: url('../fonts/Calibri/Calibri-normal.woff2') format('woff2');
+}
 
 .itc-bk {
   font-family: 'ITC Avant Garde Gothic Std Book';
@@ -162,9 +168,5 @@
 }
 
 .calibri {
-
-}
-
-.verdana {
-  
+  font-family: 'Calibri';
 }

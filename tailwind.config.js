@@ -14,7 +14,10 @@ module.exports = {
     },
     extend: {
       colors: {
-        white: "#fff",
+        white: {
+          DEFAULT: '#fff',
+          dark: '#f8f7ed',
+        },
         primary: {
           light: "var(--color-primary-light)",
           DEFAULT: "var(--color-primary)",
@@ -25,8 +28,10 @@ module.exports = {
           DEFAULT: "var(--color-secondary)",
         },
         "c-gray": {
-          light: "#f4f3e9",
-          dark: "#62615f",
+          '100': "#f4f3e9",
+          '300': "#bdbcb2",
+          '600': '#9d9889',
+          '800': "#62615f",
         },
       },
     },
