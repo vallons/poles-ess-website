@@ -1,8 +1,20 @@
+const colors = require("tailwindcss/colors")
+
 module.exports = {
   purge: [],
   theme: {
+    colors: {
+      transparent: "transparent",
+      current: "currentColor",
+      gray: colors.warmGray,
+      yellow: colors.yellow,
+      red: colors.red,
+      green: colors.lime,
+      black: colors.black,
+    },
     extend: {
       colors: {
+        white: "#fff",
         primary: {
           light: "var(--color-primary-light)",
           DEFAULT: "var(--color-primary)",
@@ -11,6 +23,10 @@ module.exports = {
         secondary: {
           light: "var(--color-secondary-light)",
           DEFAULT: "var(--color-secondary)",
+        },
+        "c-gray": {
+          light: "#f4f3e9",
+          dark: "#62615f",
         },
       },
     },

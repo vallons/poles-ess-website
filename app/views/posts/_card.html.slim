@@ -1,5 +1,5 @@
 .post-card.max-w-md.overflow-hidden.mb-4.flex.cursor-pointer.box-link
-  .flex.flex-col.flex-shrink-0.w-24.h-16.p-1.bg-gray-200.border.border-gray-300.text-gray-700.uppercase.text-center
+  .flex.flex-col.flex-shrink-0.w-24.h-16.p-1.bg-c-gray-light.border.border-gray-300.uppercase.text-center
     .text-lg.leading-snug= I18n.l(post.published_at, format: '%d')
     .text-sm.leading-tight= I18n.l(post.published_at, format: '%B')
     .text-xs.leading-tight= I18n.l(post.published_at, format: '%Y')
@@ -10,12 +10,5 @@
       h3.text-lg.uppercase.text-primary.leading-5.mb-2
         = link_to post.title, post_path(post)
 
-      p.text-gray-700.text-sm
+      p.text-sm
         == post.description.to_plain_text.truncate(150)
-    / .px-6.pt-4.pb-2
-      / - if post.post_category.present?
-      /   span.inline-block.bg-gray-200.rounded-full.px-3.py-1.text-sm.font-semibold.text-gray-700.mr-2.mb-2 = post.post_category.title
-      / - post.themes.enabled.each do |theme|
-      /   span.inline-block.bg-gray-200.rounded-full.px-3.py-1.text-sm.font-semibold.text-gray-700.mr-2.mb-2 = theme.title
-      / - post.profiles.enabled.each do |profile|
-      /   span.inline-block.bg-gray-200.rounded-full.px-3.py-1.text-sm.font-semibold.text-gray-700.mr-2.mb-2 = profile.title

@@ -11,6 +11,7 @@ class Formations::SubscriptionsController < Formations::BaseController
     else
       @subscription.participants.new
     end
+    @breadcrumbs << [ 'Inscription', formation_subscriptions_path ]
   end
 
   def create
@@ -35,6 +36,7 @@ class Formations::SubscriptionsController < Formations::BaseController
   end
 
   def show
+    @breadcrumbs << [ 'Confirmation d\'inscription', formation_subscription_path(@subscription) ]
   end
 
   private

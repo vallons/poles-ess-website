@@ -1,18 +1,18 @@
 .container.mx-auto
   .min-h-screen.w-full.lg:static.lg:max-h-full.lg:overflow-visible.lg:w-2/3.mx-auto
-    .bg-gray-200.shadow-md.my-10.p-8
+    .bg-c-gray-light-200.shadow-md.my-10.p-8
         h1.title-2.text-center.mb-4 Connexion à l'espace d'administration
 
         = form_for resource, as: resource_name, url: session_path(resource_name),\
           html: { role: "form" } do |f|
 
           .mb-4
-            = f.label :email, class: 'block text-gray-700 text-sm font-bold mb-2'
-            = f.email_field :email, autofocus: true, class: 'appearance-none border w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline', autocomplete: 'email'
+            = f.label :email, class: 'block text-sm font-bold mb-2'
+            = f.email_field :email, autofocus: true, class: 'appearance-none border w-full py-2 px-3 leading-tight focus:outline-none focus:shadow-outline', autocomplete: 'email'
 
           .mb-8
-            = f.label :password, class: 'block text-gray-700 text-sm font-bold mb-2'
-            = f.password_field :password, class: 'appearance-none border w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline', autocomplete: 'current-password'
+            = f.label :password, class: 'block text-sm font-bold mb-2'
+            = f.password_field :password, class: 'appearance-none border w-full py-2 px-3 leading-tight focus:outline-none focus:shadow-outline', autocomplete: 'current-password'
 
           .text-center
             = f.submit "Se connecter", class: "btn btn-primary py-2 px-3 w-full lg:w-2/3 focus:outline-none focus:shadow-outline"

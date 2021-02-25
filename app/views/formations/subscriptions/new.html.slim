@@ -1,10 +1,14 @@
 .flex.flex-col.md:flex-row.mt-4
+  .md:w-1/5
+  .md:w-4/5
+    = render 'layouts/breadcrumb'
+.flex.flex-col.md:flex-row.mt-4
   .md:w-1/6
-  .md:w-3/6.bg-white.p-6
+  .md:w-4/6.bg-white.p-6
     h1.mt-12.mb-4
       .text-2xl.itc-demi.text-primary.uppercase.text-center Inscription à la formation
       .main-title.text-center = @formation.title
-    .bg-gray-200.px-4.py-3.mb-8.flex.flex-col.md:flex-row.text-sm
+    .bg-c-gray-light.px-4.py-3.mb-8.flex.flex-col.md:flex-row.text-sm
       .w-full
         = render 'formations/meta_info', formation: @formation
 
@@ -22,22 +26,22 @@
           = render "participant_fields", f: participant
 
         div data-target="nested-fields.links"
-        p.text-xs.italic.leading-tight.text-gray-500.mb-10 * : Champs obligatoire, notamment pour pouvoir vous contacter pour l'organisation ou les changements de dernière minute des formations
-        
+        p.text-xs.italic.leading-tight.mb-10 * : Champs obligatoire, notamment pour pouvoir vous contacter pour l'organisation ou les changements de dernière minute des formations
+
         .text-center.mb-12
           = link_to "Ajouter un participant", "#", class: 'btn btn-default mx-auto', data: { action: "click->nested-fields#add_association" }
 
         .mb-10
-          label.block.text-gray-800
+          label.block
             = f.check_box :save_subscription, {class: 'mr-2 leading-tight'}
             = f.label :save_subscription, "Garder en mémoire les participants pour une autre inscription", class: 'font-bold'
-            p.text-xs.italic.text-gray-500 
-              ' Vos prochains formulaires d'inscription seront pré-remplis. 
-            p.text-xs.italic.text-gray-500 
+            p.text-xs.italic
+              ' Vos prochains formulaires d'inscription seront pré-remplis.
+            p.text-xs.italic
               ' La liste des participants est gardée en mémoire tant que votre navigateur reste ouvert.
 
       .mx-auto.text-center
         => f.submit "Valider l'inscription", class: 'btn btn-primary'
-        p.text-xs.text-gray-500.italic.md:w-2/3.mx-auto.mt-3
+        p.text-xs.italic.md:w-2/3.mx-auto.mt-3
           ' En cliquant sur "Valider", j’accepte que mes informations soient utilisées par le pôle ESS pour la gestion des formations, conformément à la
           => link_to " politique de confidentialité",  "#", target: "_blank", class: "underline"

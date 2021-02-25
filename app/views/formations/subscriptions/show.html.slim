@@ -1,24 +1,24 @@
-.container.mx-auto
-  h1.text-6xl.font-bold.text-center.mt-12.mb-4.text-gray-900 Résumé de votre inscription
+- content_for :title, 'Résumé de votre inscription'
 
+= render layout: 'layouts/base' do
   p Un mail de confirmation a été envoyé à chacun des participants.
   p Le règlement sera à effectuer de la façon suivante : 
 
-  .mb-3
-    h3.text-2xl.font-bold Formation
-    .bg-gray-300.p-4
+  .my-12
+    h3.text-2xl.uppercase.itc-demi Formation
+    .bg-c-gray-light.p-4
       p.font-bold= @formation.title
       p = formation_dates(@formation)
       p
-        span.uppercase.font-bold Lieu :
+        span.uppercase.font-bold Lieu : 
         => formation_location(@formation)
       p
-        span.uppercase.font-bold Intervenant·e :
+        span.uppercase.font-bold Intervenant·e : 
         => @formation.speaker
 
-  .mb-3
-    h3.text-2xl.font-bold Participants
-    .bg-gray-300.p-4
+  .my-12
+    h3.text-2xl.uppercase.itc-demi Participants
+    .bg-c-gray-light.p-4
       ul
         - @subscription.participants.each do |participant|
           li
