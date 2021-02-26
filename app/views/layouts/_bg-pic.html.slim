@@ -1,2 +1,3 @@
 - if public_file_exists?("illus/#{filename}.png")
-  .bg-pic class="#{filename}" style="background-image: url('/illus/#{filename}.png')"
+  - css_class = local_assigns.fetch :css_class, ''
+  .bg-pic class="#{filename} #{css_class} hidden md:block" style="background-image: url('/illus/#{filename}.png')"

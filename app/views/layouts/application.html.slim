@@ -55,7 +55,9 @@ html lang='fr'
             div.md:flex-row.md:ml-auto.md:w-auto.w-full.items-start.flex.px-3.py-2.md:p-0
               = render 'searches/form'
 
+    main.relative
       = raw flash_messages
+      = render 'layouts/bg-pic', filename: 'pic-bottom'
 
       = yield
 
