@@ -117,7 +117,7 @@ html lang='fr'
 
       .footer-bottom.py-8
         .container.mx-auto.flex.flex-col.md:flex-row.justify-between
-          .links.flex.flex-col.md:flex-row.justify-between.items-center.text-sm
+          .links.flex.flex-col.md:flex-row.justify-between.items-center.text-xs
             .credit.px-3
               span.emphasis=> Date.current.year
               => link_to "l'assembleuse", "https://www.lassembleuse.fr/"
@@ -131,10 +131,10 @@ html lang='fr'
           .social.flex-row.md:justify-end
             - if Setting.facebook
               = link_to Setting.facebook, title: "page facebook", class: "inline-block w-8 h-8 p-1 border text-center ml-2" do
-                i.fab.fa-facebook-f
+                i.fab.fa-facebook-f.leading-snug
             - if Setting.instagram
               = link_to Setting.instagram, title: "page instagram", class: "inline-block w-8 h-8 p-1 border text-center ml-2" do
-                i.fab.fa-instagram
+                i.fab.fa-instagram.leading-snug
 
 
 
