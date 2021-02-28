@@ -16,6 +16,8 @@ class Setting < RailsSettings::Base
   field :contact_bloc_description, type: :string
   field :contact_bloc_button, type: :string
   field :default_tickets_count, type: :integer, default: 10
+  field :reglement_formation, type: :string
+  field :map_link, type: :string
   field :logo_instance, type: :integer, default: 1, readonly: true
   field :logo_instance_primary, type: :integer, default: 2, readonly: true
   field :admin_emails, type: :array

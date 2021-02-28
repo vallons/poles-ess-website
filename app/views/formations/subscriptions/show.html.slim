@@ -3,6 +3,7 @@
 = render layout: 'layouts/base' do
   p Un mail de confirmation a été envoyé à chacun des participants.
   p Le règlement sera à effectuer de la façon suivante : 
+  p = Setting.reglement_formation
 
   .my-12
     h3.text-2xl.uppercase.itc-demi Formation

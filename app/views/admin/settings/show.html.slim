@@ -64,6 +64,14 @@
       = f.text_area :admin_emails, value: Setting.admin_emails.join("\n"), class: "form-control"
       p.small.font-italic Emails auxquels seront envoyées les notifications
 
+    .form-group
+      = f.label :reglement_formation
+      = f.text_field :reglement_formation, value: Setting.reglement_formation, class: "form-control"
+
+    .form-group
+      = f.label :map_link
+      = f.text_field :map_link, value: Setting.map_link, class: "form-control"
+
     h4.mb-4 Logo blanc
     .d-flex data-controller='file-upload'
       - if Setting.logo.present?
