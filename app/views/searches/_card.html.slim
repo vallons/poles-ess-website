@@ -7,5 +7,5 @@
       h3.uppercase.itc-demi.text-xl.leading-5
         = link_to item.title, item
       p.uppercase.text-sm = class_name(item)
-    p.text-sm
+    p.text-sm.text-body
       == item.description.to_plain_text.truncate(200)

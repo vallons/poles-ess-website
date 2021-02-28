@@ -11,9 +11,9 @@
     - if @main_page.image.present?
       = image_tag  @main_page.image, class: "mb-8 mx-auto"
     - if @main_page.short_description.present?
-      p.mb-24.text-primary.text-lg= @main_page.short_description
+      p.mb-24.text-primary.text-lg.text-body= @main_page.short_description
     - if @main_page.description.present?
-      .mb-24== @main_page.description
+      .mb-24.text-body== @main_page.description
 
   / - if @main_page.key == "key_numbers"
   /   = render 'main_pages/key_numbers'
