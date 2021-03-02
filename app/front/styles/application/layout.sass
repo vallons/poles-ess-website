@@ -22,11 +22,17 @@ html, body
   transform: translateY(0)
 
 .block-menu-toggler
+  &.block-menu--theme
+    > a
+      font-size: 18px
+  &.block-menu--page
+    > a
+      font-size: 14px
   > a
     display: inline-block
 		text-align: center
   > a.active
-    font-family: 'ITC Avant Garde Gothic Std Demi'
+    font-family: 'ITC Avant Garde Gothic Std Bold'
 
   .block-menu
     display: none
@@ -34,14 +40,14 @@ html, body
     z-index: 3
   &.active
     > a
-      font-family: 'ITC Avant Garde Gothic Std Demi'
+      font-family: 'ITC Avant Garde Gothic Std Bold'
 
 @media (min-width: 1024px)
   .block-menu-toggler
     > a::before
       display: block
       content: attr(title)
-      font-family: 'ITC Avant Garde Gothic Std Demi'
+      font-family: 'ITC Avant Garde Gothic Std Bold'
       height: 0
       overflow: hidden
       visibility: hidden
@@ -85,9 +91,10 @@ html, body
   margin-bottom: 1rem
 
 .footer-link
+  font-family: 'Calibri'
   @apply uppercase
   @apply text-c-gray-800
-  @apply text-xs
+  @apply text-sm
 
 .separator
   border-left: 1px solid var(--color-primary)

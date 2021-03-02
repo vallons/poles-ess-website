@@ -8,25 +8,25 @@
   .flex.flex-col.md:flex-row
     .w-full.md:w-1/5
       .p-3.text-center.font-bold.bg-primary.text-white
-        h3.text-sm.uppercase.itc-demi événements
+        h3.text-lg.uppercase.text-c-gray-100 événements
       .p-3
         = render partial: 'events/event_card', collection: @agenda_items, as: :agenda_item
         = link_to "Voir tous les événements", events_path, class: "uppercase text-sm underline"
     .w-full.md:w-3/5
       .p-3.text-center.font-bold.bg-primary.text-white
-        h3.text-sm.uppercase.itc-demi Découvrez nos actions
+        h3.text-lg.uppercase.text-c-gray-100 Découvrez nos actions
 
       .w-full.flex.flex-wrap.flex-col.md:flex-row
         - @highlighted_activities.each do |activity|
           .w-full.md:w-1/2.p-3
-            .bg-primary.hover:bg-primary-dark.w-full.h-52.p-5.flex.flex-col.content-center.justify-between.items-center.text-center.box-link.cursor-pointer
+            .bg-primary.hover:bg-primary-dark.w-full.h-60.p-5.flex.flex-col.content-center.justify-between.items-center.text-center.box-link.cursor-pointer
               div.text-white.uppercase
-                .text-base.itc-demi.text-secondary.mb-2 Je souhaite
-                .text-xl.itc-md-cn = activity.home_title
+                .text-lg.text-secondary.mb-2 Je souhaite
+                .text-3xl.itc-md-cn.text-c-gray-100.mb-5 = activity.home_title
               = link_to activity.title, activity_path(activity), class: 'rounded-full px-4 py-2 bg-white text-primary text-xs text-center uppercase'
     .w-full.md:w-1/5
       .p-3.text-center.font-bold.bg-primary.text-white
-        h3.text-sm.uppercase.itc-demi Je suis...
+        h3.text-lg.uppercase.text-c-gray-100 Je suis...
       .p-3
         = render partial: 'profiles/card', collection: @profiles, as: :profile
 
@@ -34,19 +34,19 @@
   .w-full.md:w-1/2.text-center.bg-c-gray-100.py-12.pr-6.md:mr-3.relative
     = render 'layouts/bg-pic', filename: 'pic-home-01'
     .md:w-3/5.ml-auto
-      p.text-xl.uppercase.mb-3 Vous souhaitez gagner en compétence ou professionnaliser votre équipe ?
+      p.text-2xl.uppercase.mb-3 Vous souhaitez gagner en compétence ou professionnaliser votre équipe ?
       = image_pack_tag "picto/Picto-formations.svg", class: "w-20 mb-6 mx-auto"
       = link_to "S'inscrire aux formations", formations_path, class: "btn btn-primary"
   .w-full.md:w-1/2.text-center.bg-c-gray-100.py-12.pl-6.md:ml-3
     .md:w-3/5.mr-auto
-      p.text-xl.uppercase.mb-3 Vous souhaitez participer à la dynamique de l'ESS sur votre territoire ?
+      p.text-2xl.uppercase.mb-3 Vous souhaitez participer à la dynamique de l'ESS sur votre territoire ?
       = image_pack_tag "picto/Picto-adhesion.svg", class: "w-20 mb-6 mx-auto"
       = link_to "Adhérer au pôle", main_page_path(@membership_page), class: "btn btn-primary"
 
 - if @posts.any?
   section.relative
     .container.mx-auto.pt-24
-      h2.text-primary.text-3xl.uppercase.mb-5 Dernières actualités
+      h2.text-primary.text-lg.uppercase.mb-5 Dernières actualités
       .flex.flex-col.md:flex-row
         - @posts.each do |post|
           .w-full.md:w-1/2.px-4

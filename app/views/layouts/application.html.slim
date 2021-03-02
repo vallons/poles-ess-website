@@ -42,16 +42,18 @@ html lang='fr'
             = active_link_to basic_page_path(@contact_page), active: :inclusive, class: "picto-link pl-2" do
               = image_pack_tag "picto/Picto-contact.svg", class: "w-10 mb-2"
               ' Contact
-      nav.relative.bg-white.px-6.hidden.md:block data-target="main-menu.mobileMenu"
+      nav.relative.bg-white.hidden.md:block data-target="main-menu.mobileMenu"
         div.flex.flex-col.md:flex-row.justify-between.items-center
-          div.flex.justify-start.lg:w-0.lg:flex-1
-          div.md:inline-flex.md:flex-row.md:m-auto.md:w-auto.w-full.md:items-center.items-start.flex.flex-col.md:h-auto
-            - @themes.each do |theme|
-              = render "layouts/block_menu", item: theme, item_path: theme_path(theme)
+          .hidden.xl:flex.justify-start.w-1/2.md:w-1/6
+          div.md:inline-flex.md:flex-row.md:m-auto.md:w-auto.w-full.md:items-center.items-start.flex.flex-col.md:h-auto.flex-grow.justify-between
+            .theme-section.md:inline-flex.md:flex-row
+              - @themes.each do |theme|
+                = render "layouts/block_menu", item: theme, item_path: theme_path(theme), css_class: 'block-menu--theme'
             .separator.h-7.hidden.md:block
-            - @main_pages.each do |main_page|
-              = render "layouts/block_menu", item: main_page, item_path: main_page_path(main_page)
-          div.flex.justify-end.md:w-0.md:flex-1.w-full
+            .page-section.md:inline-flex.md:flex-row
+              - @main_pages.each do |main_page|
+                = render "layouts/block_menu", item: main_page, item_path: main_page_path(main_page), css_class: 'block-menu--page'
+          div.flex.justify-end.md:w-0.md:flex-1.w-full.pr-6
             div.md:flex-row.md:ml-auto.md:w-auto.w-full.items-start.flex.px-3.py-2.md:p-0
               = render 'searches/form'
 
@@ -66,11 +68,11 @@ html lang='fr'
       .newsletter-subscription.bg-c-gray-100
         .max-w-6xl.mx-auto.flex.flex-col.md:flex-row.py-10
           .w-full.md:w-3/5.text-center.md:text-right.px-6
-            p.uppercase = Setting.newsletter_subscription_title
-            p.text-xs = Setting.newsletter_subscription_description
+            p.text-body.text-sm.uppercase = Setting.newsletter_subscription_title
+            p.text-body.text-xs = Setting.newsletter_subscription_description
           .w-full.md:w-2/5.px-6
             = form_with url: newsletters_path, method: :post, local: true, class: "flex" do |f|
-              = f.email_field :email, placeholder: 'Votre email', 'aria-label': 'Votre email', required: true, class: "flex-1 px-2 block w-full rounded-none border border-gray-300 mr-3"
+              = f.email_field :email, placeholder: 'Votre email', 'aria-label': 'Votre email', required: true, class: "flex-1 px-2 block w-full rounded-none border border-gray-300 mr-3 text-body text-xs"
               = f.submit 'Envoyer', class: 'btn btn-default'
 
       .footer-line-xl.w-full
@@ -117,7 +119,7 @@ html lang='fr'
 
       .footer-bottom.py-8
         .container.mx-auto.flex.flex-col.md:flex-row.justify-between
-          .links.flex.flex-col.md:flex-row.justify-between.items-center.text-xs
+          .links.flex.flex-col.md:flex-row.justify-between.items-center.text-xs.calibri
             .credit.px-3
               span.emphasis=> Date.current.year
               => link_to "l'assembleuse", "https://www.lassembleuse.fr/"

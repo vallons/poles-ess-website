@@ -1,4 +1,4 @@
-const colors = require("tailwindcss/colors")
+const colors = require("tailwindcss/colors");
 
 module.exports = {
   purge: [],
@@ -15,8 +15,8 @@ module.exports = {
     extend: {
       colors: {
         white: {
-          DEFAULT: '#fff',
-          dark: '#f8f7ed',
+          DEFAULT: "#fff",
+          dark: "#f8f7ed",
         },
         primary: {
           light: "var(--color-primary-light)",
@@ -28,10 +28,9 @@ module.exports = {
           DEFAULT: "var(--color-secondary)",
         },
         "c-gray": {
-          '100': "#f4f3e9",
-          '300': "#bdbcb2",
-          '600': '#9d9889',
-          '800': "#62615f",
+          100: "#f4f3e9",
+          300: "#bdbcb2",
+          800: "#9b968b",
         },
       },
     },
