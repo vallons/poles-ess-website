@@ -39,6 +39,8 @@ class ApplicationController < ActionController::Base
     @membership_page  = MainPage.enabled.find_by(key: 'membership')
     @ess_map_page     = MainPage.find_by(key: 'ess_map')
     @contact_page     = BasicPage.find_by(key: 'contact')
+    @data_policy_page = BasicPage.find_by(key: 'data_policy')
+    @legal_mentions_page = BasicPage.find_by(key: 'legal_mentions')
   end
 
   def set_default_seos!

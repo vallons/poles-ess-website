@@ -1,0 +1,20 @@
+.grid.grid-cols-1.md:grid-cols-2.gap-4
+  .adress
+    - if Setting.pole_name.present?
+      p.uppercase= Setting.pole_name
+    - if Setting.pole_address.present?
+      p.text-sm= Setting.pole_address
+    - if Setting.pole_address_complementary.present?
+      p.text-sm= Setting.pole_address_complementary
+    - if Setting.pole_city.present?
+      p.text-sm= Setting.pole_city
+  .tel-mail
+    - if Setting.pole_phone.present?
+      p.text-sm
+        ' Téléphone : 
+        => link_to Setting.pole_phone, "tel:#{Setting.pole_phone}", class: "text-primary"
+    - if Setting.pole_mail.present?
+      p.text-sm
+        ' Email :
+        => link_to Setting.pole_mail, "mailto:#{Setting.pole_mail}", class: "text-primary"
+

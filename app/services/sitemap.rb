@@ -76,9 +76,9 @@ module Sitemap
     post_title = {loc: Rails.application.routes.url_helpers.posts_url, priority: 0.9, lastmod: Time.now.strftime("%Y-%m-%d"),
       title: "Actualités", href: true, elements: []}
 
-    Activity.enabled.order(title: :asc).each do |page|
+    Post.published.order(title: :asc).each do |page|
       page_elt = {loc: Rails.application.routes.url_helpers.post_url(page),
-      priority: 0.9, lastmod: Time.now.strftime("%Y-%m-%d"), title: page.title, href: true, elements: []}
+      priority: 0.7, lastmod: Time.now.strftime("%Y-%m-%d"), title: page.title, href: true, elements: []}
       post_title[:elements] << { post: page_elt }
     end
     hash << { post_title: post_title }
