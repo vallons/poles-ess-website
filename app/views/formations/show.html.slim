@@ -1,3 +1,42 @@
-.container.mx-auto
-  .mb-4= render 'layouts/breadcrumb'
-  = render 'formations/formation_card', formation: @formation
+.flex.flex-col.md:flex-row.mt-4
+  .md:w-1/6
+  .md:w-4/6
+    = render 'layouts/breadcrumb'
+.flex.flex-col.md:flex-row.mt-4
+  .md:w-1/6
+  .md:w-3/6.bg-white.p-6
+    .mt-6.mb-4
+      h1.main-title = @formation.title
+      .relationships.leading-3
+        .inline.text-xs.text-gray-400.uppercase.italic
+          = @formation.formation_category.title
+    .mb-24.text-body
+      == @formation.description
+
+      - if @formation.future?
+        .w-full.text-center.my-4
+          div class="mb-2 italic #{'font-bold text-red-600' if @formation.is_full?}"
+            = formation_tickets_status(@formation)
+          div class="bg-primary hover:bg-primary-dark text-secondary font-bold py-2 px-4"
+            = link_to "Je m'inscris #{'sur liste d\'attente' if @formation.is_full?}", new_formation_subscription_path(@formation)
+
+  .md:w-2/6.px-4.md:pr-0
+    - if @formation.image.attached?
+      = image_tag @formation.image, class: "mb-8 mx-auto"
+
+    .bg-c-gray-100.px-4.py-3
+      = render 'formations/meta_info', formation: @formation
+
+
+/ .flex.flex-col.md:flex-row.mt-4
+/   .md:w-1/6
+/   .md:w-4/6
+/     .bg-c-gray-100.px-4.py-3.mb-3.flex.flex-col.md:flex-row.text-sm
+/       .w-full
+/         = render 'formations/meta_info', formation: @formation
+/       - if @formation.future?
+/         .w-full.md:w-1/4.text-center
+/           div class="mb-2 italic #{'font-bold text-red-600' if @formation.is_full?}"
+/             = formation_tickets_status(@formation)
+/           div class="bg-primary hover:bg-primary-dark text-secondary font-bold py-2 px-4"
+/             = link_to "Je m'inscris #{'sur liste d\'attente' if @formation.is_full?}", new_formation_subscription_path(@formation)

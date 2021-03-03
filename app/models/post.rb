@@ -69,7 +69,15 @@ class Post < ApplicationRecord
     self.order(published_at: :desc)
   end
 
-  # Instance Methods ===========================================================
+  # Instance methods ====================================================
+
+  def relationships
+    relationships = []
+    relationships << self.themes.enabled
+    relationships << self.profiles.enabled
+    relationships << self.post_category
+    relationships.flatten
+  end
 
   def publication_state
     if published_at > Time.current
@@ -90,5 +98,4 @@ class Post < ApplicationRecord
   end
 
   private #=====================================================================
-
 end

@@ -4,4 +4,4 @@
       h3.text-xl.uppercase.itc-demi.text-white Nos actions
     ul
       - activities.order_by_theme_interface_position.each do |activity|
-        li = link_to activity.title, activity_path(activity), class: "text-primary underline"
+        li = link_to activity.title, activity_path(activity), class: "sidebar-link"

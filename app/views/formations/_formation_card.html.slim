@@ -2,7 +2,7 @@
   .flex.flex-col.md:flex-row
     .w-full.md:w-3/5.px-8 
       h3.title-2.mb-3 = formation.title
-      - unless params['sort']=='by_formation_category'
+      - unless params['sort']=='by_formation_category' || params['sort'].blank?
         = formation.formation_category.title
       .mb-3.text-sm.text-body == formation.description
 

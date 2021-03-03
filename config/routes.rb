@@ -57,6 +57,7 @@ Rails.application.routes.draw do
   resources :profiles, only: [:show]
   resources :activities, only: [:index, :show], path: "actions"
   resources :posts, only: [:index, :show], path: "actualites"
+  resources :post_categories, only: [:show]
   resources :formations, only: [:index, :show, :edit, :update] do
     resources :subscriptions, controller: "formations/subscriptions", only: [:new, :create, :show], path: "inscription"
   end

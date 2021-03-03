@@ -30,6 +30,7 @@ class Activity < ApplicationRecord
     relationships << self.profiles.enabled
     relationships.flatten
   end
+
   # Class Methods ==============================================================
 
   def self.apply_filters(params)

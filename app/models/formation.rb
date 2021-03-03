@@ -29,7 +29,6 @@ class Formation < ApplicationRecord
     sort_by_start_date.group_by(&:formation_category).sort_by{ |cat, array| cat.position }
   }
 
-
   # Instance methods ====================================================
 
   def remaining_tickets
