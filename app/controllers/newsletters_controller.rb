@@ -8,9 +8,9 @@ class NewslettersController < ApplicationController
     }
 
     begin
-      api_instance.create_contact(SibApiV3Sdk::CreateContact.new(contact_params))
-      AdminMailer.with(email: params[:email]).newsletter_subscription.deliver_now
-      flash[:success] = "Votre inscription à la newsletter a bien été prise en compte"
+      # api_instance.create_contact(SibApiV3Sdk::CreateContact.new(contact_params))
+      # AdminMailer.with(email: params[:email]).newsletter_subscription.deliver_now
+      flash[:notice] = "Votre inscription à la newsletter a bien été prise en compte"
     rescue SibApiV3Sdk::ApiError => e
       flash[:warning] = "Une erreur s’est produite, merci de réessayer ultérieurement"
     end
