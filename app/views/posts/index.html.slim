@@ -22,5 +22,8 @@
         p
           - if filtering_in_progress(params)
             = link_to "Retourner voir toutes les actualités", posts_path, class: "uppercase text-primary underline"
-          -else 
+          -else
             = link_to "Retourner à la page d'accueil", root_path, class: "uppercase text-primary underline"
+
+    .text-center
+      = paginate @posts

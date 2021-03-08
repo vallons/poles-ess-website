@@ -16,6 +16,7 @@ class FormationCategory < ApplicationRecord
   scope :by_formation_category, -> (val) {
     where(id: val)
   }
+  scope :sort_by_position, -> { order(position: :desc) }
 
   # Instance methods ====================================================
 

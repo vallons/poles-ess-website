@@ -11,9 +11,10 @@ class FormationsController < ApplicationController
     .apply_filters(params)
     @formation_programs = FormationProgram.enabled.order(:position)
     if params[:sort] == 'by_future'
-      @formations = @formations.sort_by_future.sort_by_start_date
+      @formations = @formations.sort_by_future.sort_by_start_date.page(params[:page]).per(5)
     else
-      @formations = @formations.in_most_recent_year.sort_by_formation_category
+      @formation_categories = FormationCategory.having_formations.enabled.order(:position).page(params[:page]).per(2)
+      @formations = @formations.in_most_recent_year
     end
   end
 

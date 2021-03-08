@@ -8,7 +8,7 @@ class PostsController < ApplicationController
     @post_categories = PostCategory.enabled.having_posts.order(:position)
     @post_themes = Theme.enabled.having_posts.order(:position)
     @post_profiles = Profile.enabled.having_posts.order(:position)
-    @posts = Post.published.apply_filters(params).order(published_at: :desc)
+    @posts = Post.published.apply_filters(params).order(published_at: :desc).page(params[:page]).per(8)
   end
 
   def show

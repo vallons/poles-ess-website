@@ -24,7 +24,11 @@
     h1.main-title.px-8.my-12 Formations
     - if params[:sort] == 'by_future'
       = render partial: 'formations/formation_card', collection: @formations, as: :formation
+      .text-center.mb-5
+        = paginate @formations
     - else
-      - @formations.each do |category, formations|
+      - @formation_categories.each do |category|
         h2.text-3xl.text-primary.itc-demi.uppercase.px-8.mb-6 = category.title
-        = render partial: 'formations/formation_card', collection: formations, as: :formation
+        = render partial: 'formations/formation_card', collection: @formations.by_formation_category(category), as: :formation
+      .text-center.mb-5
+        = paginate @formation_categories
