@@ -22,9 +22,19 @@ class Resource < ApplicationRecord
   # Scopes ====================================================================
 
   scope :by_theme, -> (id) {
-    where(resourceable_type: "Theme").where(resourceable_id: id)
+    activities = Activity.by_theme(id)
+    by_activity(activities).or(where(resourceable_type: "Theme").where(resourceable_id: id))
   }
-  
+
+  scope :by_profile, -> (id) {
+    activities = Activity.by_profile(id)
+    by_activity(activities).or(where(resourceable_type: "Profile").where(resourceable_id: id))
+  }
+
+  scope :by_activity, -> (id) {
+    where(resourceable_type: "Activity").where(resourceable_id: id)
+  }
+
 
   # Class Methods ==============================================================
 
