@@ -1,11 +1,12 @@
 .flex.flex-col.md:flex-row.mt-4
   .md:w-1/6
   .md:w-3/6.bg-white.p-6
-    .header.mt-6.mb-4
+    = render 'layouts/breadcrumb' 
+    .header.my-4
       h1.main-title  = @activity.title
       = render 'shared/item_relations', item: @activity
     - if @activity.short_description.present?
-      p.mb-24.text-primary.text-lg.text-body= @activity.short_description
+      p.mb-12.text-primary.text-lg.text-body= @activity.short_description
     .mb-24.text-body
       == @activity.description
 
