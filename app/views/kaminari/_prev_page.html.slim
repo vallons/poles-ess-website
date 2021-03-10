@@ -7,8 +7,7 @@
 /     remote:        data-remote
 
 - content_for :prev_page do
-  i.fa.fa-angle-left>
   => t('views.pagination.previous').html_safe
 
 span.prev
-  = link_to_unless current_page.first?, content_for(:prev_page), url, rel: 'prev', remote: remote, class: "btn btn-primary"
+  = link_to_unless current_page.first?, content_for(:prev_page), url, rel: 'prev', remote: remote, class: "text-primary uppercase"

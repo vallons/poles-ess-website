@@ -8,8 +8,7 @@
 
 - content_for :next_page do
   span=> t('views.pagination.next').html_safe
-  i.fa.fa-angle-right>
 
 span.next
-  = link_to_unless current_page.last?, content_for(:next_page), url, rel: 'next', remote: remote, class: "btn btn-primary"
+  = link_to_unless current_page.last?, content_for(:next_page), url, rel: 'next', remote: remote, class: "text-primary uppercase"
 

@@ -229,8 +229,8 @@ fr:
     pagination:
       first: "&laquo; Premier"
       last: Dernier &raquo;
-      next: Suivant
-      previous: "Précédent"
+      next: Suiv.
+      previous: "Préc."
       truncate: "&hellip;"
 
   attributes:
