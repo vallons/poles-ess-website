@@ -2,10 +2,11 @@
   = render 'layouts/bg-pic', filename: @theme.title.parameterize, css_class: 'theme-illus'
   .md:w-1/6
   .md:w-3/6.bg-white.p-6
-    h1.main-title.mt-6.mb-4 = @theme.title
-    p.title-2.mb-16 = @theme.baseline
+    = render 'layouts/breadcrumb'
+    h1.main-title.mt-4.mb-10 = @theme.title
+    p.title-2.mb-6 = @theme.baseline
     - if @theme.short_description.present?
-      p.mb-24.text-primary.text-lg.text-body= @theme.short_description
+      p.mb-4.text-primary.text-lg.text-body= @theme.short_description
     .mb-24.text-body== @theme.description
 
   .md:w-2/6.px-4.md:pr-0

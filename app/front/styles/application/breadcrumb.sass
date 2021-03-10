@@ -1,10 +1,8 @@
 .breadcrumb
   display: flex
-  @apply px-8
-  @apply py-3
   @apply text-c-gray-800
   @apply text-xs
-  text-transform: uppercase
+  // text-transform: uppercase
 .breadcrumb-item:not(:last-child)
   margin-right: 0.2rem
   &:after
@@ -21,6 +19,10 @@
     //            - 300 for Light symbols. */
     // font-weight: 900
 
+
 .relationships > div:not(:last-child)
   &:after
     content: ' / '
+
+.category-tag
+  @apply inline text-xs text-gray-400 uppercase italic

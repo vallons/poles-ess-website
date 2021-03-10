@@ -1,4 +1,5 @@
 class ResourcesController < ApplicationController
+  include Breadcrumbs
 
   def index
     @resources = Resource.enabled.apply_filters(params).order(:created_at).page(params[:page]).per(20)
@@ -8,9 +9,7 @@ class ResourcesController < ApplicationController
 
   private # =====================================================
 
-  def get_post
-    @post = get_object_from_param_or_redirect(Post)
+  def set_specific_breadcrumbs
+    @breadcrumbs << [ "Ressources", resources_path ]
   end
-
-
 end

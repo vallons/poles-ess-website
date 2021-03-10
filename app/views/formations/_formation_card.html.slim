@@ -1,22 +1,22 @@
 .mb-12
   .flex.flex-col.md:flex-row
-    .w-full.md:w-3/5.px-8 
-      h3.title-2.mb-3 = formation.title
-      - unless params['sort']=='by_formation_category' || params['sort'].blank?
-        = formation.formation_category.title
+    .w-full.md:w-3/5
+      .mb-3
+        h3.title-2 = link_to formation.title, formation_path(formation)
+        - unless params['sort']=='by_formation_category' || params['sort'].blank?
+          .category-tag = formation.formation_category.title
       .mb-3.text-sm.text-body == formation.description
 
     .w-full.md:w-2/5
       - if formation.image.attached?
         = image_tag formation.image, class: "mb-8 mx-auto"
 
-  .px-8
-    .bg-c-gray-100.px-4.py-3.mb-3.flex.flex-col.md:flex-row.text-sm
-      .w-full.md:w-3/4
-        = render 'formations/meta_info', formation: formation
-      - if formation.future?
-        .w-full.md:w-1/4.text-center
-          div class="mb-2 italic #{'font-bold text-red-600' if formation.is_full?}"
-            = formation_tickets_status(formation)
-          div class="bg-primary hover:bg-primary-dark text-secondary font-bold py-2 px-4"
-            = link_to "Je m'inscris #{'sur liste d\'attente' if formation.is_full?}", new_formation_subscription_path(formation)
+  .bg-c-gray-100.px-4.py-3.mb-3.flex.flex-col.md:flex-row.text-sm
+    .w-full.md:w-3/4
+      = render 'formations/meta_info', formation: formation
+    - if formation.future?
+      .w-full.md:w-1/4.text-center
+        div class="mb-2 italic #{'font-bold text-red-600' if formation.is_full?}"
+          = formation_tickets_status(formation)
+        div class="bg-primary hover:bg-primary-dark text-secondary font-bold py-2 px-4"
+          = link_to "Je m'inscris #{'sur liste d\'attente' if formation.is_full?}", new_formation_subscription_path(formation)

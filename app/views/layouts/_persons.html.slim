@@ -1,9 +1,6 @@
 .flex.flex-col.md:flex-row.mt-4
   .md:w-1/6
-  .md:w-4/6
-    = render 'layouts/breadcrumb'
-.flex.flex-col.md:flex-row.mt-4
-  .md:w-1/6
   .md:w-4/6.p-6
-    h1.main-title.mt-6.mb-4 = content_for :title
+    = render 'layouts/breadcrumb'
+    h1.main-title.my-4= content_for :title
     = yield

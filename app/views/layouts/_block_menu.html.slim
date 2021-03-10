@@ -4,14 +4,13 @@ div.block-menu-toggler class="#{css_class}" data-action="mouseenter->main-menu#o
     .container.mx-auto.flex.py-12
       .w-1/2.px-4
         h3.mb-3.uppercase.text-primary.itc-bold= link_to item.baseline, item_path
-        p.text-sm = item.short_description
         = link_to "Lire la suite", item_path, class: "text-primary uppercase text-sm"
       - if item.is_a?(Theme) && item.activities.enabled.any?
         .separator.h-40
         .w-1/4.px-4
           h4.uppercase.text-sm.text-primary.mb-2 = "Nos actions"
           - item.activities.enabled.order_by_theme_interface_position.first(5).each do |activity|
-            li.list-none = link_to activity.title, activity_path(activity), class: 'text-body text-xs mb-1 inline-block'
+            li.list-none = link_to activity.title, activity_path(activity), class: 'text-body text-sm mb-1 inline-block'
       - item.menu_blocks.each do |menu_block|
         .separator.h-40
         .w-1/4.px-4
@@ -19,4 +18,4 @@ div.block-menu-toggler class="#{css_class}" data-action="mouseenter->main-menu#o
             h4.uppercase.text-sm.text-primary.mb-2 = menu_block.title
           ul
             - menu_block.menu_items.each do |menu_item|
-              li = link_to menu_item.title, menu_item.url, class: 'text-body text-xs mb-1 inline-block'
+              li = link_to menu_item.title, menu_item.url, class: 'text-body text-sm mb-1 inline-block'

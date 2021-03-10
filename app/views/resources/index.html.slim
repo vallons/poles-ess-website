@@ -1,9 +1,4 @@
 .flex.flex-col.md:flex-row.mt-4
-  .md:w-1/5
-  .md:w-4/5
-    / = render 'layouts/breadcrumb'
-
-.flex.flex-col.md:flex-row.mt-4
   .md:w-1/5 data-controller='manage-index'
     details.md:hidden.px-8
       summary.uppercase.text-primary.mb-3.cursor-pointer Filtrer
@@ -11,9 +6,10 @@
     .hidden.px-8.md:block
       = render 'resources/filters'
 
-  .md:w-4/5.bg-white.mb-16
-    h1.main-title.px-8.my-12 Ressources
-    .px-16
+  .md:w-4/5.bg-white.mb-16.p-6
+    = render 'layouts/breadcrumb'
+    h1.main-title.my-4.mb-10 Ressources
+    .px-8
       = render partial: 'resources/resource', collection: @resources, as: :resource
     - if @resources.empty?
       .text-center

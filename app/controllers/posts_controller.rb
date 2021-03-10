@@ -1,8 +1,8 @@
 class PostsController < ApplicationController
   include SlugsAndRedirections
+  include Breadcrumbs
 
   before_action :get_post, only: [:show]
-  before_action :set_base_breadcrumbs
 
   def index
     @post_categories = PostCategory.enabled.having_posts.order(:position)
@@ -37,10 +37,7 @@ class PostsController < ApplicationController
     posts.where.not(id: post.id).includes(:seo).limit(2)
   end
 
-  def set_base_breadcrumbs
-    @breadcrumbs = []
-    @breadcrumbs << [ "Accueil",         root_path ]
+  def set_specific_breadcrumbs
     @breadcrumbs << [ "Actualités",      posts_path ]
   end
-
 end

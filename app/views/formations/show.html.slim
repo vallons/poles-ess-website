@@ -1,11 +1,8 @@
 .flex.flex-col.md:flex-row.mt-4
   .md:w-1/6
-  .md:w-4/6
-    = render 'layouts/breadcrumb'
-.flex.flex-col.md:flex-row.mt-4
-  .md:w-1/6
   .md:w-3/6.bg-white.p-6
-    .mt-6.mb-4
+    = render 'layouts/breadcrumb'
+    .my-4
       h1.main-title = @formation.title
       .relationships.leading-3
         .inline.text-xs.text-gray-400.uppercase.italic

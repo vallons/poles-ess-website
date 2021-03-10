@@ -1,12 +1,13 @@
 .flex.flex-col.md:flex-row.mt-4
   .md:w-1/6
   .md:w-3/6.bg-white.p-6
-    h1.main-title.mt-6.mb-4 = @profile.title
-    p.title-2.mb-16 = @profile.baseline
+    = render 'layouts/breadcrumb'
+    h1.main-title.mt-4.mb-10 = @profile.title
+    p.title-2.mb-6 = @profile.baseline
     - if @profile.image.present?
       = image_tag  @profile.image, class: "mb-8 mx-auto"
     - if @profile.short_description.present?
-      p.mb-24.text-primary.text-lg= @profile.short_description
+      p.mb-4.text-primary.text-lg= @profile.short_description
     .mb-24== @profile.description
 
   .md:w-2/6.px-4.md:pr-0

@@ -10,5 +10,5 @@
       h3.text-sm.uppercase.text-primary.leading-5.mb-2
         = link_to post.title, post_path(post)
 
-      p.text-xs.text-body
+      p.text-sm.text-body
         == post.description.to_plain_text.truncate(150)
