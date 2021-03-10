@@ -34,10 +34,10 @@ html lang="#{I18n.locale}"
                     = active_link_to admin_posts_path, title: "Gérer les actus", class: "nav-link", active: :inclusive do
                       i.fas.fa-fire>
                       ' Actualités
-                  li.nav-item
-                    = active_link_to "#", title: "Gérer les actus", class: "nav-link disabled", active: :exclusive do
-                      i.fas.fa-fire>
-                      ' Ressources
+                  / li.nav-item
+                  /   = active_link_to "#", title: "Gérer les actus", class: "nav-link disabled", active: :exclusive do
+                  /     i.fas.fa-fire>
+                  /     ' Ressources
                   li.nav-item
                     = active_link_to admin_events_path, title: "Gérer les événements", class: "nav-link", active: :inclusive do
                       i.fas.fa-fire>
