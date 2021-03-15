@@ -13,7 +13,7 @@ class FormationsController < ApplicationController
     if params[:sort] == 'by_future'
       @formations = @formations.sort_by_future.sort_by_start_date.page(params[:page]).per(5)
     else
-      @formation_categories = FormationCategory.having_formations.enabled.order(:position).page(params[:page]).per(2)
+      @formation_categories = FormationCategory.where(id: @formations.pluck(:formation_category_id).compact).order(:position).page(params[:page]).per(2)
       @formations = @formations.in_most_recent_year
     end
   end

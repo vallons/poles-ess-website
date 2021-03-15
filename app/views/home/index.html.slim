@@ -1,6 +1,6 @@
 .home-bg.flex
   .w-1/3.md:w-2/5
-  .home-baseline.w-2/3.md:w-2/5.p-20.flex.items-center
+  .home-baseline.w-2/3.md:w-2/5.p-8.md:p-20.flex.items-center
     .home-baseline_text.text-xl.md:text-4xl.uppercase.itc-md-cn.text-center = Setting.baseline
     .home-baseline_texture
 
@@ -46,7 +46,7 @@
 - if @posts.any?
   section.relative
     .container.mx-auto.pt-24
-      h2.text-primary.text-lg.uppercase.mb-5 Dernières actualités
+      h2.text-primary.text-lg.uppercase.mb-5.px-4 Dernières actualités
       .flex.flex-col.md:flex-row
         - @posts.each do |post|
           .w-full.md:w-1/2.px-4

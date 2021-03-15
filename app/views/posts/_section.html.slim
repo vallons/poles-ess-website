@@ -1,6 +1,7 @@
 - if posts.any?
-  h2.text-2xl.text-primary.uppercase.mt-12.mb-4 Dernières actualités en lien
-  .grid.grid-cols-1.md:grid-cols-2.gap-4
-    - posts.each do |post|
-      div
-        = render 'posts/card', post: post
+  .px-4
+    h2.text-2xl.text-primary.uppercase.mt-12.mb-4 Dernières actualités en lien
+    .grid.grid-cols-1.md:grid-cols-2.gap-4
+      - posts.each do |post|
+        div
+          = render 'posts/card', post: post

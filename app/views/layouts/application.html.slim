@@ -18,8 +18,8 @@ html lang='fr'
   body.h-full
     .relative data-controller="main-menu"
       nav.flex.justify-between
-        div.bg-primary.text-white.flex.w-1/2.md:w-1/6.px-6.py-2.items-center
-          button.flex.items-center.flex-1.block.md:hidden
+        div.bg-primary.text-white.flex.w-full.md:w-1/6.px-6.py-2.items-center
+          button.flex.items-center.flex-1.block.mr-2.md:hidden
             svg.fill-current.cursor-pointer viewBox="0 0 100 80" width="40" height="40" xmlns="http://www.w3.org/2000/svg" data-action="click->main-menu#toggleMobileMenu"
               title Menu
               rect width="100" height="15" rx="8"
@@ -27,22 +27,36 @@ html lang='fr'
               rect y="60" width="100" height="15" rx="8"
           = link_to root_path, title: "Page d'accueil", class: "block flex items-center w-auto" do
             - if Setting.logo.present?
-              => image_tag Setting.logo.variant(resize_to_limit: [nil, 75]), class: "mr-3", title: Setting.pole_name
-        .flex.items-center.flex-1.justify-end.px-6.py-4
+              => image_tag Setting.logo.variant(resize_to_limit: [nil, 75]), class: "max-h-14 md:max-h-full", title: Setting.pole_name
+        .hidden.md:flex.items-center.flex-1.justify-end.px-6.py-4
           .flex.text-xs.md:text-sm.items-center.justify-end
-            = active_link_to main_page_path(@membership_page), active: :inclusive, class: "hidden picto-link px-2" do
+            = active_link_to main_page_path(@membership_page), active: :inclusive, class: "picto-link px-2" do
               = image_pack_tag "picto/Picto-adhesion.svg", class: "w-10 mb-2"
               ' Adhésion
-            = active_link_to formations_path, active: :inclusive, class: "picto-link px-2" do
-              = image_pack_tag "picto/Picto-formations.svg", class: "w-10 mb-2"
-              ' Formations
-            = active_link_to main_page_path(@ess_map_page), active: :inclusive, class: "hidden picto-link px-2" do
+            = active_link_to main_page_path(@ess_map_page), active: :inclusive, class: "picto-link px-2" do
               = image_pack_tag "picto/Picto-carto.svg", class: "w-10 mb-2"
               ' Cartographie
+            = active_link_to formations_path, active: :inclusive, class: "picto-link picto-link--highlighted px-2" do
+              = image_pack_tag "picto/Picto-formations-light.svg", class: "w-10 mb-2"
+              ' Formations
             = active_link_to basic_page_path(@contact_page), active: :inclusive, class: "picto-link pl-2" do
               = image_pack_tag "picto/Picto-contact.svg", class: "w-10 mb-2"
               ' Contact
       nav.relative.bg-white.hidden.md:block data-target="main-menu.mobileMenu"
+        .md:hidden
+          = active_link_to main_page_path(@membership_page), active: :inclusive, class: "flex px-3 py-2 items-center uppercase" do
+            = image_pack_tag "picto/Picto-adhesion.svg", class: "w-6 mr-3"
+            ' Adhésion
+          = active_link_to main_page_path(@ess_map_page), active: :inclusive, class: "flex px-3 py-2 items-center uppercase" do
+            = image_pack_tag "picto/Picto-carto.svg", class: "w-6 mr-3"
+            p Cartographie
+          = active_link_to formations_path, active: :inclusive, class: "flex px-3 py-2 items-center uppercase" do
+            = image_pack_tag "picto/Picto-formations.svg", class: "w-6 mr-3"
+            ' Formations
+          = active_link_to basic_page_path(@contact_page), active: :inclusive, class: "flex px-3 py-2 items-center uppercase" do
+            = image_pack_tag "picto/Picto-contact.svg", class: "w-6 mr-3"
+            ' Contact
+          .mx-3.border-gray-300.border-b
         div.flex.flex-col.md:flex-row.justify-between.items-center
           .hidden.xl:flex.justify-start.w-1/2.md:w-1/6
           div.md:inline-flex.md:flex-row.md:m-auto.md:w-auto.w-full.md:items-center.items-start.flex.flex-col.md:h-auto.flex-grow.justify-around
@@ -79,18 +93,18 @@ html lang='fr'
 
       .w-full.bg-c-gray-100
         .max-w-6xl.mx-auto.flex.flex-col.md:flex-row
-          .w-full.md:w-2/3.flex.flex-col.md:flex-row
-            .w-full.md:w-1/3.py-3.md:py-8.px-3
+          .w-full.md:w-2/3.flex.flex-row.flex-wrap
+            .w-1/2.md:w-1/3.py-3.md:py-8.px-3
               .footer-title Thèmes
               ul
                 - @themes.each do |theme|
                   li = link_to theme.title, theme_path(theme), class: "footer-link"
-            .w-full.md:w-1/3.py-3.md:py-8.px-3
+            .w-1/2.md:w-1/3.py-3.md:py-8.px-3
               .footer-title Profils
               ul 
                 - @profiles.each do |profile|
                   li = link_to profile.title, profile_path(profile), class: "footer-link"
-            .w-full.md:w-1/3.py-3.md:py-8.px-3
+            .w-1/2.md:w-1/3.py-3.md:py-8.px-3
               .footer-title Liens rapides
               ul
                 li = link_to "Actualités", posts_path, class: "footer-link"
@@ -99,7 +113,7 @@ html lang='fr'
                 li = link_to "Formations", formations_path, class: "footer-link"
                 li = link_to "Chiffres clés", key_numbers_path, class: "footer-link"
                 li = link_to "Ressources", resources_path, class: "footer-link"
-          .separator.h-7.my-auto
+          .separator.hidden.md:block.h-7.my-auto
           .w-full.md:w-1/3.py-3.md:py-8.px-8
             - if Setting.logo_primary.present?
               => image_tag Setting.logo_primary.variant(resize_to_limit: [nil, 150]), class: "mb-5"
@@ -126,13 +140,13 @@ html lang='fr'
               ' & 
               = link_to "© Ellllsa", "https://ellllsa.com/"
 
-            .separator.white.h-4.my-auto
+            .separator.hidden.md:block.white.h-4.my-auto
             = link_to "Plan du site", sitemap_path, class: "px-3"
-            .separator.white.h-4.my-auto
+            .separator.hidden.md:block.white.h-4.my-auto
             = link_to "Mentions légales", basic_page_path(@legal_mentions_page), class: "px-3"
-            .separator.white.h-4.my-auto
+            .separator.hidden.md:block.white.h-4.my-auto
             = link_to "Politique de confidentialité", basic_page_path(@data_policy_page), class: "px-3"
-          .social.flex-row.md:justify-end
+          .social.flex.flex-row.justify-center.md:justify-end.mt-3.md:mt-0
             - if Setting.facebook
               = link_to Setting.facebook, title: "page facebook", class: "inline-block w-8 h-8 p-1 border text-center ml-2" do
                 i.fab.fa-facebook-f.leading-snug
