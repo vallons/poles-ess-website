@@ -9,7 +9,7 @@
     .form-group
       = f.label :baseline
       = f.text_field :baseline, value: Setting.baseline, class: "form-control"
-    
+
     fieldset.border.p-2
       legend.w-auto Informations de contact
       .form-group
@@ -72,25 +72,25 @@
       = f.label :map_link
       = f.text_field :map_link, value: Setting.map_link, class: "form-control"
 
-    h4.mb-4 Logo blanc
-    .d-flex data-controller='file-upload'
-      - if Setting.logo.present?
-        .mr-4.bg-light
-          => image_tag Setting.logo.variant(resize_to_limit: [150, nil])
-      div
-        .form-group
-          = f.label :logo, for: "main-image", class: 'btn btn-sm btn-outline-info' do
-            i.fas.fa-file-upload>
-            ' Sélectionner le logo
-          = f.file_field :logo, id: "main-image", class: "d-none", data:{action: 'change->file-upload#displayFileName'}
-          div
-            small data-target="file-upload.nameDisplayed"
-        - if Setting.logo.present?
-          .form-group
-            = link_to destroy_upload_admin_settings_path(Setting.logo.id, redirect: :show),
-                        method: :delete, class: 'btn btn-sm btn-outline-danger' do
-              i.fas.fa-trash-alt>
-              ' Supprimer l'image actuelle
+    / h4.mb-4 Logo blanc
+    / .d-flex data-controller='file-upload'
+    /   - if Setting.logo.present?
+    /     .mr-4.bg-light
+    /       => image_tag Setting.logo.variant(resize_to_limit: [150, nil])
+    /   div
+    /     .form-group
+    /       = f.label :logo, for: "main-image", class: 'btn btn-sm btn-outline-info' do
+    /         i.fas.fa-file-upload>
+    /         ' Sélectionner le logo
+    /       = f.file_field :logo, id: "main-image", class: "d-none", data:{action: 'change->file-upload#displayFileName'}
+    /       div
+    /         small data-target="file-upload.nameDisplayed"
+    /     - if Setting.logo.present?
+    /       .form-group
+    /         = link_to destroy_upload_admin_settings_path(Setting.logo.id, redirect: :show),
+    /                     method: :delete, class: 'btn btn-sm btn-outline-danger' do
+    /           i.fas.fa-trash-alt>
+    /           ' Supprimer l'image actuelle
 
     / h4.mb-4 Logo couleur
     / .d-flex data-controller='file-upload'
