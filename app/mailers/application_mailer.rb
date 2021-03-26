@@ -1,4 +1,4 @@
 class ApplicationMailer < ActionMailer::Base
-  default from: 'bonjour@lassembleuse.fr'
+  default from: 'pole@vallons-solidaires.fr'
   layout 'mailer'
 end
