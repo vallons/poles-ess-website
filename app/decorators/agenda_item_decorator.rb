@@ -26,11 +26,18 @@ class AgendaItemDecorator < SimpleDelegator
   end
 
   def url
-    # byebug
     if schedulable.is_a?(Formation)
       formation_path(schedulable)
     elsif schedulable.is_a?(Event)
       schedulable.link
+    end
+  end
+
+  def enabled?
+    if schedulable.is_a?(Formation)
+      schedulable.enabled
+    else
+      true
     end
   end
 
