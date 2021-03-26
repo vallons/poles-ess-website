@@ -43,6 +43,7 @@ EmailTemplate.where(mailer: "ParticipantMailer", mail_name: "new_subscription").
 [
   { key: 'data_policy', title: 'Politique de confidentialité', enabled: true },
   { key: 'legal_mentions', title: 'Mentions légales', enabled: true },
+  { key: 'cgu', title: 'Conditions d\'utilisation', enabled: true },
   { key: 'contact', title: 'Contact', enabled: true },
 ].each do |option|
   BasicPage.where(key: option[:key]).first_or_create(

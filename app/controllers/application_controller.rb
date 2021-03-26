@@ -41,6 +41,7 @@ class ApplicationController < ActionController::Base
     @contact_page     = BasicPage.find_by(key: 'contact')
     @data_policy_page = BasicPage.find_by(key: 'data_policy')
     @legal_mentions_page = BasicPage.find_by(key: 'legal_mentions')
+    @cgu_page = BasicPage.find_by(key: 'cgu')
   end
 
   def set_default_seos!

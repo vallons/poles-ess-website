@@ -142,10 +142,15 @@ html lang='fr'
 
             .separator.hidden.md:block.white.h-4.my-auto
             = link_to "Plan du site", sitemap_path, class: "px-3"
-            .separator.hidden.md:block.white.h-4.my-auto
-            = link_to "Mentions légales", basic_page_path(@legal_mentions_page), class: "px-3"
-            .separator.hidden.md:block.white.h-4.my-auto
-            = link_to "Politique de confidentialité", basic_page_path(@data_policy_page), class: "px-3"
+            - if @legal_mentions_page.enabled?
+              .separator.hidden.md:block.white.h-4.my-auto
+              = link_to "Mentions légales", basic_page_path(@legal_mentions_page), class: "px-3"
+            - if @data_policy_page.enabled?
+              .separator.hidden.md:block.white.h-4.my-auto
+              = link_to "Politique de confidentialité", basic_page_path(@data_policy_page), class: "px-3"
+            - if @cgu_page.enabled?
+              .separator.hidden.md:block.white.h-4.my-auto
+              = link_to "CGU", basic_page_path(@cgu_page), class: "px-3"
           .social.flex.flex-row.justify-center.md:justify-end.mt-3.md:mt-0
             - if Setting.facebook.present?
               = link_to Setting.facebook, title: "page facebook", class: "inline-block w-8 h-8 p-1 border text-center ml-2" do
