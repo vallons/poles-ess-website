@@ -147,10 +147,10 @@ html lang='fr'
             .separator.hidden.md:block.white.h-4.my-auto
             = link_to "Politique de confidentialité", basic_page_path(@data_policy_page), class: "px-3"
           .social.flex.flex-row.justify-center.md:justify-end.mt-3.md:mt-0
-            - if Setting.facebook
+            - if Setting.facebook.present?
               = link_to Setting.facebook, title: "page facebook", class: "inline-block w-8 h-8 p-1 border text-center ml-2" do
                 i.fab.fa-facebook-f.leading-snug
-            - if Setting.instagram
+            - if Setting.instagram.present?
               = link_to Setting.instagram, title: "page instagram", class: "inline-block w-8 h-8 p-1 border text-center ml-2" do
                 i.fab.fa-instagram.leading-snug
 
