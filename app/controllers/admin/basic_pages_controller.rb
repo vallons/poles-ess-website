@@ -77,7 +77,7 @@ class Admin::BasicPagesController < Admin::BaseController
   # strong parameters
   def basic_page_params
     params.require(:basic_page).permit(
-      :title, :content, :enabled,
+      :title, :description, :enabled,
       theme_ids: [],
       main_page_ids: [],
       seo_attributes: seo_attributes,
